@@ -9,7 +9,7 @@ public class Profile {
 
     private String name;
     private String email;
-    private FriendsList friendsList;
+    private final FriendsList friendsList = new FriendsList();
     private String website;
     private List<String> interests;
     private String aboutMe;
@@ -22,30 +22,30 @@ public class Profile {
 
 
     // Initial construction
-    public Profile(String name, String username, int age, String email, String password) {
+    public Profile(String name, String username, int age, String email, String rawPassword) {
         this.name = name;
         this.username = username;
         this.email = email;
 
-        //TODO  encrypt this later
-        this.encryptedPassword = password;
+        //Current skip is 12 (Moves each letter over by 12). This can be changed later.
+        this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);
 
         this.age = age;
-        this.friendsList = new FriendsList();
 
     }
 
     // If user decides to input all fields on construction
-    public Profile(String name, String email, String website, List<String> interests, String aboutMe, int age, String username, String encryptedPassword) {
+    public Profile(String name, String email, String website, List<String> interests, String aboutMe, int age, String username, String rawPassword) {
         this.name = name;
         this.email = email;
-        this.friendsList = new FriendsList();
         this.website = website;
         this.interests = interests;
         this.aboutMe = aboutMe;
         this.age = age;
         this.username = username;
-        this.encryptedPassword = encryptedPassword;
+
+        //Current skip is 12 (Moves each letter over by 12). This can be changed later.
+        this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);
     }
 
     // Getters and Setters
