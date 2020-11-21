@@ -5,6 +5,12 @@ import java.awt.event.*;
 import java.util.*;
 import java.io.*;
 
+/**
+ * Represents the inital welcome screen for entering user inputs
+ * @author paul gherghetta
+ * @verseion 11/21/20
+ */
+
 public class UserInput extends JFrame implements ActionListener {
     //Components
     private JButton signInButton;
@@ -64,7 +70,7 @@ public class UserInput extends JFrame implements ActionListener {
         welcomePanel.add(pass);
 
         //Password text box
-        password = new JTextField(5);
+        password = new JPasswordField(5);
         //Set the maximum size the text box can be when the screen is resized
         Dimension passwordTextBox = new Dimension(130, 30);
         password.setMaximumSize(passwordTextBox);

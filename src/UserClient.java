@@ -5,6 +5,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**
+ * Represents the user client
+ * @author aakash jariwala
+ * @version 11/21/20
+ */
 public class UserClient {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {

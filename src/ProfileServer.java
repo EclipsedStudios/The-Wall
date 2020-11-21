@@ -5,6 +5,12 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Represents the server
+ * @author Jaden Baker
+ * @version 11/21/20
+ */
+
 public class ProfileServer {
 
     public static void main(String[] args) throws IOException {
