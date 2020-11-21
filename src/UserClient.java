@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class SimpleClient {
+public class UserClient {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);

@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.*;
 import java.io.*;
 
-public class User extends JFrame implements ActionListener {
+public class UserInput extends JFrame implements ActionListener {
     //Components
     private JButton signInButton;
     public static JTextField username;
