@@ -1,3 +1,5 @@
+package ProfileExceptions;
+
 /**
  * Represents a user entering in an existening username for a profile creation
  *
