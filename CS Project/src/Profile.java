@@ -2,8 +2,9 @@ import java.util.List;
 
 /**
  * Profile class for all profiles
- * @authors max fuligni, cole busa, paul gherghetta, aakash jariwala, jaden baker
+ *
  * @version 11/21/20
+ * @authors max fuligni, cole busa, paul gherghetta, aakash jariwala, jaden baker
  */
 public class Profile {
 
@@ -15,9 +16,13 @@ public class Profile {
     private String aboutMe;
     private final int age;
 
-    /** identifier **/
+    /**
+     * identifier
+     **/
     private final String username;
-    /** Server de-ecrypts for login **/
+    /**
+     * Server de-ecrypts for login
+     **/
     private String encryptedPassword;
 
 

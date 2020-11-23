@@ -1,33 +1,36 @@
 //A Sample login screen
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import java.io.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
- * Represents the inital welcome screen for entering user inputs
+ * Represents the initial welcome screen for entering user inputs
+ *
  * @author paul gherghetta
- * @verseion 11/21/20
+ * @version 11/21/20
  */
 
 public class UserInput extends JFrame implements ActionListener {
     //Components
     private JButton signInButton;
-    public static JTextField username;
-    public static JTextField password;
+    public static JTextField USERNAME;
+    public static JTextField PASSWORD;
 
     private static final ArrayList<String> usernames = new ArrayList<>();
     private static final ArrayList<String> passwords = new ArrayList<>();
 
 
-
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable(){
+        SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 createWelcomeScreen();
-            }});
+            }
+        });
     }
 
     public static void createWelcomeScreen() {
@@ -56,13 +59,13 @@ public class UserInput extends JFrame implements ActionListener {
         welcomePanel.add(user);
 
         //Username text box
-        username = new JTextField(5);
+        USERNAME = new JTextField(5);
         //Set the maximum size the text box can be when the screen is resized
         Dimension usernameTextBox = new Dimension(130, 30);
-        username.setMaximumSize(usernameTextBox);
-        username.setAlignmentX(Component.CENTER_ALIGNMENT);
+        USERNAME.setMaximumSize(usernameTextBox);
+        USERNAME.setAlignmentX(Component.CENTER_ALIGNMENT);
         welcome.setVerticalAlignment(JLabel.CENTER);
-        welcomePanel.add(username);
+        welcomePanel.add(USERNAME);
 
         //Password label
         JLabel pass = new JLabel("Password");
@@ -70,12 +73,12 @@ public class UserInput extends JFrame implements ActionListener {
         welcomePanel.add(pass);
 
         //Password text box
-        password = new JPasswordField(5);
+        PASSWORD = new JPasswordField(5);
         //Set the maximum size the text box can be when the screen is resized
         Dimension passwordTextBox = new Dimension(130, 30);
-        password.setMaximumSize(passwordTextBox);
-        password.setAlignmentX(Component.CENTER_ALIGNMENT);
-        welcomePanel.add(password);
+        PASSWORD.setMaximumSize(passwordTextBox);
+        PASSWORD.setAlignmentX(Component.CENTER_ALIGNMENT);
+        welcomePanel.add(PASSWORD);
 
 
         //Sign In Button
@@ -121,15 +124,15 @@ public class UserInput extends JFrame implements ActionListener {
         boolean passwordMatch = false;
         //Check for matching usernames and passwords
         for (int i = 0; i < usernames.size(); i++) {
-            if (username != null) {
-                if (usernames.get(i).equals(username.getText())) {
+            if (USERNAME != null) {
+                if (usernames.get(i).equals(USERNAME.getText())) {
                     usernameMatch = true;
                 }
             }
         }
         for (int i = 0; i < passwords.size(); i++) {
-            if (password != null) {
-                if (passwords.get(i).equals(password.getText())) {
+            if (PASSWORD != null) {
+                if (passwords.get(i).equals(PASSWORD.getText())) {
                     passwordMatch = true;
                 }
             }
