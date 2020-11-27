@@ -10,7 +10,7 @@ public class FriendsList {
     public ArrayList<String> friends;
 
     /**
-     * An empty contructor for a friends list.
+     * An empty constructor for a friends list.
      */
     public FriendsList() {
         friends = new ArrayList<String>();
