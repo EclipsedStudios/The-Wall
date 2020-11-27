@@ -19,43 +19,16 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/testbranch" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13163c36-eb94-4db2-b582-2df5d6c16fe9" name="Default Changelist" comment="Added PasswordEncryption.java: It provides static classes to encode and decode strings, which is used to hide passwords.&#10;Changed Profile.java: Made the friends list initialize outside of the constructor, as it isn't required to be in the constructor. Also changed encryptedPassword in the constructor to save the password as an encrypted one (With a shift of 12).">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/UserClient.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/UserClient2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/UserClient__5_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/CentralServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/ServerClientThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/SettingsAndConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/UserClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CS18000/PasswordEncryption.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/CentralServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/ServerClientThread.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/SettingsAndConstants.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/UserClient.class" afterDir="false" />
+    <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/DuplicateUserException.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/DuplicateUserException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CS Project/src/FriendsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/FriendsList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/InvalidPasswordException.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/InvalidPasswordException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/PasswordEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/PasswordEncryption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/ProfileServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/UserClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/UserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/UserInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/DuplicateUserException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/DuplicateUserException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/FriendsList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/FriendsList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/InvalidPasswordException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/InvalidPasswordException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/Profile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/Profile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/ProfileServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/UserClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/UserInput$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/UserInput$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/UserInput$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/UserInput$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/UserInput.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/UserInput.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,15 +149,16 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UserClient (6)" />
         <item itemvalue="Application.CentralServer" />
-        <item itemvalue="Application.UserClient (2)" />
         <item itemvalue="Application.UserClient (5)" />
         <item itemvalue="Application.UserClient" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <servers />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -196,7 +170,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="origin/testbranch" />
                       </list>
                     </value>
                   </entry>
@@ -213,7 +187,8 @@
     <MESSAGE value="Test Branch" />
     <MESSAGE value="Added PasswordEncryption.java: It provides static classes to encode and decode strings, which is used to hide passwords.&#10;Changed Profile.java: Made the friends list initialize outside of the constructor, as it isn't required to be in the constructor. Also changed encryptedPassword in the constructor to save the password as an encrypted one (With a shift of 12)." />
     <MESSAGE value="Added: SettingsAndConstants.java&#10;Description: Holds constants that may be used elsewhere multiple times. Or just large strings.&#10;&#10;Added: ServerClientThread.java&#10;Description: Acts as the clients connection to the CentralServer. This is required for multiple connections to the CentralServer.&#10;&#10;Renamed: ProfileServer.class to CentralServer.java&#10;Description: As this is the central server used to run the whole platform, I feel like CentralServer would be a more understandable.&#10;&#10;Changed: UserClient.java&#10;Description: Recreated the simple client script but using the new ServerClientThread.java system.&#10;&#10;Added: ServerAndClient package&#10;Description: This is just so all of the client and server things are organized. We can do this to more of the files as we go on and if you need to use something from it, all you have to do is import the package at the top. (Intellij will do this/tell you automatically)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added: SettingsAndConstants.java&#10;Description: Holds constants that may be used elsewhere multiple times. Or just large strings.&#10;&#10;Added: ServerClientThread.java&#10;Description: Acts as the clients connection to the CentralServer. This is required for multiple connections to the CentralServer.&#10;&#10;Renamed: ProfileServer.class to CentralServer.java&#10;Description: As this is the central server used to run the whole platform, I feel like CentralServer would be a more understandable.&#10;&#10;Changed: UserClient.java&#10;Description: Recreated the simple client script but using the new ServerClientThread.java system.&#10;&#10;Added: ServerAndClient package&#10;Description: This is just so all of the client and server things are organized. We can do this to more of the files as we go on and if you need to use something from it, all you have to do is import the package at the top. (Intellij will do this/tell you automatically)" />
+    <MESSAGE value="Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606092118870">
@@ -266,6 +241,10 @@
     <state x="2509" y="106" key="Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095578508" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992769069" />
     <state x="2509" y="54" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605993764260" />
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606516481816">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606516481816" />
     <state x="2607" y="78" width="672" height="678" key="search.everywhere.popup" timestamp="1606095324743">
       <screen x="1920" y="-165" width="2048" height="1120" />
     </state>
