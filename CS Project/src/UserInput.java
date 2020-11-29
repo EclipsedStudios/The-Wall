@@ -7,7 +7,7 @@ import java.io.*;
 /**
  * Represents the initial welcome screen for entering user inputs.
  * @author Paul Gherghetta
- * @version 11/24/20
+ * @version 11/29/20
  */
 
 public class UserInput extends JFrame implements ActionListener {
@@ -23,9 +23,13 @@ public class UserInput extends JFrame implements ActionListener {
     private static JTextField friendsTextField;
     private static JTextField websiteTextField;
     private static JTextField likesInterestsTextField;
-    private static JTextField aboutMeTextField;
+    private static JTextArea aboutMeTextArea;
     private static JPasswordField confirmPasswordTextField;
     private static JFrame createAccountFrame;
+    //Variables for fixing the issue of the friends and like/interests
+    //messages showing multiple times.
+    private static int dummyVariable1;
+    private static int dummyVariable2;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable(){
@@ -168,6 +172,10 @@ public class UserInput extends JFrame implements ActionListener {
         //An array of the labels to be used
         String[] labels = {"Username", "Password", "Full Name", "Age", "Email", "Friends",
                 "Website", "Likes/Interests", "About Me"};
+        //Variables that will be used to size all the text fields
+        int textFieldWidth = 200;
+        int textFieldHeight = 30;
+
         //Create the JPanel and set the layout
         JPanel createAccountPanel = new JPanel();
         createAccountPanel.setLayout(new BoxLayout(createAccountPanel, BoxLayout.Y_AXIS));
@@ -180,7 +188,7 @@ public class UserInput extends JFrame implements ActionListener {
 
         //Username text box
         usernameTextField = new JTextField(10);
-        Dimension usernameTextBox = new Dimension(130, 30);
+        Dimension usernameTextBox = new Dimension(textFieldWidth, textFieldHeight);
         usernameTextField.setMaximumSize(usernameTextBox);
         usernameTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
         createAccountPanel.add(usernameTextField);
@@ -193,7 +201,7 @@ public class UserInput extends JFrame implements ActionListener {
 
         //Password text box
         passwordTextField = new JPasswordField(10);
-        Dimension passwordTextBox = new Dimension(130, 30);
+        Dimension passwordTextBox = new Dimension(textFieldWidth, textFieldHeight);
         passwordTextField.setMaximumSize(usernameTextBox);
         passwordTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
         createAccountPanel.add(passwordTextField);
@@ -207,7 +215,7 @@ public class UserInput extends JFrame implements ActionListener {
 
         //Confirm Password text box
         confirmPasswordTextField = new JPasswordField(10);
-        Dimension confirmPasswordTextBox = new Dimension(130, 30);
+        Dimension confirmPasswordTextBox = new Dimension(textFieldWidth, textFieldHeight);
         confirmPasswordTextField.setMaximumSize(confirmPasswordTextBox);
         confirmPasswordTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
         createAccountPanel.add(confirmPasswordTextField);
@@ -220,7 +228,7 @@ public class UserInput extends JFrame implements ActionListener {
 
         //Name text box
         nameTextField = new JTextField(10);
-        Dimension nameTextBox = new Dimension(130, 30);
+        Dimension nameTextBox = new Dimension(textFieldWidth, textFieldHeight);
         nameTextField.setMaximumSize(usernameTextBox);
         nameTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
         createAccountPanel.add(nameTextField);
@@ -233,7 +241,7 @@ public class UserInput extends JFrame implements ActionListener {
 
         //Age text box
         ageTextField = new JTextField(10);
-        Dimension ageTextBox = new Dimension(130, 30);
+        Dimension ageTextBox = new Dimension(textFieldWidth, textFieldHeight);
         ageTextField.setMaximumSize(ageTextBox);
         ageTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
         createAccountPanel.add(ageTextField);
@@ -246,7 +254,7 @@ public class UserInput extends JFrame implements ActionListener {
 
         //Email text box
         emailTextField = new JTextField(10);
-        Dimension emailTextBox = new Dimension(130, 30);
+        Dimension emailTextBox = new Dimension(textFieldWidth, textFieldHeight);
         emailTextField.setMaximumSize(emailTextBox);
         emailTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
         createAccountPanel.add(emailTextField);
@@ -259,7 +267,7 @@ public class UserInput extends JFrame implements ActionListener {
 
         //Friends text box
         friendsTextField = new JTextField(10);
-        Dimension friendsTextBox = new Dimension(130, 30);
+        Dimension friendsTextBox = new Dimension(textFieldWidth, textFieldHeight);
         friendsTextField.setMaximumSize(friendsTextBox);
         friendsTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
         createAccountPanel.add(friendsTextField);
@@ -272,7 +280,7 @@ public class UserInput extends JFrame implements ActionListener {
 
         //Website text box
         websiteTextField = new JTextField(10);
-        Dimension websiteTextBox = new Dimension(130, 30);
+        Dimension websiteTextBox = new Dimension(textFieldWidth, textFieldHeight);
         websiteTextField.setMaximumSize(websiteTextBox);
         websiteTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
         createAccountPanel.add(websiteTextField);
@@ -285,7 +293,7 @@ public class UserInput extends JFrame implements ActionListener {
 
         //Likes/Interests text box
         likesInterestsTextField = new JTextField(10);
-        Dimension likesInterestsTextBox = new Dimension(130, 30);
+        Dimension likesInterestsTextBox = new Dimension(textFieldWidth, textFieldHeight);
         likesInterestsTextField.setMaximumSize(likesInterestsTextBox);
         likesInterestsTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
         createAccountPanel.add(likesInterestsTextField);
@@ -296,12 +304,14 @@ public class UserInput extends JFrame implements ActionListener {
         aboutMeLabel.setVerticalAlignment(JLabel.NORTH);
         createAccountPanel.add(aboutMeLabel);
 
-        //About Me text box
-        aboutMeTextField = new JTextField(10);
-        Dimension aboutMeTextBox = new Dimension(130, 30);
-        aboutMeTextField.setMaximumSize(aboutMeTextBox);
-        aboutMeTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
-        createAccountPanel.add(aboutMeTextField);
+        //About Me text area
+        aboutMeTextArea = new JTextArea();
+        aboutMeTextArea.setLineWrap(true);
+        aboutMeTextArea.setWrapStyleWord(true);
+        Dimension aboutMeTextBox = new Dimension(500, 200);
+        aboutMeTextArea.setMaximumSize(aboutMeTextBox);
+        aboutMeTextArea.setAlignmentX(Component.LEFT_ALIGNMENT);
+        createAccountPanel.add(aboutMeTextArea);
 
         //A button that will confirm the creation of a new account
         JButton confirmButton = new JButton("Create Account");
@@ -317,7 +327,7 @@ public class UserInput extends JFrame implements ActionListener {
         friendsTextField.setText("");
         websiteTextField.setText("");
         likesInterestsTextField.setText("");
-        aboutMeTextField.setText("");
+        aboutMeTextArea.setText("");
         confirmButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 performCreateAccountConfirmButtonAction();
@@ -331,13 +341,18 @@ public class UserInput extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Passwords did not match!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
                 } else if (performCreateAccountConfirmButtonAction() == 3) {
-                    JOptionPane.showMessageDialog(null, "Make sure that each friend " +
-                                    "and each like/interest is separated by a comma and space!",
+                    //This message will show if the user said they were not inputting just one friend
+                    JOptionPane.showMessageDialog(null, "Make sure that " +
+                                    "multiple friends are separated by a comma and space!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
                 } else if (performCreateAccountConfirmButtonAction() == 4) {
-                    JOptionPane.showMessageDialog(null, "Email is invalid!",
+                    JOptionPane.showMessageDialog(null, "Make sure that " +
+                                    "multiple likes/interests are separated by a comma and space!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
                 } else if (performCreateAccountConfirmButtonAction() == 5) {
+                    JOptionPane.showMessageDialog(null, "Email is invalid!",
+                            "Social Profile App", JOptionPane.ERROR_MESSAGE);
+                } else if (performCreateAccountConfirmButtonAction() == 6) {
                     JOptionPane.showMessageDialog(null, "Website is invalid!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
                 } else {
@@ -363,7 +378,8 @@ public class UserInput extends JFrame implements ActionListener {
         //First, did they leave any text field blank?
         String password1 = String.valueOf(passwordTextField.getPassword());
         String password2 = String.valueOf(confirmPasswordTextField.getPassword());
-
+        /*
+        This is for testing purposes:
         String a = usernameTextField.getText();
         String b = nameTextField.getText();
         String c = ageTextField.getText();
@@ -372,13 +388,14 @@ public class UserInput extends JFrame implements ActionListener {
         String g = websiteTextField.getText();
         String h = likesInterestsTextField.getText();
         String i = aboutMeTextField.getText();
+         */
         if (usernameTextField.getText().equals("") || password1.equals("") ||
                 password2.equals("") ||
                 nameTextField.getText().equals("") || ageTextField.getText().equals("") ||
                 emailTextField.getText().equals("") || friendsTextField.getText().equals("") ||
                 websiteTextField.getText().equals("") ||
                 likesInterestsTextField.getText().equals("") ||
-                aboutMeTextField.getText().equals("")) {
+                aboutMeTextArea.getText().equals("")) {
             return 1;
         }
         //Check if passwords matched
@@ -388,15 +405,31 @@ public class UserInput extends JFrame implements ActionListener {
             return 2;
         }
         //Then, check that friends and likes/interests are separated by ", ".
-        if (!friendsTextField.getText().contains(", ") ||
-                !likesInterestsTextField.getText().contains(", ")) {
-            return 3;
+        if (!friendsTextField.getText().contains(", ") && dummyVariable1 == 0) {
+            //Check for the input of just one friend
+            int onlyOneFriend = JOptionPane.showConfirmDialog(null, "Are " +
+                            "you only inputting one friend?", "Social Profile App",
+                    JOptionPane.YES_NO_OPTION);
+            if (onlyOneFriend == JOptionPane.NO_OPTION) {
+                return 3;
+            }
+            dummyVariable1 = 1;
+        }
+        if (!likesInterestsTextField.getText().contains(", ") && dummyVariable2 == 0) {
+            //Check for the input of just one like/interest
+            int onlyOneLikeInterest = JOptionPane.showConfirmDialog(null, "Are " +
+                            "you only inputting one like/interest?", "Social Profile App",
+                    JOptionPane.YES_NO_OPTION);
+            if (onlyOneLikeInterest == JOptionPane.NO_OPTION) {
+                return 4;
+            }
+            dummyVariable2 = 1;
         }
         if (!emailTextField.getText().contains("@")) {
-            return 4;
+            return 5;
         }
         if (!websiteTextField.getText().contains(".")) {
-            return 5;
+            return 6;
         }
         //We can very likely assume now that all text fields have the correct format.
         //Now we'll create a file and write the new account information to it.
@@ -415,7 +448,7 @@ public class UserInput extends JFrame implements ActionListener {
         pw.println(friendsTextField.getText());
         pw.println(websiteTextField.getText());
         pw.println(likesInterestsTextField.getText());
-        pw.println(aboutMeTextField.getText());
+        pw.println(aboutMeTextArea.getText());
         pw.println(ageTextField.getText());
         pw.println(passwordTextField.getPassword());
         pw.close();
@@ -437,5 +470,4 @@ public class UserInput extends JFrame implements ActionListener {
             }
         }
     }
-
 }
