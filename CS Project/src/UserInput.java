@@ -5,9 +5,9 @@ import java.util.*;
 import java.io.*;
 
 /**
- * Represents the initial welcome screen for entering user inputs.
+ * The login screen for the Social Profile App.
  * @author Paul Gherghetta
- * @version 11/29/20
+ * @version 11/30/2020
  */
 
 public class UserInput extends JFrame implements ActionListener {
@@ -20,16 +20,11 @@ public class UserInput extends JFrame implements ActionListener {
     private static JTextField nameTextField;
     private static JTextField ageTextField;
     private static JTextField emailTextField;
-    private static JTextField friendsTextField;
     private static JTextField websiteTextField;
     private static JTextField likesInterestsTextField;
     private static JTextArea aboutMeTextArea;
     private static JPasswordField confirmPasswordTextField;
     private static JFrame createAccountFrame;
-    //Variables for fixing the issue of the friends and like/interests
-    //messages showing multiple times.
-    private static int dummyVariable1;
-    private static int dummyVariable2;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable(){
@@ -100,7 +95,8 @@ public class UserInput extends JFrame implements ActionListener {
                 try {
                     validateLoginCredentials();
                 } catch (IOException ioException) {
-                    JOptionPane.showMessageDialog(null, "Error reading file!", "Social Profile App",
+                    JOptionPane.showMessageDialog(null, "Error reading file!", 
+                            "Social Profile App",
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -259,19 +255,6 @@ public class UserInput extends JFrame implements ActionListener {
         emailTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
         createAccountPanel.add(emailTextField);
 
-        //Friends label
-        JLabel friendsLabel = new JLabel(labels[5], JLabel.LEFT);
-        friendsLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        friendsLabel.setVerticalAlignment(JLabel.NORTH);
-        createAccountPanel.add(friendsLabel);
-
-        //Friends text box
-        friendsTextField = new JTextField(10);
-        Dimension friendsTextBox = new Dimension(textFieldWidth, textFieldHeight);
-        friendsTextField.setMaximumSize(friendsTextBox);
-        friendsTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
-        createAccountPanel.add(friendsTextField);
-
         //Website label
         JLabel websiteLabel = new JLabel(labels[6], JLabel.LEFT);
         websiteLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -318,45 +301,41 @@ public class UserInput extends JFrame implements ActionListener {
         confirmButton.setAlignmentX(Component.LEFT_ALIGNMENT);
         confirmButton.setVerticalAlignment(JLabel.NORTH);
         //Set the text fields to "". This will be useful when error checking.
+        //i.e. checking if the field was left blank
         usernameTextField.setText("");
         passwordTextField.setText("");
         confirmPasswordTextField.setText("");
         nameTextField.setText("");
         ageTextField.setText("");
         emailTextField.setText("");
-        friendsTextField.setText("");
         websiteTextField.setText("");
         likesInterestsTextField.setText("");
         aboutMeTextArea.setText("");
         confirmButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                performCreateAccountConfirmButtonAction();
-                //Based on the number that is returned from the method, a particular
-                //error message will show.
-                if (performCreateAccountConfirmButtonAction() == 1) {
-                    JOptionPane.showMessageDialog(null,
+                //performCreateAccountConfirmButtonAction() is already called
+                //in the switch statement so there's no need to call it by itself.
+                switch (performCreateAccountConfirmButtonAction()) {
+                    case 1 -> JOptionPane.showMessageDialog(null,
                             "You left one or more fields blank! Please fill all text boxes!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                } else if (performCreateAccountConfirmButtonAction() == 2) {
-                    JOptionPane.showMessageDialog(null, "Passwords did not match!",
+                    case 2 -> JOptionPane.showMessageDialog(null, "Passwords " +
+                                    "did not match!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                } else if (performCreateAccountConfirmButtonAction() == 3) {
-                    //This message will show if the user said they were not inputting just one friend
-                    JOptionPane.showMessageDialog(null, "Make sure that " +
-                                    "multiple friends are separated by a comma and space!",
-                            "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                } else if (performCreateAccountConfirmButtonAction() == 4) {
-                    JOptionPane.showMessageDialog(null, "Make sure that " +
+                    case 3 -> JOptionPane.showMessageDialog(null, "Make sure that " +
                                     "multiple likes/interests are separated by a comma and space!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                } else if (performCreateAccountConfirmButtonAction() == 5) {
-                    JOptionPane.showMessageDialog(null, "Email is invalid!",
+                    case 4 -> JOptionPane.showMessageDialog(null, "Email is " +
+                                    "invalid!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                } else if (performCreateAccountConfirmButtonAction() == 6) {
-                    JOptionPane.showMessageDialog(null, "Website is invalid!",
+                    case 5 -> JOptionPane.showMessageDialog(null, "Website is " +
+                                    "invalid!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(null,
+                    case 6 -> JOptionPane.showMessageDialog(null, "Username " +
+                                    "already exists! " +
+                                    "Please choose a different username.", "Social Profile App",
+                            JOptionPane.ERROR_MESSAGE);
+                    default -> JOptionPane.showMessageDialog(null,
                             "Account was successfully created.", "Social Profile App",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -392,7 +371,7 @@ public class UserInput extends JFrame implements ActionListener {
         if (usernameTextField.getText().equals("") || password1.equals("") ||
                 password2.equals("") ||
                 nameTextField.getText().equals("") || ageTextField.getText().equals("") ||
-                emailTextField.getText().equals("") || friendsTextField.getText().equals("") ||
+                emailTextField.getText().equals("") ||
                 websiteTextField.getText().equals("") ||
                 likesInterestsTextField.getText().equals("") ||
                 aboutMeTextArea.getText().equals("")) {
@@ -404,39 +383,34 @@ public class UserInput extends JFrame implements ActionListener {
         if (!password1.equals(password2)) {
             return 2;
         }
-        //Then, check that friends and likes/interests are separated by ", ".
-        if (!friendsTextField.getText().contains(", ") && dummyVariable1 == 0) {
-            //Check for the input of just one friend
-            int onlyOneFriend = JOptionPane.showConfirmDialog(null, "Are " +
-                            "you only inputting one friend?", "Social Profile App",
-                    JOptionPane.YES_NO_OPTION);
-            if (onlyOneFriend == JOptionPane.NO_OPTION) {
-                return 3;
-            }
-            dummyVariable1 = 1;
+        if (!emailTextField.getText().contains("@")) {
+            return 4;
         }
-        if (!likesInterestsTextField.getText().contains(", ") && dummyVariable2 == 0) {
+        if (!websiteTextField.getText().contains(".")) {
+            return 5;
+        }
+        //Make sure the username does not already exist
+        File f = new File(usernameTextField.getText() + ".txt");
+        if (f.getAbsoluteFile().exists()) {
+            return 6;
+        }
+
+        //Then, check that likes/interests is separated by ", ".
+        if (!likesInterestsTextField.getText().contains(", ")) {
             //Check for the input of just one like/interest
             int onlyOneLikeInterest = JOptionPane.showConfirmDialog(null, "Are " +
                             "you only inputting one like/interest?", "Social Profile App",
                     JOptionPane.YES_NO_OPTION);
             if (onlyOneLikeInterest == JOptionPane.NO_OPTION) {
-                return 4;
+                return 3;
             }
-            dummyVariable2 = 1;
-        }
-        if (!emailTextField.getText().contains("@")) {
-            return 5;
-        }
-        if (!websiteTextField.getText().contains(".")) {
-            return 6;
         }
         //We can very likely assume now that all text fields have the correct format.
         //Now we'll create a file and write the new account information to it.
-        File f = new File(usernameTextField.getText() + ".txt");
+        File file = new File(usernameTextField.getText() + ".txt");
         FileOutputStream fos = null;
         try {
-            fos = new FileOutputStream(f, false);
+            fos = new FileOutputStream(file, false);
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null,
                     "File Not Found Exception thrown!", "Social Profile App",
@@ -445,7 +419,7 @@ public class UserInput extends JFrame implements ActionListener {
         PrintWriter pw = new PrintWriter(fos);
         pw.println(nameTextField.getText());
         pw.println(emailTextField.getText());
-        pw.println(friendsTextField.getText());
+        pw.println("No friends");
         pw.println(websiteTextField.getText());
         pw.println(likesInterestsTextField.getText());
         pw.println(aboutMeTextArea.getText());
@@ -465,7 +439,8 @@ public class UserInput extends JFrame implements ActionListener {
             try {
                 validateLoginCredentials();
             } catch (IOException ioe) {
-                JOptionPane.showMessageDialog(null, "Error reading file!", "Social Profile App",
+                JOptionPane.showMessageDialog(null, "Error reading file!", 
+                        "Social Profile App",
                         JOptionPane.ERROR_MESSAGE);
             }
         }
