@@ -1,9 +1,6 @@
 package ServerAndClient;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -18,6 +15,8 @@ public class ServerClientThread extends Thread {
     BufferedReader bufferedReader = null;
     PrintWriter printWriter = null;
     Socket socket;
+    ObjectOutputStream objectOutputStream = null;
+    ObjectInputStream objectInputStream = null;
 
     public ServerClientThread(Socket socket) {
         this.socket = socket;
@@ -25,8 +24,11 @@ public class ServerClientThread extends Thread {
 
     public void run() {
         try {
+
             bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             printWriter = new PrintWriter(socket.getOutputStream());
+            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             System.out.println("IO error in server thread");
         }
@@ -34,10 +36,30 @@ public class ServerClientThread extends Thread {
         try {
             line = bufferedReader.readLine();
             while (line.compareToIgnoreCase("quit") != 0) {
-                printWriter.println("You said: " + line);
-
-                printWriter.flush();
-                System.out.println(socket.getInetAddress()+ ":" + socket.getPort() + " said: " + line);
+                switch (line) {
+                    case "stop server":
+                        System.exit(0);
+                        objectOutputStream.writeObject(null);
+                        objectOutputStream.flush();
+                    case "see users":
+                        printWriter.println("clientUserRequest");
+                        printWriter.flush();
+                        objectOutputStream.writeObject(CentralServer.users.toArray());
+                        objectOutputStream.flush();
+                        break;
+                    case "serverUserArrayRequest":
+                        objectOutputStream.writeObject(CentralServer.users.toArray());
+                        objectOutputStream.flush();
+                        break;
+                    default:
+                        printWriter.println("You said: " + line);
+                        printWriter.println("---------");
+                        printWriter.flush();
+                        objectOutputStream.writeObject(null);
+                        objectOutputStream.flush();
+                        break;
+                }
+                System.out.println(socket.getInetAddress() + ":" + socket.getPort() + " said: " + line);
                 line = bufferedReader.readLine();
             }
         } catch (IOException e) {
@@ -49,7 +71,6 @@ public class ServerClientThread extends Thread {
             System.out.println("----------------------------------------");
             System.out.println("Client " + line + " Closed");
         } finally {
-
             try {
                 System.out.println("Connection Closing...");
                 if (bufferedReader != null) {
@@ -63,6 +84,7 @@ public class ServerClientThread extends Thread {
                 }
 
                 if (socket != null) {
+                    CentralServer.users.remove(String.valueOf(socket.getInetAddress()));
                     socket.close();
                     System.out.println("Socket Closed");
                     CentralServer.numberOfConnections--;

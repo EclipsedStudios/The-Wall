@@ -1,9 +1,6 @@
 package ServerAndClient;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -16,12 +13,14 @@ import java.net.Socket;
 public class UserClient {
 
     public static void main(String[] args) throws IOException {
+
         InetAddress address = InetAddress.getLocalHost(); // Get localhost
         Socket socket = null; // Create a null socket
         String line; // Store information coming from server
         BufferedReader bufferedReader = null; // BufferedReader for client
         BufferedReader bufferedReader1 = null; // BufferedReader for client's server thread
         PrintWriter printWriter = null; // PrintWriter for client to send info to server
+        ObjectInputStream objectInputStream = null;
 
         try {
             //Initializes all objects
@@ -29,6 +28,7 @@ public class UserClient {
             bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             bufferedReader1 = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             printWriter = new PrintWriter(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             //Creates exception if failed
             e.printStackTrace();
@@ -38,20 +38,32 @@ public class UserClient {
         System.out.println("Client Address: " + address);
         System.out.println("[FOR TESTING] Send a message for the server to respond back with:");
 
-        String response;
-
         try {
             assert bufferedReader != null;
+            System.out.println("Checking for messages");
             line = bufferedReader.readLine();
+            assert printWriter != null;
+            printWriter.println(line);
+            printWriter.flush();
             while (line.compareToIgnoreCase("quit") != 0) {
-                assert printWriter != null;
+                if (line.equals("see users")) {
+                    assert objectInputStream != null;
+                    System.out.println("Checking for objects");
+                    String[] arraylist = (String[]) objectInputStream.readObject();
+                    if (arraylist != null) {
+                        System.out.println("Checking for objects");
+                        for (Object a : arraylist) {
+                            System.out.println(a);
+                            System.out.println("----");
+                        }
+                    }
+                }
+                System.out.println("Checking for messages");
+                line = bufferedReader.readLine();
                 printWriter.println(line);
                 printWriter.flush();
-                response = bufferedReader1.readLine();
-                System.out.println("The server has responded with: " + response);
-                line = bufferedReader.readLine();
             }
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("Socket Read Error");
         } finally {
