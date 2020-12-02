@@ -1,39 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
+    <expand />
+    <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/ServerAndClient/CentralServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/CentralServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/ServerAndClient/ServerClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/ServerClientThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/ServerAndClient/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/UserClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/DuplicateUserException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS Project/src/FriendsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/FriendsList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS18000.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CS18000.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS18000/FriendsList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/FriendsList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/InvalidPasswordException.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/CentralServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/CentralServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/ServerClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/ServerClientThread.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/UserClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/UserClient.class" afterDir="false" />
@@ -52,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -77,7 +53,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="JupyterTrust" id="fe41e3a6-7fc2-4c5d-ad6a-39fb370f4803" />
   <component name="ProjectId" id="1kcGV0R7adV96IvCAAmvpvYmlQo" />
@@ -86,6 +61,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -176,6 +155,13 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change" />
+      <created>1606934243823</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606934243823</updated>
+    </task>
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,31 +200,31 @@
       <screen x="1920" y="-165" width="2048" height="1120" />
     </state>
     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606092118870" />
-    <state width="1877" height="290" key="GridCell.Tab.0.bottom" timestamp="1606681343227">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1606868792607">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="290" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1606681343227" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606868792607" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1877" height="290" key="GridCell.Tab.0.center" timestamp="1606681343227">
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1606868792607">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="290" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1606681343227" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606868792607" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1877" height="290" key="GridCell.Tab.0.left" timestamp="1606681343227">
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1606868792607">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="290" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1606681343227" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606868792607" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900195" />
-    <state width="1877" height="290" key="GridCell.Tab.0.right" timestamp="1606681343227">
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1606868792607">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="290" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1606681343227" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606868792607" />
     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
@@ -264,10 +250,14 @@
     <state x="2509" y="106" key="Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095578508" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992769069" />
     <state x="2509" y="54" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605993764260" />
-    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606516481816">
+    <state x="664" y="411" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1606934339677">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606516481816" />
+    <state x="664" y="411" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1606934339677" />
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606942130681">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606942130681" />
     <state x="2607" y="78" width="672" height="678" key="search.everywhere.popup" timestamp="1606095324743">
       <screen x="1920" y="-165" width="2048" height="1120" />
     </state>
