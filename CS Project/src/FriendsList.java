@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * Represents a friends list for a profile
  *
  * @author Cole Busa
- * @version 11/27/20
+ * @version 12/2/20
  */
 public class FriendsList {
     public ArrayList<Profile> friends;
