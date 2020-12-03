@@ -3,6 +3,8 @@ package ServerAndClient;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Represents the user client
@@ -21,7 +23,7 @@ public class UserClient {
         BufferedReader bufferedReader1 = null; // BufferedReader for client's server thread
         PrintWriter printWriter = null; // PrintWriter for client to send info to server
         ObjectInputStream objectInputStream = null;
-
+        Scanner scan = new Scanner(System.in);
         try {
             //Initializes all objects
             socket = new Socket(address, SettingsAndConstants.SERVER_PORT);
@@ -36,30 +38,31 @@ public class UserClient {
         }
 
         System.out.println("Client Address: " + address);
-        System.out.println("[FOR TESTING] Send a message for the server to respond back with:");
+        System.out.println("[FOR TESTING] Send a message for the server to respond back with (Send a random message first, " +
+                "it is buggy and it will break if you ask for users first):");
 
         try {
             assert bufferedReader != null;
-            System.out.println("Checking for messages");
-            line = bufferedReader.readLine();
+            assert bufferedReader1 != null;
             assert printWriter != null;
-            printWriter.println(line);
+            line = scan.nextLine();
+            printWriter.println("First Message");
             printWriter.flush();
             while (line.compareToIgnoreCase("quit") != 0) {
-                if (line.equals("see users")) {
-                    assert objectInputStream != null;
-                    System.out.println("Checking for objects");
-                    String[] arraylist = (String[]) objectInputStream.readObject();
-                    if (arraylist != null) {
-                        System.out.println("Checking for objects");
-                        for (Object a : arraylist) {
+                switch (line) {
+                    case "stop server" -> {
+                        return;
+                    }
+                    case "see users" -> {
+                        ArrayList<String> listOfMessages = (ArrayList<String>) objectInputStream.readObject();
+                        System.out.println("Received [" + listOfMessages.size() + "] users from: " + socket);
+                        for(String a : listOfMessages){
                             System.out.println(a);
-                            System.out.println("----");
                         }
                     }
+                    default -> System.out.println(bufferedReader1.readLine());
                 }
-                System.out.println("Checking for messages");
-                line = bufferedReader.readLine();
+                line = scan.nextLine();
                 printWriter.println(line);
                 printWriter.flush();
             }

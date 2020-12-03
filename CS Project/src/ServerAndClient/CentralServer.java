@@ -19,8 +19,11 @@ public class CentralServer {
 
     public static int numberOfConnections = 0;
     public static ArrayList<String> users = new ArrayList<>();
-    public static void PrintNumberOfConnections() {
-        System.out.println("Number of connections: " + numberOfConnections + "" + users.size());
+    public static ArrayList<ServerClientThread> serverClientThreads = new ArrayList<>();
+    public static void RefreshGlobally() {
+        for(ServerClientThread a : serverClientThreads){
+            a.RefreshUsers(users);
+        }
     }
 
     public static void main(String[] args) {
@@ -47,11 +50,15 @@ public class CentralServer {
                 System.out.println("----------------------------------------");
                 System.out.println("Connection established to: " + socket.getInetAddress() +
                         "\nClient Port: " + socket.getPort());
-                users.add(String.valueOf(socket.getInetAddress()));
-                PrintNumberOfConnections();
+                users.add(String.valueOf(socket.getInetAddress()) + (socket.getPort()));
+                System.out.println("Number of connections: " + numberOfConnections);
                 System.out.println("----------------------------------------");
                 ServerClientThread serverClientThread = new ServerClientThread(socket);
+                serverClientThreads.add(serverClientThread);
                 serverClientThread.start();
+                for(ServerClientThread a : serverClientThreads){
+                    a.RefreshUsers(users);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("Connection Error");
