@@ -6,7 +6,7 @@ import org.junit.runner.notification.Failure;
  * A class to run all of the tests in the Tester class.
  *
  * @author Cole Busa
- * @version 12/2/20
+ * @version 12/3/20
  */
 public class TestRunner {
     /**

@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * Represents a friends list for a profile
  *
  * @author Cole Busa
- * @version 12/2/20
+ * @version 12/3/20
  */
 public class FriendsList {
     public ArrayList<Profile> friends;
@@ -64,7 +64,7 @@ public class FriendsList {
         ArrayList<Profile> mutualFriends = new ArrayList<Profile>();
         for (int i = 0; i < friends.size(); i++) {
             for (int j = 0; j < secondUser.getFriends().size(); j++) {
-                if (friends.get(i).equals(secondUser.getFriends().get(j))) {
+                if (friends.get(i).getUsername().equals(secondUser.getFriends().get(j).getUsername())) {
                     mutualFriends.add(secondUser.getFriends().get(j));
                     break;
                 }
@@ -74,13 +74,13 @@ public class FriendsList {
     }
 
     /**
-     * Returns a string format of the friends list.
+     * Returns a string format of the friends list (only includes usernames).
      * @return A string format of the friends list.
      */
     public String toString() {
         String formattedList = friends.get(0).getName();
         for (int i = 1; i < friends.size(); i++) {
-            formattedList = formattedList + ", " + friends.get(i).getName();
+            formattedList = formattedList + ", " + friends.get(i).getUsername();
         }
         return formattedList;
     }
