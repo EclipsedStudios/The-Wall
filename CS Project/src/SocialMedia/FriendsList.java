@@ -1,3 +1,6 @@
+package SocialMedia;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -6,7 +9,7 @@ import java.util.ArrayList;
  * @author Cole Busa
  * @version 12/3/20
  */
-public class FriendsList {
+public class FriendsList implements Serializable {
     public ArrayList<Profile> friends;
 
     /**

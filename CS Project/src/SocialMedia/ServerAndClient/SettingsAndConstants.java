@@ -1,4 +1,4 @@
-package ServerAndClient;
+package SocialMedia.ServerAndClient;
 
 /**
  * Represents certain constant variables to be used anywhere,

@@ -1,9 +1,11 @@
+package SocialMedia;
+
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
 /**
- * A class to run all of the tests in the Tester class.
+ * A class to run all of the tests in the SocialMedia.Tester class.
  *
  * @author Cole Busa
  * @version 12/3/20

@@ -1,4 +1,6 @@
-package ServerAndClient;
+package SocialMedia.ServerAndClient;
+
+import SocialMedia.Profile;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -54,10 +56,14 @@ public class UserClient {
                         return;
                     }
                     case "see users" -> {
-                        ArrayList<String> listOfMessages = (ArrayList<String>) objectInputStream.readObject();
+                        ArrayList<Profile> listOfMessages = (ArrayList<Profile>) objectInputStream.readObject();
                         System.out.println("Received [" + listOfMessages.size() + "] users from: " + socket);
-                        for(String a : listOfMessages){
-                            System.out.println(a);
+                        for(Profile a : listOfMessages){
+                            System.out.println("Name: " + a.getName() +
+                                    "| Age: " + a.getAge()+
+                                    "| Username: " + a.getUsername()+
+                                    "| Password: " + a.getEncryptedPassword()+
+                                    "| Email: " + a.getEmail());
                         }
                     }
                     default -> System.out.println(bufferedReader1.readLine());

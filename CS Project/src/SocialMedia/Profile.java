@@ -1,12 +1,15 @@
+package SocialMedia;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * Profile class for all profiles
+ * SocialMedia.Profile class for all profiles
  *
  * @version 11/21/20
  * @authors max fuligni, cole busa, paul gherghetta, aakash jariwala, jaden baker
  */
-public class Profile {
+public class Profile implements Serializable {
 
     private String name;
     private String email;

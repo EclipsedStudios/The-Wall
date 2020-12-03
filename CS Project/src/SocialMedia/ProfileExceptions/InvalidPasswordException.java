@@ -1,4 +1,4 @@
-package ProfileExceptions;
+package SocialMedia.ProfileExceptions;
 
 /**
  * Represents a user entering in the wrong password

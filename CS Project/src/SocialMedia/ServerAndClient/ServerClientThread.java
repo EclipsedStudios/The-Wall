@@ -1,8 +1,9 @@
-package ServerAndClient;
+package SocialMedia.ServerAndClient;
+
+import SocialMedia.Profile;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
 
 /**
  * Represents a client connected to the server
@@ -18,19 +19,22 @@ public class ServerClientThread extends Thread {
     Socket socket;
     ObjectOutputStream objectOutputStream = null;
     ObjectInputStream objectInputStream = null;
+    ServerObjectStorage serverObjectStorage;
+    Profile profile;
 
-    public volatile ArrayList<String> users = CentralServer.users;
-
-    public void RefreshUsers(ArrayList<String> users){
-        this.users = users;
-    }
-
-    public void TestTheApplication(){
-        System.out.println("Socket works!");
-    }
-
-    public ServerClientThread(Socket socket) {
+    public ServerClientThread(Socket socket, ServerObjectStorage serverObjectStorage, Profile profile) {
         this.socket = socket;
+        this.serverObjectStorage = serverObjectStorage;
+        this.profile = profile;
+    }
+
+    private void StopThread() throws IOException {
+        socket.close();
+        System.out.println("Socket Closed");
+        CentralServer.numberOfConnections--;
+        serverObjectStorage.users.remove(profile);
+        CentralServer.serverClientThreads.remove(this);
+        System.out.println("----------------------------------------");
     }
 
     public void run() {
@@ -50,7 +54,7 @@ public class ServerClientThread extends Thread {
         }
 
         try {
-            for(String a : users){
+            for(Profile a : serverObjectStorage.users){
                 System.out.println(a);
             }
             System.out.println("=======");
@@ -59,9 +63,10 @@ public class ServerClientThread extends Thread {
                 switch (line) {
                     case "stop server" -> System.exit(0);
                     case "see users" -> {
-                        CentralServer.RefreshGlobally();
                         System.out.println("User has tried to see users");
-                        objectOutputStream.writeObject(users);
+                        objectOutputStream.reset();
+                        objectOutputStream.writeObject(serverObjectStorage.users);
+                        objectOutputStream.flush();
                     }
                     default -> {
                         printWriter.println("You said: " + line);
@@ -74,11 +79,21 @@ public class ServerClientThread extends Thread {
         } catch (IOException e) {
             line = this.getName();
             System.out.println("----------------------------------------");
+            try {
+                StopThread();
+            } catch (IOException ioException) {
+                System.out.println("Error with doing the stop thread stuff");
+            }
             System.out.println("IO Error: " + line + " terminated abruptly");
         } catch (NullPointerException e) {
             line = this.getName();
             System.out.println("----------------------------------------");
             System.out.println("Client " + line + " Closed");
+            try {
+                StopThread();
+            } catch (IOException ioException) {
+                System.out.println("Error with doing the stop thread stuff");
+            }
         } finally {
             try {
                 System.out.println("Connection Closing...");
@@ -93,13 +108,7 @@ public class ServerClientThread extends Thread {
                 }
 
                 if (socket != null) {
-                    CentralServer.users.remove(String.valueOf(socket.getInetAddress()));
-                    socket.close();
-                    System.out.println("Socket Closed");
-                    CentralServer.numberOfConnections--;
-                    CentralServer.users.remove(String.valueOf(socket.getInetAddress()) + (socket.getPort()));
-                    CentralServer.serverClientThreads.remove(this);
-                    System.out.println("----------------------------------------");
+                    StopThread();
                 }
             } catch (IOException ie) {
                 System.out.println("Socket Close Error");
