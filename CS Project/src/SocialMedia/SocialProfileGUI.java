@@ -1,3 +1,5 @@
+package SocialMedia;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -5,7 +7,7 @@ import java.util.*;
 import java.io.*;
 
 /**
- * The Social Profile GUI.
+ * The Social SocialMedia.Profile GUI.
  * It displays after the user logs in.
  * This class can only be run from UserInput.java!
  * @author Paul Gherghetta
@@ -30,7 +32,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         profileGUIPanel.setLayout(new BorderLayout());
 
         //NORTH section of panel
-        titleLabel = new JLabel("My Profile");
+        titleLabel = new JLabel("My SocialMedia.Profile");
         profileGUIPanel.add(titleLabel, BorderLayout.NORTH);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -39,7 +41,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         JPanel profileGUISouthComponentPanel = new JPanel();
         profileGUISouthComponentPanel.setLayout(new FlowLayout());
         usersButton = new JButton("Users");
-        myProfileButton = new JButton("My Profile");
+        myProfileButton = new JButton("My SocialMedia.Profile");
         friendsListButton = new JButton("Friends List");
         logoutButton = new JButton("Log Out");
         profileGUISouthComponentPanel.add(usersButton);
