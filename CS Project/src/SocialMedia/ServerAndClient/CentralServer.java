@@ -1,11 +1,16 @@
 package SocialMedia.ServerAndClient;
 
+import SocialMedia.FriendsList;
 import SocialMedia.Profile;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Represents the server
@@ -23,9 +28,43 @@ public class CentralServer {
 
     public static ArrayList<ServerClientThread> serverClientThreads = new ArrayList<>();
 
+    public static void getUsersFromDatabase(){
+        File dir = new File("UsernameFiles");
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null) {
+            for (File child : directoryListing) {
+                String name;
+                String email;
+                String friendsList;
+                String website;
+                String interests;
+                String aboutMe;
+                int age;
+                String password;
+                BufferedReader reader;
+                try {
+                    reader = new BufferedReader(new FileReader(child));
+                    name = reader.readLine();
+                    System.out.println("Loaded user: " + name + " from database");
+                    email = reader.readLine();
+                    friendsList = reader.readLine();
+                    website = reader.readLine();
+                    interests = reader.readLine();
+                    aboutMe = reader.readLine();
+                    age = Integer.parseInt(reader.readLine());
+                    password = reader.readLine();
+                    serverObjectStorage.users.add(new Profile(name, email, website, new ArrayList<>(Arrays.asList(interests.split(", "))), aboutMe, age, child.getName().strip().substring(0,child.getName().indexOf('.')), password));
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     public static void main(String[] args) {
         serverObjectStorage = new ServerObjectStorage();
+        getUsersFromDatabase();
         Socket socket;
         ServerSocket serverSocket = null;
         System.out.println(SettingsAndConstants.WELCOME_MESSAGE_SERVER);

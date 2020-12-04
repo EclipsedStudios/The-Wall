@@ -1,6 +1,7 @@
 package SocialMedia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class Profile implements Serializable {
     private String email;
     private final FriendsList friendsList = new FriendsList();
     private String website;
-    private List<String> interests;
+    private ArrayList<String> interests;
     private String aboutMe;
     private final int age;
 
@@ -43,7 +44,7 @@ public class Profile implements Serializable {
     }
 
     // If user decides to input all fields on construction
-    public Profile(String name, String email, String website, List<String> interests, String aboutMe, int age, String username, String rawPassword) {
+    public Profile(String name, String email, String website, ArrayList<String> interests, String aboutMe, int age, String username, String rawPassword) {
         this.name = name;
         this.email = email;
         this.website = website;
@@ -95,11 +96,11 @@ public class Profile implements Serializable {
         this.website = website;
     }
 
-    public List<String> getInterests() {
+    public ArrayList<String> getInterests() {
         return interests;
     }
 
-    public void setInterests(List<String> interests) {
+    public void setInterests(ArrayList<String> interests) {
         this.interests = interests;
     }
 
