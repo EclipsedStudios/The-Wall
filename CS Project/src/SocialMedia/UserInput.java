@@ -7,18 +7,24 @@ import java.util.*;
 import java.io.*;
 
 /**
- * The login screen for the Social SocialMedia.Profile App.
+ * The login screen for the Social Profile App.
+ * NOTE: username.txt files created as the result of creating an account
+ * will not show in the side bar until the program has stopped running
+ * so you need to remember your login credentials.
  * @author Paul Gherghetta
- * @version 12/3/2020
+ * @version 12/4/2020
  */
 
 public class UserInput extends JFrame implements ActionListener {
     private static File UsernamesList;
     private static ArrayList<String> listOfUsernames = new ArrayList<>();
+    private static JFrame welcomeFrame;
+    private static Profile currentUserProfile;
+
     //Components
     private JButton signInButton;
     private static JTextField username;
-    private static JTextField password;
+    private static JPasswordField password;
     private static JTextField usernameTextField;
     private static JPasswordField passwordTextField;
     private static JTextField nameTextField;
@@ -68,7 +74,7 @@ public class UserInput extends JFrame implements ActionListener {
 
     public static void createWelcomeScreen() {
         //Create the welcome frame
-        JFrame welcomeFrame = new JFrame("Social SocialMedia.Profile App");
+        welcomeFrame = new JFrame("Social Profile App");
         //add text fields and labels to welcome frame
         //Create a panel to allow for this.
         JPanel welcomePanel = new JPanel();
@@ -78,7 +84,7 @@ public class UserInput extends JFrame implements ActionListener {
 
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 100)));
         //Welcome/title message
-        JLabel welcome = new JLabel("Social SocialMedia.Profile App");
+        JLabel welcome = new JLabel("Social Profile App");
         //Changes the font
         Font font = new Font("Times New Roman", Font.BOLD,30);
         welcome.setFont(font);
@@ -128,7 +134,7 @@ public class UserInput extends JFrame implements ActionListener {
                     validateLoginCredentials();
                 } catch (IOException ioException) {
                     JOptionPane.showMessageDialog(null, "Error reading file!",
-                            "Social SocialMedia.Profile App",
+                            "Social Profile App",
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -170,7 +176,7 @@ public class UserInput extends JFrame implements ActionListener {
         //If a username as the file name could not be found, show an error message
         if (!tempFileExists) {
             JOptionPane.showMessageDialog(null, "Username is invalid!",
-                    "Social SocialMedia.Profile App", JOptionPane.ERROR_MESSAGE);
+                    "Social Profile App", JOptionPane.ERROR_MESSAGE);
         } else if(tempFileExists) {
             FileReader fr = new FileReader(tempFile);
             BufferedReader bfr = new BufferedReader(fr);
@@ -180,20 +186,23 @@ public class UserInput extends JFrame implements ActionListener {
                 line = bfr.readLine();
             }
             //Store the password text in a variable
-            String passwordToValidate = password.getText();
+            String passwordToValidate = String.valueOf(password.getPassword());
             if (!passwordToValidate.equals(line)) {
                 JOptionPane.showMessageDialog(null, "Password is invalid!",
-                        "Social SocialMedia.Profile App", JOptionPane.ERROR_MESSAGE);
+                        "Social Profile App", JOptionPane.ERROR_MESSAGE);
             } else {
                 //Program should only reach this point if the login was valid
                 JOptionPane.showMessageDialog(null, "Success! Logging in...",
-                        "Social SocialMedia.Profile App", JOptionPane.INFORMATION_MESSAGE);
+                        "Social Profile App", JOptionPane.INFORMATION_MESSAGE);
 
                 //I'm instantiating an array here that will contain the entered login and password
                 usernameAndPassword = new String[2];
                 usernameAndPassword[0] = username.getText();
-                usernameAndPassword[1] = password.getText();
-                //Now we can call the next screen
+                usernameAndPassword[1] = String.valueOf(password.getPassword());
+                //Create a profile object for the user that logs in.
+                createUserProfile();
+                //Now we can get rid of the old screen and call the next screen
+                welcomeFrame.setVisible(false);
                 SocialProfileGUI.createProfileGUI();
             }
 
@@ -357,25 +366,25 @@ public class UserInput extends JFrame implements ActionListener {
                 switch (performCreateAccountConfirmButtonAction()) {
                     case 1 -> JOptionPane.showMessageDialog(null,
                             "You left one or more fields blank! Please fill all text boxes!",
-                            "Social SocialMedia.Profile App", JOptionPane.ERROR_MESSAGE);
+                            "Social Profile App", JOptionPane.ERROR_MESSAGE);
                     case 2 -> JOptionPane.showMessageDialog(null, "Passwords " +
                                     "did not match!",
-                            "Social SocialMedia.Profile App", JOptionPane.ERROR_MESSAGE);
+                            "Social Profile App", JOptionPane.ERROR_MESSAGE);
                     case 3 -> JOptionPane.showMessageDialog(null, "Make sure that " +
                                     "multiple likes/interests are separated by a comma and space!",
-                            "Social SocialMedia.Profile App", JOptionPane.ERROR_MESSAGE);
+                            "Social Profile App", JOptionPane.ERROR_MESSAGE);
                     case 4 -> JOptionPane.showMessageDialog(null, "Email is " +
                                     "invalid!",
-                            "Social SocialMedia.Profile App", JOptionPane.ERROR_MESSAGE);
+                            "Social Profile App", JOptionPane.ERROR_MESSAGE);
                     case 5 -> JOptionPane.showMessageDialog(null, "Website is " +
                                     "invalid!",
-                            "Social SocialMedia.Profile App", JOptionPane.ERROR_MESSAGE);
+                            "Social Profile App", JOptionPane.ERROR_MESSAGE);
                     case 6 -> JOptionPane.showMessageDialog(null, "Username " +
                                     "already exists! " +
-                                    "Please choose a different username.", "Social SocialMedia.Profile App",
+                                    "Please choose a different username.", "Social Profile App",
                             JOptionPane.ERROR_MESSAGE);
                     default -> JOptionPane.showMessageDialog(null,
-                            "Account was successfully created.", "Social SocialMedia.Profile App",
+                            "Account was successfully created.", "Social Profile App",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
             }
@@ -438,7 +447,7 @@ public class UserInput extends JFrame implements ActionListener {
         if (!likesInterestsTextField.getText().contains(", ")) {
             //Check for the input of just one like/interest
             int onlyOneLikeInterest = JOptionPane.showConfirmDialog(null, "Are " +
-                            "you only inputting one like/interest?", "Social SocialMedia.Profile App",
+                            "you only inputting one like/interest?", "Social Profile App",
                     JOptionPane.YES_NO_OPTION);
             if (onlyOneLikeInterest == JOptionPane.NO_OPTION) {
                 return 3;
@@ -453,7 +462,7 @@ public class UserInput extends JFrame implements ActionListener {
             fOS = new FileOutputStream(file, false);
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null,
-                    "File Not Found Exception thrown!", "Social SocialMedia.Profile App",
+                    "File Not Found Exception thrown!", "Social Profile App",
                     JOptionPane.ERROR_MESSAGE);
         }
         PrintWriter pw = new PrintWriter(fOS);
@@ -479,10 +488,6 @@ public class UserInput extends JFrame implements ActionListener {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        //Save the entered login credentials at the beginning to
-        //an array
-        usernameAndPassword[0] = usernameTextField.getText();
-        usernameAndPassword[1] = password1;
         //At this point, a new username.txt file was created.
         //Furthermore, the new username was added
         //We can now get rid of the create account frame.
@@ -490,10 +495,65 @@ public class UserInput extends JFrame implements ActionListener {
         return 0;
     }
 
-    //A method to return the array with the login credentials entered
-    //Will be used in SocialMedia.SocialProfileGUI
+    //A method to return the array with the login credentials entered.
+    //It will be used in SocialProfileGUI.java
     public static String[] getUsernameAndPassword() {
         return usernameAndPassword;
+    }
+
+    //A method to make the login screen visible.
+    //It will only be called when the user logs out from SocialProfileGUI.java.
+    public static void makeLoginScreenVisible() {
+        welcomeFrame.setVisible(true);
+    }
+
+    //A method that creates a profile for the user
+    public static void createUserProfile() throws IOException {
+        //The variable username is referring to the username entered to login.
+        File f = new File("UsernameFiles/" + username.getText() + ".txt");
+        FileReader fr = new FileReader(f);
+        BufferedReader bfr = new BufferedReader(fr);
+        //Convert each line in the file to its appropriate format and then make a
+        //profile object.
+        //Name
+        String line = bfr.readLine();
+        String name = line;
+        //Email
+        line = bfr.readLine();
+        String email = line;
+        //Skip past friends because there are no friends
+        line = bfr.readLine();
+        //Website
+        line = bfr.readLine();
+        String website = line;
+        //Likes/Interests
+        line = bfr.readLine();
+        String[] likesInterests = null;
+        ArrayList<String> likesInterestsArrayList = new ArrayList<>();
+        //Check if there are multiple likes/interests entered.
+        if (line.contains(", ")) {
+            likesInterests = line.split(", ");
+            for (int i = 0; i < likesInterests.length; i++) {
+                likesInterestsArrayList.add(likesInterests[i]);
+            }
+        } else {
+            //add the one like or interest
+            likesInterestsArrayList.add(line);
+        }
+        //About me
+        line = bfr.readLine();
+        String aboutMe = line;
+        //Age
+        line = bfr.readLine();
+        int age = Integer.parseInt(line);
+
+        currentUserProfile = new Profile(name, age, email, website, likesInterestsArrayList,
+                null, aboutMe, username.getText(), String.valueOf(password.getPassword()));
+        Profile.getProfilesList().add(currentUserProfile);
+    }
+
+    public static Profile getUserProfile() {
+        return currentUserProfile;
     }
 
     @Override
@@ -503,7 +563,7 @@ public class UserInput extends JFrame implements ActionListener {
                 validateLoginCredentials();
             } catch (IOException ioe) {
                 JOptionPane.showMessageDialog(null, "Error reading file!",
-                        "Social SocialMedia.Profile App",
+                        "Social Profile App",
                         JOptionPane.ERROR_MESSAGE);
             }
         }
