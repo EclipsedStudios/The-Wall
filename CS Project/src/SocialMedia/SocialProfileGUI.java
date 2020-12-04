@@ -11,11 +11,13 @@ import java.io.*;
  * It displays after the user logs in.
  * This class can only be run from UserInput.java!
  * @author Paul Gherghetta
- * @version 12/3/2020
+ * @version 12/4/2020
  */
 
 public class SocialProfileGUI extends JFrame implements ActionListener {
 
+    private static JFrame listOfUsersFrame;
+    private static Profile GUIProfile;
     //Components
     private static JLabel titleLabel;
     private static JButton usersButton;
@@ -24,6 +26,13 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
     private static JButton logoutButton;
     private static JLabel nameLabel;
     private static JLabel usernameLabel;
+    private static JLabel ageLabel;
+    private static JLabel emailLabel;
+    private static JLabel websiteLabel;
+    private static JLabel likesInterestsLabel;
+    private static JLabel friendsLabel;
+    private static JLabel aboutMeLabel;
+    private static JLabel aboutMeText;
 
     public static void createProfileGUI() {
         JFrame profileGUIFrame = new JFrame();
@@ -31,19 +40,42 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         //sets the layout for the social profile GUI
         profileGUIPanel.setLayout(new BorderLayout());
 
-        //NORTH section of panel
-        titleLabel = new JLabel("My SocialMedia.Profile");
+    //NORTH section of profileGUIPanel
+        titleLabel = new JLabel("                                                   " +
+                "                                                     My Profile");
         profileGUIPanel.add(titleLabel, BorderLayout.NORTH);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        //SOUTH section of panel
+    //SOUTH SECTION of profileGUIPanel
         //Makes a component panel for the south section
         JPanel profileGUISouthComponentPanel = new JPanel();
         profileGUISouthComponentPanel.setLayout(new FlowLayout());
+
+        //Users button
         usersButton = new JButton("Users");
-        myProfileButton = new JButton("My SocialMedia.Profile");
+        listOfUsersFrame = new JFrame("Social Profile App");
+        JPanel usersPanel = new JPanel();
+        usersPanel.setLayout(new BoxLayout(usersPanel, BoxLayout.PAGE_AXIS));
+        usersButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        myProfileButton = new JButton("My Profile");
         friendsListButton = new JButton("Friends List");
+
+        //Logout button
         logoutButton = new JButton("Log Out");
+        logoutButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //If logoutButton is clicked get rid of the profileGUIFrame and
+                //return to the login screen.
+                profileGUIFrame.setVisible(false);
+                UserInput.makeLoginScreenVisible();
+            }
+        });
+
         profileGUISouthComponentPanel.add(usersButton);
         profileGUISouthComponentPanel.add(myProfileButton);
         profileGUISouthComponentPanel.add(friendsListButton);
@@ -52,28 +84,74 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         //profileGUIPanel
         profileGUIPanel.add(profileGUISouthComponentPanel, BorderLayout.SOUTH);
 
-        //EAST section of panel
+    //EAST SECTION of profileGUIPanel
         //profileGUIPanel.add(new JButton("Layout"), BorderLayout.EAST);
 
-        //WEST section of panel
+    //WEST SECTION of profileGUIPanel
         JPanel profileGUIWestComponentPanel = new JPanel();
         profileGUIWestComponentPanel.setLayout(new BoxLayout(profileGUIWestComponentPanel,
                 BoxLayout.PAGE_AXIS));
         profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-        nameLabel = new JLabel("                                  Name:");
+        //We need to get the profile created in UserInput here
+        for (int i = 0; i < Profile.getProfilesList().size(); i++) {
+            if (Profile.getProfilesList().get(i).getUsername().equals(UserInput.getUsernameAndPassword()[0])) {
+                GUIProfile = Profile.getProfilesList().get(i);
+                break;
+            }
+        }
+
+        //Add 10 spaces before labels
+        nameLabel = new JLabel("          Name: " + GUIProfile.getName());
         //Print the username label with the username entered from logging in
-        usernameLabel = new JLabel("Username: " + UserInput.getUsernameAndPassword()[0]);
-        Font font = new Font("Cambria", Font.BOLD,15);
+        usernameLabel = new JLabel("          Username: " + UserInput.getUsernameAndPassword()[0]);
+        //Age label
+        ageLabel = new JLabel("          Age: " + GUIProfile.getAge());
+        //Email label
+        emailLabel = new JLabel("          Email: " + GUIProfile.getEmail());
+        //Website label
+        websiteLabel = new JLabel("          Website: " + GUIProfile.getWebsite());
+        //Likes/Interests label
+        likesInterestsLabel = new JLabel("          Likes/Interests: " + GUIProfile.getInterests());
+        //Friends label
+        friendsLabel = new JLabel("          Friends: ");
+        //About Me label
+        aboutMeLabel = new JLabel("          About Me:");
+        aboutMeText = new JLabel("          " + GUIProfile.getAboutMe());
+
+        //Change fonts
+        Font font = new Font("Cambria", Font.BOLD, 15);
         nameLabel.setFont(font);
         usernameLabel.setFont(font);
+        ageLabel.setFont(font);
+        emailLabel.setFont(font);
+        websiteLabel.setFont(font);
+        likesInterestsLabel.setFont(font);
+        friendsLabel.setFont(font);
+        aboutMeLabel.setFont(font);
+
+        //Adds the components to the West panel and creates blank spaces
+        //as appropriate.
         profileGUIWestComponentPanel.add(nameLabel, BorderLayout.WEST);
         profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         profileGUIWestComponentPanel.add(usernameLabel, BorderLayout.WEST);
-        //Puts the center component panel into the center section of the
+        profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        profileGUIWestComponentPanel.add(ageLabel, BorderLayout.WEST);
+        profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        profileGUIWestComponentPanel.add(emailLabel, BorderLayout.WEST);
+        profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        profileGUIWestComponentPanel.add(websiteLabel, BorderLayout.WEST);
+        profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        profileGUIWestComponentPanel.add(likesInterestsLabel, BorderLayout.WEST);
+        profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        profileGUIWestComponentPanel.add(friendsLabel, BorderLayout.WEST);
+        profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        profileGUIWestComponentPanel.add(aboutMeLabel, BorderLayout.WEST);
+        profileGUIWestComponentPanel.add(aboutMeText, BorderLayout.WEST);
+        //Puts the west component panel into the west section of the
         //profileGUIPanel
         profileGUIPanel.add(profileGUIWestComponentPanel);
 
-        //CENTER section of panel
+    //CENTER section of panel
 
 
 
