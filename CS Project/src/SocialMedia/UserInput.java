@@ -9,7 +9,7 @@ import java.io.*;
 /**
  * The login screen for the Social SocialMedia.Profile App.
  * @author Paul Gherghetta
- * @version 12/2/2020
+ * @version 12/3/2020
  */
 
 public class UserInput extends JFrame implements ActionListener {
@@ -29,6 +29,9 @@ public class UserInput extends JFrame implements ActionListener {
     private static JTextArea aboutMeTextArea;
     private static JPasswordField confirmPasswordTextField;
     private static JFrame createAccountFrame;
+    //An array that holds the username and password to be sent
+    //to the SocialProfile GUI.
+    private static String[] usernameAndPassword;
 
     public static void main(String[] args) {
         //File that only has the names of people
@@ -185,8 +188,13 @@ public class UserInput extends JFrame implements ActionListener {
                 //Program should only reach this point if the login was valid
                 JOptionPane.showMessageDialog(null, "Success! Logging in...",
                         "Social SocialMedia.Profile App", JOptionPane.INFORMATION_MESSAGE);
-                //Need to coordinate with groupmates on what method or frame should be called after
-                //logging in
+
+                //I'm instantiating an array here that will contain the entered login and password
+                usernameAndPassword = new String[2];
+                usernameAndPassword[0] = username.getText();
+                usernameAndPassword[1] = password.getText();
+                //Now we can call the next screen
+                SocialProfileGUI.createProfileGUI();
             }
 
         }
@@ -471,11 +479,21 @@ public class UserInput extends JFrame implements ActionListener {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        //Save the entered login credentials at the beginning to
+        //an array
+        usernameAndPassword[0] = usernameTextField.getText();
+        usernameAndPassword[1] = password1;
         //At this point, a new username.txt file was created.
         //Furthermore, the new username was added
         //We can now get rid of the create account frame.
         createAccountFrame.setVisible(false);
         return 0;
+    }
+
+    //A method to return the array with the login credentials entered
+    //Will be used in SocialMedia.SocialProfileGUI
+    public static String[] getUsernameAndPassword() {
+        return usernameAndPassword;
     }
 
     @Override
