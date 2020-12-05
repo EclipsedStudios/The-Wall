@@ -8,7 +8,7 @@ import org.junit.runner.notification.Failure;
  * A class to run all of the tests in the SocialMedia.Tester class.
  *
  * @author Cole Busa
- * @version 12/3/20
+ * @version 12/5/20
  */
 public class TestRunner {
     /**
