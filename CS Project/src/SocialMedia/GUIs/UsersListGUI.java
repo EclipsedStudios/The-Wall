@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -60,7 +62,27 @@ public class UsersListGUI extends JFrame implements ActionListener {
         titleLabel.setFont(font);
 
         usersListPanel.add(titleLabel, BorderLayout.NORTH);
-        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT
+        );
+
+        int counter = 1;
+
+        for (Profile profile : profilesList) {
+            JLabel profileLink = new JLabel(counter + ". " + profile.getUsername());
+            profileLink.addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    // the user clicks on the label
+                    // open user's profile
+                    usersListFrame.setVisible(false);
+                    SocialProfileGUI.createProfileGUIFor(profile.getUsername());
+                }
+
+            });
+            usersListPanel.add(profileLink, BorderLayout.WEST);
+            usersListPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        }
 
         usersListFrame.getContentPane().add(usersListPanel);
 

@@ -64,6 +64,16 @@ public class Profile {
         return profilesList;
     }
 
+    // Gets profile with desired username, returns null if doesn't exist
+    public static Profile getProfileWith(String username){
+        for (Profile profile : getProfilesList()) {
+            if (profile.getUsername().equalsIgnoreCase(username)) {
+                return profile;
+            }
+        }
+        return null;
+
+    }
     public FriendsList getFriendsList() {
         return friendsList;
     }
