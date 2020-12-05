@@ -61,14 +61,14 @@ public class ServerClientThread extends Thread {
             line = bufferedReader.readLine();
             while (line.compareToIgnoreCase("quit") != 0) {
                 switch (line) {
-                    case "stop server" -> System.exit(0);
-                    case "see users" -> {
+                    case "stop server" : System.exit(0);
+                    case "see users" : {
                         System.out.println("User has tried to see users");
                         objectOutputStream.reset();
                         objectOutputStream.writeObject(serverObjectStorage.users);
                         objectOutputStream.flush();
                     }
-                    default -> {
+                    default : {
                         printWriter.println("You said: " + line);
                         printWriter.flush();
                     }

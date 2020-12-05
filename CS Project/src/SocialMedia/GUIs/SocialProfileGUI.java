@@ -1,4 +1,7 @@
-package SocialMedia;
+package SocialMedia.GUIs;
+
+import SocialMedia.Profile;
+import SocialMedia.UserInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,7 +61,8 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         usersPanel.setLayout(new BoxLayout(usersPanel, BoxLayout.PAGE_AXIS));
         usersButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                profileGUIFrame.setVisible(false);
+                UsersListGUI.createUsersListGUI();
             }
         });
 

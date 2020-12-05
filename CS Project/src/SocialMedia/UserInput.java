@@ -1,5 +1,7 @@
 package SocialMedia;
 
+import SocialMedia.GUIs.SocialProfileGUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -364,26 +366,26 @@ public class UserInput extends JFrame implements ActionListener {
                 //performCreateAccountConfirmButtonAction() is already called
                 //in the switch statement so there's no need to call it by itself.
                 switch (performCreateAccountConfirmButtonAction()) {
-                    case 1 -> JOptionPane.showMessageDialog(null,
+                    case 1: JOptionPane.showMessageDialog(null,
                             "You left one or more fields blank! Please fill all text boxes!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                    case 2 -> JOptionPane.showMessageDialog(null, "Passwords " +
+                    case 2: JOptionPane.showMessageDialog(null, "Passwords " +
                                     "did not match!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                    case 3 -> JOptionPane.showMessageDialog(null, "Make sure that " +
+                    case 3: JOptionPane.showMessageDialog(null, "Make sure that " +
                                     "multiple likes/interests are separated by a comma and space!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                    case 4 -> JOptionPane.showMessageDialog(null, "Email is " +
+                    case 4: JOptionPane.showMessageDialog(null, "Email is " +
                                     "invalid!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                    case 5 -> JOptionPane.showMessageDialog(null, "Website is " +
+                    case 5: JOptionPane.showMessageDialog(null, "Website is " +
                                     "invalid!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                    case 6 -> JOptionPane.showMessageDialog(null, "Username " +
+                    case 6: JOptionPane.showMessageDialog(null, "Username " +
                                     "already exists! " +
                                     "Please choose a different username.", "Social Profile App",
                             JOptionPane.ERROR_MESSAGE);
-                    default -> JOptionPane.showMessageDialog(null,
+                    default: JOptionPane.showMessageDialog(null,
                             "Account was successfully created.", "Social Profile App",
                             JOptionPane.INFORMATION_MESSAGE);
                 }

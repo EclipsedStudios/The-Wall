@@ -52,10 +52,10 @@ public class UserClient {
             printWriter.flush();
             while (line.compareToIgnoreCase("quit") != 0) {
                 switch (line) {
-                    case "stop server" -> {
+                    case "stop server" : {
                         return;
                     }
-                    case "see users" -> {
+                    case "see users" : {
                         ArrayList<Profile> listOfMessages = (ArrayList<Profile>) objectInputStream.readObject();
                         System.out.println("Received [" + listOfMessages.size() + "] users from: " + socket);
                         for(Profile a : listOfMessages){
@@ -66,7 +66,7 @@ public class UserClient {
                                     "| Email: " + a.getEmail());
                         }
                     }
-                    default -> System.out.println(bufferedReader1.readLine());
+                    default : System.out.println(bufferedReader1.readLine());
                 }
                 line = scan.nextLine();
                 printWriter.println(line);

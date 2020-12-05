@@ -53,7 +53,10 @@ public class CentralServer {
                     aboutMe = reader.readLine();
                     age = Integer.parseInt(reader.readLine());
                     password = reader.readLine();
-                    serverObjectStorage.users.add(new Profile(name, email, website, new ArrayList<>(Arrays.asList(interests.split(", "))), aboutMe, age, child.getName().strip().substring(0,child.getName().indexOf('.')), password));
+                    // setting FriendsList to null for now so it runs, was left out previously
+                    serverObjectStorage.users.add(
+                            new Profile(name, age, email, website, new ArrayList<>(Arrays.asList(interests.split(", "))),
+                                    null, aboutMe, child.getName().strip().substring(0,child.getName().indexOf('.')), password));
                     reader.close();
                 } catch (IOException e) {
                     e.printStackTrace();
