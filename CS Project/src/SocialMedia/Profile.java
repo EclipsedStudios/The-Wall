@@ -43,7 +43,6 @@ public class Profile {
         this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);
 
         this.age = age;
-
     }
 
     // If user decides to input all fields on construction
