@@ -21,7 +21,7 @@ public class Profile {
      **/
     private final String username;
     /**
-     * Server de-ecrypts for login
+     * Server decrypts for login
      **/
     private String encryptedPassword;
 
