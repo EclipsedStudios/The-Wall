@@ -1,28 +1,29 @@
+package SocialMedia;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Represents a friends list for a profile
  *
  * @author Cole Busa
- * @version 11/27/20
+ * @version 12/3/20
  */
-public class FriendsList {
-    public ArrayList<String> friends;
+public class FriendsList implements Serializable {
+    public ArrayList<Profile> friends;
 
     /**
      * An empty constructor for a friends list.
      */
     public FriendsList() {
-        friends = new ArrayList<String>();
+        friends = new ArrayList<Profile>();
     }
 
     /**
      * A constructor for a friends list with a given list of friends.
      * @param friends The desired friends to create the friend list with.
-     *                (Each string in the arraylist should be in the format
-     *                Name:Username)
      */
-    public FriendsList(ArrayList<String> friends) {
+    public FriendsList(ArrayList<Profile> friends) {
         this.friends = friends;
     }
 
@@ -30,21 +31,21 @@ public class FriendsList {
      * Returns the friends list.
      * @return the friends list
      */
-    public ArrayList<String> getFriends() {
+    public ArrayList<Profile> getFriends() {
         return friends;
     }
 
     /**
      * Adds the specified friend to the user's friendsList.
-     * @param friend Should be in format Name:Username
+     * @param friend The friend to add to the friendsList.
      */
-    public void addFriend(String friend) {
+    public void addFriend(Profile friend) {
         friends.add(friend);
     }
 
     /**
      * Removes the specified friend from the user's friendsList.
-     * @param friend Should be in the format Name:Username
+     * @param friend The friend to remove from the friendsList.
      * @return 1 if the friend is successfully removed, 0 otherwise.
      */
     public int removeFriend(String friend) {
@@ -62,11 +63,11 @@ public class FriendsList {
      * @param secondUser The second user to check mutual friends with.
      * @return An arraylist of strings containing the mutual friends of the two users.
      */
-    public ArrayList<String> mutualFriends(FriendsList secondUser) {
-        ArrayList<String> mutualFriends = new ArrayList<String>();
+    public ArrayList<Profile> mutualFriends(FriendsList secondUser) {
+        ArrayList<Profile> mutualFriends = new ArrayList<Profile>();
         for (int i = 0; i < friends.size(); i++) {
             for (int j = 0; j < secondUser.getFriends().size(); j++) {
-                if (friends.get(i).equals(secondUser.getFriends().get(j))) {
+                if (friends.get(i).getUsername().equals(secondUser.getFriends().get(j).getUsername())) {
                     mutualFriends.add(secondUser.getFriends().get(j));
                     break;
                 }
@@ -76,13 +77,13 @@ public class FriendsList {
     }
 
     /**
-     * Returns a string format of the friends list.
+     * Returns a string format of the friends list (only includes usernames).
      * @return A string format of the friends list.
      */
     public String toString() {
-        String formattedList = friends.get(0);
+        String formattedList = friends.get(0).getName();
         for (int i = 1; i < friends.size(); i++) {
-            formattedList = formattedList + ", " + friends.get(i);
+            formattedList = formattedList + ", " + friends.get(i).getUsername();
         }
         return formattedList;
     }

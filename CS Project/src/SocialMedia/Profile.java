@@ -1,20 +1,27 @@
+package SocialMedia;
+
+import SocialMedia.FriendsList;
+import SocialMedia.PasswordEncryption;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Profile class for all profiles
- *
- * @version 11/21/20
- * @authors max fuligni, cole busa, paul gherghetta, aakash jariwala, jaden baker
+ * A class that constructs and stores profiles of users.
+ * @version 12/4/2020
+ * @authors Max Fuligni, Paul Gherghetta, Cole Busa, Aakash Jariwala, Jaden Baker
  */
 public class Profile {
 
     private String name;
     private String email;
-    private final FriendsList friendsList = new FriendsList();
+    private FriendsList friendsList;
     private String website;
     private List<String> interests;
     private String aboutMe;
     private final int age;
+    private String rawPassword;
+    private static ArrayList<Profile> profilesList = new ArrayList<>();
 
     /**
      * identifier
@@ -36,25 +43,26 @@ public class Profile {
         this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);
 
         this.age = age;
-
     }
 
     // If user decides to input all fields on construction
-    public Profile(String name, String email, String website, List<String> interests, String aboutMe, int age, String username, String rawPassword) {
+    public Profile(String name, int age, String email, String website, List<String> interests,
+                   FriendsList friendsList, String aboutMe, String username, String rawPassword) {
         this.name = name;
+        this.age = age;
         this.email = email;
         this.website = website;
         this.interests = interests;
+        this.friendsList = friendsList;
         this.aboutMe = aboutMe;
-        this.age = age;
         this.username = username;
-
-        //Current skip is 12 (Moves each letter over by 12). This can be changed later.
-        this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);
+        this.rawPassword = rawPassword;
     }
 
     // Getters and Setters
-
+    public static ArrayList<Profile> getProfilesList() {
+        return profilesList;
+    }
 
     public FriendsList getFriendsList() {
         return friendsList;

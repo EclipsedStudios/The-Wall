@@ -1,11 +1,12 @@
-package ServerAndClient;
+package SocialMedia.ServerAndClient;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import SocialMedia.Profile;
+
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Represents the user client
@@ -16,19 +17,22 @@ import java.net.Socket;
 public class UserClient {
 
     public static void main(String[] args) throws IOException {
+
         InetAddress address = InetAddress.getLocalHost(); // Get localhost
         Socket socket = null; // Create a null socket
         String line; // Store information coming from server
         BufferedReader bufferedReader = null; // BufferedReader for client
         BufferedReader bufferedReader1 = null; // BufferedReader for client's server thread
         PrintWriter printWriter = null; // PrintWriter for client to send info to server
-
+        ObjectInputStream objectInputStream = null;
+        Scanner scan = new Scanner(System.in);
         try {
             //Initializes all objects
             socket = new Socket(address, SettingsAndConstants.SERVER_PORT);
             bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             bufferedReader1 = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             printWriter = new PrintWriter(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             //Creates exception if failed
             e.printStackTrace();
@@ -36,22 +40,39 @@ public class UserClient {
         }
 
         System.out.println("Client Address: " + address);
-        System.out.println("[FOR TESTING] Send a message for the server to respond back with:");
-
-        String response;
+        System.out.println("[FOR TESTING] Send a message for the server to respond back with (Send a random message first, " +
+                "it is buggy and it will break if you ask for users first):");
 
         try {
             assert bufferedReader != null;
-            line = bufferedReader.readLine();
+            assert bufferedReader1 != null;
+            assert printWriter != null;
+            line = scan.nextLine();
+            printWriter.println("First Message");
+            printWriter.flush();
             while (line.compareToIgnoreCase("quit") != 0) {
-                assert printWriter != null;
+                switch (line) {
+                    case "stop server" : {
+                        return;
+                    }
+                    case "see users" : {
+                        ArrayList<Profile> listOfMessages = (ArrayList<Profile>) objectInputStream.readObject();
+                        System.out.println("Received [" + listOfMessages.size() + "] users from: " + socket);
+                        for(Profile a : listOfMessages){
+                            System.out.println("Name: " + a.getName() +
+                                    "| Age: " + a.getAge()+
+                                    "| Username: " + a.getUsername()+
+                                    "| Password: " + a.getEncryptedPassword()+
+                                    "| Email: " + a.getEmail());
+                        }
+                    }
+                    default : System.out.println(bufferedReader1.readLine());
+                }
+                line = scan.nextLine();
                 printWriter.println(line);
                 printWriter.flush();
-                response = bufferedReader1.readLine();
-                System.out.println("The server has responded with: " + response);
-                line = bufferedReader.readLine();
             }
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("Socket Read Error");
         } finally {

@@ -1,3 +1,7 @@
+package SocialMedia;
+
+import SocialMedia.GUIs.SocialProfileGUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -6,15 +10,23 @@ import java.io.*;
 
 /**
  * The login screen for the Social Profile App.
+ * NOTE: username.txt files created as the result of creating an account
+ * will not show in the side bar until the program has stopped running
+ * so you need to remember your login credentials.
  * @author Paul Gherghetta
- * @version 11/30/2020
+ * @version 12/4/2020
  */
 
 public class UserInput extends JFrame implements ActionListener {
+    private static File UsernamesList;
+    private static ArrayList<String> listOfUsernames = new ArrayList<>();
+    private static JFrame welcomeFrame;
+    private static Profile currentUserProfile;
+
     //Components
     private JButton signInButton;
     private static JTextField username;
-    private static JTextField password;
+    private static JPasswordField password;
     private static JTextField usernameTextField;
     private static JPasswordField passwordTextField;
     private static JTextField nameTextField;
@@ -25,8 +37,36 @@ public class UserInput extends JFrame implements ActionListener {
     private static JTextArea aboutMeTextArea;
     private static JPasswordField confirmPasswordTextField;
     private static JFrame createAccountFrame;
+    //An array that holds the username and password to be sent
+    //to the SocialProfile GUI.
+    private static String[] usernameAndPassword;
 
     public static void main(String[] args) {
+        //File that only has the names of people
+        //File userNames.txt
+        //List of usernames
+        //Loop through
+        //Create a file that only has the usernames of people in it
+        File file = new File("ListOfUsernames.txt");
+        File directory = new File("UsernameFiles");
+        String[] UsernameFiles = directory.list();
+        for (int i = 0; i < UsernameFiles.length; i++) {
+            String[] fileUsername = UsernameFiles[i].split("\\.");
+            listOfUsernames.add(fileUsername[0]);
+        }
+        //Now we can write the elements of listOfUsernames to a file
+        UsernamesList = new File("ListOfUsernames.txt");
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(UsernamesList, false);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        PrintWriter pw = new PrintWriter(fos);
+        for (int i = 0; i < listOfUsernames.size(); i++) {
+            pw.println(listOfUsernames.get(i));
+        }
+        pw.close();
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run() {
@@ -36,7 +76,7 @@ public class UserInput extends JFrame implements ActionListener {
 
     public static void createWelcomeScreen() {
         //Create the welcome frame
-        JFrame welcomeFrame = new JFrame("Social Profile App");
+        welcomeFrame = new JFrame("Social Profile App");
         //add text fields and labels to welcome frame
         //Create a panel to allow for this.
         JPanel welcomePanel = new JPanel();
@@ -95,7 +135,7 @@ public class UserInput extends JFrame implements ActionListener {
                 try {
                     validateLoginCredentials();
                 } catch (IOException ioException) {
-                    JOptionPane.showMessageDialog(null, "Error reading file!", 
+                    JOptionPane.showMessageDialog(null, "Error reading file!",
                             "Social Profile App",
                             JOptionPane.ERROR_MESSAGE);
                 }
@@ -129,10 +169,11 @@ public class UserInput extends JFrame implements ActionListener {
     //Invoked when sign in button is clicked
     public static void validateLoginCredentials() throws IOException {
         //The username will be the name of the file so I will check if a file
-        //exists with the username as the word before the .txt.
+        //exists with the username as the word before the .txt (in the
+        //UsernameFiles folder!).
         String usernameToValidate = username.getText();
         String testUsername = usernameToValidate + ".txt";
-        File tempFile = new File(testUsername);
+        File tempFile = new File("UsernameFiles/" + testUsername);
         boolean tempFileExists = tempFile.exists();
         //If a username as the file name could not be found, show an error message
         if (!tempFileExists) {
@@ -147,7 +188,7 @@ public class UserInput extends JFrame implements ActionListener {
                 line = bfr.readLine();
             }
             //Store the password text in a variable
-            String passwordToValidate = password.getText();
+            String passwordToValidate = String.valueOf(password.getPassword());
             if (!passwordToValidate.equals(line)) {
                 JOptionPane.showMessageDialog(null, "Password is invalid!",
                         "Social Profile App", JOptionPane.ERROR_MESSAGE);
@@ -155,8 +196,16 @@ public class UserInput extends JFrame implements ActionListener {
                 //Program should only reach this point if the login was valid
                 JOptionPane.showMessageDialog(null, "Success! Logging in...",
                         "Social Profile App", JOptionPane.INFORMATION_MESSAGE);
-                //Need to coordinate with groupmates on what method or frame should be called after
-                //logging in
+
+                //I'm instantiating an array here that will contain the entered login and password
+                usernameAndPassword = new String[2];
+                usernameAndPassword[0] = username.getText();
+                usernameAndPassword[1] = String.valueOf(password.getPassword());
+                //Create a profile object for the user that logs in.
+                createUserProfile();
+                //Now we can get rid of the old screen and call the next screen
+                welcomeFrame.setVisible(false);
+                SocialProfileGUI.createProfileGUI();
             }
 
         }
@@ -166,6 +215,7 @@ public class UserInput extends JFrame implements ActionListener {
     public static void createAccount() {
         createAccountFrame = new JFrame("Create Account");
         //An array of the labels to be used
+        //Update: Friends label will not exist
         String[] labels = {"Username", "Password", "Full Name", "Age", "Email", "Friends",
                 "Website", "Likes/Interests", "About Me"};
         //Variables that will be used to size all the text fields
@@ -316,26 +366,26 @@ public class UserInput extends JFrame implements ActionListener {
                 //performCreateAccountConfirmButtonAction() is already called
                 //in the switch statement so there's no need to call it by itself.
                 switch (performCreateAccountConfirmButtonAction()) {
-                    case 1 -> JOptionPane.showMessageDialog(null,
+                    case 1: JOptionPane.showMessageDialog(null,
                             "You left one or more fields blank! Please fill all text boxes!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                    case 2 -> JOptionPane.showMessageDialog(null, "Passwords " +
+                    case 2: JOptionPane.showMessageDialog(null, "Passwords " +
                                     "did not match!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                    case 3 -> JOptionPane.showMessageDialog(null, "Make sure that " +
+                    case 3: JOptionPane.showMessageDialog(null, "Make sure that " +
                                     "multiple likes/interests are separated by a comma and space!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                    case 4 -> JOptionPane.showMessageDialog(null, "Email is " +
+                    case 4: JOptionPane.showMessageDialog(null, "Email is " +
                                     "invalid!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                    case 5 -> JOptionPane.showMessageDialog(null, "Website is " +
+                    case 5: JOptionPane.showMessageDialog(null, "Website is " +
                                     "invalid!",
                             "Social Profile App", JOptionPane.ERROR_MESSAGE);
-                    case 6 -> JOptionPane.showMessageDialog(null, "Username " +
+                    case 6: JOptionPane.showMessageDialog(null, "Username " +
                                     "already exists! " +
                                     "Please choose a different username.", "Social Profile App",
                             JOptionPane.ERROR_MESSAGE);
-                    default -> JOptionPane.showMessageDialog(null,
+                    default: JOptionPane.showMessageDialog(null,
                             "Account was successfully created.", "Social Profile App",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -407,16 +457,17 @@ public class UserInput extends JFrame implements ActionListener {
         }
         //We can very likely assume now that all text fields have the correct format.
         //Now we'll create a file and write the new account information to it.
-        File file = new File(usernameTextField.getText() + ".txt");
-        FileOutputStream fos = null;
+        //We'll make sure to put the new file in the UsernameFiles directory first.
+        File file = new File("UsernameFiles/" + usernameTextField.getText() + ".txt");
+        FileOutputStream fOS = null;
         try {
-            fos = new FileOutputStream(file, false);
+            fOS = new FileOutputStream(file, false);
         } catch (FileNotFoundException fileNotFoundException) {
             JOptionPane.showMessageDialog(null,
                     "File Not Found Exception thrown!", "Social Profile App",
                     JOptionPane.ERROR_MESSAGE);
         }
-        PrintWriter pw = new PrintWriter(fos);
+        PrintWriter pw = new PrintWriter(fOS);
         pw.println(nameTextField.getText());
         pw.println(emailTextField.getText());
         pw.println("No friends");
@@ -426,11 +477,85 @@ public class UserInput extends JFrame implements ActionListener {
         pw.println(ageTextField.getText());
         pw.println(passwordTextField.getPassword());
         pw.close();
-        //We need to close the create account frame once the whole process of creating an
-        //account is complete.
+
+
+        try {
+            fOS = new FileOutputStream(UsernamesList, false);
+            pw = new PrintWriter(fOS);
+            listOfUsernames.add(usernameTextField.getText());
+            for (int i = 0; i < listOfUsernames.size(); i++) {
+                pw.println(listOfUsernames.get(i));
+            }
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         //At this point, a new username.txt file was created.
+        //Furthermore, the new username was added
+        //We can now get rid of the create account frame.
         createAccountFrame.setVisible(false);
         return 0;
+    }
+
+    //A method to return the array with the login credentials entered.
+    //It will be used in SocialProfileGUI.java
+    public static String[] getUsernameAndPassword() {
+        return usernameAndPassword;
+    }
+
+    //A method to make the login screen visible.
+    //It will only be called when the user logs out from SocialProfileGUI.java.
+    public static void makeLoginScreenVisible() {
+        welcomeFrame.setVisible(true);
+    }
+
+    //A method that creates a profile for the user
+    public static void createUserProfile() throws IOException {
+        //The variable username is referring to the username entered to login.
+        File f = new File("UsernameFiles/" + username.getText() + ".txt");
+        FileReader fr = new FileReader(f);
+        BufferedReader bfr = new BufferedReader(fr);
+        //Convert each line in the file to its appropriate format and then make a
+        //profile object.
+        //Name
+        String line = bfr.readLine();
+        String name = line;
+        //Email
+        line = bfr.readLine();
+        String email = line;
+        //Skip past friends because there are no friends
+        line = bfr.readLine();
+        //Website
+        line = bfr.readLine();
+        String website = line;
+        //Likes/Interests
+        line = bfr.readLine();
+        String[] likesInterests = null;
+        ArrayList<String> likesInterestsArrayList = new ArrayList<>();
+        //Check if there are multiple likes/interests entered.
+        if (line.contains(", ")) {
+            likesInterests = line.split(", ");
+            for (int i = 0; i < likesInterests.length; i++) {
+                likesInterestsArrayList.add(likesInterests[i]);
+            }
+        } else {
+            //add the one like or interest
+            likesInterestsArrayList.add(line);
+        }
+        //About me
+        line = bfr.readLine();
+        String aboutMe = line;
+        //Age
+        line = bfr.readLine();
+        int age = Integer.parseInt(line);
+
+        currentUserProfile = new Profile(name, age, email, website, likesInterestsArrayList,
+                null, aboutMe, username.getText(), String.valueOf(password.getPassword()));
+        Profile.getProfilesList().add(currentUserProfile);
+    }
+
+    public static Profile getUserProfile() {
+        return currentUserProfile;
     }
 
     @Override
@@ -439,7 +564,7 @@ public class UserInput extends JFrame implements ActionListener {
             try {
                 validateLoginCredentials();
             } catch (IOException ioe) {
-                JOptionPane.showMessageDialog(null, "Error reading file!", 
+                JOptionPane.showMessageDialog(null, "Error reading file!",
                         "Social Profile App",
                         JOptionPane.ERROR_MESSAGE);
             }

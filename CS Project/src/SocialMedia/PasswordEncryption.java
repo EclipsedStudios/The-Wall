@@ -1,3 +1,5 @@
+package SocialMedia;
+
 /**
  * Encrypts the password using a simple caesar cipher.
  * Not very secure, but as long as someone doesn't brute force the
