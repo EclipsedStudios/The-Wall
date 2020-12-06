@@ -24,6 +24,7 @@ import org.junit.Assert;
 import javax.swing.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 /**
  * A JUnit tester class for all complicated methods that are not concurrency or GUI-based.
@@ -341,8 +342,8 @@ public class Tester {
             assertEquals(void.class, FriendsList.class.getMethod("addFriend", Profile.class).getReturnType());
             assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("addFriend", Profile.class).getModifiers()));
 
-            assertEquals(int.class, FriendsList.class.getMethod("removeFriend", String.class).getReturnType());
-            assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("removeFriend", String.class).getModifiers()));
+            assertEquals(int.class, FriendsList.class.getMethod("removeFriend", Profile.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("removeFriend", Profile.class).getModifiers()));
 
             assertEquals(ArrayList.class, FriendsList.class.getMethod("mutualFriends", FriendsList.class).getReturnType());
             assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("mutualFriends", FriendsList.class).getModifiers()));
@@ -984,5 +985,30 @@ public class Tester {
         correctMutualFriends.add(steve);
         correctMutualFriends.add(mike);
         assertEquals(correctMutualFriends, f1.mutualFriends(f2));
+
+        //test get friends method
+        assertEquals(friend1, f1.getFriends());
+
+        //test add friend method
+        friend1.add(cam);
+        f1.addFriend(cam);
+        assertEquals(friend1, f1.getFriends());
+
+        //test remove friend method
+        friend1.remove(cam);
+        f1.removeFriend(cam);
+        assertEquals(friend1, f1.getFriends());
+
+
+        //test toString method
+        String correctFormat = "username, michaelb, emilyf";
+        assertEquals(correctFormat, f1.toString());
+    }
+
+    /**
+     * A tester method for the entire profile class.
+     */
+    public void testProfileClass() {
+
     }
 }
