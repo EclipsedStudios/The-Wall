@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.lang.invoke.TypeDescriptor;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.io.*;
@@ -60,12 +61,6 @@ public class Tester {
             assertEquals(String.class, ServerClientThread.class.getField("line").getType());
             assertEquals(true, Modifier.isPublic(ServerClientThread.class.getField("line").getModifiers()));
 
-            assertEquals(BufferedReader.class, ServerClientThread.class.getField("bufferedReader").getType());
-            assertEquals(true, Modifier.isPublic(ServerClientThread.class.getField("bufferedReader").getModifiers()));
-
-            assertEquals(PrintWriter.class, ServerClientThread.class.getField("printWriter").getType());
-            assertEquals(true, Modifier.isPublic(ServerClientThread.class.getField("printWriter").getModifiers()));
-
             assertEquals(Socket.class, ServerClientThread.class.getField("socket").getType());
             assertEquals(true, Modifier.isPublic(ServerClientThread.class.getField("socket").getModifiers()));
 
@@ -87,7 +82,7 @@ public class Tester {
 
     /**
      * A method to verify the server client thread class has correctly formatted methods.
-     @TODO This test will have to be different
+     */
     @Test
     public void serverClientThreadMethods() {
         try {
@@ -95,14 +90,15 @@ public class Tester {
             assertEquals(true, Modifier.isPublic(ServerClientThread.class.getConstructors()[0].getModifiers()));
             Socket socket = new Socket();
             ServerObjectStorage serverObjectStorage = new ServerObjectStorage();
-            Profile profile = new Profile("Steve", "username", 18, "steve@purdue.edu", "Password");
             ServerClientThread serverClientThread = new ServerClientThread(socket, serverObjectStorage);
             assertEquals(socket, serverClientThread.socket);
             assertEquals(serverObjectStorage, serverClientThread.serverObjectStorage);
-            assertEquals(profile, serverClientThread.profile);
 
-            assertEquals(void.class, ServerClientThread.class.getMethod("StopThread").getReturnType());
-            assertEquals(true, Modifier.isPublic(ServerClientThread.class.getMethod("StopThread").getModifiers()));
+            Method stopThreadMethod = ServerClientThread.class.getDeclaredMethod("StopThread", null);
+            stopThreadMethod.setAccessible(true);
+            assertEquals(void.class, stopThreadMethod.getReturnType());
+            assertEquals(true, Modifier.isPrivate(stopThreadMethod.getModifiers()));
+            assertEquals(IOException.class, stopThreadMethod.getExceptionTypes()[0]);
 
             assertEquals(void.class, ServerClientThread.class.getMethod("run").getReturnType());
             assertEquals(true, Modifier.isPublic(ServerClientThread.class.getMethod("run").getModifiers()));
@@ -110,7 +106,6 @@ public class Tester {
             Assert.fail("Missing methods");
         }
     }
-     */
 
     /**
      * A method to verify the central server class exists.
@@ -263,7 +258,7 @@ public class Tester {
      */
     @Test
     public void userClientExtends() {
-        assertEquals(Object.class, UserClient.class.getSuperclass());
+        assertEquals(Thread.class, UserClient.class.getSuperclass());
     }
 
     /**
@@ -272,9 +267,16 @@ public class Tester {
     @Test
     public void userClientMethods() {
         try {
-            assertEquals(void.class, UserClient.class.getMethod("main", String[].class).getReturnType());
-            assertEquals(true, Modifier.isPublic(UserClient.class.getMethod("main", String[].class).getModifiers()));
-            assertEquals(true, Modifier.isStatic(UserClient.class.getMethod("main", String[].class).getModifiers()));
+            assertEquals(boolean.class, UserClient.class.getMethod("Login", String.class, String.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(UserClient.class.getMethod("Login", String.class, String.class).getModifiers()));
+
+            assertEquals(void.class, UserClient.class.getMethod("CreateAccount", String.class, int.class, String.class, String.class, ArrayList.class, FriendsList.class, String.class, String.class, String.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(UserClient.class.getMethod("CreateAccount", String.class, int.class, String.class, String.class, ArrayList.class, FriendsList.class, String.class, String.class, String.class).getModifiers()));
+            assertEquals(IOException.class, UserClient.class.getMethod("CreateAccount", String.class, int.class, String.class, String.class, ArrayList.class, FriendsList.class, String.class, String.class, String.class).getExceptionTypes()[0]);
+
+            assertEquals(Profile.class, UserClient.class.getMethod("getProfileWith", String.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(UserClient.class.getMethod("getProfileWith", String.class).getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserClient.class.getMethod("getProfileWith", String.class).getModifiers()));
         } catch (NoSuchMethodException e) {
             Assert.fail("Missing methods");
         }
@@ -429,7 +431,7 @@ public class Tester {
             assertEquals(String.class, Profile.class.getField("website").getType());
             assertEquals(true, Modifier.isPublic(Profile.class.getField("website").getModifiers()));
 
-            assertEquals(List.class, Profile.class.getField("interests").getType());
+            assertEquals(ArrayList.class, Profile.class.getField("interests").getType());
             assertEquals(true, Modifier.isPublic(Profile.class.getField("interests").getModifiers()));
 
             assertEquals(String.class, Profile.class.getField("aboutMe").getType());
@@ -449,9 +451,6 @@ public class Tester {
             assertEquals(String.class, Profile.class.getField("username").getType());
             assertEquals(true, Modifier.isPublic(Profile.class.getField("username").getModifiers()));
             assertEquals(true, Modifier.isFinal(Profile.class.getField("username").getModifiers()));
-
-            assertEquals(String.class, Profile.class.getField("encryptedPassword").getType());
-            assertEquals(true, Modifier.isPublic(Profile.class.getField("encryptedPassword").getModifiers()));
         } catch (NoSuchFieldException e) {
             Assert.fail("Missing fields");
         }
@@ -466,13 +465,11 @@ public class Tester {
             //Constructor Test
             assertEquals(true, Modifier.isPublic(FriendsList.class.getConstructors()[0].getModifiers()));
             Profile profile1 = new Profile("Steve", "username", 18, "steve@purdue.edu", "Password");
-            String correctPassword = "Cmeeiadp";
             assertEquals("Steve", profile1.name);
             assertEquals("username", profile1.username);
             assertEquals(18, profile1.age);
             assertEquals("steve@purdue.edu", profile1.email);
             assertEquals("Password", profile1.rawPassword);
-            assertEquals(correctPassword, profile1.getRawPassword());
             assertEquals(true, Modifier.isPublic(FriendsList.class.getConstructors()[1].getModifiers()));
             List<String> interests = new ArrayList<String>();
             interests.add("soccer");
@@ -489,7 +486,6 @@ public class Tester {
             assertEquals(18, profile2.age);
             assertEquals("steve@purdue.edu", profile2.email);
             assertEquals("Password", profile2.rawPassword);
-            assertEquals(correctPassword, profile2.getRawPassword());
             assertEquals("google.com", profile2.website);
             assertEquals(interests, profile2.interests);
             assertEquals(friendsList, profile2.friendsList);
@@ -530,23 +526,17 @@ public class Tester {
             assertEquals(void.class, Profile.class.getMethod("setWebsite", String.class).getReturnType());
             assertEquals(true, Modifier.isPublic(Profile.class.getMethod("setWebsite", String.class).getModifiers()));
 
-            assertEquals(List.class, Profile.class.getMethod("getInterests").getReturnType());
+            assertEquals(ArrayList.class, Profile.class.getMethod("getInterests").getReturnType());
             assertEquals(true, Modifier.isPublic(Profile.class.getMethod("getInterests").getModifiers()));
 
-            assertEquals(void.class, Profile.class.getMethod("setInterests", List.class).getReturnType());
-            assertEquals(true, Modifier.isPublic(Profile.class.getMethod("setInterests", List.class).getModifiers()));
+            assertEquals(void.class, Profile.class.getMethod("setInterests", ArrayList.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(Profile.class.getMethod("setInterests", ArrayList.class).getModifiers()));
 
             assertEquals(String.class, Profile.class.getMethod("getAboutMe").getReturnType());
             assertEquals(true, Modifier.isPublic(Profile.class.getMethod("getAboutMe").getModifiers()));
 
             assertEquals(void.class, Profile.class.getMethod("setAboutMe", String.class).getReturnType());
             assertEquals(true, Modifier.isPublic(Profile.class.getMethod("setAboutMe", String.class).getModifiers()));
-
-            assertEquals(String.class, Profile.class.getMethod("getEncryptedPassword").getReturnType());
-            assertEquals(true, Modifier.isPublic(Profile.class.getMethod("getEncryptedPassword").getModifiers()));
-
-            assertEquals(void.class, Profile.class.getMethod("setEncryptedPassword", String.class).getReturnType());
-            assertEquals(true, Modifier.isPublic(Profile.class.getMethod("setEncryptedPassword", String.class).getModifiers()));
         } catch (NoSuchMethodException e) {
             Assert.fail("Missing methods");
         }

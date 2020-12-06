@@ -1,6 +1,7 @@
 package SocialMedia.GUIs;
 
 import SocialMedia.Profile;
+import SocialMedia.ServerAndClient.UserClient;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,19 +26,14 @@ public class FriendsGUI extends JFrame implements ActionListener {
 
     public static void createFriendsGUI() {
 
-        // Testing out the GUI with dummy friends list
-        friendsList = new ArrayList<>();
-        friendsList.add(new Profile("John Jim", 12, "jonjim@gmail.com", "johnjim.com", (List<String>) Arrays.asList("Fishing", "Hiking"),
-                null, "Insert about me", "johnjim", "test123"));
-        friendsList.add(new Profile("JackBlack", 16, "jonjim@gmail.com", "johnjim.com", (List<String>) Arrays.asList("Fishing", "Hiking"),
-                null, "Insert about me", "JackBlack", "test123"));
+        friendsList = Profile.getFriendsList();
 
         Font font = new Font("Cambria", Font.BOLD, 15);
         JFrame friendsFrame = new JFrame();
         JPanel friendsPanel = new JPanel();
         friendsPanel.setLayout(new BorderLayout());
 
-        // Setting dimensions and alignments
+        // NORTH section of friendsPanel
         titleLabel = new JLabel("Friends");
         titleLabel.setFont(font);
 
