@@ -41,9 +41,7 @@ public class UsersListGUI extends JFrame implements ActionListener {
      * [View User?] [Back Button]
      * each one clickable which shows profile
      *
-     * TODO
-     * Currently uses a dummy list of Profiles instead of the actual list of profiles since UserClient's list is null and needs fixing. Need to change in
-     * createUserListGUI() and SocialProfileGUI.createProfileGUIFor(String name) when fixed.
+     *
      */
 
     /** Initalizes variables for users list gui**/
