@@ -19,23 +19,23 @@ import java.io.*;
 
 public class SocialProfileGUI extends JFrame implements ActionListener {
 
-    private static JFrame listOfUsersFrame;
-    private static Profile GUIProfile;
+    public static JFrame listOfUsersFrame;
+    public static Profile GUIProfile;
     //Components
-    private static JLabel titleLabel;
-    private static JButton usersButton;
-    private static JButton myProfileButton;
-    private static JButton friendsListButton;
-    private static JButton logoutButton;
-    private static JLabel nameLabel;
-    private static JLabel usernameLabel;
-    private static JLabel ageLabel;
-    private static JLabel emailLabel;
-    private static JLabel websiteLabel;
-    private static JLabel likesInterestsLabel;
-    private static JLabel friendsLabel;
-    private static JLabel aboutMeLabel;
-    private static JLabel aboutMeText;
+    public static JLabel titleLabel;
+    public static JButton usersButton;
+    public static JButton myProfileButton;
+    public static JButton friendsListButton;
+    public static JButton logoutButton;
+    public static JLabel nameLabel;
+    public static JLabel usernameLabel;
+    public static JLabel ageLabel;
+    public static JLabel emailLabel;
+    public static JLabel websiteLabel;
+    public static JLabel likesInterestsLabel;
+    public static JLabel friendsLabel;
+    public static JLabel aboutMeLabel;
+    public static JLabel aboutMeText;
 
     public static void createProfileGUI() {
         JFrame profileGUIFrame = new JFrame();
