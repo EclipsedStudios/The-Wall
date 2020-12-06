@@ -201,6 +201,8 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         profileGUISouthComponentPanel.setLayout(new FlowLayout());
 
 
+        Profile currentUser = UserClient.profile;
+
         // Back button
         JButton backButton = new JButton("Back");
         backButton.addActionListener((ActionEvent event) -> {
@@ -208,7 +210,28 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
             UsersListGUI.createUsersListGUI();
         });
 
+        /** Need to check if currentUser is already friends with, or has an outgoing friend request already to desired user **/
 
+        JButton sendFriendRequest = new JButton("Send Friend request");
+        sendFriendRequest.addActionListener((ActionEvent event) -> {
+           if (currentUser.getFriendsList().isFriendsWith(profile)) {
+               JOptionPane.showMessageDialog(null, "You're already friends with " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
+           } else if (currentUser.getFriendsList().hasOutgoingFriendRequest(profile)) {
+               JOptionPane.showMessageDialog(null, "You've already sent a friend request to " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
+           } else if (currentUser.getFriendsList().hasIncomingFriendRequest(profile)) {
+               // accept the request
+                JOptionPane.showMessageDialog(null, "You're now friends with " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
+                currentUser.getFriendsList().addFriend(profile);
+                profile.getFriendsList().addFriend(currentUser);
+            } else {
+               // no connection to either
+               JOptionPane.showMessageDialog(null, "Friend request sent to " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
+               currentUser.getFriendsList().getOutgoingFriendRequests().add(profile);
+               profile.getFriendsList().getIncomingFriendRequests().add(profile);
+           }
+        });
+
+        profileGUISouthComponentPanel.add(sendFriendRequest);
         profileGUISouthComponentPanel.add(backButton);
 
         //Puts the south component panel into the south section of the

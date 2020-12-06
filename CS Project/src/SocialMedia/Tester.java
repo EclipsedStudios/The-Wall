@@ -1,30 +1,25 @@
 package SocialMedia;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.invoke.TypeDescriptor;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.io.*;
-import java.net.Socket;
-import java.util.List;
-
 import SocialMedia.GUIs.FriendsGUI;
 import SocialMedia.GUIs.SocialProfileGUI;
 import SocialMedia.GUIs.UsersListGUI;
 import SocialMedia.ProfileExceptions.DuplicateUserException;
 import SocialMedia.ProfileExceptions.InvalidPasswordException;
 import SocialMedia.ServerAndClient.*;
-import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Test;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 
 /**
  * A JUnit tester class for all complicated methods that are not concurrency or GUI-based.

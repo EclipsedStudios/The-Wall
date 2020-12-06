@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class UserClient extends Thread  {
 
     public static ArrayList<Profile> profilesList;
-    public Profile profile;
+    public static Profile profile;
     public InetAddress address = null; // Get localhost
     public Socket socket = null; // Create a null socket
     public String line; // Store information coming from server
