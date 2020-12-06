@@ -39,6 +39,7 @@ public class Profile implements Serializable {
         this.name = name;
         this.username = username;
         this.email = email;
+        this.rawPassword = rawPassword;
 
         //Current skip is 12 (Moves each letter over by 12). This can be changed later.
         this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);
@@ -58,6 +59,7 @@ public class Profile implements Serializable {
         this.aboutMe = aboutMe;
         this.username = username;
         this.rawPassword = rawPassword;
+        this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);
     }
 
     // Getters and Setters

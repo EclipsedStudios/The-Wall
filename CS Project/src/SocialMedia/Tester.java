@@ -1,15 +1,27 @@
 package SocialMedia;
 
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.lang.invoke.TypeDescriptor;
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
 
+import SocialMedia.GUIs.FriendsGUI;
+import SocialMedia.GUIs.SocialProfileGUI;
+import SocialMedia.GUIs.UsersListGUI;
+import SocialMedia.ProfileExceptions.DuplicateUserException;
+import SocialMedia.ProfileExceptions.InvalidPasswordException;
 import SocialMedia.ServerAndClient.*;
 import org.junit.Test;
 import org.junit.Assert;
+
+import javax.swing.*;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -79,6 +91,16 @@ public class Tester {
     @Test
     public void serverClientThreadMethods() {
         try {
+            //Constructor Test
+            assertEquals(true, Modifier.isPublic(ServerClientThread.class.getConstructors()[0].getModifiers()));
+            Socket socket = new Socket();
+            ServerObjectStorage serverObjectStorage = new ServerObjectStorage();
+            Profile profile = new Profile("Steve", "username", 18, "steve@purdue.edu", "Password");
+            ServerClientThread serverClientThread = new ServerClientThread(socket, serverObjectStorage, profile);
+            assertEquals(socket, serverClientThread.socket);
+            assertEquals(serverObjectStorage, serverClientThread.serverObjectStorage);
+            assertEquals(profile, serverClientThread.profile);
+
             assertEquals(void.class, ServerClientThread.class.getMethod("StopThread").getReturnType());
             assertEquals(true, Modifier.isPublic(ServerClientThread.class.getMethod("StopThread").getModifiers()));
 
@@ -296,6 +318,20 @@ public class Tester {
     @Test
     public void friendsListMethods() {
         try {
+            //Constructor Test
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getConstructors()[0].getModifiers()));
+            ArrayList<Profile> friend1 = new ArrayList<>();
+            FriendsList friendsList1 = new FriendsList();
+            assertEquals(friend1, friendsList1.friends);
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getConstructors()[1].getModifiers()));
+            Profile steve = new Profile("Steve", "username", 18, "steve@purdue.edu", "Password");
+            Profile mike = new Profile("Mike", "michaelb", 21, "michaelb@purdue.edu", "Password123");
+            ArrayList<Profile> friend2 = new ArrayList<>();
+            friend2.add(steve);
+            friend2.add(mike);
+            FriendsList friendsList2 = new FriendsList(friend2);
+            assertEquals(friend2, friendsList2.friends);
+
             assertEquals(ArrayList.class, FriendsList.class.getMethod("getFriends").getReturnType());
             assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("getFriends").getModifiers()));
 
@@ -371,6 +407,7 @@ public class Tester {
     @Test
     public void profileExtends() {
         assertEquals(Object.class, Profile.class.getSuperclass());
+        assertEquals(Serializable.class, Profile.class.getInterfaces()[0]);
     }
 
     /**
@@ -425,6 +462,38 @@ public class Tester {
     @Test
     public void profileMethods() {
         try {
+            //Constructor Test
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getConstructors()[0].getModifiers()));
+            Profile profile1 = new Profile("Steve", "username", 18, "steve@purdue.edu", "Password");
+            String correctPassword = "Cmeeiadp";
+            assertEquals("Steve", profile1.name);
+            assertEquals("username", profile1.username);
+            assertEquals(18, profile1.age);
+            assertEquals("steve@purdue.edu", profile1.email);
+            assertEquals("Password", profile1.rawPassword);
+            assertEquals(correctPassword, profile1.encryptedPassword);
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getConstructors()[1].getModifiers()));
+            List<String> interests = new ArrayList<String>();
+            interests.add("soccer");
+            interests.add("running");
+            Profile mike = new Profile("Mike", "michaelb", 21, "michaelb@purdue.edu", "Password123");
+            Profile cam = new Profile("Cam", "cameron", 19, "cam@purdue.edu", "pass");
+            FriendsList friendsList = new FriendsList();
+            friendsList.addFriend(mike);
+            friendsList.addFriend(cam);
+            Profile profile2 = new Profile("Steve", 18, "steve@purdue.edu", "google.com", interests, friendsList, "I am Steve",
+                    "username", "Password");
+            assertEquals("Steve", profile2.name);
+            assertEquals("username", profile2.username);
+            assertEquals(18, profile2.age);
+            assertEquals("steve@purdue.edu", profile2.email);
+            assertEquals("Password", profile2.rawPassword);
+            assertEquals(correctPassword, profile2.encryptedPassword);
+            assertEquals("google.com", profile2.website);
+            assertEquals(interests, profile2.interests);
+            assertEquals(friendsList, profile2.friendsList);
+            assertEquals("I am Steve", profile2.aboutMe);
+
             assertEquals(ArrayList.class, Profile.class.getMethod("getProfilesList").getReturnType());
             assertEquals(true, Modifier.isPublic(Profile.class.getMethod("getProfilesList").getModifiers()));
             assertEquals(true, Modifier.isStatic(Profile.class.getMethod("getProfilesList").getModifiers()));
@@ -482,29 +551,423 @@ public class Tester {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
     /**
-     * A tester method for the entire profile class.
+     * A method to verify the user input class exists.
      */
     @Test
-    public void testProfileClass() {
-        //test password encryption
-        Profile testProfile = new Profile("Steve", "username", 18, "steve@purdue.edu", "Password");
-        String correctPassword = "Cmeeiadp";
-        assertEquals(correctPassword, testProfile.getEncryptedPassword());
+    public void userInputExists() {
+        try {
+            Class.forName("SocialMedia.UserInput");
+        } catch (ClassNotFoundException e) {
+            Assert.fail("Need a UserInput class");
+        }
     }
 
+    /**
+     * A method to verify the user input class extends the right classes.
+     */
+    @Test
+    public void userInputExtends() {
+        assertEquals(JFrame.class, UserInput.class.getSuperclass());
+        assertEquals(ActionListener.class, UserInput.class.getInterfaces()[0]);
+    }
 
+    /**
+     * A method to verify the user input class has correctly formatted fields.
+     */
+    @Test
+    public void userInputFields() {
+        try {
+            assertEquals(File.class, UserInput.class.getField("UsernamesList").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("UsernamesList").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("UsernamesList").getModifiers()));
+
+            assertEquals(ArrayList.class, UserInput.class.getField("listOfUsernames").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("listOfUsernames").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("listOfUsernames").getModifiers()));
+
+            assertEquals(JFrame.class, UserInput.class.getField("welcomeFrame").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("welcomeFrame").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("welcomeFrame").getModifiers()));
+
+            assertEquals(Profile.class, UserInput.class.getField("currentUserProfile").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("currentUserProfile").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("currentUserProfile").getModifiers()));
+
+            assertEquals(JButton.class, UserInput.class.getField("signInButton").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("signInButton").getModifiers()));
+
+            assertEquals(JTextField.class, UserInput.class.getField("username").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("username").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("username").getModifiers()));
+
+            assertEquals(JPasswordField.class, UserInput.class.getField("password").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("password").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("password").getModifiers()));
+
+            assertEquals(JTextField.class, UserInput.class.getField("usernameTextField").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("usernameTextField").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("usernameTextField").getModifiers()));
+
+            assertEquals(JPasswordField.class, UserInput.class.getField("passwordTextField").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("passwordTextField").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("passwordTextField").getModifiers()));
+
+            assertEquals(JTextField.class, UserInput.class.getField("nameTextField").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("nameTextField").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("nameTextField").getModifiers()));
+
+            assertEquals(JTextField.class, UserInput.class.getField("ageTextField").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("ageTextField").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("ageTextField").getModifiers()));
+
+            assertEquals(JTextField.class, UserInput.class.getField("emailTextField").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("emailTextField").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("emailTextField").getModifiers()));
+
+            assertEquals(JTextField.class, UserInput.class.getField("websiteTextField").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("websiteTextField").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("websiteTextField").getModifiers()));
+
+            assertEquals(JTextField.class, UserInput.class.getField("likesInterestsTextField").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("likesInterestsTextField").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("likesInterestsTextField").getModifiers()));
+
+            assertEquals(JTextArea.class, UserInput.class.getField("aboutMeTextArea").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("aboutMeTextArea").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("aboutMeTextArea").getModifiers()));
+
+            assertEquals(JPasswordField.class, UserInput.class.getField("confirmPasswordTextField").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("confirmPasswordTextField").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("confirmPasswordTextField").getModifiers()));
+
+            assertEquals(JFrame.class, UserInput.class.getField("createAccountFrame").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("createAccountFrame").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("createAccountFrame").getModifiers()));
+
+            assertEquals(String[].class, UserInput.class.getField("usernameAndPassword").getType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getField("usernameAndPassword").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getField("usernameAndPassword").getModifiers()));
+        } catch (NoSuchFieldException e) {
+            Assert.fail("Missing fields");
+        }
+    }
+
+    /**
+     * A method to verify the user input class has correctly formatted methods.
+     */
+    @Test
+    public void userInputMethods() {
+        try {
+            assertEquals(void.class, UserInput.class.getMethod("main", String[].class).getReturnType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("main", String[].class).getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("main", String[].class).getModifiers()));
+
+            assertEquals(void.class, UserInput.class.getMethod("createWelcomeScreen").getReturnType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("createWelcomeScreen").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("createWelcomeScreen").getModifiers()));
+
+            assertEquals(void.class, UserInput.class.getMethod("validateLoginCredentials").getReturnType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("validateLoginCredentials").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("validateLoginCredentials").getModifiers()));
+            assertEquals(IOException.class, UserInput.class.getMethod("validateLoginCredentials").getExceptionTypes()[0]);
+
+            assertEquals(void.class, UserInput.class.getMethod("createAccount").getReturnType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("createAccount").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("createAccount").getModifiers()));
+
+            assertEquals(int.class, UserInput.class.getMethod("performCreateAccountConfirmButtonAction").getReturnType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("performCreateAccountConfirmButtonAction").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("performCreateAccountConfirmButtonAction").getModifiers()));
+
+            assertEquals(String[].class, UserInput.class.getMethod("getUsernameAndPassword").getReturnType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("getUsernameAndPassword").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("getUsernameAndPassword").getModifiers()));
+
+            assertEquals(void.class, UserInput.class.getMethod("makeLoginScreenVisible").getReturnType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("makeLoginScreenVisible").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("makeLoginScreenVisible").getModifiers()));
+
+            assertEquals(void.class, UserInput.class.getMethod("createUserProfile").getReturnType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("createUserProfile").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("createUserProfile").getModifiers()));
+            assertEquals(IOException.class, UserInput.class.getMethod("createUserProfile").getExceptionTypes()[0]);
+
+            assertEquals(void.class, UserInput.class.getMethod("actionPerformed", ActionEvent.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("actionPerformed", ActionEvent.class).getModifiers()));
+        } catch (NoSuchMethodException e) {
+            Assert.fail("Missing methods");
+        }
+    }
+
+    /**
+     * A method to verify the duplicate user exception class exists.
+     */
+    @Test
+    public void duplicateUserExceptionExists() {
+        try {
+            Class.forName("SocialMedia.ProfileExceptions.DuplicateUserException");
+        } catch (ClassNotFoundException e) {
+            Assert.fail("Need a DuplicateUserException class");
+        }
+    }
+
+    /**
+     * A method to verify the duplicate user exception class extends the right classes.
+     */
+    @Test
+    public void duplicateUserExceptionExtends() {
+        assertEquals(Exception.class, DuplicateUserException.class.getSuperclass());
+    }
+
+    /**
+     * A method to verify the invalid password exception class exists.
+     */
+    @Test
+    public void invalidPasswordExceptionExists() {
+        try {
+            Class.forName("SocialMedia.ProfileExceptions.InvalidPasswordException");
+        } catch (ClassNotFoundException e) {
+            Assert.fail("Need a InvalidPasswordException class");
+        }
+    }
+
+    /**
+     * A method to verify the invalid password exception class extends the right classes.
+     */
+    @Test
+    public void invalidPasswordExceptionExtends() {
+        assertEquals(Exception.class, InvalidPasswordException.class.getSuperclass());
+    }
+
+    /**
+     * A method to verify the friends GUI class exists.
+     */
+    @Test
+    public void friendsGUIExists() {
+        try {
+            Class.forName("SocialMedia.GUIs.FriendsGUI");
+        } catch (ClassNotFoundException e) {
+            Assert.fail("Need a FriendsGUI class");
+        }
+    }
+
+    /**
+     * A method to verify the friends GUI class extends the right classes.
+     */
+    @Test
+    public void friendsGUIExtends() {
+        assertEquals(JFrame.class, FriendsGUI.class.getSuperclass());
+        assertEquals(ActionListener.class, FriendsGUI.class.getInterfaces()[0]);
+    }
+
+    /**
+     * A method to verify the friends GUI class has correctly formatted fields.
+     */
+    @Test
+    public void friendsGUIFields() {
+        try {
+            assertEquals(List.class, FriendsGUI.class.getField("friendsList").getType());
+            assertEquals(true, Modifier.isPublic(FriendsGUI.class.getField("friendsList").getModifiers()));
+            assertEquals(true, Modifier.isStatic(FriendsGUI.class.getField("friendsList").getModifiers()));
+
+            assertEquals(JLabel.class, FriendsGUI.class.getField("titleLabel").getType());
+            assertEquals(true, Modifier.isPublic(FriendsGUI.class.getField("titleLabel").getModifiers()));
+            assertEquals(true, Modifier.isStatic(FriendsGUI.class.getField("titleLabel").getModifiers()));
+        } catch (NoSuchFieldException e) {
+            Assert.fail("Missing fields");
+        }
+    }
+
+    /**
+     * A method to verify the friends GUI class has correctly formatted methods.
+     */
+    @Test
+    public void friendsGUIMethods() {
+        try {
+            assertEquals(void.class, FriendsGUI.class.getMethod("createFriendsGUI").getReturnType());
+            assertEquals(true, Modifier.isPublic(FriendsGUI.class.getMethod("createFriendsGUI").getModifiers()));
+            assertEquals(true, Modifier.isStatic(FriendsGUI.class.getMethod("createFriendsGUI").getModifiers()));
+        } catch (NoSuchMethodException e) {
+            Assert.fail("Missing methods");
+        }
+    }
+
+    /**
+     * A method to verify the social profile GUI class exists.
+     */
+    @Test
+    public void socialProfileGUIExists() {
+        try {
+            Class.forName("SocialMedia.GUIs.SocialProfileGUI");
+        } catch (ClassNotFoundException e) {
+            Assert.fail("Need a SocialProfileGUI class");
+        }
+    }
+
+    /**
+     * A method to verify the social profile GUI class extends the right classes.
+     */
+    @Test
+    public void socialProfileGUIExtends() {
+        assertEquals(JFrame.class, SocialProfileGUI.class.getSuperclass());
+        assertEquals(ActionListener.class, SocialProfileGUI.class.getInterfaces()[0]);
+    }
+
+    /**
+     * A method to verify the social profile GUI class has correctly formatted fields.
+     */
+    @Test
+    public void socialProfileGUIFields() {
+        try {
+            assertEquals(JFrame.class, SocialProfileGUI.class.getField("listOfUsersFrame").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("listOfUsersFrame").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("listOfUsersFrame").getModifiers()));
+
+            assertEquals(Profile.class, SocialProfileGUI.class.getField("GUIProfile").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("GUIProfile").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("GUIProfile").getModifiers()));
+
+            assertEquals(JLabel.class, SocialProfileGUI.class.getField("titleLabel").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("titleLabel").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("titleLabel").getModifiers()));
+
+            assertEquals(JButton.class, SocialProfileGUI.class.getField("usersButton").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("usersButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("usersButton").getModifiers()));
+
+            assertEquals(JButton.class, SocialProfileGUI.class.getField("myProfileButton").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("myProfileButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("myProfileButton").getModifiers()));
+
+            assertEquals(JButton.class, SocialProfileGUI.class.getField("friendsListButton").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("friendsListButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("friendsListButton").getModifiers()));
+
+            assertEquals(JButton.class, SocialProfileGUI.class.getField("logoutButton").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("logoutButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("logoutButton").getModifiers()));
+
+            assertEquals(JLabel.class, SocialProfileGUI.class.getField("nameLabel").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("nameLabel").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("nameLabel").getModifiers()));
+
+            assertEquals(JLabel.class, SocialProfileGUI.class.getField("usernameLabel").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("usernameLabel").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("usernameLabel").getModifiers()));
+
+            assertEquals(JLabel.class, SocialProfileGUI.class.getField("ageLabel").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("ageLabel").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("ageLabel").getModifiers()));
+
+            assertEquals(JLabel.class, SocialProfileGUI.class.getField("emailLabel").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("emailLabel").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("emailLabel").getModifiers()));
+
+            assertEquals(JLabel.class, SocialProfileGUI.class.getField("websiteLabel").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("websiteLabel").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("websiteLabel").getModifiers()));
+
+            assertEquals(JLabel.class, SocialProfileGUI.class.getField("likesInterestsLabel").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("likesInterestsLabel").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("likesInterestsLabel").getModifiers()));
+
+            assertEquals(JLabel.class, SocialProfileGUI.class.getField("friendsLabel").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("friendsLabel").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("friendsLabel").getModifiers()));
+
+            assertEquals(JLabel.class, SocialProfileGUI.class.getField("aboutMeLabel").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("aboutMeLabel").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("aboutMeLabel").getModifiers()));
+
+            assertEquals(JLabel.class, SocialProfileGUI.class.getField("aboutMeText").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("aboutMeText").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("aboutMeText").getModifiers()));
+        } catch (NoSuchFieldException e) {
+            Assert.fail("Missing fields");
+        }
+    }
+
+    /**
+     * A method to verify the social profile GUI class has correctly formatted methods.
+     */
+    @Test
+    public void socialProfileGUIMethods() {
+        try {
+            assertEquals(void.class, SocialProfileGUI.class.getMethod("createProfileGUI").getReturnType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getMethod("createProfileGUI").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getMethod("createProfileGUI").getModifiers()));
+
+            assertEquals(void.class, SocialProfileGUI.class.getMethod("createProfileGUIFor", String.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getMethod("createProfileGUIFor", String.class).getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getMethod("createProfileGUIFor", String.class).getModifiers()));
+
+            assertEquals(void.class, SocialProfileGUI.class.getMethod("createProfileGUIFor", String.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getMethod("createProfileGUIFor", String.class).getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getMethod("createProfileGUIFor", String.class).getModifiers()));
+
+            assertEquals(void.class, SocialProfileGUI.class.getMethod("actionPerformed", ActionEvent.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getMethod("actionPerformed", ActionEvent.class).getModifiers()));
+        } catch (NoSuchMethodException e) {
+            Assert.fail("Missing methods");
+        }
+    }
+
+    /**
+     * A method to verify the users list GUI class exists.
+     */
+    @Test
+    public void usersListGUIExists() {
+        try {
+            Class.forName("SocialMedia.GUIs.UsersListGUI");
+        } catch (ClassNotFoundException e) {
+            Assert.fail("Need a UsersListGUI class");
+        }
+    }
+
+    /**
+     * A method to verify the users list GUI class extends the right classes.
+     */
+    @Test
+    public void usersListGUIExtends() {
+        assertEquals(JFrame.class, UsersListGUI.class.getSuperclass());
+        assertEquals(ActionListener.class, UsersListGUI.class.getInterfaces()[0]);
+    }
+
+    /**
+     * A method to verify the users list GUI class has correctly formatted fields.
+     */
+    @Test
+    public void usersListGUIFields() {
+        try {
+            assertEquals(JLabel.class, UsersListGUI.class.getField("titleLabel").getType());
+            assertEquals(true, Modifier.isPublic(UsersListGUI.class.getField("titleLabel").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UsersListGUI.class.getField("titleLabel").getModifiers()));
+
+            assertEquals(List.class, UsersListGUI.class.getField("profilesList").getType());
+            assertEquals(true, Modifier.isPublic(UsersListGUI.class.getField("profilesList").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UsersListGUI.class.getField("profilesList").getModifiers()));
+        } catch (NoSuchFieldException e) {
+            Assert.fail("Missing fields");
+        }
+    }
+
+    /**
+     * A method to verify the users list GUI class has correctly formatted methods.
+     */
+    @Test
+    public void usersListGUIMethods() {
+        try {
+            assertEquals(void.class, UsersListGUI.class.getMethod("createUsersListGUI").getReturnType());
+            assertEquals(true, Modifier.isPublic(UsersListGUI.class.getMethod("createUsersListGUI").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UsersListGUI.class.getMethod("createUsersListGUI").getModifiers()));
+
+            assertEquals(void.class, UsersListGUI.class.getMethod("actionPerformed", ActionEvent.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(UsersListGUI.class.getMethod("actionPerformed", ActionEvent.class).getModifiers()));
+        } catch (NoSuchMethodException e) {
+            Assert.fail("Missing methods");
+        }
+    }
 
     /**
      * A tester method for the entire friends list class.
