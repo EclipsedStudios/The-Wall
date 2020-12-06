@@ -1,8 +1,11 @@
 package SocialMedia.GUIs;
 
 import SocialMedia.Profile;
+import SocialMedia.ServerAndClient.UserClient;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,15 +37,21 @@ public class UsersListGUI extends JFrame implements ActionListener {
      * 2. Username2
      * ..
      * ..
-     * [Back Button]
+     * [View User?] [Back Button]
      * each one clickable which shows profile
+     *
+     * TODO
+     * Currently uses a dummy list of Profiles instead of the actual list of profiles since UserClient's list is null and needs fixing. Need to change in
+     * createUserListGUI() and SocialProfileGUI.createProfileGUIFor(String name) when fixed.
      */
 
     /** Initalizes variables for users list gui**/
     public static void createUsersListGUI(){
         // set the profiles list to all the lists
         profilesList = new ArrayList<>();
+
         // for now I'm using a dummy list w/ fake profiles just to test
+
         profilesList.add(new Profile("John Jim", 12, "jonjim@gmail.com", "johnhim.com", (List<String>) Arrays.asList("Fishing", "Hiking"),
                         null, "Insert about me", "johnjim", "test123"));
 
@@ -53,6 +62,9 @@ public class UsersListGUI extends JFrame implements ActionListener {
         Font font = new Font("Cambria", Font.BOLD, 15);
         JFrame usersListFrame = new JFrame();
         JPanel usersListPanel = new JPanel();
+        JPanel optionsSouthPanel = new JPanel();
+        optionsSouthPanel.setLayout(new FlowLayout());
+
         //sets the layout for the social profile GUI
         usersListPanel.setLayout(new BorderLayout());
 
@@ -89,13 +101,38 @@ public class UsersListGUI extends JFrame implements ActionListener {
             counter++;
 
         }
-        list = new JList<>(usernames);
 
+        list = new JList<>(usernames);
+        list.setSelectedIndex(0);
+
+        JButton confirmView = new JButton("View " + usernames[0] + "?");
+        list.addListSelectionListener((ListSelectionEvent event) -> {
+            if (!event.getValueIsAdjusting()) {
+                confirmView.setText("View " + list.getSelectedValue() + "?");
+            }
+        });
+
+        confirmView.addActionListener((ActionEvent event) -> {
+            String username = confirmView.getText().split(" ")[1].substring(0, confirmView.getText().split(" ")[1].length() - 1);
+            usersListFrame.setVisible(false);
+            SocialProfileGUI.createProfileGUIFor(username);
+        });
+
+        // Back button
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener((ActionEvent event) -> {
+            usersListFrame.setVisible(false);
+            SocialProfileGUI.createProfileGUI();
+        });
+
+        optionsSouthPanel.add(confirmView);
+        optionsSouthPanel.add(backButton);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setLayoutOrientation(JList.VERTICAL);
         list.setVisibleRowCount(-1);
 
         usersListPanel.add(list, BorderLayout.WEST);
+        usersListPanel.add(optionsSouthPanel, BorderLayout.SOUTH);
         usersListPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
         usersListFrame.getContentPane().add(usersListPanel);
