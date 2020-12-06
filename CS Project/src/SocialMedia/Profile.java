@@ -12,6 +12,14 @@ import java.util.List;
  * @version 12/4/2020
  * @authors Max Fuligni, Paul Gherghetta, Cole Busa, Aakash Jariwala, Jaden Baker
  */
+
+/**
+ * 1. Creating accounts - Jaden
+ * 2. Friends list GUI - Aakash
+ * 3. Send / accept friend requests -  Max
+ * 4. Edit profiles - Paul
+ *
+ */
 public class Profile implements Serializable {
 
     public String name;

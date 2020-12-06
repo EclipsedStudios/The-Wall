@@ -477,15 +477,6 @@ public class UserInput extends JFrame implements ActionListener {
                     JOptionPane.ERROR_MESSAGE);
         }
         PrintWriter pw = new PrintWriter(fOS);
-        pw.println(nameTextField.getText());
-        pw.println(emailTextField.getText());
-        pw.println("No friends");
-        pw.println(websiteTextField.getText());
-        pw.println(likesInterestsTextField.getText());
-        pw.println(aboutMeTextArea.getText());
-        pw.println(ageTextField.getText());
-        pw.println(passwordTextField.getPassword());
-        pw.close();
 
         try {
             userClient.CreateAccount(nameTextField.getText(),
