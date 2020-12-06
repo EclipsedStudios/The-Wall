@@ -1008,7 +1008,84 @@ public class Tester {
     /**
      * A tester method for the entire profile class.
      */
+    @Test
     public void testProfileClass() {
+        Profile steve = new Profile("Steve", "username", 18, "steve@purdue.edu", "Password");
+        Profile mike = new Profile("Mike", "michaelb", 21, "michaelb@purdue.edu", "Password123");
+        Profile cam = new Profile("Cam", "cameron", 19, "cam@purdue.edu", "pass");
+        Profile emily = new Profile("Emily", "emilyf", 20, "emilyf@purdue.edu", "notpassword");
 
+        //test get profile list method
+        Profile.profilesList.add(steve);
+        Profile.profilesList.add(mike);
+        Profile.profilesList.add(cam);
+        Profile.profilesList.add(emily);
+        ArrayList<Profile> profiles = new ArrayList<Profile>();
+        profiles.add(steve);
+        profiles.add(mike);
+        profiles.add(cam);
+        profiles.add(emily);
+        assertEquals(profiles, Profile.getProfilesList());
+
+        //test get profile with method
+        assertEquals(steve, Profile.getProfileWith("username"));
+
+        //test get friends list method
+        FriendsList f1 = new FriendsList(profiles);
+        ArrayList<String> interests = new ArrayList<String>();
+        interests.add("soccer");
+        interests.add("running");
+        Profile profile = new Profile("Steve", 18, "steve@purdue.edu", "google.com", interests, f1, "I am Steve",
+                "username", "Password");
+        assertEquals(f1, profile.getFriendsList());
+
+        //test get age method
+        assertEquals(18, profile.getAge());
+
+        //test get username method
+        assertEquals("username", profile.getUsername());
+
+        //test get name method
+        assertEquals("Steve", profile.getName());
+
+        //test set name method
+        profile.setName("name");
+        assertEquals("name", profile.getName());
+
+        //test get email method
+        assertEquals("steve@purdue.edu", profile.getEmail());
+
+        //test set email method
+        profile.setEmail("email");
+        assertEquals("email", profile.getEmail());
+
+        //test get website method
+        assertEquals("google.com", profile.getWebsite());
+
+        //test set website method
+        profile.setWebsite("website");
+        assertEquals("website", profile.getWebsite());
+
+        //test get interests method
+        assertEquals(interests, profile.getInterests());
+
+        //test set interests method
+        interests.add("coding");
+        profile.setInterests(interests);
+        assertEquals(interests, profile.getInterests());
+
+        //test get about me method
+        assertEquals("I am Steve", profile.getAboutMe());
+
+        //test set about me method
+        profile.setAboutMe("About me");
+        assertEquals("About me", profile.getAboutMe());
+
+        //test get raw password method
+        assertEquals("Password", profile.getRawPassword());
+
+        //test set raw password method
+        profile.setRawPassword("Raw Password");
+        assertEquals("Raw Password", profile.getRawPassword());
     }
 }
