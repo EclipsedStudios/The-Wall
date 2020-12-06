@@ -52,7 +52,7 @@ public class UserClient {
             printWriter.flush();
             while (line.compareToIgnoreCase("quit") != 0) {
                 switch (line) {
-                    case "stop server" : {
+                    case "stop server":{
                         return;
                     }
                     case "see users" : {

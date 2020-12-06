@@ -65,24 +65,38 @@ public class UsersListGUI extends JFrame implements ActionListener {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT
         );
 
-        int counter = 1;
+        int counter = 0;
 
+
+        JList<String> list;
+        String[] usernames = new String[profilesList.size()];
         for (Profile profile : profilesList) {
-            JLabel profileLink = new JLabel(counter + ". " + profile.getUsername());
-            profileLink.addMouseListener(new MouseAdapter() {
+//            JLabel profileLink = new JLabel(counter + ". " + profile.getUsername());
+//            profileLink.addMouseListener(new MouseAdapter() {
+//
+//                @Override
+//                public void mouseClicked(MouseEvent e) {
+//                    // the user clicks on the label
+//                    // open user's profile
+//                    usersListFrame.setVisible(false);
+//                    SocialProfileGUI.createProfileGUIFor(profile.getUsername());
+//                }
+//
+//            });
 
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    // the user clicks on the label
-                    // open user's profile
-                    usersListFrame.setVisible(false);
-                    SocialProfileGUI.createProfileGUIFor(profile.getUsername());
-                }
 
-            });
-            usersListPanel.add(profileLink, BorderLayout.WEST);
-            usersListPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+            usernames[counter] = profile.getUsername();
+            counter++;
+
         }
+        list = new JList<>(usernames);
+
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setLayoutOrientation(JList.VERTICAL);
+        list.setVisibleRowCount(-1);
+
+        usersListPanel.add(list, BorderLayout.WEST);
+        usersListPanel.add(Box.createRigidArea(new Dimension(0, 30)));
 
         usersListFrame.getContentPane().add(usersListPanel);
 
