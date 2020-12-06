@@ -19,12 +19,12 @@ public class ServerClientThread extends Thread {
     public Socket socket;
     public ObjectOutputStream objectOutputStream = null;
     public ObjectInputStream objectInputStream = null;
-    public ServerObjectStorage serverObjectStorage;
+    public ServerUserStorage serverUserStorage;
     public Profile profile;
 
-    public ServerClientThread(Socket socket, ServerObjectStorage serverObjectStorage, Profile profile) {
+    public ServerClientThread(Socket socket, ServerUserStorage serverUserStorage, Profile profile) {
         this.socket = socket;
-        this.serverObjectStorage = serverObjectStorage;
+        this.serverUserStorage = serverUserStorage;
         this.profile = profile;
     }
 
@@ -32,7 +32,7 @@ public class ServerClientThread extends Thread {
         socket.close();
         System.out.println("Socket Closed");
         CentralServer.numberOfConnections--;
-        serverObjectStorage.users.remove(profile);
+        serverUserStorage.users.remove(profile);
         CentralServer.serverClientThreads.remove(this);
         System.out.println("----------------------------------------");
     }
@@ -55,7 +55,7 @@ public class ServerClientThread extends Thread {
         }
 
         try {
-            for(Profile a : serverObjectStorage.users){
+            for(Profile a : serverUserStorage.users){
                 System.out.println(a);
             }
             System.out.println("=======");
@@ -66,7 +66,7 @@ public class ServerClientThread extends Thread {
                     case "see users" : {
                         System.out.println("User has tried to see users");
                         objectOutputStream.reset();
-                        objectOutputStream.writeObject(serverObjectStorage.users);
+                        objectOutputStream.writeObject(serverUserStorage.users);
                         objectOutputStream.flush();
                     }
                     default : {
