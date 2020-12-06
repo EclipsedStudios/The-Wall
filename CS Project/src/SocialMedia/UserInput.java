@@ -18,28 +18,28 @@ import java.io.*;
  */
 
 public class UserInput extends JFrame implements ActionListener {
-    private static File UsernamesList;
-    private static ArrayList<String> listOfUsernames = new ArrayList<>();
-    private static JFrame welcomeFrame;
-    private static Profile currentUserProfile;
+    public static File UsernamesList;
+    public static ArrayList<String> listOfUsernames = new ArrayList<>();
+    public static JFrame welcomeFrame;
+    public static Profile currentUserProfile;
 
     //Components
-    private JButton signInButton;
-    private static JTextField username;
-    private static JPasswordField password;
-    private static JTextField usernameTextField;
-    private static JPasswordField passwordTextField;
-    private static JTextField nameTextField;
-    private static JTextField ageTextField;
-    private static JTextField emailTextField;
-    private static JTextField websiteTextField;
-    private static JTextField likesInterestsTextField;
-    private static JTextArea aboutMeTextArea;
-    private static JPasswordField confirmPasswordTextField;
-    private static JFrame createAccountFrame;
+    public JButton signInButton;
+    public static JTextField username;
+    public static JPasswordField password;
+    public static JTextField usernameTextField;
+    public static JPasswordField passwordTextField;
+    public static JTextField nameTextField;
+    public static JTextField ageTextField;
+    public static JTextField emailTextField;
+    public static JTextField websiteTextField;
+    public static JTextField likesInterestsTextField;
+    public static JTextArea aboutMeTextArea;
+    public static JPasswordField confirmPasswordTextField;
+    public static JFrame createAccountFrame;
     //An array that holds the username and password to be sent
     //to the SocialProfile GUI.
-    private static String[] usernameAndPassword;
+    public static String[] usernameAndPassword;
 
     public static void main(String[] args) {
         //File that only has the names of people

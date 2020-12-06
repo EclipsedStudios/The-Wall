@@ -22,9 +22,9 @@ import java.util.List;
  */
 public class UsersListGUI extends JFrame implements ActionListener {
 
-    private static JLabel titleLabel;
+    public static JLabel titleLabel;
 
-    private static List<Profile> profilesList;
+    public static List<Profile> profilesList;
 
 
     // Design layout
