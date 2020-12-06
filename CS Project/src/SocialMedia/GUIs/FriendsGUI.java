@@ -1,5 +1,6 @@
 package SocialMedia.GUIs;
 
+import SocialMedia.FriendsList;
 import SocialMedia.Profile;
 import SocialMedia.ServerAndClient.UserClient;
 
@@ -34,7 +35,8 @@ public class FriendsGUI extends JFrame implements ActionListener {
         friendsPanel.setLayout(new BorderLayout());
 
         // NORTH section of friendsPanel
-        titleLabel = new JLabel("Friends");
+        titleLabel = new JLabel("                                                   " +
+                "                                                     Users (" + friendsList.size() + ")");
         titleLabel.setFont(font);
 
         friendsPanel.add(titleLabel, BorderLayout.NORTH);
@@ -43,12 +45,24 @@ public class FriendsGUI extends JFrame implements ActionListener {
         friendsFrame.getContentPane().add(friendsPanel);
 
         friendsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        friendsFrame.setSize(1200, 800);
+        friendsFrame.setSize(1000, 1000);
         friendsFrame.setVisible(true);
 
+        int counter = 0;
+        JList<String> list;
+        String[] friends = new String[friendsList.size()];
+        for (int i = 0; i < friendsList.size(); i++) {
+            friends[counter] = FriendsList.getFriends();
+            counter++;
         }
+
+        list = new JList<>(friends);
+        list.setSelectedIndex(0);
+
+    }
+
         @Override
         public void actionPerformed(ActionEvent e) {
 
-    }
+        }
 }

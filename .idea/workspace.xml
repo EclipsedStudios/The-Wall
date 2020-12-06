@@ -25,11 +25,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Finished testing for FriendsList class">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Updated test for class changes.">
       <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/UserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/UserInput.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,6 +165,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tester" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CS18000" />
       <extension name="coverage">
@@ -251,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607288844938</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Updated test for class changes.">
+      <created>1607296319548</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1607296319548</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -287,10 +302,10 @@
     <MESSAGE value="Created test cases for most of the classes to ensure every one has the correct fields, methods, and inheritance." />
     <MESSAGE value="Finalized verification tests for all classes. Will implement test cases for the methods that need them." />
     <MESSAGE value="Added tests for constructors where needed. Updated a few constructors for classes where some objects were not initialized." />
-    <MESSAGE value="Updated test for class changes." />
     <MESSAGE value="Fixed the server client thread class test cases to use reflection so the method can stay private." />
     <MESSAGE value="Finished testing for FriendsList class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished testing for FriendsList class" />
+    <MESSAGE value="Updated test for class changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated test for class changes." />
   </component>
   <component name="WindowStateProjectService">
     <state x="743" y="414" width="433" height="218" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1607281566500">
