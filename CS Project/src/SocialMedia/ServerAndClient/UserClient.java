@@ -21,7 +21,7 @@ public class UserClient extends Thread {
 
     public static ArrayList<Profile> profilesList;
     private final AtomicBoolean running = new AtomicBoolean(false);
-    public Profile profile;
+    public static Profile profile;
     public InetAddress address = null; // Get localhost
     public Socket socket = null; // Create a null socket
     public String line; // Store information coming from server
@@ -121,12 +121,11 @@ public class UserClient extends Thread {
                 if ("see users".equals(line)) {
                     profilesList = (ArrayList<Profile>) objectInputStream.readObject();
                 }
-                line = "nothing";
                 objectOutputStream.writeUTF(line);
                 objectOutputStream.flush();
                 objectOutputStream.reset();
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(333);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
