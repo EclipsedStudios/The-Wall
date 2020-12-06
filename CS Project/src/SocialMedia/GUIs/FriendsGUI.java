@@ -1,5 +1,7 @@
 package SocialMedia.GUIs;
 
+import SocialMedia.Profile;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,8 +20,8 @@ import java.util.List;
 
 public class FriendsGUI extends JFrame implements ActionListener {
 
-    private static List<Profile> friendsList;
-    private static JLabel titleLabel;
+    public static List<Profile> friendsList;
+    public static JLabel titleLabel;
 
     public static void createFriendsGUI() {
 

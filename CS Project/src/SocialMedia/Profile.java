@@ -13,24 +13,24 @@ import java.util.List;
  */
 public class Profile {
 
-    private String name;
-    private String email;
-    private FriendsList friendsList;
-    private String website;
-    private List<String> interests;
-    private String aboutMe;
-    private final int age;
-    private String rawPassword;
-    private static ArrayList<Profile> profilesList = new ArrayList<>();
+    public String name;
+    public String email;
+    public FriendsList friendsList;
+    public String website;
+    public List<String> interests;
+    public String aboutMe;
+    public final int age;
+    public String rawPassword;
+    public static ArrayList<Profile> profilesList = new ArrayList<>();
 
     /**
      * identifier
      **/
-    private final String username;
+    public final String username;
     /**
      * Server decrypts for login
      **/
-    private String encryptedPassword;
+    public String encryptedPassword;
 
 
     // Initial construction

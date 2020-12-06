@@ -13,14 +13,14 @@ import java.net.Socket;
  */
 
 public class ServerClientThread extends Thread {
-    String line = null;
-    BufferedReader bufferedReader = null;
-    PrintWriter printWriter = null;
-    Socket socket;
-    ObjectOutputStream objectOutputStream = null;
-    ObjectInputStream objectInputStream = null;
-    ServerObjectStorage serverObjectStorage;
-    Profile profile;
+    public String line = null;
+    public BufferedReader bufferedReader = null;
+    public PrintWriter printWriter = null;
+    public Socket socket;
+    public ObjectOutputStream objectOutputStream = null;
+    public ObjectInputStream objectInputStream = null;
+    public ServerObjectStorage serverObjectStorage;
+    public Profile profile;
 
     public ServerClientThread(Socket socket, ServerObjectStorage serverObjectStorage, Profile profile) {
         this.socket = socket;
@@ -28,7 +28,7 @@ public class ServerClientThread extends Thread {
         this.profile = profile;
     }
 
-    private void StopThread() throws IOException {
+    public void StopThread() throws IOException {
         socket.close();
         System.out.println("Socket Closed");
         CentralServer.numberOfConnections--;
