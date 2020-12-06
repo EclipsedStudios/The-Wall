@@ -5,7 +5,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Added tests for constructors where needed. Updated a few constructors for classes where some objects were not initialized.">
+    <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Updated test for class changes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" afterDir="false" />
     </list>
@@ -208,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607223733062</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Updated test for class changes.">
+      <created>1607281657481</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1607281657481</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -244,38 +251,43 @@
     <MESSAGE value="Created test cases for most of the classes to ensure every one has the correct fields, methods, and inheritance." />
     <MESSAGE value="Finalized verification tests for all classes. Will implement test cases for the methods that need them." />
     <MESSAGE value="Added tests for constructors where needed. Updated a few constructors for classes where some objects were not initialized." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tests for constructors where needed. Updated a few constructors for classes where some objects were not initialized." />
+    <MESSAGE value="Updated test for class changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated test for class changes." />
   </component>
   <component name="WindowStateProjectService">
+    <state x="743" y="414" width="433" height="218" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1607281566500">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="743" y="414" width="433" height="218" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1607281566500" />
     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606092118870">
       <screen x="1920" y="-165" width="2048" height="1120" />
     </state>
     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606092118870" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1607281070479">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1607286907361">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607281070479" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607286907361" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1607281070478">
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1607286907361">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607281070478" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607286907361" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1607281070478">
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1607286907360">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607281070478" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607286907360" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900195" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1607281070479">
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1607286907361">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607281070479" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607286907361" />
     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
@@ -303,10 +315,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607223756916" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1607223739207">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1607281658782">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607223739207" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607281658782" />
     <state x="2509" y="106" key="Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095578508" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992769069" />
     <state x="2509" y="54" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605993764260" />
