@@ -14,25 +14,22 @@ import java.net.Socket;
 
 public class ServerClientThread extends Thread {
     public  String line = null;
-    public BufferedReader bufferedReader = null;
-    public PrintWriter printWriter = null;
     public Socket socket;
     public ObjectOutputStream objectOutputStream = null;
     public ObjectInputStream objectInputStream = null;
-    public ServerUserStorage serverUserStorage;
+    public ServerObjectStorage serverObjectStorage;
     public Profile profile;
 
-    public ServerClientThread(Socket socket, ServerUserStorage serverUserStorage, Profile profile) {
+    public ServerClientThread(Socket socket, ServerObjectStorage serverObjectStorage) {
         this.socket = socket;
-        this.serverUserStorage = serverUserStorage;
-        this.profile = profile;
+        this.serverObjectStorage = serverObjectStorage;
     }
 
     private void StopThread() throws IOException {
         socket.close();
         System.out.println("Socket Closed");
         CentralServer.numberOfConnections--;
-        serverUserStorage.users.remove(profile);
+        serverObjectStorage.users.remove(profile);
         CentralServer.serverClientThreads.remove(this);
         System.out.println("----------------------------------------");
     }
@@ -41,9 +38,6 @@ public class ServerClientThread extends Thread {
         try {
             InputStream inputStream = socket.getInputStream();
             OutputStream outputStream = socket.getOutputStream();
-
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            printWriter = new PrintWriter(outputStream);
 
             // create a ObjectOutputStream so we can write data from it
             objectOutputStream = new ObjectOutputStream(outputStream);
@@ -55,27 +49,42 @@ public class ServerClientThread extends Thread {
         }
 
         try {
-            for(Profile a : serverUserStorage.users){
-                System.out.println(a);
-            }
+            System.out.println("Thread started");
             System.out.println("=======");
-            line = bufferedReader.readLine();
+            line = objectInputStream.readUTF();
+            System.out.println(line);
             while (line.compareToIgnoreCase("quit") != 0) {
                 switch (line) {
                     case "stop server" : System.exit(0);
                     case "see users" : {
                         System.out.println("User has tried to see users");
                         objectOutputStream.reset();
-                        objectOutputStream.writeObject(serverUserStorage.users);
+                        objectOutputStream.writeObject(serverObjectStorage.users);
                         objectOutputStream.flush();
                     }
+                    case "create account" : {
+                        System.out.println("User has tried to see users");
+                        try {
+                            objectInputStream.reset();
+                            Profile profile = (Profile) objectInputStream.readObject();
+                            System.out.println("added " + profile.getName());
+                            serverObjectStorage.users.add(profile);
+                            serverObjectStorage.saveUsersToDatabase();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
                     default : {
-                        printWriter.println("You said: " + line);
-                        printWriter.flush();
+                        objectOutputStream.reset();
+                        objectOutputStream.writeUTF("You said: " + line);
+                        objectOutputStream.flush();
+                        objectOutputStream.reset();
                     }
                 }
                 System.out.println(socket.getInetAddress() + ":" + socket.getPort() + " said: " + line);
-                line = bufferedReader.readLine();
+                objectInputStream.reset();
+                line = objectInputStream.readUTF();
             }
         } catch (IOException e) {
             line = this.getName();
@@ -98,13 +107,13 @@ public class ServerClientThread extends Thread {
         } finally {
             try {
                 System.out.println("Connection Closing...");
-                if (bufferedReader != null) {
-                    bufferedReader.close();
+                if (objectOutputStream != null) {
+                    objectOutputStream.close();
                     System.out.println("Socket Input Stream Closed");
                 }
 
-                if (printWriter != null) {
-                    printWriter.close();
+                if (objectInputStream != null) {
+                    objectInputStream.close();
                     System.out.println("Socket Output Closed");
                 }
 

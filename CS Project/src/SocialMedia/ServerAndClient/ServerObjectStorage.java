@@ -13,6 +13,9 @@ public class ServerObjectStorage {
     public volatile ArrayList<Profile> users = new ArrayList<>();
 
     public void saveUsersToDatabase() {
+        for(Profile u : users){
+            System.out.println(u.getName());
+        }
         File dir = new File("UsernameFiles");
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
@@ -59,5 +62,6 @@ public class ServerObjectStorage {
                 pw.close();
             }
         }
+        System.out.println("Finished with save");
     }
 }

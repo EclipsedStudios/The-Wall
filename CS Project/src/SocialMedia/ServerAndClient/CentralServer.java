@@ -81,6 +81,7 @@ public class CentralServer {
     public static void main(String[] args) {
         serverObjectStorage = new ServerObjectStorage();
         getUsersFromDatabase();
+        serverObjectStorage.saveUsersToDatabase();
         Socket socket;
         ServerSocket serverSocket = null;
         System.out.println(SettingsAndConstants.WELCOME_MESSAGE_SERVER);
@@ -108,12 +109,10 @@ public class CentralServer {
                         "\nClient Port: " + socket.getPort());
                 System.out.println("Number of connections: " + numberOfConnections);
                 System.out.println("----------------------------------------");
-                Profile newProfile = new Profile("Test User", String.valueOf(socket.getPort()), 18, "test@domain.com", "test");
-                ServerClientThread serverClientThread = new ServerClientThread(socket, serverObjectStorage, newProfile);
+                ServerClientThread serverClientThread = new ServerClientThread(socket, serverObjectStorage);
                 serverClientThreads.add(serverClientThread);
-                serverObjectStorage.users.add(newProfile);
                 serverClientThread.start();
-
+                serverObjectStorage.saveUsersToDatabase();
                 for (ServerClientThread s : serverClientThreads) {
                     s.serverObjectStorage = serverObjectStorage;
                 }
