@@ -197,10 +197,10 @@ public class UserInput extends JFrame implements ActionListener {
                 usernameAndPassword[1] = String.valueOf(password.getPassword());
                 //Create a profile object for the user that logs in.
                 createUserProfile();
-                if(userClient.isAlive()){
-                    userClient.exit();
+                if(!userClient.isAlive()){
+                    userClient.start();
                 }
-                userClient.start();
+
                 //Now we can get rid of the old screen and call the next screen
                 welcomeFrame.setVisible(false);
                 SocialProfileGUI.createProfileGUI();
