@@ -1,5 +1,7 @@
 package SocialMedia.GUIs;
 
+import SocialMedia.Profile;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
