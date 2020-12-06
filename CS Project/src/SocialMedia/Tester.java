@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.lang.invoke.TypeDescriptor;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.io.*;
@@ -23,6 +24,7 @@ import org.junit.Assert;
 import javax.swing.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 /**
  * A JUnit tester class for all complicated methods that are not concurrency or GUI-based.
@@ -81,7 +83,7 @@ public class Tester {
 
     /**
      * A method to verify the server client thread class has correctly formatted methods.
-     @TODO This test will have to be different
+     */
     @Test
     public void serverClientThreadMethods() {
         try {
@@ -89,14 +91,15 @@ public class Tester {
             assertEquals(true, Modifier.isPublic(ServerClientThread.class.getConstructors()[0].getModifiers()));
             Socket socket = new Socket();
             ServerObjectStorage serverObjectStorage = new ServerObjectStorage();
-            Profile profile = new Profile("Steve", "username", 18, "steve@purdue.edu", "Password");
             ServerClientThread serverClientThread = new ServerClientThread(socket, serverObjectStorage);
             assertEquals(socket, serverClientThread.socket);
             assertEquals(serverObjectStorage, serverClientThread.serverObjectStorage);
-            assertEquals(profile, serverClientThread.profile);
 
-            assertEquals(void.class, ServerClientThread.class.getMethod("StopThread").getReturnType());
-            assertEquals(true, Modifier.isPublic(ServerClientThread.class.getMethod("StopThread").getModifiers()));
+            Method stopThreadMethod = ServerClientThread.class.getDeclaredMethod("StopThread", null);
+            stopThreadMethod.setAccessible(true);
+            assertEquals(void.class, stopThreadMethod.getReturnType());
+            assertEquals(true, Modifier.isPrivate(stopThreadMethod.getModifiers()));
+            assertEquals(IOException.class, stopThreadMethod.getExceptionTypes()[0]);
 
             assertEquals(void.class, ServerClientThread.class.getMethod("run").getReturnType());
             assertEquals(true, Modifier.isPublic(ServerClientThread.class.getMethod("run").getModifiers()));
@@ -104,7 +107,6 @@ public class Tester {
             Assert.fail("Missing methods");
         }
     }
-     */
 
     /**
      * A method to verify the central server class exists.
@@ -340,8 +342,8 @@ public class Tester {
             assertEquals(void.class, FriendsList.class.getMethod("addFriend", Profile.class).getReturnType());
             assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("addFriend", Profile.class).getModifiers()));
 
-            assertEquals(int.class, FriendsList.class.getMethod("removeFriend", String.class).getReturnType());
-            assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("removeFriend", String.class).getModifiers()));
+            assertEquals(int.class, FriendsList.class.getMethod("removeFriend", Profile.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("removeFriend", Profile.class).getModifiers()));
 
             assertEquals(ArrayList.class, FriendsList.class.getMethod("mutualFriends", FriendsList.class).getReturnType());
             assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("mutualFriends", FriendsList.class).getModifiers()));
@@ -983,5 +985,107 @@ public class Tester {
         correctMutualFriends.add(steve);
         correctMutualFriends.add(mike);
         assertEquals(correctMutualFriends, f1.mutualFriends(f2));
+
+        //test get friends method
+        assertEquals(friend1, f1.getFriends());
+
+        //test add friend method
+        friend1.add(cam);
+        f1.addFriend(cam);
+        assertEquals(friend1, f1.getFriends());
+
+        //test remove friend method
+        friend1.remove(cam);
+        f1.removeFriend(cam);
+        assertEquals(friend1, f1.getFriends());
+
+
+        //test toString method
+        String correctFormat = "username, michaelb, emilyf";
+        assertEquals(correctFormat, f1.toString());
+    }
+
+    /**
+     * A tester method for the entire profile class.
+     */
+    @Test
+    public void testProfileClass() {
+        Profile steve = new Profile("Steve", "username", 18, "steve@purdue.edu", "Password");
+        Profile mike = new Profile("Mike", "michaelb", 21, "michaelb@purdue.edu", "Password123");
+        Profile cam = new Profile("Cam", "cameron", 19, "cam@purdue.edu", "pass");
+        Profile emily = new Profile("Emily", "emilyf", 20, "emilyf@purdue.edu", "notpassword");
+
+        //test get profile list method
+        Profile.profilesList.add(steve);
+        Profile.profilesList.add(mike);
+        Profile.profilesList.add(cam);
+        Profile.profilesList.add(emily);
+        ArrayList<Profile> profiles = new ArrayList<Profile>();
+        profiles.add(steve);
+        profiles.add(mike);
+        profiles.add(cam);
+        profiles.add(emily);
+        assertEquals(profiles, Profile.getProfilesList());
+
+        //test get profile with method
+        assertEquals(steve, Profile.getProfileWith("username"));
+
+        //test get friends list method
+        FriendsList f1 = new FriendsList(profiles);
+        ArrayList<String> interests = new ArrayList<String>();
+        interests.add("soccer");
+        interests.add("running");
+        Profile profile = new Profile("Steve", 18, "steve@purdue.edu", "google.com", interests, f1, "I am Steve",
+                "username", "Password");
+        assertEquals(f1, profile.getFriendsList());
+
+        //test get age method
+        assertEquals(18, profile.getAge());
+
+        //test get username method
+        assertEquals("username", profile.getUsername());
+
+        //test get name method
+        assertEquals("Steve", profile.getName());
+
+        //test set name method
+        profile.setName("name");
+        assertEquals("name", profile.getName());
+
+        //test get email method
+        assertEquals("steve@purdue.edu", profile.getEmail());
+
+        //test set email method
+        profile.setEmail("email");
+        assertEquals("email", profile.getEmail());
+
+        //test get website method
+        assertEquals("google.com", profile.getWebsite());
+
+        //test set website method
+        profile.setWebsite("website");
+        assertEquals("website", profile.getWebsite());
+
+        //test get interests method
+        assertEquals(interests, profile.getInterests());
+
+        //test set interests method
+        interests.add("coding");
+        profile.setInterests(interests);
+        assertEquals(interests, profile.getInterests());
+
+        //test get about me method
+        assertEquals("I am Steve", profile.getAboutMe());
+
+        //test set about me method
+        profile.setAboutMe("About me");
+        assertEquals("About me", profile.getAboutMe());
+
+        //test get raw password method
+        assertEquals("Password", profile.getRawPassword());
+
+        //test set raw password method
+        profile.setRawPassword("Raw Password");
+        assertEquals("Raw Password", profile.getRawPassword());
     }
 }

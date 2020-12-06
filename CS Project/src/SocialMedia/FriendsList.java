@@ -48,9 +48,9 @@ public class FriendsList implements Serializable {
      * @param friend The friend to remove from the friendsList.
      * @return 1 if the friend is successfully removed, 0 otherwise.
      */
-    public int removeFriend(String friend) {
+    public int removeFriend(Profile friend) {
         for (int i = 0; i < friends.size(); i++) {
-            if (friends.get(i).equals(friend)) {
+            if (friends.get(i).getUsername().equals(friend.getUsername())) {
                 friends.remove(i);
                 return 1;
             }
@@ -81,7 +81,7 @@ public class FriendsList implements Serializable {
      * @return A string format of the friends list.
      */
     public String toString() {
-        String formattedList = friends.get(0).getName();
+        String formattedList = friends.get(0).getUsername();
         for (int i = 1; i < friends.size(); i++) {
             formattedList = formattedList + ", " + friends.get(i).getUsername();
         }
