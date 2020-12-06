@@ -27,23 +27,19 @@ public class UserClient extends Thread  {
     public ObjectOutputStream objectOutputStream =  null;
     public ObjectInputStream objectInputStream = null;
 
-    public boolean Login(String username, String rawPassword) throws IOException {
+    public UserClient(){
         try {
             address = InetAddress.getLocalHost();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        try {
-            //Initializes all objects
             socket = new Socket(address, SettingsAndConstants.SERVER_PORT);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            //Creates exception if failed
             e.printStackTrace();
             System.err.print("IO Exception");
         }
+    }
 
+    public boolean Login(String username, String rawPassword) throws IOException {
         objectOutputStream.writeUTF("see users");
         System.out.println("Wrote UTF");
         objectOutputStream.flush();
@@ -76,39 +72,14 @@ public class UserClient extends Thread  {
 
     public void CreateAccount(String name, int age, String email, String website, ArrayList<String> interests,
                               FriendsList friendsList, String aboutMe, String username, String rawPassword) throws IOException {
-        Profile newProfile = new Profile(name, age, email, website, interests, friendsList,  aboutMe,  username, rawPassword);
-        try {
-            address = InetAddress.getLocalHost();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        try {
-            //Initializes all objects
-            socket = new Socket(address, SettingsAndConstants.SERVER_PORT);
-            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectInputStream = new ObjectInputStream(socket.getInputStream());
-        } catch (IOException e) {
-            //Creates exception if failed
-            e.printStackTrace();
-            System.err.print("IO Exception");
-        }
-        objectOutputStream.reset();
         objectOutputStream.writeUTF("create profile");
         System.out.println("Wrote UTF");
         objectOutputStream.flush();
         objectOutputStream.reset();
-        objectOutputStream.writeObject(profile);
-        System.out.println("Wrote Profile");
+        objectOutputStream.writeObject(new Profile(name, age, email, website, interests, friendsList,  aboutMe,  username, rawPassword));
+        System.out.println("Wrote Profile: " + new Profile(name, age, email, website, interests, friendsList,  aboutMe,  username, rawPassword).getName());
         objectOutputStream.flush();
         objectOutputStream.reset();
-
-        try {
-            objectInputStream.close();
-            objectOutputStream.close();
-            socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     // Gets profile with desired username, returns null if doesn't exist
@@ -126,24 +97,6 @@ public class UserClient extends Thread  {
         exit = true;
     }
     public void run() {
-        try {
-            address = InetAddress.getLocalHost();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        /**/
-
-        try {
-            //Initializes all objects
-            socket = new Socket(address, SettingsAndConstants.SERVER_PORT);
-            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectInputStream = new ObjectInputStream(socket.getInputStream());
-        } catch (IOException e) {
-            //Creates exception if failed
-            e.printStackTrace();
-            System.err.print("IO Exception");
-        }
-
         System.out.println("Client Address: " + address);
         System.out.println("[FOR TESTING] Send a message for the server to respond back with (Send a random message first, " +
                 "it is buggy and it will break if you ask for users first):");
