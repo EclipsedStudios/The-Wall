@@ -215,7 +215,7 @@ public class UserInput extends JFrame implements ActionListener {
         }
     }
 
-    //Method to create a new account when the user clicks the create account button
+    // Method to create a new account when the user clicks the create account button
     public static void createAccount() {
         createAccountFrame = new JFrame("Create Account");
         //An array of the labels to be used
