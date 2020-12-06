@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Represents the user client
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class UserClient extends Thread {
 
     public static ArrayList<Profile> profilesList;
+    private final AtomicBoolean running = new AtomicBoolean(false);
     public Profile profile;
     public InetAddress address = null; // Get localhost
     public Socket socket = null; // Create a null socket
@@ -26,6 +28,7 @@ public class UserClient extends Thread {
     public ObjectOutputStream objectOutputStream = null;
     public ObjectInputStream objectInputStream = null;
     boolean exit = false;
+    boolean oISUsed = false;
 
     public UserClient() {
         try {
@@ -49,12 +52,25 @@ public class UserClient extends Thread {
         return null;
     }
 
+    public void interrupt() {
+        running.set(false);
+    }
+
     public boolean Login(String username, String rawPassword) throws IOException {
-        objectOutputStream.writeUTF("see users");
-        System.out.println("Wrote UTF");
-        objectOutputStream.flush();
-        objectOutputStream.reset();
         try {
+
+
+            if(!socket.isConnected()){
+                address = InetAddress.getLocalHost();
+                socket = new Socket(address, SettingsAndConstants.SERVER_PORT);
+                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                objectInputStream = new ObjectInputStream(socket.getInputStream());
+            }
+
+            System.out.println("Wrote UTF");
+            objectOutputStream.writeUTF("see users");
+            objectOutputStream.flush();
+            objectOutputStream.reset();
             profilesList = (ArrayList<Profile>) objectInputStream.readObject();
 
             for (Profile p : profilesList) {
@@ -89,35 +105,40 @@ public class UserClient extends Thread {
         System.out.println("Wrote Profile: " + new Profile(name, age, email, website, interests, friendsList, aboutMe, username, rawPassword).getName());
         objectOutputStream.flush();
         objectOutputStream.reset();
-    }
-
-    public void exit() {
-        exit = true;
+        oISUsed = true;
     }
 
     public void run() {
+        running.set(true);
         System.out.println("Client Address: " + address);
-        System.out.println("[FOR TESTING] Send a message for the server to respond back with (Send a random message first, " +
-                "it is buggy and it will break if you ask for users first):");
-
         try {
-            assert objectInputStream != null;
-            assert objectOutputStream != null;
             line = "see users";
-            while (line.compareToIgnoreCase("quit") != 0 && exit == false) {
-                switch (line) {
-                    case "stop server": {
-                        return;
-                    }
-                    case "see users": {
-                        profilesList = (ArrayList<Profile>) objectInputStream.readObject();
-                    }
-                    default:
-                        System.out.println(objectInputStream.readUTF());
+            objectOutputStream.reset();
+            objectOutputStream.writeUTF("see users");
+            objectOutputStream.flush();
+            objectOutputStream.reset();
+            while (line.compareToIgnoreCase("quit") != 0 && running.get()) {
+                if ("see users".equals(line)) {
+                    profilesList = (ArrayList<Profile>) objectInputStream.readObject();
                 }
+                line = "nothing";
                 objectOutputStream.writeUTF(line);
                 objectOutputStream.flush();
                 objectOutputStream.reset();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                /* objectOutputStream.writeUTF(line);
+                objectOutputStream.flush();
+                objectOutputStream.reset(); */
+            }
+            if(!running.get() && socket.isConnected()){
+                objectInputStream.close();
+                objectOutputStream.close();
+                socket.close();
+                System.out.println("Connection Closed");
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
