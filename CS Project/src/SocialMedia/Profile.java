@@ -3,6 +3,7 @@ package SocialMedia;
 import SocialMedia.FriendsList;
 import SocialMedia.PasswordEncryption;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,26 +12,22 @@ import java.util.List;
  * @version 12/4/2020
  * @authors Max Fuligni, Paul Gherghetta, Cole Busa, Aakash Jariwala, Jaden Baker
  */
-public class Profile {
+public class Profile implements Serializable {
 
-    private String name;
-    private String email;
-    private FriendsList friendsList;
-    private String website;
-    private List<String> interests;
-    private String aboutMe;
-    private final int age;
-    private String rawPassword;
-    private static ArrayList<Profile> profilesList = new ArrayList<>();
+    public String name;
+    public String email;
+    public FriendsList friendsList;
+    public String website;
+    public ArrayList<String> interests;
+    public String aboutMe;
+    public final int age;
+    public String rawPassword;
+    public static ArrayList<Profile> profilesList = new ArrayList<>();
 
     /**
      * identifier
      **/
-    private final String username;
-    /**
-     * Server decrypts for login
-     **/
-    private String encryptedPassword;
+    public final String username;
 
 
     // Initial construction
@@ -40,13 +37,25 @@ public class Profile {
         this.email = email;
 
         //Current skip is 12 (Moves each letter over by 12). This can be changed later.
-        this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);
-
+        this.rawPassword = rawPassword;
         this.age = age;
     }
 
     // If user decides to input all fields on construction
     public Profile(String name, int age, String email, String website, List<String> interests,
+                   FriendsList friendsList, String aboutMe, String username, String rawPassword) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.website = website;
+        this.interests = new ArrayList<>(interests);
+        this.friendsList = friendsList;
+        this.aboutMe = aboutMe;
+        this.username = username;
+        this.rawPassword = rawPassword;
+    }
+
+    public Profile(String name, int age, String email, String website, ArrayList<String> interests,
                    FriendsList friendsList, String aboutMe, String username, String rawPassword) {
         this.name = name;
         this.age = age;
@@ -110,11 +119,11 @@ public class Profile {
         this.website = website;
     }
 
-    public List<String> getInterests() {
+    public ArrayList<String> getInterests() {
         return interests;
     }
 
-    public void setInterests(List<String> interests) {
+    public void setInterests(ArrayList<String> interests) {
         this.interests = interests;
     }
 
@@ -126,11 +135,12 @@ public class Profile {
         this.aboutMe = aboutMe;
     }
 
-    public String getEncryptedPassword() {
-        return encryptedPassword;
+    public String getRawPassword() {
+        return rawPassword;
     }
 
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
+    public void setRawPassword(String password) {
+        this.rawPassword = password;
     }
+
 }

@@ -19,15 +19,21 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35fffbdf-fe37-4cd2-8795-d35f95a88f56" name="Default Changelist" comment="Test Branch">
+    <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Added tests for constructors where needed. Updated a few constructors for classes where some objects were not initialized.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/CentralServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/CentralServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/ServerClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/ServerClientThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/ServerObjectStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/ServerObjectStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/UserClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/UserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/UserInput.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,24 +51,7 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>createPro</find>
-      <find>-&gt;</find>
-      <find>setS</find>
-      <find>SocialProfileGUI</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>:</replace>
-    </replaceStrings>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <favorite-branches>
       <branch-storage>
         <map>
@@ -76,6 +65,12 @@
         </map>
       </branch-storage>
     </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JupyterTrust" id="fe41e3a6-7fc2-4c5d-ad6a-39fb370f4803" />
   <component name="ProjectId" id="1kcGV0R7adV96IvCAAmvpvYmlQo" />
@@ -84,11 +79,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1607202998721" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -96,8 +96,34 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.UserInput (1)">
-    <configuration name="CentralServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ServerAndClient.CentralServer" />
+    <configuration name="CentralServer (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SocialMedia.ServerAndClient.CentralServer" />
+      <module name="CS18000" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SocialMedia.ServerAndClient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestRunner (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SocialMedia.TestRunner" />
+      <module name="CS18000" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SocialMedia.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestRunner" />
       <module name="CS18000" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -105,27 +131,6 @@
     </configuration>
     <configuration name="UserClient (1)" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="UserClient" />
-      <module name="CS18000" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserClient (3)" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UserClient" />
-      <module name="CS18000" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserClient (4)" type="Application" factoryName="Application" editBeforeRun="true" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UserClient" />
-      <module name="CS18000" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserClient" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ServerAndClient.UserClient" />
       <module name="CS18000" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -179,30 +184,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.UserInput (1)" />
+        <item itemvalue="Application.CentralServer (1)" />
+        <item itemvalue="Application.TestRunner (1)" />
+        <item itemvalue="Application.TestRunner" />
         <item itemvalue="Application.UserInput" />
-        <item itemvalue="Application.CentralServer" />
-        <item itemvalue="Application.UserClient" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change" />
@@ -211,13 +203,35 @@
       <option name="presentableId" value="Default" />
       <updated>1606934243823</updated>
     </task>
-    <task id="LOCAL-00001" summary="created UsersListGUI, fixed some bad constructors">
-      <created>1607200545095</created>
+    <task id="LOCAL-00001" summary="Updated FriendsList class to store user profiles instead of user names.">
+      <created>1606942311488</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1607200545095</updated>
+      <updated>1606942311488</updated>
     </task>
+    <task id="LOCAL-00002" summary="Created test cases for most of the classes to ensure every one has the correct fields, methods, and inheritance.">
+      <created>1607213185436</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607213185436</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Finalized verification tests for all classes. Will implement test cases for the methods that need them.">
+      <created>1607215978582</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607215978582</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added tests for constructors where needed. Updated a few constructors for classes where some objects were not initialized.">
+      <created>1607223733062</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1607223733062</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,78 +256,103 @@
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Test Branch" />
+    <MESSAGE value="Added PasswordEncryption.java: It provides static classes to encode and decode strings, which is used to hide passwords.&#10;Changed Profile.java: Made the friends list initialize outside of the constructor, as it isn't required to be in the constructor. Also changed encryptedPassword in the constructor to save the password as an encrypted one (With a shift of 12)." />
+    <MESSAGE value="Added: SettingsAndConstants.java&#10;Description: Holds constants that may be used elsewhere multiple times. Or just large strings.&#10;&#10;Added: ServerClientThread.java&#10;Description: Acts as the clients connection to the CentralServer. This is required for multiple connections to the CentralServer.&#10;&#10;Renamed: ProfileServer.class to CentralServer.java&#10;Description: As this is the central server used to run the whole platform, I feel like CentralServer would be a more understandable.&#10;&#10;Changed: UserClient.java&#10;Description: Recreated the simple client script but using the new ServerClientThread.java system.&#10;&#10;Added: ServerAndClient package&#10;Description: This is just so all of the client and server things are organized. We can do this to more of the files as we go on and if you need to use something from it, all you have to do is import the package at the top. (Intellij will do this/tell you automatically)" />
+    <MESSAGE value="Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change" />
+    <MESSAGE value="Updated FriendsList class to store user profiles instead of user names." />
+    <MESSAGE value="Created test cases for most of the classes to ensure every one has the correct fields, methods, and inheritance." />
+    <MESSAGE value="Finalized verification tests for all classes. Will implement test cases for the methods that need them." />
+    <MESSAGE value="Added tests for constructors where needed. Updated a few constructors for classes where some objects were not initialized." />
+    <MESSAGE value="GUI getting closer to working with server. Refactored UserClient.java." />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI getting closer to working with server. Refactored UserClient.java." />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606092118870">
-      <screen x="1920" y="-165" width="2048" height="1120" />
+    <state x="583" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607230241068">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="583" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607230241068" />
     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606092118870" />
-    <state width="1381" height="214" key="GridCell.Tab.0.bottom" timestamp="1607210210354">
-      <screen x="-1920" y="23" width="1920" height="1057" />
+    <state width="1877" height="346" key="GridCell.Tab.0.bottom" timestamp="1607237147999">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606868792607" />
-    <state width="1381" height="214" key="GridCell.Tab.0.bottom/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607210210354" />
+    <state width="1877" height="346" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607237147999" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607223698767" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1381" height="214" key="GridCell.Tab.0.center" timestamp="1607210210353">
-      <screen x="-1920" y="23" width="1920" height="1057" />
+    <state width="1877" height="346" key="GridCell.Tab.0.center" timestamp="1607237147999">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606868792607" />
-    <state width="1381" height="214" key="GridCell.Tab.0.center/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607210210353" />
+    <state width="1877" height="346" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607237147999" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607223698767" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1381" height="214" key="GridCell.Tab.0.left" timestamp="1607210210353">
-      <screen x="-1920" y="23" width="1920" height="1057" />
+    <state width="1877" height="346" key="GridCell.Tab.0.left" timestamp="1607237147999">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606868792607" />
-    <state width="1381" height="214" key="GridCell.Tab.0.left/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607210210353" />
+    <state width="1877" height="346" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607237147999" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607223698767" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900195" />
-    <state width="1381" height="214" key="GridCell.Tab.0.right" timestamp="1607210210354">
-      <screen x="-1920" y="23" width="1920" height="1057" />
+    <state width="1877" height="346" key="GridCell.Tab.0.right" timestamp="1607237147999">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606868792607" />
-    <state width="1381" height="214" key="GridCell.Tab.0.right/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607210210354" />
+    <state width="1877" height="346" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607237147999" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607223698767" />
     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="2005" height="375" key="GridCell.Tab.1.bottom" timestamp="1606091199150">
-      <screen x="1920" y="-165" width="2048" height="1120" />
+    <state width="1877" height="346" key="GridCell.Tab.1.bottom" timestamp="1607237147999">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="346" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607237147999" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607223487001" />
     <state width="2005" height="375" key="GridCell.Tab.1.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
-    <state width="2005" height="375" key="GridCell.Tab.1.center" timestamp="1606091199150">
-      <screen x="1920" y="-165" width="2048" height="1120" />
+    <state width="1877" height="346" key="GridCell.Tab.1.center" timestamp="1607237147999">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="346" key="GridCell.Tab.1.center/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607237147999" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607223487001" />
     <state width="2005" height="375" key="GridCell.Tab.1.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
-    <state width="2005" height="375" key="GridCell.Tab.1.left" timestamp="1606091199150">
-      <screen x="1920" y="-165" width="2048" height="1120" />
+    <state width="1877" height="346" key="GridCell.Tab.1.left" timestamp="1607237147999">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="346" key="GridCell.Tab.1.left/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607237147999" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607223487001" />
     <state width="2005" height="375" key="GridCell.Tab.1.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
-    <state width="2005" height="375" key="GridCell.Tab.1.right" timestamp="1606091199150">
-      <screen x="1920" y="-165" width="2048" height="1120" />
+    <state width="1877" height="346" key="GridCell.Tab.1.right" timestamp="1607237147999">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="346" key="GridCell.Tab.1.right/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607237147999" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607223487001" />
     <state width="2005" height="375" key="GridCell.Tab.1.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
-    <state x="2509" y="106" key="Vcs.Push.Dialog.v2" timestamp="1606095578508">
-      <screen x="1920" y="-165" width="2048" height="1120" />
+    <state x="184" y="86" key="MergeDialog" timestamp="1607229234671">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607229234671" />
+    <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1607229235893">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607229235893" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1607223756916">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607223756916" />
+    <state x="92" y="92" width="1736" height="856" key="ShowDiffWithBranchDialog" timestamp="1607227424549">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="ShowDiffWithBranchDialog/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607227424549" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1607229214853">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607229214853" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607223739207" />
     <state x="2509" y="106" key="Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095578508" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992769069" />
     <state x="2509" y="54" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605993764260" />
@@ -321,100 +360,49 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="664" y="411" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1606934339677" />
-    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606942130681">
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607227691030">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606942130681" />
-    <state x="2607" y="78" width="672" height="678" key="search.everywhere.popup" timestamp="1606095324743">
-      <screen x="1920" y="-165" width="2048" height="1120" />
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607227691030" />
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607216261770" />
+    <state x="505" y="255" width="909" height="630" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1607236982664">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="505" y="255" width="909" height="630" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607236982664" />
+    <state x="2005" y="47" width="1633" height="732" maximized="true" key="dock-window-2" timestamp="1607233628370">
+      <screen x="1920" y="-165" width="2048" height="1112" />
+    </state>
+    <state x="2005" y="47" width="1633" height="732" maximized="true" key="dock-window-2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607233628370" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1607223349423">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607223349423" />
+    <state x="644" y="226" width="672" height="630" key="search.everywhere.popup" timestamp="1607212939331">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="644" y="226" width="672" height="630" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607212939331" />
     <state x="2607" y="78" width="672" height="678" key="search.everywhere.popup/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095324743" />
   </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>11</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>CS18000</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>11</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.io.EOFException" package="java.io" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.net.SocketException" package="java.net" />
+          <option name="timeStamp" value="6" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalThreadStateException" package="java.lang" />
+          <option name="timeStamp" value="7" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

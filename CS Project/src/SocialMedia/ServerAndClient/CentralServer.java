@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 /**
  * Represents the server
- *
+ * <p>
  * Was named "ProfileServer", but I felt that CentralServer is more fitting - Jaden
  *
  * @author Jaden Baker
@@ -28,38 +28,51 @@ public class CentralServer {
 
     public static ArrayList<ServerClientThread> serverClientThreads = new ArrayList<>();
 
-    public static void getUsersFromDatabase(){
+
+
+    public static void getUsersFromDatabase() {
         File dir = new File("UsernameFiles");
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {
-                String name;
-                String email;
-                String friendsList;
-                String website;
-                String interests;
-                String aboutMe;
-                int age;
-                String password;
-                BufferedReader reader;
                 try {
-                    reader = new BufferedReader(new FileReader(child));
-                    name = reader.readLine();
-                    System.out.println("Loaded user: " + name + " from database");
-                    email = reader.readLine();
-                    friendsList = reader.readLine();
-                    website = reader.readLine();
-                    interests = reader.readLine();
-                    aboutMe = reader.readLine();
-                    age = Integer.parseInt(reader.readLine());
-                    password = reader.readLine();
-                    // setting FriendsList to null for now so it runs, was left out previously
-                    serverObjectStorage.users.add(
-                            new Profile(name, age, email, website, new ArrayList<>(Arrays.asList(interests.split(", "))),
-                                    null, aboutMe, child.getName().strip().substring(0,child.getName().indexOf('.')), password));
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    String name;
+                    String email;
+                    String friendsList;
+                    String website;
+                    String interests;
+                    String aboutMe;
+                    int age;
+                    String password;
+                    BufferedReader reader;
+                    try {
+                        reader = new BufferedReader(new FileReader(child));
+                        name = reader.readLine();
+                        System.out.println("Loaded user: " + name + " from database");
+                        email = reader.readLine();
+                        friendsList = reader.readLine();
+                        website = reader.readLine();
+                        interests = reader.readLine();
+                        aboutMe = reader.readLine();
+                        age = Integer.parseInt(reader.readLine());
+                        password = reader.readLine();
+                        serverObjectStorage.users.add(new Profile(name,
+                                age,
+                                email,
+                                website,
+                                new ArrayList<>(Arrays.asList(interests
+                                        .substring(1, interests.length() - 1)
+                                        .split(", "))),
+                                new FriendsList(),
+                                aboutMe,
+                                child.getName().strip().substring(0, child.getName().indexOf('.')),
+                                password));
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (NumberFormatException exception) {
+                    System.out.println("File must be broken, skipping user: " + child.getName());
                 }
             }
         }
@@ -68,12 +81,16 @@ public class CentralServer {
     public static void main(String[] args) {
         serverObjectStorage = new ServerObjectStorage();
         getUsersFromDatabase();
+        serverObjectStorage.saveUsersToDatabase();
         Socket socket;
         ServerSocket serverSocket = null;
         System.out.println(SettingsAndConstants.WELCOME_MESSAGE_SERVER);
         System.out.println("Server is online and looking for clients");
-        Runtime.getRuntime().addShutdownHook(new Thread(() ->
-                System.out.println("Server shutting down..."), "Shutdown-thread"));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("Server shutting down...");
+            serverObjectStorage.saveUsersToDatabase();
+        }, "Shutdown-thread"));
+
 
         try {
             serverSocket = new ServerSocket(SettingsAndConstants.SERVER_PORT);
@@ -92,13 +109,11 @@ public class CentralServer {
                         "\nClient Port: " + socket.getPort());
                 System.out.println("Number of connections: " + numberOfConnections);
                 System.out.println("----------------------------------------");
-                Profile newProfile = new Profile("Test User", String.valueOf(socket.getPort()), 18, "test@domain.com", "test");
-                ServerClientThread serverClientThread = new ServerClientThread(socket, serverObjectStorage, newProfile);
+                ServerClientThread serverClientThread = new ServerClientThread(socket, serverObjectStorage);
                 serverClientThreads.add(serverClientThread);
-                serverObjectStorage.users.add(newProfile);
                 serverClientThread.start();
-
-                for(ServerClientThread s : serverClientThreads){
+                serverObjectStorage.saveUsersToDatabase();
+                for (ServerClientThread s : serverClientThreads) {
                     s.serverObjectStorage = serverObjectStorage;
                 }
             } catch (Exception e) {

@@ -1,6 +1,7 @@
 package SocialMedia.GUIs;
 
 import SocialMedia.Profile;
+import SocialMedia.ServerAndClient.UserClient;
 import SocialMedia.UserInput;
 
 import javax.swing.*;
@@ -8,6 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.io.*;
+import java.util.List;
 
 /**
  * The Social SocialMedia.Profile GUI.
@@ -19,23 +21,23 @@ import java.io.*;
 
 public class SocialProfileGUI extends JFrame implements ActionListener {
 
-    private static JFrame listOfUsersFrame;
-    private static Profile GUIProfile;
+    public static JFrame listOfUsersFrame;
+    public static Profile GUIProfile;
     //Components
-    private static JLabel titleLabel;
-    private static JButton usersButton;
-    private static JButton myProfileButton;
-    private static JButton friendsListButton;
-    private static JButton logoutButton;
-    private static JLabel nameLabel;
-    private static JLabel usernameLabel;
-    private static JLabel ageLabel;
-    private static JLabel emailLabel;
-    private static JLabel websiteLabel;
-    private static JLabel likesInterestsLabel;
-    private static JLabel friendsLabel;
-    private static JLabel aboutMeLabel;
-    private static JLabel aboutMeText;
+    public static JLabel titleLabel;
+    public static JButton usersButton;
+    public static JButton myProfileButton;
+    public static JButton friendsListButton;
+    public static JButton logoutButton;
+    public static JLabel nameLabel;
+    public static JLabel usernameLabel;
+    public static JLabel ageLabel;
+    public static JLabel emailLabel;
+    public static JLabel websiteLabel;
+    public static JLabel likesInterestsLabel;
+    public static JLabel friendsLabel;
+    public static JLabel aboutMeLabel;
+    public static JLabel aboutMeText;
 
     public static void createProfileGUI() {
         JFrame profileGUIFrame = new JFrame();
@@ -171,6 +173,8 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
     /**
      * Creates a window for a profile based on username
      * Used for when viewing another user's profile besides their own.
+     * TODO
+     * - Need to fix profiles list so it isn't pulling from a null list
      * @param username
      */
     public static void createProfileGUIFor(String username) {
@@ -181,7 +185,9 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
 
         // changing Profile obj to that of username
         // should never be null
-      GUIProfile = Profile.getProfileWith(username);
+        // TODO revert back to getProfile method
+        Profile profile = UserClient.getProfileWith(username);
+      GUIProfile = profile;
 
         //NORTH section of profileGUIPanel
         titleLabel = new JLabel("                                                   " +
@@ -194,36 +200,17 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         JPanel profileGUISouthComponentPanel = new JPanel();
         profileGUISouthComponentPanel.setLayout(new FlowLayout());
 
-        //Users button
-        usersButton = new JButton("Users");
-        listOfUsersFrame = new JFrame("Social Profile App");
-        JPanel usersPanel = new JPanel();
-        usersPanel.setLayout(new BoxLayout(usersPanel, BoxLayout.PAGE_AXIS));
-        usersButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                profileGUIFrame.setVisible(false);
-                UsersListGUI.createUsersListGUI();
-            }
+
+        // Back button
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener((ActionEvent event) -> {
+            profileGUIFrame.setVisible(false);
+            UsersListGUI.createUsersListGUI();
         });
 
-        myProfileButton = new JButton("My Profile");
-        friendsListButton = new JButton("Friends List");
 
-        //Logout button
-        logoutButton = new JButton("Log Out");
-        logoutButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //If logoutButton is clicked get rid of the profileGUIFrame and
-                //return to the login screen.
-                profileGUIFrame.setVisible(false);
-                UserInput.makeLoginScreenVisible();
-            }
-        });
+        profileGUISouthComponentPanel.add(backButton);
 
-        profileGUISouthComponentPanel.add(usersButton);
-        profileGUISouthComponentPanel.add(myProfileButton);
-        profileGUISouthComponentPanel.add(friendsListButton);
-        profileGUISouthComponentPanel.add(logoutButton);
         //Puts the south component panel into the south section of the
         //profileGUIPanel
         profileGUIPanel.add(profileGUISouthComponentPanel, BorderLayout.SOUTH);
@@ -247,7 +234,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         //Add 10 spaces before labels
         nameLabel = new JLabel("          Name: " + GUIProfile.getName());
         //Print the username label with the username entered from logging in
-        usernameLabel = new JLabel("          Username: " + UserInput.getUsernameAndPassword()[0]);
+        usernameLabel = new JLabel("          Username: " + GUIProfile.getUsername());
         //Age label
         ageLabel = new JLabel("          Age: " + GUIProfile.getAge());
         //Email label
