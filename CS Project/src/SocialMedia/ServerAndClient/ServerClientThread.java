@@ -50,7 +50,6 @@ public class ServerClientThread extends Thread {
 
         try {
             System.out.println("Thread started");
-            System.out.println("=======");
             line = objectInputStream.readUTF();
             System.out.println(line);
             while (line.compareToIgnoreCase("quit") != 0) {
@@ -58,14 +57,13 @@ public class ServerClientThread extends Thread {
                     case "stop server" : System.exit(0);
                     case "see users" : {
                         System.out.println("User has tried to see users");
-                        objectOutputStream.reset();
                         objectOutputStream.writeObject(serverObjectStorage.users);
                         objectOutputStream.flush();
+                        objectOutputStream.reset();
                     }
-                    case "create account" : {
-                        System.out.println("User has tried to see users");
+                    case "create profile" : {
+                        System.out.println("User has tried to add a user");
                         try {
-                            objectInputStream.reset();
                             Profile profile = (Profile) objectInputStream.readObject();
                             System.out.println("added " + profile.getName());
                             serverObjectStorage.users.add(profile);
@@ -76,14 +74,12 @@ public class ServerClientThread extends Thread {
 
                     }
                     default : {
-                        objectOutputStream.reset();
                         objectOutputStream.writeUTF("You said: " + line);
                         objectOutputStream.flush();
                         objectOutputStream.reset();
                     }
                 }
                 System.out.println(socket.getInetAddress() + ":" + socket.getPort() + " said: " + line);
-                objectInputStream.reset();
                 line = objectInputStream.readUTF();
             }
         } catch (IOException e) {
