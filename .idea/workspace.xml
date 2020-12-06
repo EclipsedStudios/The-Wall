@@ -5,12 +5,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Created test cases for most of the classes to ensure every one has the correct fields, methods, and inheritance.">
+    <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Finalized verification tests for all classes. Will implement test cases for the methods that need them.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/SocialProfileGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/SocialProfileGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ProfileExceptions/DuplicateUserException.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ProfileExceptions/DuplicateUserException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/UserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/UserInput.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +58,9 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
@@ -186,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607213185436</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Finalized verification tests for all classes. Will implement test cases for the methods that need them.">
+      <created>1607215978582</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607215978582</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -220,38 +226,39 @@
     <MESSAGE value="Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change" />
     <MESSAGE value="Updated FriendsList class to store user profiles instead of user names." />
     <MESSAGE value="Created test cases for most of the classes to ensure every one has the correct fields, methods, and inheritance." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created test cases for most of the classes to ensure every one has the correct fields, methods, and inheritance." />
+    <MESSAGE value="Finalized verification tests for all classes. Will implement test cases for the methods that need them." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalized verification tests for all classes. Will implement test cases for the methods that need them." />
   </component>
   <component name="WindowStateProjectService">
     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606092118870">
       <screen x="1920" y="-165" width="2048" height="1120" />
     </state>
     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606092118870" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1607215674435">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1607216051845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607215674435" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607216051845" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1607215674435">
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1607216051845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607215674435" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607216051845" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1607215674435">
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1607216051845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607215674435" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607216051845" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900195" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1607215674435">
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1607216051845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607215674435" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607216051845" />
     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
@@ -271,10 +278,14 @@
       <screen x="1920" y="-165" width="2048" height="1120" />
     </state>
     <state width="2005" height="375" key="GridCell.Tab.1.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1607213186342">
+    <state x="440" y="94" key="SettingsEditor" timestamp="1607216274994">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607213186342" />
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607216274994" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1607215980016">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607215980016" />
     <state x="2509" y="106" key="Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095578508" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992769069" />
     <state x="2509" y="54" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605993764260" />
@@ -282,10 +293,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="664" y="411" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1606934339677" />
-    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607211423334">
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607216261770">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607211423334" />
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607216261770" />
     <state x="644" y="226" width="672" height="630" key="search.everywhere.popup" timestamp="1607212939331">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

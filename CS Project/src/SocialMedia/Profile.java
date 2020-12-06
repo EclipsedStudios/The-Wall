@@ -3,6 +3,7 @@ package SocialMedia;
 import SocialMedia.FriendsList;
 import SocialMedia.PasswordEncryption;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @version 12/4/2020
  * @authors Max Fuligni, Paul Gherghetta, Cole Busa, Aakash Jariwala, Jaden Baker
  */
-public class Profile {
+public class Profile implements Serializable {
 
     public String name;
     public String email;
