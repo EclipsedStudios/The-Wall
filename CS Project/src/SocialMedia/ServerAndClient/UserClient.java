@@ -16,6 +16,8 @@ import java.util.Scanner;
  */
 public class UserClient {
 
+    public static ArrayList<Profile> profilesList;
+
     public static void main(String[] args) throws IOException {
 
         InetAddress address = InetAddress.getLocalHost(); // Get localhost
@@ -56,9 +58,9 @@ public class UserClient {
                         return;
                     }
                     case "see users" : {
-                        ArrayList<Profile> listOfMessages = (ArrayList<Profile>) objectInputStream.readObject();
-                        System.out.println("Received [" + listOfMessages.size() + "] users from: " + socket);
-                        for(Profile a : listOfMessages){
+                        profilesList = (ArrayList<Profile>) objectInputStream.readObject();
+                        System.out.println("Received [" + profilesList.size() + "] users from: " + socket);
+                        for(Profile a : profilesList){
                             System.out.println("Name: " + a.getName() +
                                     "| Age: " + a.getAge()+
                                     "| Username: " + a.getUsername()+
