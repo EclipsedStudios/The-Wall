@@ -471,7 +471,7 @@ public class Tester {
             assertEquals(18, profile1.age);
             assertEquals("steve@purdue.edu", profile1.email);
             assertEquals("Password", profile1.rawPassword);
-            assertEquals(correctPassword, profile1.encryptedPassword);
+            assertEquals(correctPassword, profile1.getRawPassword());
             assertEquals(true, Modifier.isPublic(FriendsList.class.getConstructors()[1].getModifiers()));
             List<String> interests = new ArrayList<String>();
             interests.add("soccer");
@@ -488,7 +488,7 @@ public class Tester {
             assertEquals(18, profile2.age);
             assertEquals("steve@purdue.edu", profile2.email);
             assertEquals("Password", profile2.rawPassword);
-            assertEquals(correctPassword, profile2.encryptedPassword);
+            assertEquals(correctPassword, profile2.getRawPassword());
             assertEquals("google.com", profile2.website);
             assertEquals(interests, profile2.interests);
             assertEquals(friendsList, profile2.friendsList);

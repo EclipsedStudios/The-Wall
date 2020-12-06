@@ -1,6 +1,7 @@
 package SocialMedia.GUIs;
 
 import SocialMedia.Profile;
+import SocialMedia.ServerAndClient.UserClient;
 import SocialMedia.UserInput;
 
 import javax.swing.*;
@@ -185,8 +186,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         // changing Profile obj to that of username
         // should never be null
         // TODO revert back to getProfile method
-        Profile profile = new Profile("John Jim", 12, "jonjim@gmail.com", "johnhim.com", (List<String>) Arrays.asList("Fishing", "Hiking"),
-                null, "Insert about me", "johnjim", "test123");
+        Profile profile = UserClient.getProfileWith(username);
       GUIProfile = profile;
 
         //NORTH section of profileGUIPanel

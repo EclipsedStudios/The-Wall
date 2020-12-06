@@ -5,10 +5,6 @@ package SocialMedia;
  * Not very secure, but as long as someone doesn't brute force the
  * shift, it is good enough.
  * <p>
- * TODO: If wanted, we can do a key system to "unlock" the
- * encoding and decoding with a secret word. Each time a
- * function is ran, it requests the key in the arguments
- * of the function.
  *
  * @author Jaden Baker
  * @version 11/21/20

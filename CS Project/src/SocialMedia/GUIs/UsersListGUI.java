@@ -2,6 +2,7 @@ package SocialMedia.GUIs;
 
 import SocialMedia.Profile;
 import SocialMedia.ServerAndClient.UserClient;
+import SocialMedia.UserInput;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -48,15 +49,7 @@ public class UsersListGUI extends JFrame implements ActionListener {
     /** Initalizes variables for users list gui**/
     public static void createUsersListGUI(){
         // set the profiles list to all the lists
-        profilesList = new ArrayList<>();
-
-        // for now I'm using a dummy list w/ fake profiles just to test
-
-        profilesList.add(new Profile("John Jim", 12, "jonjim@gmail.com", "johnhim.com", (List<String>) Arrays.asList("Fishing", "Hiking"),
-                        null, "Insert about me", "johnjim", "test123"));
-
-        profilesList.add(new Profile("JackBlack", 16, "jonjim@gmail.com", "johnhim.com", (List<String>) Arrays.asList("Fishing", "Hiking"),
-                null, "Insert about me", "JackBlack", "test123"));
+        profilesList = UserClient.profilesList;
 
 
         Font font = new Font("Cambria", Font.BOLD, 15);

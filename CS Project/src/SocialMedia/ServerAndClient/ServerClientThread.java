@@ -13,7 +13,7 @@ import java.net.Socket;
  */
 
 public class ServerClientThread extends Thread {
-    public String line = null;
+    public  String line = null;
     public BufferedReader bufferedReader = null;
     public PrintWriter printWriter = null;
     public Socket socket;
@@ -28,7 +28,7 @@ public class ServerClientThread extends Thread {
         this.profile = profile;
     }
 
-    public void StopThread() throws IOException {
+    private void StopThread() throws IOException {
         socket.close();
         System.out.println("Socket Closed");
         CentralServer.numberOfConnections--;
@@ -49,6 +49,7 @@ public class ServerClientThread extends Thread {
             objectOutputStream = new ObjectOutputStream(outputStream);
             // create a ObjectInputStream so we can read data from it
             objectInputStream = new ObjectInputStream(inputStream);
+
         } catch (IOException e) {
             System.out.println("IO error in server thread");
         }

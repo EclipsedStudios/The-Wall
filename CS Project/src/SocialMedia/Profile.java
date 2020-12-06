@@ -1,8 +1,5 @@
 package SocialMedia;
 
-import SocialMedia.FriendsList;
-import SocialMedia.PasswordEncryption;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,20 +15,15 @@ public class Profile implements Serializable {
     public String email;
     public FriendsList friendsList;
     public String website;
-    public List<String> interests;
+    public ArrayList<String> interests;
     public String aboutMe;
     public final int age;
     public String rawPassword;
     public static ArrayList<Profile> profilesList = new ArrayList<>();
-
     /**
      * identifier
      **/
     public final String username;
-    /**
-     * Server decrypts for login
-     **/
-    public String encryptedPassword;
 
 
     // Initial construction
@@ -40,15 +32,11 @@ public class Profile implements Serializable {
         this.username = username;
         this.email = email;
         this.rawPassword = rawPassword;
-
-        //Current skip is 12 (Moves each letter over by 12). This can be changed later.
-        this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);
-
         this.age = age;
     }
 
     // If user decides to input all fields on construction
-    public Profile(String name, int age, String email, String website, List<String> interests,
+    public Profile(String name, int age, String email, String website, ArrayList<String> interests,
                    FriendsList friendsList, String aboutMe, String username, String rawPassword) {
         this.name = name;
         this.age = age;
@@ -59,7 +47,19 @@ public class Profile implements Serializable {
         this.aboutMe = aboutMe;
         this.username = username;
         this.rawPassword = rawPassword;
-        this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);
+    }
+
+    public Profile(String name, int age, String email, String website, List<String> interests,
+                   FriendsList friendsList, String aboutMe, String username, String rawPassword) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.website = website;
+        this.interests = new ArrayList<>(interests);
+        this.friendsList = friendsList;
+        this.aboutMe = aboutMe;
+        this.username = username;
+        this.rawPassword = rawPassword;
     }
 
     // Getters and Setters
@@ -67,16 +67,7 @@ public class Profile implements Serializable {
         return profilesList;
     }
 
-    // Gets profile with desired username, returns null if doesn't exist
-    public static Profile getProfileWith(String username){
-        for (Profile profile : getProfilesList()) {
-            if (profile.getUsername().equalsIgnoreCase(username)) {
-                return profile;
-            }
-        }
-        return null;
 
-    }
     public FriendsList getFriendsList() {
         return friendsList;
     }
@@ -113,11 +104,11 @@ public class Profile implements Serializable {
         this.website = website;
     }
 
-    public List<String> getInterests() {
+    public ArrayList<String> getInterests() {
         return interests;
     }
 
-    public void setInterests(List<String> interests) {
+    public void setInterests(ArrayList<String> interests) {
         this.interests = interests;
     }
 
@@ -129,11 +120,11 @@ public class Profile implements Serializable {
         this.aboutMe = aboutMe;
     }
 
-    public String getEncryptedPassword() {
-        return encryptedPassword;
+    public String getRawPassword() {
+        return rawPassword;
     }
 
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
+    public void setRawPassword(String rawPassword) {
+        this.rawPassword = rawPassword;
     }
 }

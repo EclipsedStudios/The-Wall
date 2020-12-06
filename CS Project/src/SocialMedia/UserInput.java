@@ -1,6 +1,8 @@
 package SocialMedia;
 
 import SocialMedia.GUIs.SocialProfileGUI;
+import SocialMedia.ServerAndClient.ServerClientThread;
+import SocialMedia.ServerAndClient.UserClient;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +24,7 @@ public class UserInput extends JFrame implements ActionListener {
     public static ArrayList<String> listOfUsernames = new ArrayList<>();
     public static JFrame welcomeFrame;
     public static Profile currentUserProfile;
+    public static UserClient userClient;
 
     //Components
     public JButton signInButton;
@@ -203,6 +206,7 @@ public class UserInput extends JFrame implements ActionListener {
                 usernameAndPassword[1] = String.valueOf(password.getPassword());
                 //Create a profile object for the user that logs in.
                 createUserProfile();
+
                 //Now we can get rid of the old screen and call the next screen
                 welcomeFrame.setVisible(false);
                 SocialProfileGUI.createProfileGUI();
@@ -458,7 +462,7 @@ public class UserInput extends JFrame implements ActionListener {
         //We can very likely assume now that all text fields have the correct format.
         //Now we'll create a file and write the new account information to it.
         //We'll make sure to put the new file in the UsernameFiles directory first.
-        File file = new File("UsernameFiles/" + usernameTextField.getText() + ".txt");
+        File file = new File("UsernameClientsideStorage/" + usernameTextField.getText() + ".txt");
         FileOutputStream fOS = null;
         try {
             fOS = new FileOutputStream(file, false);
@@ -552,6 +556,8 @@ public class UserInput extends JFrame implements ActionListener {
         currentUserProfile = new Profile(name, age, email, website, likesInterestsArrayList,
                 null, aboutMe, username.getText(), String.valueOf(password.getPassword()));
         Profile.getProfilesList().add(currentUserProfile);
+        UserClient userClient = new UserClient(currentUserProfile);
+        userClient.start();
     }
 
     public static Profile getUserProfile() {

@@ -5,6 +5,7 @@ import SocialMedia.Profile;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,13 +15,34 @@ import java.util.Scanner;
  * @author aakash jariwala, jaden baker
  * @version 11/21/20
  */
-public class UserClient {
+public class UserClient extends Thread  {
 
     public static ArrayList<Profile> profilesList;
+    public Profile profile;
 
-    public static void main(String[] args) throws IOException {
+    public UserClient(Profile currentUserProfile) {
+        this.profile = currentUserProfile;
+    }
 
-        InetAddress address = InetAddress.getLocalHost(); // Get localhost
+    // Gets profile with desired username, returns null if doesn't exist
+    public static Profile getProfileWith(String username){
+        for (Profile profile : profilesList) {
+            if (profile.getUsername().equalsIgnoreCase(username)) {
+                return profile;
+            }
+        }
+        return null;
+    }
+
+    public void run() {
+
+        InetAddress address = null; // Get localhost
+        try {
+            address = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        /**/
         Socket socket = null; // Create a null socket
         String line; // Store information coming from server
         BufferedReader bufferedReader = null; // BufferedReader for client
@@ -54,21 +76,22 @@ public class UserClient {
             printWriter.flush();
             while (line.compareToIgnoreCase("quit") != 0) {
                 switch (line) {
-                    case "stop server":{
+                    case "stop server": {
                         return;
                     }
-                    case "see users" : {
+                    case "see users": {
                         profilesList = (ArrayList<Profile>) objectInputStream.readObject();
                         System.out.println("Received [" + profilesList.size() + "] users from: " + socket);
-                        for(Profile a : profilesList){
+                        for (Profile a : profilesList) {
                             System.out.println("Name: " + a.getName() +
-                                    "| Age: " + a.getAge()+
-                                    "| Username: " + a.getUsername()+
-                                    "| Password: " + a.getEncryptedPassword()+
+                                    "| Age: " + a.getAge() +
+                                    "| Username: " + a.getUsername() +
+                                    "| Password: " + a.getRawPassword() +
                                     "| Email: " + a.getEmail());
                         }
                     }
-                    default : System.out.println(bufferedReader1.readLine());
+                    default:
+                        System.out.println(bufferedReader1.readLine());
                 }
                 line = scan.nextLine();
                 printWriter.println(line);
@@ -83,13 +106,20 @@ public class UserClient {
             assert printWriter != null;
 
             //Close the client
-            bufferedReader1.close();
-            printWriter.close();
-            bufferedReader.close();
-            socket.close();
+            try {
+                bufferedReader1.close();
+                printWriter.close();
+                bufferedReader.close();
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
 
             //Client closed confirmation
             System.out.println("Connection Closed");
         }
     }
+
+
 }
