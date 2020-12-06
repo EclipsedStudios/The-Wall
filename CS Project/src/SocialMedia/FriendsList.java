@@ -6,17 +6,21 @@ import java.util.ArrayList;
 /**
  * Represents a friends list for a profile
  *
- * @author Cole Busa
+ * @author Cole Busa, Max Fuligni
  * @version 12/3/20
  */
 public class FriendsList implements Serializable {
     public ArrayList<Profile> friends;
+    public ArrayList<Profile> incomingFriendRequests;
+    public ArrayList<Profile> outgoingFriendRequests;
 
     /**
      * An empty constructor for a friends list.
      */
     public FriendsList() {
         friends = new ArrayList<Profile>();
+        incomingFriendRequests = new ArrayList<>();
+        outgoingFriendRequests = new ArrayList<>();
     }
 
     /**
@@ -35,12 +39,75 @@ public class FriendsList implements Serializable {
         return friends;
     }
 
+
+    /**
+     *
+     * @param profile to check if friends with
+     * @return true if friends, false if not
+     */
+
+    public boolean isFriendsWith(Profile profile) {
+        boolean friends = false;
+        for (Profile p :  getFriends()) {
+            if (p.getUsername().equalsIgnoreCase(profile.getUsername())) {
+                friends = true;
+            }
+        }
+
+        return friends;
+    }
+
+    /**
+     *
+     * @param profile to check if user has outgoing friend request to
+     * @return true if yes, false if no
+     */
+    public boolean hasOutgoingFriendRequest(Profile profile) {
+        boolean friends = false;
+        for (Profile p :  getOutgoingFriendRequests()) {
+            if (p.getUsername().equalsIgnoreCase(profile.getUsername())) {
+                friends = true;
+            }
+        }
+
+        return friends;
+    }
+
+    /**
+     *
+     * @param profile to check if user has incoming friend request to
+     * @return true if yes, false if no
+     */
+    public boolean hasIncomingFriendRequest(Profile profile) {
+        boolean friends = false;
+        for (Profile p :  getIncomingFriendRequests()) {
+            if (p.getUsername().equalsIgnoreCase(profile.getUsername())) {
+                friends = true;
+            }
+        }
+
+        return friends;
+    }
+
+    public ArrayList<Profile> getIncomingFriendRequests() { return incomingFriendRequests; }
+
+    public ArrayList<Profile> getOutgoingFriendRequests() { return outgoingFriendRequests; }
+
     /**
      * Adds the specified friend to the user's friendsList.
+     * M
      * @param friend The friend to add to the friendsList.
      */
     public void addFriend(Profile friend) {
-        friends.add(friend);
+        if (hasOutgoingFriendRequest(friend)) {
+            outgoingFriendRequests.remove(friend);
+        }
+        if (hasIncomingFriendRequest(friend)) {
+            incomingFriendRequests.remove(friend);
+        }
+        if (!friends.contains(friend)) {
+            friends.add(friend);
+        }
     }
 
     /**
