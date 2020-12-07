@@ -89,7 +89,12 @@ public class FriendsGUI extends JFrame implements ActionListener {
         list2.setVisibleRowCount(-1);
 
         // Accept friend request button
-        JButton acceptButton = new JButton("Accept " + incoming[0] + "?");
+        JButton acceptButton;
+        if (incoming.length == 0) {
+            acceptButton = new JButton("No action available");
+        } else {
+            acceptButton = new JButton("Accept " + incoming[0] + "?");
+        }
         list2.addListSelectionListener((ListSelectionEvent event) -> {
             if (!event.getValueIsAdjusting()) {
                 acceptButton.setText("Accept " + list.getSelectedValue() + "?");
@@ -127,7 +132,12 @@ public class FriendsGUI extends JFrame implements ActionListener {
         list3.setVisibleRowCount(-1);
 
         // Deny friend request button
-        JButton denyButton = new JButton("Cancel request to " + incoming[0] + "?");
+        JButton denyButton;
+        if (outgoing.length == 0) {
+            denyButton = new JButton("No action available");
+        } else {
+            denyButton = new JButton("Cancel request to " + incoming[0] + "?");
+        }
         list3.addListSelectionListener((ListSelectionEvent event) -> {
             if (!event.getValueIsAdjusting()) {
                 denyButton.setText("Cancel request to " + list.getSelectedValue() + "?");
