@@ -107,6 +107,10 @@ public class UserClient extends Thread {
         oISUsed = true;
     }
 
+    public void ChangeMessage(String string){
+        line = string;
+    }
+
     public void run() {
         running.set(true);
         System.out.println("Client Address: " + address);

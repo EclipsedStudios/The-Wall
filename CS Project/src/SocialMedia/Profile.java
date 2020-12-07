@@ -1,14 +1,12 @@
 package SocialMedia;
 
-import SocialMedia.FriendsList;
-import SocialMedia.PasswordEncryption;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A class that constructs and stores profiles of users.
+ *
  * @version 12/4/2020
  * @authors Max Fuligni, Paul Gherghetta, Cole Busa, Aakash Jariwala, Jaden Baker
  */
@@ -22,20 +20,19 @@ import java.util.List;
  */
 public class Profile implements Serializable {
 
+    public static ArrayList<Profile> profilesList = new ArrayList<>();
+    public final int age;
+    /**
+     * identifier
+     **/
+    public final String username;
     public String name;
     public String email;
     public FriendsList friendsList;
     public String website;
     public ArrayList<String> interests;
     public String aboutMe;
-    public final int age;
     public String rawPassword;
-    public static ArrayList<Profile> profilesList = new ArrayList<>();
-
-    /**
-     * identifier
-     **/
-    public final String username;
 
 
     // Initial construction
@@ -82,7 +79,7 @@ public class Profile implements Serializable {
     }
 
     // Gets profile with desired username, returns null if doesn't exist
-    public static Profile getProfileWith(String username){
+    public static Profile getProfileWith(String username) {
         for (Profile profile : getProfilesList()) {
             if (profile.getUsername().equalsIgnoreCase(username)) {
                 return profile;
@@ -91,6 +88,11 @@ public class Profile implements Serializable {
         return null;
 
     }
+
+    public static void setProfilesList(ArrayList<Profile> profiles) {
+        profilesList = profiles;
+    }
+
     public FriendsList getFriendsList() {
         return friendsList;
     }

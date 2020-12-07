@@ -196,7 +196,6 @@ public class UserInput extends JFrame implements ActionListener {
                 usernameAndPassword[0] = username.getText();
                 usernameAndPassword[1] = String.valueOf(password.getPassword());
                 //Create a profile object for the user that logs in.
-                createUserProfile();
                 if(userClient.isAlive()){
                     userClient.interrupt();
                     userClient = new UserClient();
@@ -523,51 +522,7 @@ public class UserInput extends JFrame implements ActionListener {
         welcomeFrame.setVisible(true);
     }
 
-    //A method that creates a profile for the user
-    public static void createUserProfile() throws IOException {
-        //The variable username is referring to the username entered to login.
-        File f = new File("UsernameFiles/" + username.getText() + ".txt");
-        FileReader fr = new FileReader(f);
-        BufferedReader bfr = new BufferedReader(fr);
-        //Convert each line in the file to its appropriate format and then make a
-        //profile object.
-        //Name
-        String line = bfr.readLine();
-        String name = line;
-        //Email
-        line = bfr.readLine();
-        String email = line;
-        //Skip past friends because there are no friends
-        line = bfr.readLine();
-        //Website
-        line = bfr.readLine();
-        String website = line;
-        //Likes/Interests
-        line = bfr.readLine();
-        String[] likesInterests = null;
-        ArrayList<String> likesInterestsArrayList = new ArrayList<>();
-        //Check if there are multiple likes/interests entered.
-        if (line.contains(", ")) {
-            likesInterests = line.split(", ");
-            for (int i = 0; i < likesInterests.length; i++) {
-                likesInterestsArrayList.add(likesInterests[i]);
-            }
-        } else {
-            //add the one like or interest
-            likesInterestsArrayList.add(line);
-        }
-        //About me
-        line = bfr.readLine();
-        String aboutMe = line;
-        //Age
-        line = bfr.readLine();
-        int age = Integer.parseInt(line);
 
-        currentUserProfile = new Profile(name, age, email, website, likesInterestsArrayList,
-                null, aboutMe, username.getText(), String.valueOf(password.getPassword()));
-        Profile.getProfilesList().add(currentUserProfile);
-
-    }
 
     public static Profile getUserProfile() {
         return currentUserProfile;
