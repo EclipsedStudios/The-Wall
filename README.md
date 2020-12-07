@@ -1,6 +1,10 @@
 # CS18000-Project-5
 A social media application for CS 18000 <br />
 **Note for developers: SRC file is located inside the CS Project file**
+
+# How to setup
+If you are testing the server, first go to the SettingsAndConstants.java file and change LOCALHOST to true. This is because you are testing it on a probably not portforwarded IP so you won't be communicating with people outside the network. Probably doesn't affect anything, but it is a fail safe. After this, run the CentralServer.java to boot up the server. After that, just run UserInput to boot up the client.
+
 # Class-by-Class documentation:
 
 **EditProfileGUI:**
