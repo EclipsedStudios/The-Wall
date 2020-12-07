@@ -76,12 +76,12 @@ public class ServerClientThread extends Thread {
                         try {
                             Profile profile = (Profile) objectInputStream.readObject();
                             Profile toCopyTo = null;
-                            System.out.println("Updated " + profile.getName());
                             for(Profile p : serverObjectStorage.users){
                                 if(profile.getUsername().equals(p.getUsername())){
                                     toCopyTo = p;
                                 }
                             }
+                            System.out.println("Updated " + profile.getName());
                             serverObjectStorage.users.remove(toCopyTo);
                             serverObjectStorage.users.add(profile);
                             serverObjectStorage.saveUsersToDatabase();
