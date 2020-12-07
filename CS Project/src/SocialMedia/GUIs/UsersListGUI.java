@@ -40,8 +40,6 @@ public class UsersListGUI extends JFrame implements ActionListener {
      * ..
      * [View User?] [Back Button]
      * each one clickable which shows profile
-     *
-     *
      */
 
     /** Initalizes variables for users list gui**/

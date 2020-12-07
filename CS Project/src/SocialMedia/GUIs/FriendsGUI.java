@@ -5,6 +5,7 @@ import SocialMedia.Profile;
 import SocialMedia.ServerAndClient.UserClient;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,7 +20,15 @@ import java.util.List;
  *
  * @author Aakash Jariwala
  * @version 12/5/2020
+ *
+ * (West)               (Center             (East)
+ * Friends list      Incoming list          Outgoing List
+ * - friend1           -friend 2            -friend3
+ * -
+ * -
+ *                  [Accept friend] [Deny]        [Cancel outgoing req]
  */
+
 
 public class FriendsGUI extends JFrame implements ActionListener {
 
@@ -32,15 +41,26 @@ public class FriendsGUI extends JFrame implements ActionListener {
 
     public static void createFriendsGUI() {
 
+        // ------------- Initalizing lists --------------//
         friendsList = UserClient.profile.getFriendsList().friends;
         incomingList = UserClient.profile.friendsList.getIncomingFriendRequests();
         outgoingList = UserClient.profile.friendsList.getOutgoingFriendRequests();
 
         Font font = new Font("Cambria", Font.BOLD, 15);
+
+        // ------------- Initalizing frame and panels --------------//
+
         JFrame friendsFrame = new JFrame("Friends Menu");
-        JPanel friendsPanel = new JPanel();
-        JPanel incomingPanel = new JPanel();
-        JPanel outgoingPanel = new JPanel();
+
+        JPanel friendsPanel = new JPanel(); // main panel
+
+        JPanel rightFriendsPanel = new JPanel(); //shows friends panel
+        JPanel incomingPanel = new JPanel(); // middle panel, shows incoming req
+        JPanel outgoingPanel = new JPanel(); // far right, shows outgoing req
+
+
+
+        rightFriendsPanel.setLayout(new BorderLayout());
         friendsPanel.setLayout(new BorderLayout());
         incomingPanel.setLayout(new BorderLayout());
         outgoingPanel.setLayout(new BorderLayout());
@@ -48,11 +68,16 @@ public class FriendsGUI extends JFrame implements ActionListener {
         JPanel optionsSouthPanel = new JPanel();
         optionsSouthPanel.setLayout(new FlowLayout());
 
+        // ------------- Initalizing title label --------------//
+
         // friendsPanel stuff
         titleLabel = new JLabel("Friends: (" + friendsList.size() + ")");
         titleLabel.setFont(font);
         friendsPanel.add(titleLabel, BorderLayout.NORTH);
         titleLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+
+        // ------------- Populating Jlists and respective labels --------------//
 
         int counter = 0;
         JList<String> list;
@@ -67,6 +92,8 @@ public class FriendsGUI extends JFrame implements ActionListener {
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setLayoutOrientation(JList.VERTICAL);
         list.setVisibleRowCount(-1);
+
+        rightFriendsPanel.add(list);
 
         // incomingPanel stuff
         incomingLabel = new JLabel("Accept Friends:");
@@ -91,7 +118,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         // Accept friend request button
         JButton acceptButton;
         if (incoming.length == 0) {
-            acceptButton = new JButton("No action available");
+            acceptButton = new JButton("Accept 0 friend requests");
         } else {
             acceptButton = new JButton("Accept " + incoming[0] + "?");
         }
@@ -108,7 +135,8 @@ public class FriendsGUI extends JFrame implements ActionListener {
             FriendsGUI.createFriendsGUI();
         });
 
-        incomingPanel.add(acceptButton);
+        optionsSouthPanel.add(acceptButton);
+        incomingPanel.add(list2);
 
         // outgoingPanel stuff
 
@@ -121,7 +149,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         JList<String> list3;
         String[] outgoing = new String[outgoingList.size()];
         for (int i = 0; i < outgoingList.size(); i++) {
-            outgoing[3] = outgoingList.get(i).getName();
+            outgoing[counter3] = outgoingList.get(i).getName();
             counter3++;
         }
         list3 = new JList<>(outgoing);
@@ -134,7 +162,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         // Deny friend request button
         JButton denyButton;
         if (outgoing.length == 0) {
-            denyButton = new JButton("No action available");
+            denyButton = new JButton("Cancel 0 friend requests");
         } else {
             denyButton = new JButton("Cancel request to " + incoming[0] + "?");
         }
@@ -151,7 +179,8 @@ public class FriendsGUI extends JFrame implements ActionListener {
             FriendsGUI.createFriendsGUI();
         });
 
-        outgoingPanel.add(denyButton);
+        optionsSouthPanel.add(denyButton);
+        outgoingPanel.add(list3);
 
         // Back button
         JButton backButton = new JButton("Back");
@@ -163,14 +192,12 @@ public class FriendsGUI extends JFrame implements ActionListener {
         // optionsSouthPanel stuff
         optionsSouthPanel.add(backButton);
 
-        friendsPanel.add(list, BorderLayout.WEST);
-        incomingPanel.add(list2, BorderLayout.CENTER);
-        outgoingPanel.add(list3, BorderLayout.EAST);
-        friendsPanel.add(optionsSouthPanel, BorderLayout.SOUTH);
+        friendsPanel.add(rightFriendsPanel, BorderLayout.WEST);
+        friendsPanel.add(incomingPanel, BorderLayout.CENTER);
+        friendsPanel.add(outgoingPanel, BorderLayout.EAST);
+        friendsFrame.add(optionsSouthPanel, BorderLayout.SOUTH);
 
         friendsFrame.getContentPane().add(friendsPanel);
-        friendsFrame.getContentPane().add(incomingPanel);
-        friendsFrame.getContentPane().add(outgoingPanel);
 
 
         friendsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

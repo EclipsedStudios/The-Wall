@@ -116,42 +116,11 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
                 BoxLayout.PAGE_AXIS));
         profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         //We need to get the profile created in UserInput here
-        for (int i = 0; i < UserClient.profilesList.size(); i++) {
-            if (UserClient.profilesList.get(i).getUsername().equals(UserInput.getUsernameAndPassword()[0])) {
-                GUIProfile = UserClient.profilesList.get(i);
-                break;
-            }
-        }
 
-        refreshButton = new JButton("Refresh Page");
-        refreshButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    UserInput.userClient.refreshPage();
-                    GUIProfile = UserClient.profile;
-                    nameLabel = new JLabel("          Name: " + GUIProfile.getName());
-                    //Print the username label with the username entered from logging in
-                    usernameLabel = new JLabel("          Username: " + UserInput.getUsernameAndPassword()[0]);
-                    //Age label
-                    ageLabel = new JLabel("          Age: " + GUIProfile.getAge());
-                    //Email label
-                    emailLabel = new JLabel("          Email: " + GUIProfile.getEmail());
-                    //Website label
-                    websiteLabel = new JLabel("          Website: " + GUIProfile.getWebsite());
-                    //Likes/Interests label
-                    likesInterestsLabel = new JLabel("          Likes/Interests: " + GUIProfile.getInterests());
-                    //Friends label
-                    friendsLabel = new JLabel("          Friends: ");
-                    //About Me label
-                    aboutMeLabel = new JLabel("          About Me:");
-                    aboutMeText = new JLabel("          " + GUIProfile.getAboutMe());
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }
-        });
+        GUIProfile = UserClient.profile;
+        
 
-        profileGUISouthComponentPanel.add(refreshButton);
+
 
         //Add 10 spaces before labels
         nameLabel = new JLabel("          Name: " + GUIProfile.getName());
@@ -257,7 +226,6 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
             UsersListGUI.createUsersListGUI();
         });
 
-        /** Need to check if currentUser is already friends with, or has an outgoing friend request already to desired user **/
 
         /** Need to check if currentUser is already friends with, or has an outgoing friend request already to desired user **/
 
