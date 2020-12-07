@@ -216,7 +216,11 @@ public class EditProfileGUI extends JFrame implements ActionListener {
         deleteButton.addActionListener((ActionEvent event) -> {
             editProfileFrame.setVisible(false);
             UserInput.makeLoginScreenVisible();
-            //TODO add account deletion method
+            try {
+                UserInput.userClient.deleteAccount(UserClient.profile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
         //Button to confirm you are done editing the profile
         doneButton = new JButton("Done");
@@ -239,9 +243,9 @@ public class EditProfileGUI extends JFrame implements ActionListener {
         editProfilePanel.add(likesInterestsButton);
         editProfilePanel.add(aboutMeButton);
         editProfilePanel.add(passwordButton);
+        editProfilePanel.add(deleteButton);
         editProfilePanel.add(Box.createRigidArea(new Dimension(0, 30)));
         editProfilePanel.add(doneButton);
-
         editProfileFrame.getContentPane().add(editProfilePanel);
         editProfileFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         editProfileFrame.setSize(1000, 1000);
