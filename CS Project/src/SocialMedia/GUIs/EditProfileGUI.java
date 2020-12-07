@@ -212,6 +212,12 @@ public class EditProfileGUI extends JFrame implements ActionListener {
             }
         });
 
+        JButton deleteButton = new JButton("Delete Account");
+        deleteButton.addActionListener((ActionEvent event) -> {
+            editProfileFrame.setVisible(false);
+            UserInput.makeLoginScreenVisible();
+            //TODO add account deletion method
+        });
         //Button to confirm you are done editing the profile
         doneButton = new JButton("Done");
         doneButton.addActionListener(new ActionListener() {
