@@ -1,0 +1,29 @@
+<changelist name="Uncommitted_changes_before_rebase_[Default_Changelist]" date="1606949732227" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before rebase [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CS18000/ServerAndClient/ServerClientThread.class" />
+    <option name="AFTER_PATH" value="out/production/CS18000/ServerAndClient/ServerClientThread.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Default_Changelist]/ServerClientThread.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CS18000/ServerAndClient/CentralServer.class" />
+    <option name="AFTER_PATH" value="out/production/CS18000/ServerAndClient/CentralServer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Default_Changelist]/CentralServer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CS18000/ServerAndClient/UserClient.class" />
+    <option name="AFTER_PATH" value="out/production/CS18000/ServerAndClient/UserClient.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Default_Changelist]/UserClient.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CS18000/InvalidPasswordException.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/CS18000/DuplicateUserException.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>

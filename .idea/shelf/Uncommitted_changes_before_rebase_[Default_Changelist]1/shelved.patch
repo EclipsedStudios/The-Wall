@@ -1,0 +1,265 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"BRANCH:master\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </select>\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"13163c36-eb94-4db2-b582-2df5d6c16fe9\" name=\"Default Changelist\" comment=\"Added PasswordEncryption.java: It provides static classes to encode and decode strings, which is used to hide passwords.&#10;Changed Profile.java: Made the friends list initialize outside of the constructor, as it isn't required to be in the constructor. Also changed encryptedPassword in the constructor to save the password as an encrypted one (With a shift of 12).\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/runConfigurations/UserClient.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/runConfigurations/UserClient2.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/runConfigurations/UserClient__5_.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/CS Project/src/ServerAndClient/CentralServer.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/CS Project/src/ServerAndClient/ServerClientThread.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/CS Project/src/ServerAndClient/SettingsAndConstants.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/CS Project/src/ServerAndClient/UserClient.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/out/production/CS18000/PasswordEncryption.class\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/out/production/CS18000/ServerAndClient/CentralServer.class\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/out/production/CS18000/ServerAndClient/ServerClientThread.class\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/out/production/CS18000/ServerAndClient/SettingsAndConstants.class\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/out/production/CS18000/ServerAndClient/UserClient.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CS Project/src/DuplicateUserException.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CS Project/src/DuplicateUserException.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CS Project/src/FriendsList.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CS Project/src/FriendsList.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CS Project/src/InvalidPasswordException.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CS Project/src/InvalidPasswordException.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CS Project/src/PasswordEncryption.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CS Project/src/PasswordEncryption.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CS Project/src/Profile.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CS Project/src/Profile.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CS Project/src/ProfileServer.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CS Project/src/UserClient.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CS Project/src/UserInput.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CS Project/src/UserInput.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/CS18000/DuplicateUserException.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/CS18000/DuplicateUserException.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/CS18000/FriendsList.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/CS18000/FriendsList.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/CS18000/InvalidPasswordException.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/CS18000/InvalidPasswordException.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/CS18000/Profile.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/CS18000/Profile.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/CS18000/ProfileServer.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/CS18000/UserClient.class\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/CS18000/UserInput$1.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/CS18000/UserInput$1.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/CS18000/UserInput$2.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/CS18000/UserInput$2.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/CS18000/UserInput.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/CS18000/UserInput.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExportToHTMLSettings\">\r\n    <option name=\"OUTPUT_DIRECTORY\" value=\"$PROJECT_DIR$/../CS18000\\exportToHTML\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n        <option value=\"Enum\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <favorite-branches>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"LOCAL\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"testbranch\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </favorite-branches>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"JupyterTrust\" id=\"fe41e3a6-7fc2-4c5d-ad6a-39fb370f4803\" />\r\n  <component name=\"ProjectId\" id=\"1kcGV0R7adV96IvCAAmvpvYmlQo\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"restartRequiresConfirmation\" value=\"false\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Jaden\\IdeaProjects\\CS18000\\CS Project\\src\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.UserClient (1)\">\r\n    <configuration name=\"CentralServer\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ServerAndClient.CentralServer\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient (1)\" type=\"Application\" factoryName=\"Application\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient (3)\" type=\"Application\" factoryName=\"Application\" singleton=\"false\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient (4)\" type=\"Application\" factoryName=\"Application\" editBeforeRun=\"true\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" singleton=\"false\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" editBeforeRun=\"true\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" singleton=\"false\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.UserClient (6)\" />\r\n        <item itemvalue=\"Application.CentralServer\" />\r\n        <item itemvalue=\"Application.UserClient (2)\" />\r\n        <item itemvalue=\"Application.UserClient (5)\" />\r\n        <item itemvalue=\"Application.UserClient\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"master\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Test Branch\" />\r\n    <MESSAGE value=\"Added PasswordEncryption.java: It provides static classes to encode and decode strings, which is used to hide passwords.&#10;Changed Profile.java: Made the friends list initialize outside of the constructor, as it isn't required to be in the constructor. Also changed encryptedPassword in the constructor to save the password as an encrypted one (With a shift of 12).\" />\r\n    <MESSAGE value=\"Added: SettingsAndConstants.java&#10;Description: Holds constants that may be used elsewhere multiple times. Or just large strings.&#10;&#10;Added: ServerClientThread.java&#10;Description: Acts as the clients connection to the CentralServer. This is required for multiple connections to the CentralServer.&#10;&#10;Renamed: ProfileServer.class to CentralServer.java&#10;Description: As this is the central server used to run the whole platform, I feel like CentralServer would be a more understandable.&#10;&#10;Changed: UserClient.java&#10;Description: Recreated the simple client script but using the new ServerClientThread.java system.&#10;&#10;Added: ServerAndClient package&#10;Description: This is just so all of the client and server things are organized. We can do this to more of the files as we go on and if you need to use something from it, all you have to do is import the package at the top. (Intellij will do this/tell you automatically)\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Added: SettingsAndConstants.java&#10;Description: Holds constants that may be used elsewhere multiple times. Or just large strings.&#10;&#10;Added: ServerClientThread.java&#10;Description: Acts as the clients connection to the CentralServer. This is required for multiple connections to the CentralServer.&#10;&#10;Renamed: ProfileServer.class to CentralServer.java&#10;Description: As this is the central server used to run the whole platform, I feel like CentralServer would be a more understandable.&#10;&#10;Changed: UserClient.java&#10;Description: Recreated the simple client script but using the new ServerClientThread.java system.&#10;&#10;Added: ServerAndClient package&#10;Description: This is just so all of the client and server things are organized. We can do this to more of the files as we go on and if you need to use something from it, all you have to do is import the package at the top. (Intellij will do this/tell you automatically)\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"2542\" y=\"-165\" key=\"#com.intellij.refactoring.rename.AutomaticRenamingDialog\" timestamp=\"1606092118870\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state x=\"2542\" y=\"-165\" key=\"#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606092118870\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1606095551161\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095551161\" />\r\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120\" timestamp=\"1605995900196\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.center\" timestamp=\"1606095551161\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095551161\" />\r\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120\" timestamp=\"1605995900196\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.left\" timestamp=\"1606095551161\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095551161\" />\r\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120\" timestamp=\"1605995900195\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.right\" timestamp=\"1606095551161\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095551161\" />\r\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120\" timestamp=\"1605995900196\" />\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.bottom\" timestamp=\"1606091199150\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606091199150\" />\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.center\" timestamp=\"1606091199150\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606091199150\" />\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.left\" timestamp=\"1606091199150\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606091199150\" />\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.right\" timestamp=\"1606091199150\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606091199150\" />\r\n    <state x=\"2509\" y=\"106\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1606095578508\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state x=\"2509\" y=\"106\" key=\"Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095578508\" />\r\n    <state x=\"552\" y=\"252\" key=\"Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992769069\" />\r\n    <state x=\"2509\" y=\"54\" key=\"Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120\" timestamp=\"1605993764260\" />\r\n    <state x=\"2607\" y=\"78\" width=\"672\" height=\"678\" key=\"search.everywhere.popup\" timestamp=\"1606095324743\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state x=\"2607\" y=\"78\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095324743\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision b8b917769abe1517a5b9afb6a02b12318693239f)
++++ .idea/workspace.xml	(date 1606629665283)
+@@ -26,33 +26,16 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="13163c36-eb94-4db2-b582-2df5d6c16fe9" name="Default Changelist" comment="Added PasswordEncryption.java: It provides static classes to encode and decode strings, which is used to hide passwords.&#10;Changed Profile.java: Made the friends list initialize outside of the constructor, as it isn't required to be in the constructor. Also changed encryptedPassword in the constructor to save the password as an encrypted one (With a shift of 12).">
+-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/UserClient.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/UserClient2.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/UserClient__5_.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/CentralServer.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/ServerClientThread.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/SettingsAndConstants.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/UserClient.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/out/production/CS18000/PasswordEncryption.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/CentralServer.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/ServerClientThread.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/SettingsAndConstants.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/UserClient.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CS Project/src/DuplicateUserException.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/DuplicateUserException.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/CS Project/src/FriendsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/FriendsList.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CS Project/src/InvalidPasswordException.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/InvalidPasswordException.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CS Project/src/PasswordEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/PasswordEncryption.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CS Project/src/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/Profile.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CS Project/src/ProfileServer.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CS Project/src/UserClient.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CS Project/src/UserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/UserInput.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/DuplicateUserException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/DuplicateUserException.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/FriendsList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/FriendsList.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/InvalidPasswordException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/InvalidPasswordException.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/Profile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/Profile.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/ProfileServer.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/UserClient.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/CS Project/src/ServerAndClient/CentralServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/CentralServer.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/CS Project/src/ServerAndClient/ServerClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/ServerClientThread.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/CS Project/src/ServerAndClient/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/ServerAndClient/UserClient.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/CS18000/DuplicateUserException.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/CS18000/InvalidPasswordException.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/CentralServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/CentralServer.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/ServerClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/ServerClientThread.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/UserClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/ServerAndClient/UserClient.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/CS18000/UserInput$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/UserInput$1.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/CS18000/UserInput$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/UserInput$2.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/CS18000/UserInput.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/UserInput.class" afterDir="false" />
+@@ -89,7 +72,7 @@
+     </favorite-branches>
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="master" />
++        <entry key="$PROJECT_DIR$" value="testbranch" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -110,7 +93,7 @@
+       <recent name="C:\Users\Jaden\IdeaProjects\CS18000\CS Project\src" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Application.UserClient (1)">
++  <component name="RunManager" selected="Application.UserInput">
+     <configuration name="CentralServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="ServerAndClient.CentralServer" />
+       <module name="CS18000" />
+@@ -118,34 +101,32 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="UserClient (1)" type="Application" factoryName="Application" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="UserClient" />
++    <configuration name="ProfileServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="ProfileServer" />
+       <module name="CS18000" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="UserClient (3)" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="UserClient" />
+-      <module name="CS18000" />
++    <configuration name="UserClient (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="ServerAndClient.UserClient" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="ServerAndClient.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="UserClient (4)" type="Application" factoryName="Application" editBeforeRun="true" temporary="true" nameIsGenerated="true">
++    <configuration name="UserClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="UserClient" />
+       <module name="CS18000" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="UserClient" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="ServerAndClient.UserClient" />
+-      <module name="CS18000" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+     <configuration name="UserClient" type="Application" factoryName="Application" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="ServerAndClient.UserClient" />
+       <module name="CS18000" />
+@@ -153,22 +134,22 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="UserClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++    <configuration name="UserClient" type="Application" factoryName="Application" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="ServerAndClient.UserClient" />
+       <module name="CS18000" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="UserClient" type="Application" factoryName="Application" nameIsGenerated="true">
++    <configuration name="UserClient" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="ServerAndClient.UserClient" />
+       <module name="CS18000" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="UserClient" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="ServerAndClient.UserClient" />
++    <configuration name="UserInput" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="UserInput" />
+       <module name="CS18000" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+@@ -176,11 +157,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.UserClient (6)" />
+-        <item itemvalue="Application.CentralServer" />
+-        <item itemvalue="Application.UserClient (2)" />
+-        <item itemvalue="Application.UserClient (5)" />
++        <item itemvalue="Application.UserInput" />
+         <item itemvalue="Application.UserClient" />
++        <item itemvalue="Application.ProfileServer" />
++        <item itemvalue="Application.CentralServer" />
++        <item itemvalue="Application.UserClient (1)" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -213,62 +194,84 @@
+     <MESSAGE value="Test Branch" />
+     <MESSAGE value="Added PasswordEncryption.java: It provides static classes to encode and decode strings, which is used to hide passwords.&#10;Changed Profile.java: Made the friends list initialize outside of the constructor, as it isn't required to be in the constructor. Also changed encryptedPassword in the constructor to save the password as an encrypted one (With a shift of 12)." />
+     <MESSAGE value="Added: SettingsAndConstants.java&#10;Description: Holds constants that may be used elsewhere multiple times. Or just large strings.&#10;&#10;Added: ServerClientThread.java&#10;Description: Acts as the clients connection to the CentralServer. This is required for multiple connections to the CentralServer.&#10;&#10;Renamed: ProfileServer.class to CentralServer.java&#10;Description: As this is the central server used to run the whole platform, I feel like CentralServer would be a more understandable.&#10;&#10;Changed: UserClient.java&#10;Description: Recreated the simple client script but using the new ServerClientThread.java system.&#10;&#10;Added: ServerAndClient package&#10;Description: This is just so all of the client and server things are organized. We can do this to more of the files as we go on and if you need to use something from it, all you have to do is import the package at the top. (Intellij will do this/tell you automatically)" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Added: SettingsAndConstants.java&#10;Description: Holds constants that may be used elsewhere multiple times. Or just large strings.&#10;&#10;Added: ServerClientThread.java&#10;Description: Acts as the clients connection to the CentralServer. This is required for multiple connections to the CentralServer.&#10;&#10;Renamed: ProfileServer.class to CentralServer.java&#10;Description: As this is the central server used to run the whole platform, I feel like CentralServer would be a more understandable.&#10;&#10;Changed: UserClient.java&#10;Description: Recreated the simple client script but using the new ServerClientThread.java system.&#10;&#10;Added: ServerAndClient package&#10;Description: This is just so all of the client and server things are organized. We can do this to more of the files as we go on and if you need to use something from it, all you have to do is import the package at the top. (Intellij will do this/tell you automatically)" />
++    <MESSAGE value="Added: ProfileExceptions Package" />
++    <option name="LAST_COMMIT_MESSAGE" value="Added: ProfileExceptions Package" />
+   </component>
+   <component name="WindowStateProjectService">
+     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606092118870">
+       <screen x="1920" y="-165" width="2048" height="1120" />
+     </state>
+     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606092118870" />
+-    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1606095551161">
+-      <screen x="1920" y="-165" width="2048" height="1120" />
++    <state width="2005" height="315" key="GridCell.Tab.0.bottom" timestamp="1606370123564">
++      <screen x="1920" y="-165" width="2048" height="1112" />
+     </state>
++    <state width="1877" height="291" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1606257318542" />
++    <state width="2005" height="315" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112" timestamp="1606370123564" />
++    <state width="1877" height="346" key="GridCell.Tab.0.bottom/1920.-165.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1606101628303" />
+     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
+     <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
+     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
+-    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1606095551161">
+-      <screen x="1920" y="-165" width="2048" height="1120" />
++    <state width="2005" height="315" key="GridCell.Tab.0.center" timestamp="1606370123564">
++      <screen x="1920" y="-165" width="2048" height="1112" />
+     </state>
++    <state width="1877" height="291" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1606257318542" />
++    <state width="2005" height="315" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112" timestamp="1606370123564" />
++    <state width="1877" height="346" key="GridCell.Tab.0.center/1920.-165.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1606101628303" />
+     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
+     <state width="1877" height="282" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
+     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
+-    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1606095551161">
+-      <screen x="1920" y="-165" width="2048" height="1120" />
++    <state width="2005" height="315" key="GridCell.Tab.0.left" timestamp="1606370123564">
++      <screen x="1920" y="-165" width="2048" height="1112" />
+     </state>
++    <state width="1877" height="291" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1606257318542" />
++    <state width="2005" height="315" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112" timestamp="1606370123564" />
++    <state width="1877" height="346" key="GridCell.Tab.0.left/1920.-165.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1606101628303" />
+     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
+     <state width="1877" height="282" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
+     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900195" />
+-    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1606095551161">
+-      <screen x="1920" y="-165" width="2048" height="1120" />
++    <state width="2005" height="315" key="GridCell.Tab.0.right" timestamp="1606370123564">
++      <screen x="1920" y="-165" width="2048" height="1112" />
+     </state>
++    <state width="1877" height="291" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1606257318542" />
++    <state width="2005" height="315" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112" timestamp="1606370123564" />
++    <state width="1877" height="346" key="GridCell.Tab.0.right/1920.-165.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1606101628303" />
+     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
+     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
+     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
+-    <state width="2005" height="375" key="GridCell.Tab.1.bottom" timestamp="1606091199150">
+-      <screen x="1920" y="-165" width="2048" height="1120" />
++    <state width="1877" height="346" key="GridCell.Tab.1.bottom" timestamp="1606101628303">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
++    <state width="1877" height="346" key="GridCell.Tab.1.bottom/1920.-165.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1606101628303" />
+     <state width="2005" height="375" key="GridCell.Tab.1.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
+-    <state width="2005" height="375" key="GridCell.Tab.1.center" timestamp="1606091199150">
+-      <screen x="1920" y="-165" width="2048" height="1120" />
++    <state width="1877" height="346" key="GridCell.Tab.1.center" timestamp="1606101628303">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
++    <state width="1877" height="346" key="GridCell.Tab.1.center/1920.-165.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1606101628303" />
+     <state width="2005" height="375" key="GridCell.Tab.1.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
+-    <state width="2005" height="375" key="GridCell.Tab.1.left" timestamp="1606091199150">
+-      <screen x="1920" y="-165" width="2048" height="1120" />
++    <state width="1877" height="346" key="GridCell.Tab.1.left" timestamp="1606101628303">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
++    <state width="1877" height="346" key="GridCell.Tab.1.left/1920.-165.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1606101628303" />
+     <state width="2005" height="375" key="GridCell.Tab.1.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
+-    <state width="2005" height="375" key="GridCell.Tab.1.right" timestamp="1606091199150">
+-      <screen x="1920" y="-165" width="2048" height="1120" />
++    <state width="1877" height="346" key="GridCell.Tab.1.right" timestamp="1606101628303">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
++    <state width="1877" height="346" key="GridCell.Tab.1.right/1920.-165.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1606101628303" />
+     <state width="2005" height="375" key="GridCell.Tab.1.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
+-    <state x="2509" y="106" key="Vcs.Push.Dialog.v2" timestamp="1606095578508">
++    <state x="2509" y="106" key="Vcs.Push.Dialog.v2" timestamp="1606095800900">
+       <screen x="1920" y="-165" width="2048" height="1120" />
+     </state>
+-    <state x="2509" y="106" key="Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095578508" />
++    <state x="2509" y="106" key="Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095800900" />
+     <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992769069" />
+     <state x="2509" y="54" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605993764260" />
+-    <state x="2607" y="78" width="672" height="678" key="search.everywhere.popup" timestamp="1606095324743">
+-      <screen x="1920" y="-165" width="2048" height="1120" />
++    <state x="522" y="248" width="876" height="630" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1606100249439">
++      <screen x="0" y="0" width="1920" height="1040" />
++    </state>
++    <state x="522" y="248" width="876" height="630" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1920.-165.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1606100249439" />
++    <state x="644" y="226" width="672" height="630" key="search.everywhere.popup" timestamp="1606098280253">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
++    <state x="644" y="226" width="672" height="630" key="search.everywhere.popup/1920.-165.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1606098280253" />
+     <state x="2607" y="78" width="672" height="678" key="search.everywhere.popup/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095324743" />
+   </component>
+ </project>
+\ No newline at end of file
