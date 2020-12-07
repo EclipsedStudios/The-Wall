@@ -164,8 +164,8 @@ public class FriendsGUI extends JFrame implements ActionListener {
         optionsSouthPanel.add(backButton);
 
         friendsPanel.add(list, BorderLayout.WEST);
-        friendsPanel.add(list2, BorderLayout.CENTER);
-        friendsPanel.add(list3, BorderLayout.EAST);
+        incomingPanel.add(list2, BorderLayout.CENTER);
+        outgoingPanel.add(list3, BorderLayout.EAST);
         friendsPanel.add(optionsSouthPanel, BorderLayout.SOUTH);
 
         friendsFrame.getContentPane().add(friendsPanel);
