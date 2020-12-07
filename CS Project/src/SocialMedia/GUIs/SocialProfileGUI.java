@@ -7,14 +7,16 @@ import SocialMedia.UserInput;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 import java.io.*;
+import java.util.List;
 
 /**
  * The Social SocialMedia.Profile GUI.
  * It displays after the user logs in.
  * This class can only be run from UserInput.java!
  * @author Paul Gherghetta
- * @version 12/4/2020
+ * @version 12/6/2020
  */
 
 public class SocialProfileGUI extends JFrame implements ActionListener {
@@ -24,7 +26,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
     //Components
     public static JLabel titleLabel;
     public static JButton usersButton;
-    public static JButton myProfileButton;
+    public static JButton editProfileButton;
     public static JButton friendsListButton;
     public static JButton logoutButton;
     public static JLabel nameLabel;
@@ -36,10 +38,6 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
     public static JLabel friendsLabel;
     public static JLabel aboutMeLabel;
     public static JLabel aboutMeText;
-
-    public static Profile getGUIProfile(){
-        return GUIProfile;
-    }
 
     public static void createProfileGUI() {
         JFrame profileGUIFrame = new JFrame();
@@ -70,14 +68,15 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
             }
         });
 
-        myProfileButton = new JButton("My Profile");
-        friendsListButton = new JButton("Friends List");
-        friendsListButton.addActionListener(new ActionListener() {
+        editProfileButton = new JButton("Edit Profile");
+        editProfileButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 profileGUIFrame.setVisible(false);
-                FriendsGUI.createFriendsGUI();
+                EditProfileGUI.createEditProfileGUI();
             }
         });
+
+        friendsListButton = new JButton("Friends List");
 
         //Logout button
         logoutButton = new JButton("Log Out");
@@ -91,7 +90,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         });
 
         profileGUISouthComponentPanel.add(usersButton);
-        profileGUISouthComponentPanel.add(myProfileButton);
+        profileGUISouthComponentPanel.add(editProfileButton);
         profileGUISouthComponentPanel.add(friendsListButton);
         profileGUISouthComponentPanel.add(logoutButton);
         //Puts the south component panel into the south section of the
@@ -107,9 +106,9 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
                 BoxLayout.PAGE_AXIS));
         profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         //We need to get the profile created in UserInput here
-        for (int i = 0; i < UserClient.profilesList.size(); i++) {
-            if (UserClient.profilesList.get(i).getUsername().equals(UserInput.getUsernameAndPassword()[0])) {
-                GUIProfile = UserClient.profilesList.get(i);
+        for (int i = 0; i < Profile.getProfilesList().size(); i++) {
+            if (Profile.getProfilesList().get(i).getUsername().equals(UserInput.getUsernameAndPassword()[0])) {
+                GUIProfile = Profile.getProfilesList().get(i);
                 break;
             }
         }
@@ -127,7 +126,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         //Likes/Interests label
         likesInterestsLabel = new JLabel("          Likes/Interests: " + GUIProfile.getInterests());
         //Friends label
-        friendsLabel = new JLabel("          Friends: " + GUIProfile.getFriendsList().toString());
+        friendsLabel = new JLabel("          Friends: ");
         //About Me label
         aboutMeLabel = new JLabel("          About Me:");
         aboutMeText = new JLabel("          " + GUIProfile.getAboutMe());
@@ -223,36 +222,19 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         JButton sendFriendRequest = new JButton("Send Friend request");
         sendFriendRequest.addActionListener((ActionEvent event) -> {
            if (currentUser.getFriendsList().isFriendsWith(profile)) {
-
-               System.out.println(currentUser.getUsername() + " already friends w/ profile");
                JOptionPane.showMessageDialog(null, "You're already friends with " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
            } else if (currentUser.getFriendsList().hasOutgoingFriendRequest(profile)) {
                JOptionPane.showMessageDialog(null, "You've already sent a friend request to " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
-               System.out.println(currentUser.getUsername() + " already sent friend req to profile");
-
-
            } else if (currentUser.getFriendsList().hasIncomingFriendRequest(profile)) {
                // accept the request
-                JOptionPane.showMessageDialog(null, "You're now friends with " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "You're now friends with " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
                 currentUser.getFriendsList().addFriend(profile);
                 profile.getFriendsList().addFriend(currentUser);
-               try {
-                   UserInput.userClient.acceptFriend(profile);
-               } catch (IOException ex) {
-                   ex.printStackTrace();
-               }
-               System.out.println("current user now friends with profile");
             } else {
                // no connection to either
-               JOptionPane.showMessageDialog(null, "Friend request sent to " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
+               JOptionPane.showMessageDialog(null, "Friend request sent to " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
                currentUser.getFriendsList().getOutgoingFriendRequests().add(profile);
                profile.getFriendsList().getIncomingFriendRequests().add(profile);
-               System.out.println("current user now sent friend req to profile");
-               try {
-                   UserInput.userClient.addFriend(profile);
-               } catch (IOException ex) {
-                   ex.printStackTrace();
-               }
            }
         });
 
@@ -340,6 +322,11 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         profileGUIFrame.setSize(1000, 1000);
         profileGUIFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         profileGUIFrame.setVisible(true);
+    }
+
+    //A getter for GUIProfile
+    public static Profile getGUIProfile() {
+        return GUIProfile;
     }
 
 
