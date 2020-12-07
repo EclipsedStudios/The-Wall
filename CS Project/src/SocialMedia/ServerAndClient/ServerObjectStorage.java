@@ -20,6 +20,11 @@ public class ServerObjectStorage {
     public void saveUsersToDatabase() {
         File dir = new File("UsernameFiles");
         File[] directoryListing = dir.listFiles();
+        assert directoryListing != null;
+        for(File file : directoryListing)
+            if (!file.isDirectory())
+                file.delete();
+
         if (directoryListing != null) {
             for (Profile p : users) {
                 File file = new File("UsernameFiles/" + p.getUsername() + ".txt");
