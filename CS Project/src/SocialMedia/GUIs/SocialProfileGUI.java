@@ -85,16 +85,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
             }
         });
 
-        refreshButton = new JButton("Refresh Page");
-        refreshButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    UserInput.userClient.refreshPage();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }
-        });
+
 
         //Logout button
         logoutButton = new JButton("Log Out");
@@ -108,6 +99,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         });
 
         profileGUISouthComponentPanel.add(usersButton);
+
         profileGUISouthComponentPanel.add(editProfileButton);
         profileGUISouthComponentPanel.add(friendsListButton);
         profileGUISouthComponentPanel.add(logoutButton);
@@ -130,6 +122,36 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
                 break;
             }
         }
+
+        refreshButton = new JButton("Refresh Page");
+        refreshButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    UserInput.userClient.refreshPage();
+                    GUIProfile = UserClient.profile;
+                    nameLabel = new JLabel("          Name: " + GUIProfile.getName());
+                    //Print the username label with the username entered from logging in
+                    usernameLabel = new JLabel("          Username: " + UserInput.getUsernameAndPassword()[0]);
+                    //Age label
+                    ageLabel = new JLabel("          Age: " + GUIProfile.getAge());
+                    //Email label
+                    emailLabel = new JLabel("          Email: " + GUIProfile.getEmail());
+                    //Website label
+                    websiteLabel = new JLabel("          Website: " + GUIProfile.getWebsite());
+                    //Likes/Interests label
+                    likesInterestsLabel = new JLabel("          Likes/Interests: " + GUIProfile.getInterests());
+                    //Friends label
+                    friendsLabel = new JLabel("          Friends: ");
+                    //About Me label
+                    aboutMeLabel = new JLabel("          About Me:");
+                    aboutMeText = new JLabel("          " + GUIProfile.getAboutMe());
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        });
+
+        profileGUISouthComponentPanel.add(refreshButton);
 
         //Add 10 spaces before labels
         nameLabel = new JLabel("          Name: " + GUIProfile.getName());

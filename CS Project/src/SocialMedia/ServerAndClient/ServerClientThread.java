@@ -75,13 +75,15 @@ public class ServerClientThread extends Thread {
                         System.out.println("User has tried to update account");
                         try {
                             Profile profile = (Profile) objectInputStream.readObject();
+                            Profile toCopyTo = null;
                             System.out.println("Updated " + profile.getName());
                             for(Profile p : serverObjectStorage.users){
                                 if(profile.getUsername().equals(p.getUsername())){
-                                    serverObjectStorage.users.remove(p);
-                                    serverObjectStorage.users.add(profile);
+                                    toCopyTo = p;
                                 }
                             }
+                            serverObjectStorage.users.remove(toCopyTo);
+                            serverObjectStorage.users.add(profile);
                             serverObjectStorage.saveUsersToDatabase();
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
