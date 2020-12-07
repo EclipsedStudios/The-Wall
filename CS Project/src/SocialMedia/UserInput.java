@@ -461,6 +461,12 @@ public class UserInput extends JFrame implements ActionListener {
             return 6;
         }
 
+        for(Profile p : UserClient.profilesList){
+            if(p.getUsername().equals(usernameTextField.getText())){
+                return 6;
+            }
+        }
+
         //Then, check that likes/interests is separated by ", ".
         if (!likesInterestsTextField.getText().contains(", ")) {
             //Check for the input of just one like/interest
