@@ -169,15 +169,15 @@ public class UserClient extends Thread {
             objectInputStream = new ObjectInputStream(socket.getInputStream());
         }
         objectOutputStream.writeUTF("cancel friend");
-        System.out.println("Wrote UTF");
+        System.out.println("Cancelled Friend Request");
         objectOutputStream.flush();
         objectOutputStream.reset();
         objectOutputStream.writeObject(profile);
-        System.out.println("Wrote Profile: ");
+        System.out.println("Wrote profile to be cancelled: ");
         objectOutputStream.flush();
         objectOutputStream.reset();
         objectOutputStream.writeObject(UserClient.profile);
-        System.out.println("Wrote Profile: ");
+        System.out.println("Wrote your profile: ");
         objectOutputStream.flush();
         objectOutputStream.reset();
         oISUsed = true;
