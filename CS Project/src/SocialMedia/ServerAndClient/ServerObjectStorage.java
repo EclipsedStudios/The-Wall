@@ -34,7 +34,7 @@ public class ServerObjectStorage {
                 if (p.getEmail() != null)
                     pw.println(p.getEmail());
 
-                pw.println("No friends");
+                pw.println(p.getFriendsList().toString());
 
                 if (p.getWebsite() != null)
                     pw.println(p.getWebsite());
