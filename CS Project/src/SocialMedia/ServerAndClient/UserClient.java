@@ -33,7 +33,7 @@ public class UserClient extends Thread {
     public UserClient() {
         try {
             address = InetAddress.getLocalHost();
-            socket = new Socket(address, SettingsAndConstants.SERVER_PORT);
+            socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
@@ -61,8 +61,7 @@ public class UserClient extends Thread {
 
 
             if(!socket.isConnected()){
-                address = InetAddress.getLocalHost();
-                socket = new Socket(address, SettingsAndConstants.SERVER_PORT);
+                socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
                 objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
                 objectInputStream = new ObjectInputStream(socket.getInputStream());
             }
