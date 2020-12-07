@@ -152,6 +152,11 @@ public class UserClient extends Thread {
             while (line.compareToIgnoreCase("quit") != 0 && running.get()) {
                 if ("see users".equals(line)) {
                     profilesList = (ArrayList<Profile>) objectInputStream.readObject();
+                    for(Profile p : profilesList){
+                        if(p.getUsername().equals(profile.getUsername())){
+                            profile = p;
+                        }
+                    }
                 }
                 objectOutputStream.writeUTF(line);
                 objectOutputStream.flush();
