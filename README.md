@@ -9,7 +9,7 @@ If you are testing the server, first go to the SettingsAndConstants.java file an
 
 **EditProfileGUI:**
 
-Description: 
+Description: Displays the Edit GUI menu that allows users to change any field about their profile they want besides their username.
 
 Testing:
 
