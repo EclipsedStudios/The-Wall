@@ -53,30 +53,21 @@ public class ServerClientThread extends Thread {
             line = objectInputStream.readUTF();
             System.out.println(line);
             while (line.compareToIgnoreCase("quit") != 0) {
-                switch (line) {
-                    case "stop server" : System.exit(0);
-                    case "see users" : {
-                        System.out.println("User has tried to see users");
-                        objectOutputStream.writeObject(serverObjectStorage.users);
-                        objectOutputStream.flush();
-                        objectOutputStream.reset();
-                    }
-                    case "create profile" : {
-                        System.out.println("User has tried to add a user");
-                        try {
-                            Profile profile = (Profile) objectInputStream.readObject();
-                            System.out.println("added " + profile.getName());
-                            serverObjectStorage.users.add(profile);
-                            serverObjectStorage.saveUsersToDatabase();
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                    default : {
-                        objectOutputStream.writeUTF("You said: " + line);
-                        objectOutputStream.flush();
-                        objectOutputStream.reset();
+                if ("see users".equals(line)) {
+                    System.out.println("Received: " + line);
+                    objectOutputStream.writeObject(serverObjectStorage.users);
+                    objectOutputStream.flush();
+                    objectOutputStream.reset();
+                    System.out.println("Should have sent object");
+                } else if ("create profile".equals(line)) {
+                    System.out.println("User has tried to add a user");
+                    try {
+                        Profile profile = (Profile) objectInputStream.readObject();
+                        System.out.println("added " + profile.getName());
+                        serverObjectStorage.users.add(profile);
+                        serverObjectStorage.saveUsersToDatabase();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
                     }
                 }
                 System.out.println(socket.getInetAddress() + ":" + socket.getPort() + " said: " + line);

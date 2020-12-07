@@ -48,7 +48,6 @@ public class CentralServer {
                     try {
                         reader = new BufferedReader(new FileReader(child));
                         name = reader.readLine();
-                        System.out.println("Loaded user: " + name + " from database");
                         email = reader.readLine();
                         friendsList = reader.readLine();
                         website = reader.readLine();
