@@ -1,0 +1,88 @@
+
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"BranchesTreeState\">\n    <expand>\n      <path>\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n      </path>\n      <path>\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n      </path>\n      <path>\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\n      </path>\n    </expand>\n    <select>\n      <path>\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\n        <item name=\"BRANCH:testbranch\" type=\"e8cecc67:BranchNodeDescriptor\" />\n      </path>\n    </select>\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"13163c36-eb94-4db2-b582-2df5d6c16fe9\" name=\"Default Changelist\" comment=\"Test Branch\">\n      <change afterPath=\"$PROJECT_DIR$/CS Project/src/PasswordEncryption.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/CS Project/src/Profile.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CS Project/src/Profile.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <favorite-branches>\n      <branch-storage>\n        <map>\n          <entry type=\"LOCAL\">\n            <value>\n              <list>\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"testbranch\" />\n              </list>\n            </value>\n          </entry>\n        </map>\n      </branch-storage>\n    </favorite-branches>\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"JupyterTrust\" id=\"fe41e3a6-7fc2-4c5d-ad6a-39fb370f4803\" />\n  <component name=\"ProjectId\" id=\"1kcGV0R7adV96IvCAAmvpvYmlQo\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"C:\\Users\\Jaden\\IdeaProjects\\CS18000\\CS Project\\src\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.UserClient\">\n    <configuration name=\"ProfileServer\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"ProfileServer\" />\n      <module name=\"CS18000\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"UserClient\" />\n      <module name=\"CS18000\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.UserClient\" />\n        <item itemvalue=\"Application.ProfileServer\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"testbranch\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Test Branch\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Test Branch\" />\n  </component>\n  <component name=\"WindowStateProjectService\">\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1605992528474\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.center\" timestamp=\"1605992528474\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.left\" timestamp=\"1605992528474\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.right\" timestamp=\"1605992528474\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\n    <state x=\"552\" y=\"252\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1605992769069\">\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\n    </state>\n    <state x=\"552\" y=\"252\" key=\"Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992769069\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision b327059d495f1b93f484a85e4bd8fbde41687390)
++++ .idea/workspace.xml	(date 1606767825139)
+@@ -26,9 +26,7 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="13163c36-eb94-4db2-b582-2df5d6c16fe9" name="Default Changelist" comment="Test Branch">
+-      <change afterPath="$PROJECT_DIR$/CS Project/src/PasswordEncryption.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CS Project/src/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/Profile.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -64,6 +62,9 @@
+   </component>
+   <component name="PropertiesComponent">
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
++    <property name="WebServerToolWindowFactoryState" value="false" />
++    <property name="aspect.path.notification.shown" value="true" />
++    <property name="nodejs_package_manager_path" value="npm" />
+   </component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+@@ -81,6 +82,17 @@
+     <configuration name="UserClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="UserClient" />
+       <module name="CS18000" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
++      <option name="arquillianRunConfiguration">
++        <value>
++          <option name="containerStateName" value="" />
++        </value>
++      </option>
++      <option name="TEST_OBJECT" value="class" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+@@ -93,6 +105,20 @@
+     </recent_temporary>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="13163c36-eb94-4db2-b582-2df5d6c16fe9" name="Default Changelist" comment="Test Branch" />
++      <created>1606710086299</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1606710086299</updated>
++      <workItem from="1606710087399" duration="834000" />
++    </task>
++    <servers />
++  </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
+   <component name="Vcs.Log.Tabs.Properties">
+     <option name="TAB_STATES">
+       <map>
+@@ -115,6 +141,7 @@
+         </entry>
+       </map>
+     </option>
++    <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Test Branch" />
+@@ -141,5 +168,9 @@
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992769069" />
++    <state x="476" y="357" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606710073948">
++      <screen x="0" y="23" width="1440" height="826" />
++    </state>
++    <state x="476" y="357" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.826/-1920.23.1920.1057@0.23.1440.826" timestamp="1606710073948" />
+   </component>
+ </project>
+\ No newline at end of file
