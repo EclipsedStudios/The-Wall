@@ -4,8 +4,6 @@ import SocialMedia.GUIs.EditProfileGUI;
 import SocialMedia.GUIs.FriendsGUI;
 import SocialMedia.GUIs.SocialProfileGUI;
 import SocialMedia.GUIs.UsersListGUI;
-import SocialMedia.ProfileExceptions.DuplicateUserException;
-import SocialMedia.ProfileExceptions.InvalidPasswordException;
 import SocialMedia.ServerAndClient.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -380,44 +378,6 @@ public class Tester {
     }
 
     /**
-     * A method to verify the password encryption class exists.
-     */
-    @Test
-    public void passwordEncryptionExists() {
-        try {
-            Class.forName("SocialMedia.PasswordEncryption");
-        } catch (ClassNotFoundException e) {
-            Assert.fail("Need a PasswordEncryption class");
-        }
-    }
-
-    /**
-     * A method to verify the password encryption class extends the right classes.
-     */
-    @Test
-    public void passwordEncryptionExtends() {
-        assertEquals(Object.class, PasswordEncryption.class.getSuperclass());
-    }
-
-    /**
-     * A method to verify the password encryption class has correctly formatted methods.
-     */
-    @Test
-    public void passwordEncryptionMethods() {
-        try {
-            assertEquals(String.class, PasswordEncryption.class.getMethod("encode", String.class, int.class).getReturnType());
-            assertEquals(true, Modifier.isPublic(PasswordEncryption.class.getMethod("encode", String.class, int.class).getModifiers()));
-            assertEquals(true, Modifier.isStatic(PasswordEncryption.class.getMethod("encode", String.class, int.class).getModifiers()));
-
-            assertEquals(String.class, PasswordEncryption.class.getMethod("decode", String.class, int.class).getReturnType());
-            assertEquals(true, Modifier.isPublic(PasswordEncryption.class.getMethod("decode", String.class, int.class).getModifiers()));
-            assertEquals(true, Modifier.isStatic(PasswordEncryption.class.getMethod("decode", String.class, int.class).getModifiers()));
-        } catch (NoSuchMethodException e) {
-            Assert.fail("Missing methods");
-        }
-    }
-
-    /**
      * A method to verify the profile class exists.
      */
     @Test
@@ -717,46 +677,6 @@ public class Tester {
         } catch (NoSuchMethodException e) {
             Assert.fail("Missing methods");
         }
-    }
-
-    /**
-     * A method to verify the duplicate user exception class exists.
-     */
-    @Test
-    public void duplicateUserExceptionExists() {
-        try {
-            Class.forName("SocialMedia.ProfileExceptions.DuplicateUserException");
-        } catch (ClassNotFoundException e) {
-            Assert.fail("Need a DuplicateUserException class");
-        }
-    }
-
-    /**
-     * A method to verify the duplicate user exception class extends the right classes.
-     */
-    @Test
-    public void duplicateUserExceptionExtends() {
-        assertEquals(Exception.class, DuplicateUserException.class.getSuperclass());
-    }
-
-    /**
-     * A method to verify the invalid password exception class exists.
-     */
-    @Test
-    public void invalidPasswordExceptionExists() {
-        try {
-            Class.forName("SocialMedia.ProfileExceptions.InvalidPasswordException");
-        } catch (ClassNotFoundException e) {
-            Assert.fail("Need a InvalidPasswordException class");
-        }
-    }
-
-    /**
-     * A method to verify the invalid password exception class extends the right classes.
-     */
-    @Test
-    public void invalidPasswordExceptionExtends() {
-        assertEquals(Exception.class, InvalidPasswordException.class.getSuperclass());
     }
 
     /**
