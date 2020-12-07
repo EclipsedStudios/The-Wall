@@ -29,6 +29,8 @@ public class FriendsList implements Serializable {
      */
     public FriendsList(ArrayList<Profile> friends) {
         this.friends = friends;
+        incomingFriendRequests = new ArrayList<>();
+        outgoingFriendRequests = new ArrayList<>();
     }
 
     /**

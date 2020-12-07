@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.Socket;
@@ -296,6 +297,7 @@ public class Tester {
     @Test
     public void friendsListExtends() {
         assertEquals(Object.class, FriendsList.class.getSuperclass());
+        assertEquals(Serializable.class, FriendsList.class.getInterfaces()[0]);
     }
 
     /**
@@ -306,6 +308,12 @@ public class Tester {
         try {
             assertEquals(ArrayList.class, FriendsList.class.getField("friends").getType());
             assertEquals(true, Modifier.isPublic(FriendsList.class.getField("friends").getModifiers()));
+
+            assertEquals(ArrayList.class, FriendsList.class.getField("incomingFriendRequests").getType());
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getField("incomingFriendRequests").getModifiers()));
+
+            assertEquals(ArrayList.class, FriendsList.class.getField("outgoingFriendRequests").getType());
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getField("outgoingFriendRequests").getModifiers()));
         } catch (NoSuchFieldException e) {
             Assert.fail("Missing fields");
         }
@@ -320,8 +328,12 @@ public class Tester {
             //Constructor Test
             assertEquals(true, Modifier.isPublic(FriendsList.class.getConstructors()[0].getModifiers()));
             ArrayList<Profile> friend1 = new ArrayList<>();
+            ArrayList<Profile> incoming = new ArrayList<Profile>();
+            ArrayList<Profile> outgoing = new ArrayList<Profile>();
             FriendsList friendsList1 = new FriendsList();
             assertEquals(friend1, friendsList1.friends);
+            assertEquals(incoming, friendsList1.incomingFriendRequests);
+            assertEquals(outgoing, friendsList1.outgoingFriendRequests);
             assertEquals(true, Modifier.isPublic(FriendsList.class.getConstructors()[1].getModifiers()));
             Profile steve = new Profile("Steve", "username", 18, "steve@purdue.edu", "Password");
             Profile mike = new Profile("Mike", "michaelb", 21, "michaelb@purdue.edu", "Password123");
@@ -330,9 +342,26 @@ public class Tester {
             friend2.add(mike);
             FriendsList friendsList2 = new FriendsList(friend2);
             assertEquals(friend2, friendsList2.friends);
+            assertEquals(incoming, friendsList2.incomingFriendRequests);
+            assertEquals(outgoing, friendsList2.outgoingFriendRequests);
 
             assertEquals(ArrayList.class, FriendsList.class.getMethod("getFriends").getReturnType());
             assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("getFriends").getModifiers()));
+
+            assertEquals(boolean.class, FriendsList.class.getMethod("isFriendsWith", Profile.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("isFriendsWith", Profile.class).getModifiers()));
+
+            assertEquals(boolean.class, FriendsList.class.getMethod("hasOutgoingFriendRequest", Profile.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("hasOutgoingFriendRequest", Profile.class).getModifiers()));
+
+            assertEquals(boolean.class, FriendsList.class.getMethod("hasIncomingFriendRequest", Profile.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("hasIncomingFriendRequest", Profile.class).getModifiers()));
+
+            assertEquals(ArrayList.class, FriendsList.class.getMethod("getOutgoingFriendRequests").getReturnType());
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("getOutgoingFriendRequests").getModifiers()));
+
+            assertEquals(ArrayList.class, FriendsList.class.getMethod("getIncomingFriendRequests").getReturnType());
+            assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("getIncomingFriendRequests").getModifiers()));
 
             assertEquals(void.class, FriendsList.class.getMethod("addFriend", Profile.class).getReturnType());
             assertEquals(true, Modifier.isPublic(FriendsList.class.getMethod("addFriend", Profile.class).getModifiers()));
@@ -994,6 +1023,29 @@ public class Tester {
         f1.removeFriend(cam);
         assertEquals(friend1, f1.getFriends());
 
+        //test is friends with method
+        assertEquals(true, f1.isFriendsWith(steve));
+        assertEquals(false, f1.isFriendsWith(cam));
+
+        //test has outgoing friend request method
+        f1.outgoingFriendRequests.add(cam);
+        assertEquals(true, f1.hasOutgoingFriendRequest(cam));
+        assertEquals(false, f1.hasOutgoingFriendRequest(emily));
+
+        //test has incoming friend request method
+        f1.incomingFriendRequests.add(emily);
+        assertEquals(true, f1.hasIncomingFriendRequest(emily));
+        assertEquals(false, f1.hasIncomingFriendRequest(cam));
+
+        //test get outgoing friend requests method
+        ArrayList<Profile> outgoing = new ArrayList<Profile>();
+        outgoing.add(cam);
+        assertEquals(outgoing, f1.getOutgoingFriendRequests());
+
+        //test get incoming friend requests method
+        ArrayList<Profile> incoming = new ArrayList<Profile>();
+        incoming.add(emily);
+        assertEquals(incoming, f1.getIncomingFriendRequests());
 
         //test toString method
         String correctFormat = "username, michaelb, emilyf";
