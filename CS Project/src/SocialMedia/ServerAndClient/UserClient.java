@@ -138,6 +138,11 @@ public class UserClient extends Thread {
         System.out.println("Wrote UTF");
         objectOutputStream.flush();
         objectOutputStream.reset();
+        for(Profile p : profilesList){
+            if(p.getUsername().equals(profile.getUsername())){
+                profile = p;
+            }
+        }
         oISUsed = true;
     }
 
