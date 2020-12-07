@@ -201,6 +201,12 @@ public class FriendsGUI extends JFrame implements ActionListener {
             }
             friendsFrame.setVisible(false);
             FriendsGUI.createFriendsGUI();
+            currentUser = UserClient.profile;
+            try {
+                UserInput.userClient.refreshPage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             friendsFrame.setVisible(false);
             FriendsGUI.createFriendsGUI();
         });
