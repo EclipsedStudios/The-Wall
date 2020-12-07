@@ -71,6 +71,17 @@ public class ServerClientThread extends Thread {
                             e.printStackTrace();
                         }
                         break;
+                    case "delete profile":
+                        System.out.println("User has deleted their account");
+                        try {
+                            Profile profile = (Profile) objectInputStream.readObject();
+                            System.out.println("remove " + profile.getName());
+                            serverObjectStorage.users.removeIf(p -> p.getUsername().equals(profile.getUsername()));
+                            serverObjectStorage.saveUsersToDatabase();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                     case "update profile":
                         System.out.println("User has tried to update account");
                         try {

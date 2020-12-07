@@ -128,6 +128,23 @@ public class UserClient extends Thread {
         oISUsed = true;
     }
 
+    public void deleteAccount(Profile profile) throws IOException {
+        if(!socket.isConnected()){
+            socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
+            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+        }
+        objectOutputStream.writeUTF("delete profile");
+        System.out.println("Wrote UTF");
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        objectOutputStream.writeObject(profile);
+        System.out.println("Wrote Profile: " + profile.getName());
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        oISUsed = true;
+    }
+
     public void refreshPage() throws IOException {
         if(!socket.isConnected()){
             socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);

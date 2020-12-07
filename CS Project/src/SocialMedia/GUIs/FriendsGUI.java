@@ -120,7 +120,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         // Accept friend request button
         JButton acceptButton;
         if (incoming.length == 0) {
-            acceptButton = new JButton("Accept 0 friend requests");
+            acceptButton = new JButton("You have no friend requests");
         } else {
             acceptButton = new JButton("Accept " + incoming[0] + "?");
         }
@@ -162,6 +162,48 @@ public class FriendsGUI extends JFrame implements ActionListener {
 
         optionsSouthPanel.add(acceptButton);
         incomingPanel.add(list2);
+
+        // Accept friend request button
+        JButton denyIncomingButton;
+        if (incoming.length == 0) {
+            denyIncomingButton = new JButton("You have no friend requests");
+        } else {
+            denyIncomingButton = new JButton("Accept " + incoming[0] + "?");
+        }
+        list2.addListSelectionListener((ListSelectionEvent event) -> {
+            if (!event.getValueIsAdjusting()) {
+                denyIncomingButton.setText("Accept " + list.getSelectedValue() + "?");
+            }
+        });
+
+        denyIncomingButton.addActionListener((ActionEvent event) -> {
+            Profile currentUser = UserClient.profile;
+            try {
+                UserInput.userClient.refreshPage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // check if user still has incoming req since may be cancelled
+            String username = denyIncomingButton.getText().split(" ")[1].substring(0, acceptButton.getText().split(" ")[1].length() - 1);
+            Profile userToAdd = UserClient.getProfileWith(username);
+            if (currentUser.getFriendsList().hasIncomingFriendRequest(userToAdd)) {
+
+                try {
+                    UserInput.userClient.cancelFriendRequest(userToAdd);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "That person has cancelled their friend request to you!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
+            }
+
+            friendsFrame.setVisible(false);
+            FriendsGUI.createFriendsGUI();
+        });
+
+        optionsSouthPanel.add(denyIncomingButton);
+
 
         // outgoingPanel stuff
 
