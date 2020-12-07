@@ -27,26 +27,23 @@ public class FriendsGUI extends JFrame implements ActionListener {
 
     public static void createFriendsGUI() {
 
-        friendsList = Profile.getFriendsList();
+        friendsList = FriendsList.getFriends();
 
         Font font = new Font("Cambria", Font.BOLD, 15);
-        JFrame friendsFrame = new JFrame();
+        JFrame friendsFrame = new JFrame("Friends Menu");
         JPanel friendsPanel = new JPanel();
         friendsPanel.setLayout(new BorderLayout());
 
+        JPanel optionsSouthPanel = new JPanel();
+        optionsSouthPanel.setLayout(new FlowLayout());
+
         // NORTH section of friendsPanel
         titleLabel = new JLabel("                                                   " +
-                "                                                     Users (" + friendsList.size() + ")");
+                "                                                     Friends: (" + friendsList.size() + ")");
         titleLabel.setFont(font);
 
         friendsPanel.add(titleLabel, BorderLayout.NORTH);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        friendsFrame.getContentPane().add(friendsPanel);
-
-        friendsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        friendsFrame.setSize(1000, 1000);
-        friendsFrame.setVisible(true);
 
         int counter = 0;
         JList<String> list;
@@ -59,6 +56,27 @@ public class FriendsGUI extends JFrame implements ActionListener {
         list = new JList<>(friends);
         list.setSelectedIndex(0);
 
+        // Back button
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener((ActionEvent event) -> {
+            friendsFrame.setVisible(false);
+            SocialProfileGUI.createProfileGUI();
+        });
+
+        optionsSouthPanel.add(backButton);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setLayoutOrientation(JList.VERTICAL);
+        list.setVisibleRowCount(-1);
+
+        friendsPanel.add(list, BorderLayout.WEST);
+        friendsPanel.add(optionsSouthPanel, BorderLayout.SOUTH);
+        // friendsPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        friendsFrame.getContentPane().add(friendsPanel);
+
+        friendsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        friendsFrame.setSize(1000,1000);
+        friendsFrame.setVisible(true);
     }
 
         @Override
