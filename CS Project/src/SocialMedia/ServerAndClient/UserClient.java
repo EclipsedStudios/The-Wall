@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Represents the user client
  *
- * @author Jaden Baker
+ * @author Jaden Baker, Aakash Jariwala
  * @version 12/7/20
  */
 public class UserClient extends Thread {
@@ -55,12 +55,16 @@ public class UserClient extends Thread {
         running.set(false);
     }
 
+
     public boolean login(String username, String rawPassword) throws IOException {
         try {
 
 
             if(!socket.isConnected()){
-                socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
+                if(!SettingsAndConstants.LOCALHOST)
+                    socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
+                else
+                    socket = new Socket(InetAddress.getLocalHost(), SettingsAndConstants.SERVER_PORT);
                 objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
                 objectInputStream = new ObjectInputStream(socket.getInputStream());
             }
