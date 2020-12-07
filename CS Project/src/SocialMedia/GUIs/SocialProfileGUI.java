@@ -77,6 +77,12 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         });
 
         friendsListButton = new JButton("Friends List");
+        friendsListButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                profileGUIFrame.setVisible(false);
+                FriendsGUI.createFriendsGUI();
+            }
+        });
 
         //Logout button
         logoutButton = new JButton("Log Out");
@@ -227,23 +233,25 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
 
                 System.out.println(currentUser.getUsername() + " already friends w/ profile");
                 JOptionPane.showMessageDialog(null, "You're already friends with " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
-            } else if (currentUser.getFriendsList().hasOutgoingFriendRequest(profile)) {
-                JOptionPane.showMessageDialog(null, "You've already sent a friend request to " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
-                System.out.println(currentUser.getUsername() + " already sent friend req to profile");
-
-
             } else if (currentUser.getFriendsList().hasIncomingFriendRequest(profile)) {
                 // accept the request
                 JOptionPane.showMessageDialog(null, "You're now friends with " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
                 currentUser.getFriendsList().addFriend(profile);
                 profile.getFriendsList().addFriend(currentUser);
+
                 try {
                     UserInput.userClient.acceptFriend(profile);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
                 System.out.println("current user now friends with profile");
-            } else {
+            } else if (currentUser.getFriendsList().hasOutgoingFriendRequest(profile)) {
+                JOptionPane.showMessageDialog(null, "You've already sent a friend request to " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
+                System.out.println(currentUser.getUsername() + " already sent friend req to profile");
+                System.out.println(currentUser.getFriendsList().incomingFriendRequests.size() + " incoming size");
+
+
+            }  else {
                 // no connection to either
                 JOptionPane.showMessageDialog(null, "Friend request sent to " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
                 currentUser.getFriendsList().getOutgoingFriendRequests().add(profile);
