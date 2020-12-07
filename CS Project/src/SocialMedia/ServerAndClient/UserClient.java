@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class UserClient extends Thread {
 
-    public static ArrayList<Profile> profilesList;
+    public static ArrayList<Profile> profilesList = new ArrayList<>();
     private final AtomicBoolean running = new AtomicBoolean(false);
     public static Profile profile;
     public InetAddress address = null; // Get localhost
