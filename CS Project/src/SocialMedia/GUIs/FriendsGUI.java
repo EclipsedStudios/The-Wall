@@ -173,7 +173,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         }
         list2.addListSelectionListener((ListSelectionEvent event) -> {
             if (!event.getValueIsAdjusting()) {
-                denyIncomingButton.setText("Accept " + list.getSelectedValue() + "?");
+                denyIncomingButton.setText("Deny " + list.getSelectedValue() + "?");
             }
         });
 
