@@ -82,9 +82,13 @@ public class ServerClientThread extends Thread {
                                 }
                             }
                             System.out.println("Updated " + profile.getName());
-                            serverObjectStorage.users.remove(toCopyTo);
-                            serverObjectStorage.users.add(profile);
-                            serverObjectStorage.saveUsersToDatabase();
+                            if(!(toCopyTo == null)) {
+                                serverObjectStorage.users.remove(toCopyTo);
+                                serverObjectStorage.users.add(profile);
+                                serverObjectStorage.saveUsersToDatabase();
+                            } else {
+                                System.out.println("Cant update user, name is null");
+                            }
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }

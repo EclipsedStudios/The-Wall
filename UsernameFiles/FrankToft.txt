@@ -1,8 +1,8 @@
-null
-toft@gmail.com
-Frank2, jaden2
-www.frank.com
+Frank Toft
+gmail@gmail.com
+Frank2, jaden2, MrPurdue, aaa
+google.com
 [Biking, Pop Music, Reading]
-I am the holy Frank Toft
+boo
 30
 Wispy

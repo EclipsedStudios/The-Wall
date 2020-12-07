@@ -164,7 +164,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         if (outgoing.length == 0) {
             denyButton = new JButton("Cancel 0 friend requests");
         } else {
-            denyButton = new JButton("Cancel request to " + incoming[0] + "?");
+            denyButton = new JButton("Cancel request to " + outgoing[0] + "?");
         }
         list3.addListSelectionListener((ListSelectionEvent event) -> {
             if (!event.getValueIsAdjusting()) {
