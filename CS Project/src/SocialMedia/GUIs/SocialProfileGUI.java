@@ -116,12 +116,11 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
                 BoxLayout.PAGE_AXIS));
         profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         //We need to get the profile created in UserInput here
-        for (int i = 0; i < UserClient.profilesList.size(); i++) {
-            if (UserClient.profilesList.get(i).getUsername().equals(UserInput.getUsernameAndPassword()[0])) {
-                GUIProfile = UserClient.profilesList.get(i);
-                break;
-            }
-        }
+
+        GUIProfile = UserClient.profile;
+        
+
+
 
         //Add 10 spaces before labels
         nameLabel = new JLabel("          Name: " + GUIProfile.getName());
@@ -227,7 +226,6 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
             UsersListGUI.createUsersListGUI();
         });
 
-        /** Need to check if currentUser is already friends with, or has an outgoing friend request already to desired user **/
 
         /** Need to check if currentUser is already friends with, or has an outgoing friend request already to desired user **/
 

@@ -18,6 +18,15 @@ import java.util.List;
  * 4. Edit profiles - Paul
  *
  */
+
+
+/**UPDATED TODO LIST
+ *
+ * 1. Friends list GUI incoming & outgoing (accepting / denying incoming requests & rescinding outgoing)
+ * 2. Message dialogs for friend requests displaying incorrectly
+ * 3. Editing profile & updating main profile window to show friends and new information
+ * 4. Deletion button to delete your profile in editing menu (w/ confirm dialog box)
+ */
 public class Profile implements Serializable {
 
     public static ArrayList<Profile> profilesList = new ArrayList<>();
@@ -88,6 +97,8 @@ public class Profile implements Serializable {
         return null;
 
     }
+
+
 
     public static void setProfilesList(ArrayList<Profile> profiles) {
         profilesList = profiles;
