@@ -184,7 +184,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         });
 
         denyButton.addActionListener((ActionEvent event) -> {
-            String username = denyButton.getText().split(" ")[1].substring(0, denyButton.getText().split(" ")[1].length() - 1);
+            String username = denyButton.getText().split(" ")[3].substring(0, denyButton.getText().split(" ")[3].length() - 1);
             Profile user = UserClient.getProfileWith(username);
             UserClient.profile.getFriendsList().removeOutgoingFriendRequest(user);
             user.getFriendsList().removeIncomingFriendRequest(UserClient.profile);
