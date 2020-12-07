@@ -125,7 +125,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         //Likes/Interests label
         likesInterestsLabel = new JLabel("          Likes/Interests: " + GUIProfile.getInterests());
         //Friends label
-        friendsLabel = new JLabel("          Friends: ");
+        friendsLabel = new JLabel("          Friends: " + GUIProfile.getFriendsList().toString());
         //About Me label
         aboutMeLabel = new JLabel("          About Me:");
         aboutMeText = new JLabel("          " + GUIProfile.getAboutMe());
