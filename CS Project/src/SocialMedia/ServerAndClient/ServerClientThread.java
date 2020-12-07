@@ -113,9 +113,12 @@ public class ServerClientThread extends Thread {
                                 }
                             }
                             System.out.println(profile1.friendsList.incomingFriendRequests.size() + " | " + profile2.friendsList.outgoingFriendRequests.size());
-                            if(profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)){
+                            if(profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)
+                                    || profile2.friendsList.incomingFriendRequests.contains(profile1) && profile1.friendsList.outgoingFriendRequests.contains(profile2)){
                                 profile1.friendsList.addFriend(profile2);
                                 profile2.friendsList.addFriend(profile1);
+                                profile1.friendsList.incomingFriendRequests.remove(profile2);
+                                profile2.friendsList.outgoingFriendRequests.remove(profile1);
                                 System.out.println(profile1.getUsername() + " has added " + profile2.getUsername() + " as a friend");
                             }
                             serverObjectStorage.saveUsersToDatabase();
