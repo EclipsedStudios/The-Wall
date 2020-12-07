@@ -26,7 +26,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Finished testing for FriendsList class">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/SocialProfileGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/SocialProfileGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,7 +278,21 @@
       <option name="project" value="LOCAL" />
       <updated>1607302996703</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Minor changes to classes">
+      <created>1607304190663</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1607304190663</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Finished testing for FriendsList class">
+      <created>1607304311991</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1607304311991</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -316,9 +330,9 @@
     <MESSAGE value="Added tests for constructors where needed. Updated a few constructors for classes where some objects were not initialized." />
     <MESSAGE value="Updated test for class changes." />
     <MESSAGE value="Fixed the server client thread class test cases to use reflection so the method can stay private." />
-    <MESSAGE value="Finished testing for FriendsList class" />
     <MESSAGE value="Minor changes to classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor changes to classes" />
+    <MESSAGE value="Finished testing for FriendsList class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished testing for FriendsList class" />
   </component>
   <component name="WindowStateProjectService">
     <state x="743" y="414" width="433" height="218" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1607281566500">
@@ -381,15 +395,19 @@
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607223487001" />
     <state width="2005" height="375" key="GridCell.Tab.1.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
+    <state x="-1339" y="260" key="MultipleFileMergeDialog" timestamp="1607304322771">
+      <screen x="-1920" y="23" width="1920" height="1057" />
+    </state>
+    <state x="-1339" y="260" key="MultipleFileMergeDialog/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607304322771" />
     <state x="440" y="94" key="SettingsEditor" timestamp="1607223756916">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607223756916" />
-    <state x="-1308" y="218" key="Vcs.Push.Dialog.v2" timestamp="1607303293787">
+    <state x="-1308" y="218" key="Vcs.Push.Dialog.v2" timestamp="1607304302572">
       <screen x="-1920" y="23" width="1920" height="1057" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607288846285" />
-    <state x="-1308" y="218" key="Vcs.Push.Dialog.v2/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607303293787" />
+    <state x="-1308" y="218" key="Vcs.Push.Dialog.v2/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607304302572" />
     <state x="2509" y="106" key="Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095578508" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992769069" />
     <state x="2509" y="54" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605993764260" />
@@ -397,11 +415,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="664" y="411" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1606934339677" />
-    <state x="-1143" y="463" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607304170578">
+    <state x="-1143" y="463" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607304318428">
       <screen x="-1920" y="23" width="1920" height="1057" />
     </state>
     <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607216261770" />
-    <state x="-1143" y="463" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607304170578" />
+    <state x="-1143" y="463" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607304318428" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1607223349423">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -70,6 +70,12 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
 
         myProfileButton = new JButton("My Profile");
         friendsListButton = new JButton("Friends List");
+        friendsListButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                profileGUIFrame.setVisible(false);
+                FriendsGUI.createFriendsGUI();
+            }
+        });
 
         //Logout button
         logoutButton = new JButton("Log Out");
