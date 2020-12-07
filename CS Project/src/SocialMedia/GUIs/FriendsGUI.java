@@ -167,7 +167,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
 
         outgoingLabel = new JLabel("Pending requests:");
         outgoingLabel.setFont(font);
-        incomingPanel.add(outgoingLabel, BorderLayout.NORTH);
+        outgoingPanel.add(outgoingLabel, BorderLayout.NORTH);
         outgoingLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         int counter3 = 0;
