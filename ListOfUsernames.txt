@@ -10,7 +10,5 @@ Frank3
 FrankToft
 jaden2
 JamesMartin
-MrPurdue
 test
 test2
-testaccount

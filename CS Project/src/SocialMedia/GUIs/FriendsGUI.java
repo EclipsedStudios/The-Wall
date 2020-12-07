@@ -3,6 +3,7 @@ package SocialMedia.GUIs;
 import SocialMedia.FriendsList;
 import SocialMedia.Profile;
 import SocialMedia.ServerAndClient.UserClient;
+import SocialMedia.UserInput;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -10,6 +11,7 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -83,7 +85,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         JList<String> list;
         String[] friends = new String[friendsList.size()];
         for (int i = 0; i < friendsList.size(); i++) {
-            friends[counter] = friendsList.get(i).getName();
+            friends[counter] = friendsList.get(i).getUsername();
             counter++;
         }
         list = new JList<>(friends);
@@ -105,7 +107,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         JList<String> list2;
         String[] incoming = new String[incomingList.size()];
         for (int i = 0; i < incomingList.size(); i++) {
-            incoming[counter2] = incomingList.get(i).getName();
+            incoming[counter2] = incomingList.get(i).getUsername();
             counter2++;
         }
         list2 = new JList<>(incoming);
@@ -130,7 +132,16 @@ public class FriendsGUI extends JFrame implements ActionListener {
 
         acceptButton.addActionListener((ActionEvent event) -> {
             String username = acceptButton.getText().split(" ")[1].substring(0, acceptButton.getText().split(" ")[1].length() - 1);
-            friendsList.add(UserClient.getProfileWith(username));
+            Profile userToAdd = UserClient.getProfileWith(username);
+            UserClient.profile.getFriendsList().addFriend(userToAdd);
+            userToAdd.getFriendsList().addFriend(UserClient.profile);
+
+
+            try {
+                UserInput.userClient.acceptFriend(userToAdd);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             friendsFrame.setVisible(false);
             FriendsGUI.createFriendsGUI();
         });
@@ -149,7 +160,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         JList<String> list3;
         String[] outgoing = new String[outgoingList.size()];
         for (int i = 0; i < outgoingList.size(); i++) {
-            outgoing[counter3] = outgoingList.get(i).getName();
+            outgoing[counter3] = outgoingList.get(i).getUsername();
             counter3++;
         }
         list3 = new JList<>(outgoing);
@@ -174,7 +185,17 @@ public class FriendsGUI extends JFrame implements ActionListener {
 
         denyButton.addActionListener((ActionEvent event) -> {
             String username = denyButton.getText().split(" ")[1].substring(0, denyButton.getText().split(" ")[1].length() - 1);
-            outgoingList.remove(UserClient.getProfileWith(username));
+            Profile user = UserClient.getProfileWith(username);
+            UserClient.profile.getFriendsList().removeOutgoingFriendRequest(user);
+            user.getFriendsList().removeIncomingFriendRequest(UserClient.profile);
+
+
+
+            try {
+                UserInput.userClient.cancelFriendRequest(user);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             friendsFrame.setVisible(false);
             FriendsGUI.createFriendsGUI();
         });

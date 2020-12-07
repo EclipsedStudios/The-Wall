@@ -76,6 +76,25 @@ public class FriendsList implements Serializable {
     }
 
     /**
+     * removes profile
+     * @param profile to remove outgoing friend request
+     */
+    public void removeOutgoingFriendRequest(Profile profile) {
+        if (hasOutgoingFriendRequest(profile)) {
+            outgoingFriendRequests.remove(profile);
+        }
+    }
+
+    /**
+     * removes incoming friend req
+     * @param profile to remove
+     */
+    public void removeIncomingFriendRequest(Profile profile) {
+        if (hasIncomingFriendRequest(profile)) {
+            incomingFriendRequests.remove(profile);
+        }
+    }
+    /**
      *
      * @param profile to check if user has incoming friend request to
      * @return true if yes, false if no

@@ -49,6 +49,7 @@ public class Profile implements Serializable {
         this.name = name;
         this.username = username;
         this.email = email;
+        this.friendsList = new FriendsList();
 
         //Current skip is 12 (Moves each letter over by 12). This can be changed later.
         this.rawPassword = rawPassword;
