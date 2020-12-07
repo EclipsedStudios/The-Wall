@@ -169,7 +169,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         if (incoming.length == 0) {
             denyIncomingButton = new JButton("You have no friend requests to deny");
         } else {
-            denyIncomingButton = new JButton("Accept " + incoming[0] + "?");
+            denyIncomingButton = new JButton("Deny " + incoming[0] + "?");
         }
         list2.addListSelectionListener((ListSelectionEvent event) -> {
             if (!event.getValueIsAdjusting()) {
@@ -199,7 +199,8 @@ public class FriendsGUI extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "That person has cancelled their friend request to you " +
                         "\n or you have no incoming friend requests!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
             }
-
+            friendsFrame.setVisible(false);
+            FriendsGUI.createFriendsGUI();
             friendsFrame.setVisible(false);
             FriendsGUI.createFriendsGUI();
         });
