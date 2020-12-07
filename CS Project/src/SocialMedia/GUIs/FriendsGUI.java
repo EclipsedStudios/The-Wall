@@ -190,6 +190,10 @@ public class FriendsGUI extends JFrame implements ActionListener {
             Profile userToAdd = UserClient.getProfileWith(username);
             if (currentUser.getFriendsList().hasIncomingFriendRequest(userToAdd)) {
 
+                UserClient.profile.getFriendsList().removeIncomingFriendRequest(userToAdd);
+                userToAdd.getFriendsList().removeOutgoingFriendRequest(UserClient.profile);
+
+
                 try {
                     UserInput.userClient.cancelFriendRequest(userToAdd);
                 } catch (IOException ex) {
@@ -201,7 +205,6 @@ public class FriendsGUI extends JFrame implements ActionListener {
             }
             friendsFrame.setVisible(false);
             FriendsGUI.createFriendsGUI();
-            currentUser = UserClient.profile;
             try {
                 UserInput.userClient.refreshPage();
             } catch (IOException e) {
