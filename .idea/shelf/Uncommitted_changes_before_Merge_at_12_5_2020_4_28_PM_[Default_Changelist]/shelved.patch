@@ -1,0 +1,755 @@
+Index: CS Project/src/SocialMedia/UserInput.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SocialMedia;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.*;\r\nimport java.util.*;\r\nimport java.io.*;\r\n\r\n/**\r\n * The login screen for the Social Profile App.\r\n * NOTE: username.txt files created as the result of creating an account\r\n * will not show in the side bar until the program has stopped running\r\n * so you need to remember your login credentials.\r\n * @author Paul Gherghetta\r\n * @version 12/4/2020\r\n */\r\n\r\npublic class UserInput extends JFrame implements ActionListener {\r\n    private static File UsernamesList;\r\n    private static ArrayList<String> listOfUsernames = new ArrayList<>();\r\n    private static JFrame welcomeFrame;\r\n    private static Profile currentUserProfile;\r\n\r\n    //Components\r\n    private JButton signInButton;\r\n    private static JTextField username;\r\n    private static JPasswordField password;\r\n    private static JTextField usernameTextField;\r\n    private static JPasswordField passwordTextField;\r\n    private static JTextField nameTextField;\r\n    private static JTextField ageTextField;\r\n    private static JTextField emailTextField;\r\n    private static JTextField websiteTextField;\r\n    private static JTextField likesInterestsTextField;\r\n    private static JTextArea aboutMeTextArea;\r\n    private static JPasswordField confirmPasswordTextField;\r\n    private static JFrame createAccountFrame;\r\n    //An array that holds the username and password to be sent\r\n    //to the SocialProfile GUI.\r\n    private static String[] usernameAndPassword;\r\n\r\n    public static void main(String[] args) {\r\n        //File that only has the names of people\r\n        //File userNames.txt\r\n        //List of usernames\r\n        //Loop through\r\n        //Create a file that only has the usernames of people in it\r\n        File file = new File(\"ListOfUsernames.txt\");\r\n        File directory = new File(\"UsernameFiles\");\r\n        String[] UsernameFiles = directory.list();\r\n        for (int i = 0; i < UsernameFiles.length; i++) {\r\n            String[] fileUsername = UsernameFiles[i].split(\"\\\\.\");\r\n            listOfUsernames.add(fileUsername[0]);\r\n        }\r\n        //Now we can write the elements of listOfUsernames to a file\r\n        UsernamesList = new File(\"ListOfUsernames.txt\");\r\n        FileOutputStream fos = null;\r\n        try {\r\n            fos = new FileOutputStream(UsernamesList, false);\r\n        } catch (FileNotFoundException e) {\r\n            e.printStackTrace();\r\n        }\r\n        PrintWriter pw = new PrintWriter(fos);\r\n        for (int i = 0; i < listOfUsernames.size(); i++) {\r\n            pw.println(listOfUsernames.get(i));\r\n        }\r\n        pw.close();\r\n        SwingUtilities.invokeLater(new Runnable(){\r\n            @Override\r\n            public void run() {\r\n                createWelcomeScreen();\r\n            }});\r\n    }\r\n\r\n    public static void createWelcomeScreen() {\r\n        //Create the welcome frame\r\n        welcomeFrame = new JFrame(\"Social Profile App\");\r\n        //add text fields and labels to welcome frame\r\n        //Create a panel to allow for this.\r\n        JPanel welcomePanel = new JPanel();\r\n        //Set up the BoxLayout\r\n        BoxLayout layout1 = new BoxLayout(welcomePanel, BoxLayout.Y_AXIS);\r\n        welcomePanel.setLayout(layout1);\r\n\r\n        welcomePanel.add(Box.createRigidArea(new Dimension(0, 100)));\r\n        //Welcome/title message\r\n        JLabel welcome = new JLabel(\"Social Profile App\");\r\n        //Changes the font\r\n        Font font = new Font(\"Times New Roman\", Font.BOLD,30);\r\n        welcome.setFont(font);\r\n        welcome.setAlignmentX(Component.CENTER_ALIGNMENT);\r\n        //I think this sets the vertical alignment within the CENTER_ALIGNMENT\r\n        welcome.setVerticalAlignment(JLabel.NORTH);\r\n        welcomePanel.add(welcome);\r\n        //Used for adding vertical blank space between components\r\n        welcomePanel.add(Box.createRigidArea(new Dimension(0, 150)));\r\n\r\n        //Username label\r\n        JLabel user = new JLabel(\"Username\");\r\n        user.setAlignmentX(Component.CENTER_ALIGNMENT);\r\n        welcomePanel.add(user);\r\n\r\n        //Username text box\r\n        username = new JTextField(5);\r\n        //Set the maximum size the text box can be when the screen is resized\r\n        Dimension usernameTextBox = new Dimension(130, 30);\r\n        username.setMaximumSize(usernameTextBox);\r\n        username.setAlignmentX(Component.CENTER_ALIGNMENT);\r\n        welcome.setVerticalAlignment(JLabel.CENTER);\r\n        welcomePanel.add(username);\r\n\r\n        //Password label\r\n        JLabel pass = new JLabel(\"Password\");\r\n        pass.setAlignmentX(Component.CENTER_ALIGNMENT);\r\n        welcomePanel.add(pass);\r\n\r\n        //Password text box\r\n        password = new JPasswordField(5);\r\n        //Set the maximum size the text box can be when the screen is resized\r\n        Dimension passwordTextBox = new Dimension(130, 30);\r\n        password.setMaximumSize(passwordTextBox);\r\n        password.setAlignmentX(Component.CENTER_ALIGNMENT);\r\n        welcomePanel.add(password);\r\n\r\n\r\n        //Sign In Button\r\n        JButton signInButton = new JButton(\"Sign In\");\r\n        signInButton.setAlignmentX(Component.CENTER_ALIGNMENT);\r\n        welcome.setVerticalAlignment(JLabel.CENTER);\r\n        signInButton.addActionListener(new ActionListener() {\r\n            public void actionPerformed(ActionEvent e) {\r\n                //The code below is what executes when the sign in button is clicked\r\n                try {\r\n                    validateLoginCredentials();\r\n                } catch (IOException ioException) {\r\n                    JOptionPane.showMessageDialog(null, \"Error reading file!\",\r\n                            \"Social Profile App\",\r\n                            JOptionPane.ERROR_MESSAGE);\r\n                }\r\n            }\r\n        });\r\n        welcomePanel.add(signInButton);\r\n\r\n\r\n        //Create an account button\r\n        JButton createAccountButton = new JButton(\"Create Account\");\r\n        createAccountButton.setAlignmentX(Component.CENTER_ALIGNMENT);\r\n        createAccountButton.setVerticalAlignment(JLabel.CENTER);\r\n        createAccountButton.addActionListener(new ActionListener() {\r\n            public void actionPerformed(ActionEvent e) {\r\n                createAccount();\r\n            }\r\n        });\r\n\r\n        //Creates blank space between the buttons\r\n        welcomePanel.add(Box.createRigidArea(new Dimension(0, 30)));\r\n        welcomePanel.add(createAccountButton);\r\n\r\n        //Adding to the welcome frame\r\n        welcomeFrame.getContentPane().add(welcomePanel);\r\n        welcomeFrame.setSize(1000, 1000);\r\n        welcomeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);\r\n        welcomeFrame.setVisible(true);\r\n    }\r\n\r\n    //A method to check if the username and password are valid\r\n    //Invoked when sign in button is clicked\r\n    public static void validateLoginCredentials() throws IOException {\r\n        //The username will be the name of the file so I will check if a file\r\n        //exists with the username as the word before the .txt (in the\r\n        //UsernameFiles folder!).\r\n        String usernameToValidate = username.getText();\r\n        String testUsername = usernameToValidate + \".txt\";\r\n        File tempFile = new File(\"UsernameFiles/\" + testUsername);\r\n        boolean tempFileExists = tempFile.exists();\r\n        //If a username as the file name could not be found, show an error message\r\n        if (!tempFileExists) {\r\n            JOptionPane.showMessageDialog(null, \"Username is invalid!\",\r\n                    \"Social Profile App\", JOptionPane.ERROR_MESSAGE);\r\n        } else if(tempFileExists) {\r\n            FileReader fr = new FileReader(tempFile);\r\n            BufferedReader bfr = new BufferedReader(fr);\r\n            String line = bfr.readLine();\r\n            //Keeps reading lines until it gets to the password line (which is the 8th line).\r\n            for (int i = 0; i < 7; i++) {\r\n                line = bfr.readLine();\r\n            }\r\n            //Store the password text in a variable\r\n            String passwordToValidate = String.valueOf(password.getPassword());\r\n            if (!passwordToValidate.equals(line)) {\r\n                JOptionPane.showMessageDialog(null, \"Password is invalid!\",\r\n                        \"Social Profile App\", JOptionPane.ERROR_MESSAGE);\r\n            } else {\r\n                //Program should only reach this point if the login was valid\r\n                JOptionPane.showMessageDialog(null, \"Success! Logging in...\",\r\n                        \"Social Profile App\", JOptionPane.INFORMATION_MESSAGE);\r\n\r\n                //I'm instantiating an array here that will contain the entered login and password\r\n                usernameAndPassword = new String[2];\r\n                usernameAndPassword[0] = username.getText();\r\n                usernameAndPassword[1] = String.valueOf(password.getPassword());\r\n                //Create a profile object for the user that logs in.\r\n                createUserProfile();\r\n                //Now we can get rid of the old screen and call the next screen\r\n                welcomeFrame.setVisible(false);\r\n                SocialProfileGUI.createProfileGUI();\r\n            }\r\n\r\n        }\r\n    }\r\n\r\n    //Method to create a new account when the user clicks the create account button\r\n    public static void createAccount() {\r\n        createAccountFrame = new JFrame(\"Create Account\");\r\n        //An array of the labels to be used\r\n        //Update: Friends label will not exist\r\n        String[] labels = {\"Username\", \"Password\", \"Full Name\", \"Age\", \"Email\", \"Friends\",\r\n                \"Website\", \"Likes/Interests\", \"About Me\"};\r\n        //Variables that will be used to size all the text fields\r\n        int textFieldWidth = 200;\r\n        int textFieldHeight = 30;\r\n\r\n        //Create the JPanel and set the layout\r\n        JPanel createAccountPanel = new JPanel();\r\n        createAccountPanel.setLayout(new BoxLayout(createAccountPanel, BoxLayout.Y_AXIS));\r\n\r\n        //Username label\r\n        JLabel usernameLabel = new JLabel(labels[0], JLabel.LEFT);\r\n        usernameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        usernameLabel.setVerticalAlignment(JLabel.NORTH);\r\n        createAccountPanel.add(usernameLabel);\r\n\r\n        //Username text box\r\n        usernameTextField = new JTextField(10);\r\n        Dimension usernameTextBox = new Dimension(textFieldWidth, textFieldHeight);\r\n        usernameTextField.setMaximumSize(usernameTextBox);\r\n        usernameTextField.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        createAccountPanel.add(usernameTextField);\r\n\r\n        //Password Label\r\n        JLabel passwordLabel = new JLabel(labels[1], JLabel.LEFT);\r\n        passwordLabel.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        passwordLabel.setVerticalAlignment(JLabel.NORTH);\r\n        createAccountPanel.add(passwordLabel);\r\n\r\n        //Password text box\r\n        passwordTextField = new JPasswordField(10);\r\n        Dimension passwordTextBox = new Dimension(textFieldWidth, textFieldHeight);\r\n        passwordTextField.setMaximumSize(usernameTextBox);\r\n        passwordTextField.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        createAccountPanel.add(passwordTextField);\r\n\r\n        //Confirm Password label\r\n        //Password Label\r\n        JLabel confirmPasswordLabel = new JLabel(\"Confirm Password\", JLabel.LEFT);\r\n        confirmPasswordLabel.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        confirmPasswordLabel.setVerticalAlignment(JLabel.NORTH);\r\n        createAccountPanel.add(confirmPasswordLabel);\r\n\r\n        //Confirm Password text box\r\n        confirmPasswordTextField = new JPasswordField(10);\r\n        Dimension confirmPasswordTextBox = new Dimension(textFieldWidth, textFieldHeight);\r\n        confirmPasswordTextField.setMaximumSize(confirmPasswordTextBox);\r\n        confirmPasswordTextField.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        createAccountPanel.add(confirmPasswordTextField);\r\n\r\n        //Name label\r\n        JLabel nameLabel = new JLabel(labels[2], JLabel.LEFT);\r\n        nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        nameLabel.setVerticalAlignment(JLabel.NORTH);\r\n        createAccountPanel.add(nameLabel);\r\n\r\n        //Name text box\r\n        nameTextField = new JTextField(10);\r\n        Dimension nameTextBox = new Dimension(textFieldWidth, textFieldHeight);\r\n        nameTextField.setMaximumSize(usernameTextBox);\r\n        nameTextField.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        createAccountPanel.add(nameTextField);\r\n\r\n        //Age label\r\n        JLabel ageLabel = new JLabel(labels[3], JLabel.LEFT);\r\n        ageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        ageLabel.setVerticalAlignment(JLabel.NORTH);\r\n        createAccountPanel.add(ageLabel);\r\n\r\n        //Age text box\r\n        ageTextField = new JTextField(10);\r\n        Dimension ageTextBox = new Dimension(textFieldWidth, textFieldHeight);\r\n        ageTextField.setMaximumSize(ageTextBox);\r\n        ageTextField.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        createAccountPanel.add(ageTextField);\r\n\r\n        //Email label\r\n        JLabel emailLabel = new JLabel(labels[4], JLabel.LEFT);\r\n        emailLabel.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        emailLabel.setVerticalAlignment(JLabel.NORTH);\r\n        createAccountPanel.add(emailLabel);\r\n\r\n        //Email text box\r\n        emailTextField = new JTextField(10);\r\n        Dimension emailTextBox = new Dimension(textFieldWidth, textFieldHeight);\r\n        emailTextField.setMaximumSize(emailTextBox);\r\n        emailTextField.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        createAccountPanel.add(emailTextField);\r\n\r\n        //Website label\r\n        JLabel websiteLabel = new JLabel(labels[6], JLabel.LEFT);\r\n        websiteLabel.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        websiteLabel.setVerticalAlignment(JLabel.NORTH);\r\n        createAccountPanel.add(websiteLabel);\r\n\r\n        //Website text box\r\n        websiteTextField = new JTextField(10);\r\n        Dimension websiteTextBox = new Dimension(textFieldWidth, textFieldHeight);\r\n        websiteTextField.setMaximumSize(websiteTextBox);\r\n        websiteTextField.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        createAccountPanel.add(websiteTextField);\r\n\r\n        //Likes/Interests label\r\n        JLabel likesInterestsLabel = new JLabel(labels[7], JLabel.LEFT);\r\n        likesInterestsLabel.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        likesInterestsLabel.setVerticalAlignment(JLabel.NORTH);\r\n        createAccountPanel.add(likesInterestsLabel);\r\n\r\n        //Likes/Interests text box\r\n        likesInterestsTextField = new JTextField(10);\r\n        Dimension likesInterestsTextBox = new Dimension(textFieldWidth, textFieldHeight);\r\n        likesInterestsTextField.setMaximumSize(likesInterestsTextBox);\r\n        likesInterestsTextField.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        createAccountPanel.add(likesInterestsTextField);\r\n\r\n        //About Me label\r\n        JLabel aboutMeLabel = new JLabel(labels[8], JLabel.LEFT);\r\n        aboutMeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        aboutMeLabel.setVerticalAlignment(JLabel.NORTH);\r\n        createAccountPanel.add(aboutMeLabel);\r\n\r\n        //About Me text area\r\n        aboutMeTextArea = new JTextArea();\r\n        aboutMeTextArea.setLineWrap(true);\r\n        aboutMeTextArea.setWrapStyleWord(true);\r\n        Dimension aboutMeTextBox = new Dimension(500, 200);\r\n        aboutMeTextArea.setMaximumSize(aboutMeTextBox);\r\n        aboutMeTextArea.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        createAccountPanel.add(aboutMeTextArea);\r\n\r\n        //A button that will confirm the creation of a new account\r\n        JButton confirmButton = new JButton(\"Create Account\");\r\n        confirmButton.setAlignmentX(Component.LEFT_ALIGNMENT);\r\n        confirmButton.setVerticalAlignment(JLabel.NORTH);\r\n        //Set the text fields to \"\". This will be useful when error checking.\r\n        //i.e. checking if the field was left blank\r\n        usernameTextField.setText(\"\");\r\n        passwordTextField.setText(\"\");\r\n        confirmPasswordTextField.setText(\"\");\r\n        nameTextField.setText(\"\");\r\n        ageTextField.setText(\"\");\r\n        emailTextField.setText(\"\");\r\n        websiteTextField.setText(\"\");\r\n        likesInterestsTextField.setText(\"\");\r\n        aboutMeTextArea.setText(\"\");\r\n        confirmButton.addActionListener(new ActionListener() {\r\n            public void actionPerformed(ActionEvent e) {\r\n                //performCreateAccountConfirmButtonAction() is already called\r\n                //in the switch statement so there's no need to call it by itself.\r\n                switch (performCreateAccountConfirmButtonAction()) {\r\n                    case 1 -> JOptionPane.showMessageDialog(null,\r\n                            \"You left one or more fields blank! Please fill all text boxes!\",\r\n                            \"Social Profile App\", JOptionPane.ERROR_MESSAGE);\r\n                    case 2 -> JOptionPane.showMessageDialog(null, \"Passwords \" +\r\n                                    \"did not match!\",\r\n                            \"Social Profile App\", JOptionPane.ERROR_MESSAGE);\r\n                    case 3 -> JOptionPane.showMessageDialog(null, \"Make sure that \" +\r\n                                    \"multiple likes/interests are separated by a comma and space!\",\r\n                            \"Social Profile App\", JOptionPane.ERROR_MESSAGE);\r\n                    case 4 -> JOptionPane.showMessageDialog(null, \"Email is \" +\r\n                                    \"invalid!\",\r\n                            \"Social Profile App\", JOptionPane.ERROR_MESSAGE);\r\n                    case 5 -> JOptionPane.showMessageDialog(null, \"Website is \" +\r\n                                    \"invalid!\",\r\n                            \"Social Profile App\", JOptionPane.ERROR_MESSAGE);\r\n                    case 6 -> JOptionPane.showMessageDialog(null, \"Username \" +\r\n                                    \"already exists! \" +\r\n                                    \"Please choose a different username.\", \"Social Profile App\",\r\n                            JOptionPane.ERROR_MESSAGE);\r\n                    default -> JOptionPane.showMessageDialog(null,\r\n                            \"Account was successfully created.\", \"Social Profile App\",\r\n                            JOptionPane.INFORMATION_MESSAGE);\r\n                }\r\n            }\r\n        });\r\n        createAccountPanel.add(confirmButton);\r\n\r\n        //Adds the create account panel to the create account frame and\r\n        //sets a few other things like size of the frame.\r\n        createAccountFrame.getContentPane().add(createAccountPanel);\r\n        createAccountFrame.setSize(1000, 1000);\r\n        createAccountFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);\r\n        createAccountFrame.setVisible(true);\r\n    }\r\n\r\n    public static int performCreateAccountConfirmButtonAction() {\r\n        //Now that the user has confirmed the creation of their new account, there\r\n        //are a few things we'll check for first.\r\n        //First, did they leave any text field blank?\r\n        String password1 = String.valueOf(passwordTextField.getPassword());\r\n        String password2 = String.valueOf(confirmPasswordTextField.getPassword());\r\n        /*\r\n        This is for testing purposes:\r\n        String a = usernameTextField.getText();\r\n        String b = nameTextField.getText();\r\n        String c = ageTextField.getText();\r\n        String d = emailTextField.getText();\r\n        String e = friendsTextField.getText();\r\n        String g = websiteTextField.getText();\r\n        String h = likesInterestsTextField.getText();\r\n        String i = aboutMeTextField.getText();\r\n         */\r\n        if (usernameTextField.getText().equals(\"\") || password1.equals(\"\") ||\r\n                password2.equals(\"\") ||\r\n                nameTextField.getText().equals(\"\") || ageTextField.getText().equals(\"\") ||\r\n                emailTextField.getText().equals(\"\") ||\r\n                websiteTextField.getText().equals(\"\") ||\r\n                likesInterestsTextField.getText().equals(\"\") ||\r\n                aboutMeTextArea.getText().equals(\"\")) {\r\n            return 1;\r\n        }\r\n        //Check if passwords matched\r\n        password1 = String.valueOf(passwordTextField.getPassword());\r\n        password2 = String.valueOf(confirmPasswordTextField.getPassword());\r\n        if (!password1.equals(password2)) {\r\n            return 2;\r\n        }\r\n        if (!emailTextField.getText().contains(\"@\")) {\r\n            return 4;\r\n        }\r\n        if (!websiteTextField.getText().contains(\".\")) {\r\n            return 5;\r\n        }\r\n        //Make sure the username does not already exist\r\n        File f = new File(usernameTextField.getText() + \".txt\");\r\n        if (f.getAbsoluteFile().exists()) {\r\n            return 6;\r\n        }\r\n\r\n        //Then, check that likes/interests is separated by \", \".\r\n        if (!likesInterestsTextField.getText().contains(\", \")) {\r\n            //Check for the input of just one like/interest\r\n            int onlyOneLikeInterest = JOptionPane.showConfirmDialog(null, \"Are \" +\r\n                            \"you only inputting one like/interest?\", \"Social Profile App\",\r\n                    JOptionPane.YES_NO_OPTION);\r\n            if (onlyOneLikeInterest == JOptionPane.NO_OPTION) {\r\n                return 3;\r\n            }\r\n        }\r\n        //We can very likely assume now that all text fields have the correct format.\r\n        //Now we'll create a file and write the new account information to it.\r\n        //We'll make sure to put the new file in the UsernameFiles directory first.\r\n        File file = new File(\"UsernameFiles/\" + usernameTextField.getText() + \".txt\");\r\n        FileOutputStream fOS = null;\r\n        try {\r\n            fOS = new FileOutputStream(file, false);\r\n        } catch (FileNotFoundException fileNotFoundException) {\r\n            JOptionPane.showMessageDialog(null,\r\n                    \"File Not Found Exception thrown!\", \"Social Profile App\",\r\n                    JOptionPane.ERROR_MESSAGE);\r\n        }\r\n        PrintWriter pw = new PrintWriter(fOS);\r\n        pw.println(nameTextField.getText());\r\n        pw.println(emailTextField.getText());\r\n        pw.println(\"No friends\");\r\n        pw.println(websiteTextField.getText());\r\n        pw.println(likesInterestsTextField.getText());\r\n        pw.println(aboutMeTextArea.getText());\r\n        pw.println(ageTextField.getText());\r\n        pw.println(passwordTextField.getPassword());\r\n        pw.close();\r\n\r\n\r\n        try {\r\n            fOS = new FileOutputStream(UsernamesList, false);\r\n            pw = new PrintWriter(fOS);\r\n            listOfUsernames.add(usernameTextField.getText());\r\n            for (int i = 0; i < listOfUsernames.size(); i++) {\r\n                pw.println(listOfUsernames.get(i));\r\n            }\r\n            pw.close();\r\n        } catch (FileNotFoundException e) {\r\n            e.printStackTrace();\r\n        }\r\n        //At this point, a new username.txt file was created.\r\n        //Furthermore, the new username was added\r\n        //We can now get rid of the create account frame.\r\n        createAccountFrame.setVisible(false);\r\n        return 0;\r\n    }\r\n\r\n    //A method to return the array with the login credentials entered.\r\n    //It will be used in SocialProfileGUI.java\r\n    public static String[] getUsernameAndPassword() {\r\n        return usernameAndPassword;\r\n    }\r\n\r\n    //A method to make the login screen visible.\r\n    //It will only be called when the user logs out from SocialProfileGUI.java.\r\n    public static void makeLoginScreenVisible() {\r\n        welcomeFrame.setVisible(true);\r\n    }\r\n\r\n    //A method that creates a profile for the user\r\n    public static void createUserProfile() throws IOException {\r\n        //The variable username is referring to the username entered to login.\r\n        File f = new File(\"UsernameFiles/\" + username.getText() + \".txt\");\r\n        FileReader fr = new FileReader(f);\r\n        BufferedReader bfr = new BufferedReader(fr);\r\n        //Convert each line in the file to its appropriate format and then make a\r\n        //profile object.\r\n        //Name\r\n        String line = bfr.readLine();\r\n        String name = line;\r\n        //Email\r\n        line = bfr.readLine();\r\n        String email = line;\r\n        //Skip past friends because there are no friends\r\n        line = bfr.readLine();\r\n        //Website\r\n        line = bfr.readLine();\r\n        String website = line;\r\n        //Likes/Interests\r\n        line = bfr.readLine();\r\n        String[] likesInterests = null;\r\n        ArrayList<String> likesInterestsArrayList = new ArrayList<>();\r\n        //Check if there are multiple likes/interests entered.\r\n        if (line.contains(\", \")) {\r\n            likesInterests = line.split(\", \");\r\n            for (int i = 0; i < likesInterests.length; i++) {\r\n                likesInterestsArrayList.add(likesInterests[i]);\r\n            }\r\n        } else {\r\n            //add the one like or interest\r\n            likesInterestsArrayList.add(line);\r\n        }\r\n        //About me\r\n        line = bfr.readLine();\r\n        String aboutMe = line;\r\n        //Age\r\n        line = bfr.readLine();\r\n        int age = Integer.parseInt(line);\r\n\r\n        currentUserProfile = new Profile(name, age, email, website, likesInterestsArrayList,\r\n                null, aboutMe, username.getText(), String.valueOf(password.getPassword()));\r\n        Profile.getProfilesList().add(currentUserProfile);\r\n    }\r\n\r\n    public static Profile getUserProfile() {\r\n        return currentUserProfile;\r\n    }\r\n\r\n    @Override\r\n    public void actionPerformed(ActionEvent e) {\r\n        if (e.getSource() == signInButton) {\r\n            try {\r\n                validateLoginCredentials();\r\n            } catch (IOException ioe) {\r\n                JOptionPane.showMessageDialog(null, \"Error reading file!\",\r\n                        \"Social Profile App\",\r\n                        JOptionPane.ERROR_MESSAGE);\r\n            }\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CS Project/src/SocialMedia/UserInput.java	(revision 0fb2c9b5fcaeeeb0979846c478741e99c15c1b4e)
++++ CS Project/src/SocialMedia/UserInput.java	(date 1607200932899)
+@@ -456,7 +456,7 @@
+         //We can very likely assume now that all text fields have the correct format.
+         //Now we'll create a file and write the new account information to it.
+         //We'll make sure to put the new file in the UsernameFiles directory first.
+-        File file = new File("UsernameFiles/" + usernameTextField.getText() + ".txt");
++        File file = new File("UsernameClientsideStorage/" + usernameTextField.getText() + ".txt");
+         FileOutputStream fOS = null;
+         try {
+             fOS = new FileOutputStream(file, false);
+Index: CS Project/src/SocialMedia/ServerAndClient/UserClient.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SocialMedia.ServerAndClient;\r\n\r\nimport SocialMedia.Profile;\r\n\r\nimport java.io.*;\r\nimport java.net.InetAddress;\r\nimport java.net.Socket;\r\nimport java.util.ArrayList;\r\nimport java.util.Scanner;\r\n\r\n/**\r\n * Represents the user client\r\n *\r\n * @author aakash jariwala, jaden baker\r\n * @version 11/21/20\r\n */\r\npublic class UserClient {\r\n\r\n    public static void main(String[] args) throws IOException {\r\n\r\n        InetAddress address = InetAddress.getLocalHost(); // Get localhost\r\n        Socket socket = null; // Create a null socket\r\n        String line; // Store information coming from server\r\n        BufferedReader bufferedReader = null; // BufferedReader for client\r\n        BufferedReader bufferedReader1 = null; // BufferedReader for client's server thread\r\n        PrintWriter printWriter = null; // PrintWriter for client to send info to server\r\n        ObjectInputStream objectInputStream = null;\r\n        Scanner scan = new Scanner(System.in);\r\n        try {\r\n            //Initializes all objects\r\n            socket = new Socket(address, SettingsAndConstants.SERVER_PORT);\r\n            bufferedReader = new BufferedReader(new InputStreamReader(System.in));\r\n            bufferedReader1 = new BufferedReader(new InputStreamReader(socket.getInputStream()));\r\n            printWriter = new PrintWriter(socket.getOutputStream());\r\n            objectInputStream = new ObjectInputStream(socket.getInputStream());\r\n        } catch (IOException e) {\r\n            //Creates exception if failed\r\n            e.printStackTrace();\r\n            System.err.print(\"IO Exception\");\r\n        }\r\n\r\n        System.out.println(\"Client Address: \" + address);\r\n        System.out.println(\"[FOR TESTING] Send a message for the server to respond back with (Send a random message first, \" +\r\n                \"it is buggy and it will break if you ask for users first):\");\r\n\r\n        try {\r\n            assert bufferedReader != null;\r\n            assert bufferedReader1 != null;\r\n            assert printWriter != null;\r\n            line = scan.nextLine();\r\n            printWriter.println(\"First Message\");\r\n            printWriter.flush();\r\n            while (line.compareToIgnoreCase(\"quit\") != 0) {\r\n                switch (line) {\r\n                    case \"stop server\" -> {\r\n                        return;\r\n                    }\r\n                    case \"see users\" -> {\r\n                        ArrayList<Profile> listOfMessages = (ArrayList<Profile>) objectInputStream.readObject();\r\n                        System.out.println(\"Received [\" + listOfMessages.size() + \"] users from: \" + socket);\r\n                        for(Profile a : listOfMessages){\r\n                            System.out.println(\"Name: \" + a.getName() +\r\n                                    \"| Age: \" + a.getAge()+\r\n                                    \"| Username: \" + a.getUsername()+\r\n                                    \"| Password: \" + a.getEncryptedPassword()+\r\n                                    \"| Email: \" + a.getEmail());\r\n                        }\r\n                    }\r\n                    default -> System.out.println(bufferedReader1.readLine());\r\n                }\r\n                line = scan.nextLine();\r\n                printWriter.println(line);\r\n                printWriter.flush();\r\n            }\r\n        } catch (IOException | ClassNotFoundException e) {\r\n            e.printStackTrace();\r\n            System.out.println(\"Socket Read Error\");\r\n        } finally {\r\n            //Make sure these objects aren't null\r\n            assert bufferedReader1 != null;\r\n            assert printWriter != null;\r\n\r\n            //Close the client\r\n            bufferedReader1.close();\r\n            printWriter.close();\r\n            bufferedReader.close();\r\n            socket.close();\r\n\r\n            //Client closed confirmation\r\n            System.out.println(\"Connection Closed\");\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CS Project/src/SocialMedia/ServerAndClient/UserClient.java	(revision 0fb2c9b5fcaeeeb0979846c478741e99c15c1b4e)
++++ CS Project/src/SocialMedia/ServerAndClient/UserClient.java	(date 1607201305054)
+@@ -62,7 +62,7 @@
+                             System.out.println("Name: " + a.getName() +
+                                     "| Age: " + a.getAge()+
+                                     "| Username: " + a.getUsername()+
+-                                    "| Password: " + a.getEncryptedPassword()+
++                                    "| Password: " + a.getRawPassword()+
+                                     "| Email: " + a.getEmail());
+                         }
+                     }
+Index: UsernameFiles/FrankToft.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Frank Toft\r\ntoft@gmail.com\r\nNo friends\r\nwww.frank.com\r\nBiking, Pop Music, Reading\r\nInfo about Frank Toft.\r\n30\r\nWispy\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- UsernameFiles/FrankToft.txt	(revision 0fb2c9b5fcaeeeb0979846c478741e99c15c1b4e)
++++ UsernameFiles/FrankToft.txt	(date 1607203381075)
+@@ -2,7 +2,7 @@
+ toft@gmail.com
+ No friends
+ www.frank.com
+-Biking, Pop Music, Reading
++[Biking, Pop Music, Reading]
+ Info about Frank Toft.
+ 30
+ Wispy
+Index: CS Project/src/SocialMedia/Profile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SocialMedia;\r\n\r\nimport SocialMedia.FriendsList;\r\nimport SocialMedia.PasswordEncryption;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n/**\r\n * A class that constructs and stores profiles of users.\r\n * @version 12/4/2020\r\n * @authors Max Fuligni, Paul Gherghetta, Cole Busa, Aakash Jariwala, Jaden Baker\r\n */\r\npublic class Profile {\r\n\r\n    private String name;\r\n    private String email;\r\n    private FriendsList friendsList;\r\n    private String website;\r\n    private List<String> interests;\r\n    private String aboutMe;\r\n    private final int age;\r\n    private String rawPassword;\r\n    private static ArrayList<Profile> profilesList = new ArrayList<>();\r\n\r\n    /**\r\n     * identifier\r\n     **/\r\n    private final String username;\r\n    /**\r\n     * Server de-ecrypts for login\r\n     **/\r\n    private String encryptedPassword;\r\n\r\n\r\n    // Initial construction\r\n    public Profile(String name, String username, int age, String email, String rawPassword) {\r\n        this.name = name;\r\n        this.username = username;\r\n        this.email = email;\r\n\r\n        //Current skip is 12 (Moves each letter over by 12). This can be changed later.\r\n        this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);\r\n\r\n        this.age = age;\r\n\r\n    }\r\n\r\n    // If user decides to input all fields on construction\r\n    public Profile(String name, int age, String email, String website, List<String> interests,\r\n                   FriendsList friendsList, String aboutMe, String username, String rawPassword) {\r\n        this.name = name;\r\n        this.age = age;\r\n        this.email = email;\r\n        this.website = website;\r\n        this.interests = interests;\r\n        this.friendsList = friendsList;\r\n        this.aboutMe = aboutMe;\r\n        this.username = username;\r\n        this.rawPassword = rawPassword;\r\n    }\r\n\r\n    // Getters and Setters\r\n    public static ArrayList<Profile> getProfilesList() {\r\n        return profilesList;\r\n    }\r\n\r\n    public FriendsList getFriendsList() {\r\n        return friendsList;\r\n    }\r\n\r\n    public int getAge() {\r\n        return age;\r\n    }\r\n\r\n    public String getUsername() {\r\n        return username;\r\n    }\r\n\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    public void setName(String name) {\r\n        this.name = name;\r\n    }\r\n\r\n    public String getEmail() {\r\n        return email;\r\n    }\r\n\r\n    public void setEmail(String email) {\r\n        this.email = email;\r\n    }\r\n\r\n    public String getWebsite() {\r\n        return website;\r\n    }\r\n\r\n    public void setWebsite(String website) {\r\n        this.website = website;\r\n    }\r\n\r\n    public List<String> getInterests() {\r\n        return interests;\r\n    }\r\n\r\n    public void setInterests(List<String> interests) {\r\n        this.interests = interests;\r\n    }\r\n\r\n    public String getAboutMe() {\r\n        return aboutMe;\r\n    }\r\n\r\n    public void setAboutMe(String aboutMe) {\r\n        this.aboutMe = aboutMe;\r\n    }\r\n\r\n    public String getEncryptedPassword() {\r\n        return encryptedPassword;\r\n    }\r\n\r\n    public void setEncryptedPassword(String encryptedPassword) {\r\n        this.encryptedPassword = encryptedPassword;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CS Project/src/SocialMedia/Profile.java	(revision 0fb2c9b5fcaeeeb0979846c478741e99c15c1b4e)
++++ CS Project/src/SocialMedia/Profile.java	(date 1607201295055)
+@@ -1,36 +1,28 @@
+ package SocialMedia;
+ 
+-import SocialMedia.FriendsList;
+-import SocialMedia.PasswordEncryption;
+-
++import java.io.Serializable;
+ import java.util.ArrayList;
+-import java.util.List;
+ 
+ /**
+  * A class that constructs and stores profiles of users.
+  * @version 12/4/2020
+  * @authors Max Fuligni, Paul Gherghetta, Cole Busa, Aakash Jariwala, Jaden Baker
+  */
+-public class Profile {
++public class Profile implements Serializable {
+ 
+     private String name;
+     private String email;
+     private FriendsList friendsList;
+     private String website;
+-    private List<String> interests;
++    private ArrayList<String> interests;
+     private String aboutMe;
+     private final int age;
+     private String rawPassword;
+     private static ArrayList<Profile> profilesList = new ArrayList<>();
+-
+     /**
+      * identifier
+      **/
+     private final String username;
+-    /**
+-     * Server de-ecrypts for login
+-     **/
+-    private String encryptedPassword;
+ 
+ 
+     // Initial construction
+@@ -38,16 +30,13 @@
+         this.name = name;
+         this.username = username;
+         this.email = email;
+-
+-        //Current skip is 12 (Moves each letter over by 12). This can be changed later.
+-        this.encryptedPassword = PasswordEncryption.encode(rawPassword, 12);
+-
++        this.rawPassword = rawPassword;
+         this.age = age;
+ 
+     }
+ 
+     // If user decides to input all fields on construction
+-    public Profile(String name, int age, String email, String website, List<String> interests,
++    public Profile(String name, int age, String email, String website, ArrayList<String> interests,
+                    FriendsList friendsList, String aboutMe, String username, String rawPassword) {
+         this.name = name;
+         this.age = age;
+@@ -101,11 +90,11 @@
+         this.website = website;
+     }
+ 
+-    public List<String> getInterests() {
++    public ArrayList<String> getInterests() {
+         return interests;
+     }
+ 
+-    public void setInterests(List<String> interests) {
++    public void setInterests(ArrayList<String> interests) {
+         this.interests = interests;
+     }
+ 
+@@ -117,11 +106,11 @@
+         this.aboutMe = aboutMe;
+     }
+ 
+-    public String getEncryptedPassword() {
+-        return encryptedPassword;
++    public String getRawPassword() {
++        return rawPassword;
+     }
+ 
+-    public void setEncryptedPassword(String encryptedPassword) {
+-        this.encryptedPassword = encryptedPassword;
++    public void setRawPassword(String rawPassword) {
++        this.rawPassword = rawPassword;
+     }
+ }
+Index: CS Project/src/SocialMedia/ServerAndClient/ServerObjectStorage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SocialMedia.ServerAndClient;\r\n\r\nimport SocialMedia.Profile;\r\n\r\nimport java.io.Serializable;\r\nimport java.util.ArrayList;\r\n\r\npublic class ServerObjectStorage {\r\n    public volatile ArrayList<Profile> users = new ArrayList<>();\r\n}\r\n
+===================================================================
+--- CS Project/src/SocialMedia/ServerAndClient/ServerObjectStorage.java	(revision 0fb2c9b5fcaeeeb0979846c478741e99c15c1b4e)
++++ CS Project/src/SocialMedia/ServerAndClient/ServerUserStorage.java	(date 1607201877293)
+@@ -2,9 +2,62 @@
+ 
+ import SocialMedia.Profile;
+ 
+-import java.io.Serializable;
++import javax.swing.*;
++import java.io.File;
++import java.io.FileNotFoundException;
++import java.io.FileOutputStream;
++import java.io.PrintWriter;
+ import java.util.ArrayList;
+ 
+-public class ServerObjectStorage {
++public class ServerUserStorage {
+     public volatile ArrayList<Profile> users = new ArrayList<>();
++
++    public void saveUsersToDatabase() {
++        File dir = new File("UsernameFiles");
++        File[] directoryListing = dir.listFiles();
++        if (directoryListing != null) {
++            for (Profile p : users) {
++                File file = new File("UsernameFiles/" + p.getUsername() + ".txt");
++                FileOutputStream fOS = null;
++                try {
++                    fOS = new FileOutputStream(file, false);
++                } catch (FileNotFoundException fileNotFoundException) {
++                    JOptionPane.showMessageDialog(null,
++                            "File Not Found Exception thrown!", "Social Profile App",
++                            JOptionPane.ERROR_MESSAGE);
++                }
++                assert fOS != null;
++                PrintWriter pw = new PrintWriter(fOS);
++
++                if (p.getName() != null)
++                    pw.println(p.getName());
++                if (p.getEmail() != null)
++                    pw.println(p.getEmail());
++
++                pw.println("No friends");
++
++                if (p.getWebsite() != null)
++                    pw.println(p.getWebsite());
++                else
++                    pw.println("No Website");
++
++                if (p.getInterests() != null)
++                    pw.println(p.getInterests().toString());
++                else
++                    pw.println("[]");
++
++                if (p.getAboutMe() != null)
++                    pw.println(p.getAboutMe());
++                else
++                    pw.println("I haven't provided any information about myself");
++
++                pw.println(p.getAge());
++
++                if (p.getRawPassword() != null)
++                    pw.println(p.getRawPassword());
++
++                pw.close();
++            }
++        }
++    }
+ }
+Index: UsernameFiles/JamesMartin.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>James Martin\r\nMartin22@gmail.com\r\nNo friends\r\nwww.twitter.com/jamesmartiniscool\r\nInternet, Coding, Eating food\r\nI am just a cool dude on the internet\r\n23\r\njesus123password123456\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- UsernameFiles/JamesMartin.txt	(revision 0fb2c9b5fcaeeeb0979846c478741e99c15c1b4e)
++++ UsernameFiles/JamesMartin.txt	(date 1607203381076)
+@@ -2,7 +2,7 @@
+ Martin22@gmail.com
+ No friends
+ www.twitter.com/jamesmartiniscool
+-Internet, Coding, Eating food
++[Internet, Coding, Eating food]
+ I am just a cool dude on the internet
+ 23
+ jesus123password123456
+Index: CS Project/src/SocialMedia/Tester.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SocialMedia;\r\n\r\nimport org.junit.Test;\r\nimport static org.junit.Assert.assertEquals;\r\n\r\n/**\r\n * A JUnit tester class for all methods that are not concurrency or GUI-based.\r\n *\r\n * @author Cole Busa\r\n * @version 12/3/20\r\n */\r\npublic class Tester {\r\n    Profile testProfile = new Profile(\"Steve\", \"username\", 18, \"steve@purdue.edu\", \"Password\");\r\n\r\n    /**\r\n     * First test method to understand JUnit\r\n     */\r\n    @Test\r\n    public void testProfile() {\r\n        String correctPassword = \"Cmeeiadp\";\r\n        assertEquals(correctPassword, testProfile.getEncryptedPassword());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CS Project/src/SocialMedia/Tester.java	(revision 0fb2c9b5fcaeeeb0979846c478741e99c15c1b4e)
++++ CS Project/src/SocialMedia/Tester.java	(date 1607201320210)
+@@ -17,7 +17,7 @@
+      */
+     @Test
+     public void testProfile() {
+-        String correctPassword = "Cmeeiadp";
+-        assertEquals(correctPassword, testProfile.getEncryptedPassword());
++        String correctPassword = "Password";
++        assertEquals(correctPassword, testProfile.getRawPassword());
+     }
+ }
+Index: CS Project/src/SocialMedia/PasswordEncryption.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SocialMedia;\r\n\r\n/**\r\n * Encrypts the password using a simple caesar cipher.\r\n * Not very secure, but as long as someone doesn't brute force the\r\n * shift, it is good enough.\r\n * <p>\r\n * TODO: If wanted, we can do a key system to \"unlock\" the\r\n * encoding and decoding with a secret word. Each time a\r\n * function is ran, it requests the key in the arguments\r\n * of the function.\r\n *\r\n * @author Jaden Baker\r\n * @version 11/21/20\r\n */\r\npublic class PasswordEncryption {\r\n    public static String encode(String input, int skip) {\r\n        char[] letters = input.toCharArray();\r\n        StringBuilder output = new StringBuilder();\r\n        for (char a : letters) {\r\n            int i;\r\n            if (a == ' ' || a == ',' || a == '.' || a == '/' || a == ';' || a == '\"') {\r\n                output.append(a);\r\n            } else {\r\n                if (a <= 90) {\r\n                    if (a + skip > 90) {\r\n                        i = 65 + (skip - (90 - a));\r\n                    } else {\r\n                        i = a + skip;\r\n                    }\r\n                } else {\r\n                    if (a + skip > 122) {\r\n                        i = 96 + (skip - (122 - a));\r\n                    } else {\r\n                        i = a + skip;\r\n                    }\r\n                }\r\n                output.append((char) i);\r\n            }\r\n        }\r\n        return output.toString();\r\n    }\r\n\r\n    public static String decode(String input, int skip) {\r\n        char[] letters = input.toCharArray();\r\n\r\n        StringBuilder output = new StringBuilder();\r\n        for (char a : letters) {\r\n            int i;\r\n            if (a == ' ' || a == ',' || a == '.' || a == '/' || a == ';' ||\r\n                    a == '\"' || a == 39 || a == '0' || a == '1' || a == '2' ||\r\n                    a == '3' || a == '4' || a == '5' || a == '6' || a == '7' ||\r\n                    a == '8' || a == '9') {\r\n                output.append(a);\r\n            } else {\r\n                if (a <= 90) {\r\n                    if (a - skip < 65) {\r\n                        i = 91 - (skip - (a - 66));\r\n                    } else {\r\n                        i = a - skip;\r\n                    }\r\n                } else {\r\n                    if (a - skip < 97) {\r\n                        i = 123 - (skip - (a - 97));\r\n                    } else {\r\n                        i = a - skip;\r\n                    }\r\n                }\r\n                output.append((char) i);\r\n            }\r\n        }\r\n        return output.toString();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CS Project/src/SocialMedia/PasswordEncryption.java	(revision 0fb2c9b5fcaeeeb0979846c478741e99c15c1b4e)
++++ CS Project/src/SocialMedia/PasswordEncryption.java	(date 1607201295059)
+@@ -5,10 +5,6 @@
+  * Not very secure, but as long as someone doesn't brute force the
+  * shift, it is good enough.
+  * <p>
+- * TODO: If wanted, we can do a key system to "unlock" the
+- * encoding and decoding with a secret word. Each time a
+- * function is ran, it requests the key in the arguments
+- * of the function.
+  *
+  * @author Jaden Baker
+  * @version 11/21/20
+Index: CS Project/src/SocialMedia/ServerAndClient/ServerClientThread.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SocialMedia.ServerAndClient;\r\n\r\nimport SocialMedia.Profile;\r\n\r\nimport java.io.*;\r\nimport java.net.Socket;\r\n\r\n/**\r\n * Represents a client connected to the server\r\n *\r\n * @author Jaden Baker\r\n * @version 11/22/20\r\n */\r\n\r\npublic class ServerClientThread extends Thread {\r\n    String line = null;\r\n    BufferedReader bufferedReader = null;\r\n    PrintWriter printWriter = null;\r\n    Socket socket;\r\n    ObjectOutputStream objectOutputStream = null;\r\n    ObjectInputStream objectInputStream = null;\r\n    ServerObjectStorage serverObjectStorage;\r\n    Profile profile;\r\n\r\n    public ServerClientThread(Socket socket, ServerObjectStorage serverObjectStorage, Profile profile) {\r\n        this.socket = socket;\r\n        this.serverObjectStorage = serverObjectStorage;\r\n        this.profile = profile;\r\n    }\r\n\r\n    private void StopThread() throws IOException {\r\n        socket.close();\r\n        System.out.println(\"Socket Closed\");\r\n        CentralServer.numberOfConnections--;\r\n        serverObjectStorage.users.remove(profile);\r\n        CentralServer.serverClientThreads.remove(this);\r\n        System.out.println(\"----------------------------------------\");\r\n    }\r\n\r\n    public void run() {\r\n        try {\r\n            InputStream inputStream = socket.getInputStream();\r\n            OutputStream outputStream = socket.getOutputStream();\r\n\r\n            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));\r\n            printWriter = new PrintWriter(outputStream);\r\n\r\n            // create a ObjectOutputStream so we can write data from it\r\n            objectOutputStream = new ObjectOutputStream(outputStream);\r\n            // create a ObjectInputStream so we can read data from it\r\n            objectInputStream = new ObjectInputStream(inputStream);\r\n        } catch (IOException e) {\r\n            System.out.println(\"IO error in server thread\");\r\n        }\r\n\r\n        try {\r\n            for(Profile a : serverObjectStorage.users){\r\n                System.out.println(a);\r\n            }\r\n            System.out.println(\"=======\");\r\n            line = bufferedReader.readLine();\r\n            while (line.compareToIgnoreCase(\"quit\") != 0) {\r\n                switch (line) {\r\n                    case \"stop server\" -> System.exit(0);\r\n                    case \"see users\" -> {\r\n                        System.out.println(\"User has tried to see users\");\r\n                        objectOutputStream.reset();\r\n                        objectOutputStream.writeObject(serverObjectStorage.users);\r\n                        objectOutputStream.flush();\r\n                    }\r\n                    default -> {\r\n                        printWriter.println(\"You said: \" + line);\r\n                        printWriter.flush();\r\n                    }\r\n                }\r\n                System.out.println(socket.getInetAddress() + \":\" + socket.getPort() + \" said: \" + line);\r\n                line = bufferedReader.readLine();\r\n            }\r\n        } catch (IOException e) {\r\n            line = this.getName();\r\n            System.out.println(\"----------------------------------------\");\r\n            try {\r\n                StopThread();\r\n            } catch (IOException ioException) {\r\n                System.out.println(\"Error with doing the stop thread stuff\");\r\n            }\r\n            System.out.println(\"IO Error: \" + line + \" terminated abruptly\");\r\n        } catch (NullPointerException e) {\r\n            line = this.getName();\r\n            System.out.println(\"----------------------------------------\");\r\n            System.out.println(\"Client \" + line + \" Closed\");\r\n            try {\r\n                StopThread();\r\n            } catch (IOException ioException) {\r\n                System.out.println(\"Error with doing the stop thread stuff\");\r\n            }\r\n        } finally {\r\n            try {\r\n                System.out.println(\"Connection Closing...\");\r\n                if (bufferedReader != null) {\r\n                    bufferedReader.close();\r\n                    System.out.println(\"Socket Input Stream Closed\");\r\n                }\r\n\r\n                if (printWriter != null) {\r\n                    printWriter.close();\r\n                    System.out.println(\"Socket Output Closed\");\r\n                }\r\n\r\n                if (socket != null) {\r\n                    StopThread();\r\n                }\r\n            } catch (IOException ie) {\r\n                System.out.println(\"Socket Close Error\");\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CS Project/src/SocialMedia/ServerAndClient/ServerClientThread.java	(revision 0fb2c9b5fcaeeeb0979846c478741e99c15c1b4e)
++++ CS Project/src/SocialMedia/ServerAndClient/ServerClientThread.java	(date 1607200546638)
+@@ -19,12 +19,12 @@
+     Socket socket;
+     ObjectOutputStream objectOutputStream = null;
+     ObjectInputStream objectInputStream = null;
+-    ServerObjectStorage serverObjectStorage;
++    ServerUserStorage serverUserStorage;
+     Profile profile;
+ 
+-    public ServerClientThread(Socket socket, ServerObjectStorage serverObjectStorage, Profile profile) {
++    public ServerClientThread(Socket socket, ServerUserStorage serverUserStorage, Profile profile) {
+         this.socket = socket;
+-        this.serverObjectStorage = serverObjectStorage;
++        this.serverUserStorage = serverUserStorage;
+         this.profile = profile;
+     }
+ 
+@@ -32,7 +32,7 @@
+         socket.close();
+         System.out.println("Socket Closed");
+         CentralServer.numberOfConnections--;
+-        serverObjectStorage.users.remove(profile);
++        serverUserStorage.users.remove(profile);
+         CentralServer.serverClientThreads.remove(this);
+         System.out.println("----------------------------------------");
+     }
+@@ -54,7 +54,7 @@
+         }
+ 
+         try {
+-            for(Profile a : serverObjectStorage.users){
++            for(Profile a : serverUserStorage.users){
+                 System.out.println(a);
+             }
+             System.out.println("=======");
+@@ -65,7 +65,7 @@
+                     case "see users" -> {
+                         System.out.println("User has tried to see users");
+                         objectOutputStream.reset();
+-                        objectOutputStream.writeObject(serverObjectStorage.users);
++                        objectOutputStream.writeObject(serverUserStorage.users);
+                         objectOutputStream.flush();
+                     }
+                     default -> {
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"BRANCH:origin/master\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </select>\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"270cdef1-b905-4db1-b60e-578e950f64f0\" name=\"Default Changelist\" comment=\"Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change\">\r\n      <change afterPath=\"$PROJECT_DIR$/UsernameFiles/JamesMartin.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CS Project/UsernameFiles/FrankToft.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/UsernameFiles/FrankToft.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CS Project/src/SocialMedia/Profile.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CS Project/src/SocialMedia/Profile.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/CentralServer.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/CentralServer.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExportToHTMLSettings\">\r\n    <option name=\"OUTPUT_DIRECTORY\" value=\"$PROJECT_DIR$/../CS18000\\exportToHTML\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Enum\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <favorite-branches>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"LOCAL\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"testbranch\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </favorite-branches>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"RESET_MODE\" value=\"HARD\" />\r\n  </component>\r\n  <component name=\"JupyterTrust\" id=\"fe41e3a6-7fc2-4c5d-ad6a-39fb370f4803\" />\r\n  <component name=\"ProjectId\" id=\"1kcGV0R7adV96IvCAAmvpvYmlQo\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/UsernameFiles\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Modules\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n    <property name=\"restartRequiresConfirmation\" value=\"false\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Jaden\\IdeaProjects\\CS18000\\UsernameFiles\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Jaden\\IdeaProjects\\CS18000\" />\r\n      <recent name=\"C:\\Users\\Jaden\\IdeaProjects\\CS18000\\CS Project\\src\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.UserInput\">\r\n    <configuration name=\"CentralServer\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"SocialMedia.ServerAndClient.CentralServer\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ObjectIO\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ServerAndClient.ObjectIO\" />\r\n      <module name=\"CS18000\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"SocialMedia.ServerAndClient.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient (1)\" type=\"Application\" factoryName=\"Application\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient (2)\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"SocialMedia.ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"SocialMedia.ServerAndClient.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" singleton=\"false\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"SocialMedia.ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" singleton=\"false\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"SocialMedia.ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"SocialMedia.ServerAndClient.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" editBeforeRun=\"true\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserClient\" type=\"Application\" factoryName=\"Application\" singleton=\"false\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ServerAndClient.UserClient\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserInput\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"SocialMedia.UserInput\" />\r\n      <module name=\"CS18000\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.UserInput\" />\r\n        <item itemvalue=\"Application.CentralServer\" />\r\n        <item itemvalue=\"Application.UserClient (2)\" />\r\n        <item itemvalue=\"Application.UserClient\" />\r\n        <item itemvalue=\"Application.ObjectIO\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"CUSTOM_BOOLEAN_PROPERTIES\">\r\n                <map>\r\n                  <entry key=\"Show.Git.Branches\" value=\"true\" />\r\n                </map>\r\n              </option>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"origin/master\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Test Branch\" />\r\n    <MESSAGE value=\"Added PasswordEncryption.java: It provides static classes to encode and decode strings, which is used to hide passwords.&#10;Changed Profile.java: Made the friends list initialize outside of the constructor, as it isn't required to be in the constructor. Also changed encryptedPassword in the constructor to save the password as an encrypted one (With a shift of 12).\" />\r\n    <MESSAGE value=\"Added: SettingsAndConstants.java&#10;Description: Holds constants that may be used elsewhere multiple times. Or just large strings.&#10;&#10;Added: ServerClientThread.java&#10;Description: Acts as the clients connection to the CentralServer. This is required for multiple connections to the CentralServer.&#10;&#10;Renamed: ProfileServer.class to CentralServer.java&#10;Description: As this is the central server used to run the whole platform, I feel like CentralServer would be a more understandable.&#10;&#10;Changed: UserClient.java&#10;Description: Recreated the simple client script but using the new ServerClientThread.java system.&#10;&#10;Added: ServerAndClient package&#10;Description: This is just so all of the client and server things are organized. We can do this to more of the files as we go on and if you need to use something from it, all you have to do is import the package at the top. (Intellij will do this/tell you automatically)\" />\r\n    <MESSAGE value=\"Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change\" />\r\n    <MESSAGE value=\"Everything is under the SocialMedia package now. Server can now send profiles\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Everything is under the SocialMedia package now. Server can now send profiles\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"440\" y=\"114\" key=\"#Project_Structure\" timestamp=\"1607030636032\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"440\" y=\"114\" key=\"#Project_Structure/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607030636032\" />\r\n    <state x=\"728\" y=\"321\" key=\"#com.intellij.fileTypes.FileTypeChooser\" timestamp=\"1607024492623\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"728\" y=\"321\" key=\"#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607024492623\" />\r\n    <state x=\"2542\" y=\"-165\" key=\"#com.intellij.refactoring.rename.AutomaticRenamingDialog\" timestamp=\"1606092118870\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1120\" />\r\n    </state>\r\n    <state x=\"2542\" y=\"-165\" key=\"#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606092118870\" />\r\n    <state width=\"1877\" height=\"250\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1607059985205\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"250\" key=\"GridCell.Tab.0.bottom/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607059985205\" />\r\n    <state width=\"2005\" height=\"290\" key=\"GridCell.Tab.0.bottom/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112\" timestamp=\"1606956286771\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095551161\" />\r\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120\" timestamp=\"1605995900196\" />\r\n    <state width=\"1877\" height=\"250\" key=\"GridCell.Tab.0.center\" timestamp=\"1607059985205\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"250\" key=\"GridCell.Tab.0.center/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607059985205\" />\r\n    <state width=\"2005\" height=\"290\" key=\"GridCell.Tab.0.center/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112\" timestamp=\"1606956286771\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095551161\" />\r\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120\" timestamp=\"1605995900196\" />\r\n    <state width=\"1877\" height=\"250\" key=\"GridCell.Tab.0.left\" timestamp=\"1607059985205\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"250\" key=\"GridCell.Tab.0.left/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607059985205\" />\r\n    <state width=\"2005\" height=\"290\" key=\"GridCell.Tab.0.left/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112\" timestamp=\"1606956286771\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095551161\" />\r\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120\" timestamp=\"1605995900195\" />\r\n    <state width=\"1877\" height=\"250\" key=\"GridCell.Tab.0.right\" timestamp=\"1607059985205\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"250\" key=\"GridCell.Tab.0.right/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607059985205\" />\r\n    <state width=\"2005\" height=\"290\" key=\"GridCell.Tab.0.right/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112\" timestamp=\"1606956286771\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095551161\" />\r\n    <state width=\"1877\" height=\"282\" key=\"GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992528474\" />\r\n    <state width=\"2005\" height=\"305\" key=\"GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120\" timestamp=\"1605995900196\" />\r\n    <state width=\"1877\" height=\"346\" key=\"GridCell.Tab.1.bottom\" timestamp=\"1607041679288\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"346\" key=\"GridCell.Tab.1.bottom/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607041679288\" />\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606091199150\" />\r\n    <state width=\"1877\" height=\"346\" key=\"GridCell.Tab.1.center\" timestamp=\"1607041679288\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"346\" key=\"GridCell.Tab.1.center/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607041679288\" />\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606091199150\" />\r\n    <state width=\"1877\" height=\"346\" key=\"GridCell.Tab.1.left\" timestamp=\"1607041679288\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"346\" key=\"GridCell.Tab.1.left/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607041679288\" />\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606091199150\" />\r\n    <state width=\"1877\" height=\"346\" key=\"GridCell.Tab.1.right\" timestamp=\"1607041679288\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state width=\"1877\" height=\"346\" key=\"GridCell.Tab.1.right/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607041679288\" />\r\n    <state width=\"2005\" height=\"375\" key=\"GridCell.Tab.1.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606091199150\" />\r\n    <state x=\"552\" y=\"252\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1607038293077\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"552\" y=\"252\" key=\"Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607038293077\" />\r\n    <state x=\"2509\" y=\"106\" key=\"Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095578508\" />\r\n    <state x=\"552\" y=\"252\" key=\"Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605992769069\" />\r\n    <state x=\"2509\" y=\"54\" key=\"Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120\" timestamp=\"1605993764260\" />\r\n    <state x=\"777\" y=\"433\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1606516481816\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"777\" y=\"433\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1606516481816\" />\r\n    <state x=\"503\" y=\"255\" width=\"914\" height=\"630\" key=\"com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2\" timestamp=\"1607041623374\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"503\" y=\"255\" width=\"914\" height=\"630\" key=\"com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607041623374\" />\r\n    <state x=\"1920\" y=\"-88\" width=\"1643\" height=\"749\" maximized=\"true\" key=\"dock-window-1\" timestamp=\"1607041369639\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1112\" />\r\n    </state>\r\n    <state x=\"1920\" y=\"-88\" width=\"1643\" height=\"749\" maximized=\"true\" key=\"dock-window-1/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040\" timestamp=\"1607041369639\" />\r\n    <state x=\"2601\" y=\"176\" key=\"run.anything.popup\" timestamp=\"1606955749253\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1112\" />\r\n    </state>\r\n    <state x=\"2601\" y=\"176\" key=\"run.anything.popup/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112\" timestamp=\"1606955749253\" />\r\n    <state x=\"2607\" y=\"76\" width=\"672\" height=\"674\" key=\"search.everywhere.popup\" timestamp=\"1606952947550\">\r\n      <screen x=\"1920\" y=\"-165\" width=\"2048\" height=\"1112\" />\r\n    </state>\r\n    <state x=\"2607\" y=\"76\" width=\"672\" height=\"674\" key=\"search.everywhere.popup/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112\" timestamp=\"1606952947550\" />\r\n    <state x=\"2607\" y=\"78\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120\" timestamp=\"1606095324743\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.io.NotSerializableException\" package=\"java.io\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"2\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n      <default-breakpoints>\r\n        <breakpoint type=\"python-exception\">\r\n          <properties notifyOnTerminate=\"true\" exception=\"BaseException\">\r\n            <option name=\"notifyOnTerminate\" value=\"true\" />\r\n          </properties>\r\n        </breakpoint>\r\n      </default-breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 0fb2c9b5fcaeeeb0979846c478741e99c15c1b4e)
++++ .idea/workspace.xml	(date 1607203366931)
+@@ -27,11 +27,18 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change">
+-      <change afterPath="$PROJECT_DIR$/UsernameFiles/JamesMartin.txt" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/CS Project/UsernameFiles/FrankToft.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UsernameFiles/FrankToft.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/PasswordEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/PasswordEncryption.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/Profile.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/CentralServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/CentralServer.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/ServerClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/ServerClientThread.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/ServerObjectStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/ServerUserStorage.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/UserClient.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/UserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/UserInput.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/UsernameFiles/FrankToft.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UsernameFiles/FrankToft.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/UsernameFiles/JamesMartin.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UsernameFiles/JamesMartin.txt" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -87,15 +94,16 @@
+     <property name="restartRequiresConfirmation" value="false" />
+   </component>
+   <component name="RecentsManager">
+-    <key name="CopyFile.RECENT_KEYS">
+-      <recent name="C:\Users\Jaden\IdeaProjects\CS18000\UsernameFiles" />
+-    </key>
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\Jaden\IdeaProjects\CS18000" />
++      <recent name="C:\Users\Jaden\IdeaProjects\CS18000\CS Project" />
+       <recent name="C:\Users\Jaden\IdeaProjects\CS18000\CS Project\src" />
++    </key>
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\Jaden\IdeaProjects\CS18000\UsernameFiles" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Application.UserInput">
++  <component name="RunManager" selected="Application.UserClient (4)">
+     <configuration name="CentralServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="SocialMedia.ServerAndClient.CentralServer" />
+       <module name="CS18000" />
+@@ -103,8 +111,15 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="ObjectIO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="ServerAndClient.ObjectIO" />
++    <configuration name="UserClient (1)" type="Application" factoryName="Application" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="UserClient" />
++      <module name="CS18000" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="UserClient (2)" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="SocialMedia.ServerAndClient.UserClient" />
+       <module name="CS18000" />
+       <extension name="coverage">
+         <pattern>
+@@ -116,14 +131,20 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="UserClient (1)" type="Application" factoryName="Application" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="UserClient" />
++    <configuration name="UserClient (3)" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="SocialMedia.ServerAndClient.UserClient" />
+       <module name="CS18000" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="SocialMedia.ServerAndClient.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="UserClient (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++    <configuration name="UserClient (4)" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="SocialMedia.ServerAndClient.UserClient" />
+       <module name="CS18000" />
+       <extension name="coverage">
+@@ -143,6 +164,19 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
++    <configuration name="UserClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="SocialMedia.ServerAndClient.UserClient" />
++      <module name="CS18000" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="SocialMedia.ServerAndClient.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
+     <configuration name="UserClient" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="SocialMedia.ServerAndClient.UserClient" />
+       <module name="CS18000" />
+@@ -193,17 +227,20 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.UserInput" />
++        <item itemvalue="Application.UserClient (2)" />
+         <item itemvalue="Application.CentralServer" />
++        <item itemvalue="Application.UserClient (4)" />
++        <item itemvalue="Application.UserClient (3)" />
+         <item itemvalue="Application.UserClient (2)" />
+-        <item itemvalue="Application.UserClient" />
+-        <item itemvalue="Application.ObjectIO" />
+       </list>
+     </recent_temporary>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <servers />
++  </component>
++  <component name="UnknownFeatures">
++    <option featureType="com.intellij.fileTypeFactory" implementationName="*.txt" />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+     <option name="TAB_STATES">
+@@ -240,7 +277,8 @@
+     <MESSAGE value="Added: SettingsAndConstants.java&#10;Description: Holds constants that may be used elsewhere multiple times. Or just large strings.&#10;&#10;Added: ServerClientThread.java&#10;Description: Acts as the clients connection to the CentralServer. This is required for multiple connections to the CentralServer.&#10;&#10;Renamed: ProfileServer.class to CentralServer.java&#10;Description: As this is the central server used to run the whole platform, I feel like CentralServer would be a more understandable.&#10;&#10;Changed: UserClient.java&#10;Description: Recreated the simple client script but using the new ServerClientThread.java system.&#10;&#10;Added: ServerAndClient package&#10;Description: This is just so all of the client and server things are organized. We can do this to more of the files as we go on and if you need to use something from it, all you have to do is import the package at the top. (Intellij will do this/tell you automatically)" />
+     <MESSAGE value="Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change" />
+     <MESSAGE value="Everything is under the SocialMedia package now. Server can now send profiles" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Everything is under the SocialMedia package now. Server can now send profiles" />
++    <MESSAGE value="Server now reads all users from folder" />
++    <option name="LAST_COMMIT_MESSAGE" value="Server now reads all users from folder" />
+   </component>
+   <component name="WindowStateProjectService">
+     <state x="440" y="114" key="#Project_Structure" timestamp="1607030636032">
+@@ -251,38 +289,43 @@
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="728" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607024492623" />
+-    <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606092118870">
+-      <screen x="1920" y="-165" width="2048" height="1120" />
++    <state x="583" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1607200420413">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
++    <state x="583" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607200420413" />
+     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606092118870" />
+-    <state width="1877" height="250" key="GridCell.Tab.0.bottom" timestamp="1607059985205">
++    <state x="94" y="94" width="1736" height="856" key="DiffContextDialog" timestamp="1607200359997">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="250" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607059985205" />
++    <state x="94" y="94" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607200359997" />
++    <state width="1877" height="238" key="GridCell.Tab.0.bottom" timestamp="1607203275349">
++      <screen x="0" y="0" width="1920" height="1040" />
++    </state>
++    <state width="1877" height="238" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607203275349" />
+     <state width="2005" height="290" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112" timestamp="1606956286771" />
+     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
+     <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
+     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
+-    <state width="1877" height="250" key="GridCell.Tab.0.center" timestamp="1607059985205">
++    <state width="1877" height="238" key="GridCell.Tab.0.center" timestamp="1607203275348">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="250" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607059985205" />
++    <state width="1877" height="238" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607203275348" />
+     <state width="2005" height="290" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112" timestamp="1606956286771" />
+     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
+     <state width="1877" height="282" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
+     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
+-    <state width="1877" height="250" key="GridCell.Tab.0.left" timestamp="1607059985205">
++    <state width="1877" height="238" key="GridCell.Tab.0.left" timestamp="1607203275348">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="250" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607059985205" />
++    <state width="1877" height="238" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607203275348" />
+     <state width="2005" height="290" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112" timestamp="1606956286771" />
+     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
+     <state width="1877" height="282" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
+     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900195" />
+-    <state width="1877" height="250" key="GridCell.Tab.0.right" timestamp="1607059985205">
++    <state width="1877" height="238" key="GridCell.Tab.0.right" timestamp="1607203275348">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="1877" height="250" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607059985205" />
++    <state width="1877" height="238" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607203275348" />
+     <state width="2005" height="290" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-165.2048.1112@1920.-165.2048.1112" timestamp="1606956286771" />
+     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
+     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
+@@ -307,13 +350,21 @@
+     </state>
+     <state width="1877" height="346" key="GridCell.Tab.1.right/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607041679288" />
+     <state width="2005" height="375" key="GridCell.Tab.1.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
+-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1607038293077">
++    <state x="440" y="94" key="SettingsEditor" timestamp="1607199265666">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607038293077" />
++    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607199265666" />
++    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1607063772351">
++      <screen x="0" y="0" width="1920" height="1040" />
++    </state>
++    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607063772351" />
+     <state x="2509" y="106" key="Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095578508" />
+     <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992769069" />
+     <state x="2509" y="54" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605993764260" />
++    <state x="687" y="253" key="VcsDiffUtil.ChangesDialog" timestamp="1607192496180">
++      <screen x="0" y="0" width="1920" height="1040" />
++    </state>
++    <state x="687" y="253" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607192496180" />
+     <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606516481816">
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+@@ -322,10 +373,10 @@
+       <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+     <state x="503" y="255" width="914" height="630" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607041623374" />
+-    <state x="1920" y="-88" width="1643" height="749" maximized="true" key="dock-window-1" timestamp="1607041369639">
++    <state x="1920" y="-165" width="1633" height="761" key="dock-window-1" timestamp="1607202011054">
+       <screen x="1920" y="-165" width="2048" height="1112" />
+     </state>
+-    <state x="1920" y="-88" width="1643" height="749" maximized="true" key="dock-window-1/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607041369639" />
++    <state x="1920" y="-165" width="1633" height="761" key="dock-window-1/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607202011054" />
+     <state x="2601" y="176" key="run.anything.popup" timestamp="1606955749253">
+       <screen x="1920" y="-165" width="2048" height="1112" />
+     </state>
+Index: CS Project/src/SocialMedia/ServerAndClient/CentralServer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SocialMedia.ServerAndClient;\r\n\r\nimport SocialMedia.FriendsList;\r\nimport SocialMedia.Profile;\r\n\r\nimport java.io.BufferedReader;\r\nimport java.io.File;\r\nimport java.io.FileReader;\r\nimport java.io.IOException;\r\nimport java.net.ServerSocket;\r\nimport java.net.Socket;\r\nimport java.util.ArrayList;\r\nimport java.util.Arrays;\r\n\r\n/**\r\n * Represents the server\r\n *\r\n * Was named \"ProfileServer\", but I felt that CentralServer is more fitting - Jaden\r\n *\r\n * @author Jaden Baker\r\n * @version 11/21/20\r\n */\r\n\r\npublic class CentralServer {\r\n\r\n    public static ServerObjectStorage serverObjectStorage;\r\n    public static int numberOfConnections = 0;\r\n\r\n    public static ArrayList<ServerClientThread> serverClientThreads = new ArrayList<>();\r\n\r\n    public static void getUsersFromDatabase(){\r\n        File dir = new File(\"UsernameFiles\");\r\n        File[] directoryListing = dir.listFiles();\r\n        if (directoryListing != null) {\r\n            for (File child : directoryListing) {\r\n                String name;\r\n                String email;\r\n                String friendsList;\r\n                String website;\r\n                String interests;\r\n                String aboutMe;\r\n                int age;\r\n                String password;\r\n                BufferedReader reader;\r\n                try {\r\n                    reader = new BufferedReader(new FileReader(child));\r\n                    name = reader.readLine();\r\n                    System.out.println(\"Loaded user: \" + name + \" from database\");\r\n                    email = reader.readLine();\r\n                    friendsList = reader.readLine();\r\n                    website = reader.readLine();\r\n                    interests = reader.readLine();\r\n                    aboutMe = reader.readLine();\r\n                    age = Integer.parseInt(reader.readLine());\r\n                    password = reader.readLine();\r\n                    serverObjectStorage.users.add(new Profile(name, email, website, new ArrayList<>(Arrays.asList(interests.split(\", \"))), aboutMe, age, child.getName().strip().substring(0,child.getName().indexOf('.')), password));\r\n                    reader.close();\r\n                } catch (IOException e) {\r\n                    e.printStackTrace();\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        serverObjectStorage = new ServerObjectStorage();\r\n        getUsersFromDatabase();\r\n        Socket socket;\r\n        ServerSocket serverSocket = null;\r\n        System.out.println(SettingsAndConstants.WELCOME_MESSAGE_SERVER);\r\n        System.out.println(\"Server is online and looking for clients\");\r\n        Runtime.getRuntime().addShutdownHook(new Thread(() ->\r\n                System.out.println(\"Server shutting down...\"), \"Shutdown-thread\"));\r\n\r\n        try {\r\n            serverSocket = new ServerSocket(SettingsAndConstants.SERVER_PORT);\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n            System.out.println(\"Server error\");\r\n        }\r\n\r\n        while (true) {\r\n            try {\r\n                assert serverSocket != null;\r\n                socket = serverSocket.accept();\r\n                numberOfConnections++;\r\n                System.out.println(\"----------------------------------------\");\r\n                System.out.println(\"Connection established to: \" + socket.getInetAddress() +\r\n                        \"\\nClient Port: \" + socket.getPort());\r\n                System.out.println(\"Number of connections: \" + numberOfConnections);\r\n                System.out.println(\"----------------------------------------\");\r\n                Profile newProfile = new Profile(\"Test User\", String.valueOf(socket.getPort()), 18, \"test@domain.com\", \"test\");\r\n                ServerClientThread serverClientThread = new ServerClientThread(socket, serverObjectStorage, newProfile);\r\n                serverClientThreads.add(serverClientThread);\r\n                serverObjectStorage.users.add(newProfile);\r\n                serverClientThread.start();\r\n\r\n                for(ServerClientThread s : serverClientThreads){\r\n                    s.serverObjectStorage = serverObjectStorage;\r\n                }\r\n            } catch (Exception e) {\r\n                e.printStackTrace();\r\n                System.out.println(\"Connection Error\");\r\n            }\r\n\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CS Project/src/SocialMedia/ServerAndClient/CentralServer.java	(revision 0fb2c9b5fcaeeeb0979846c478741e99c15c1b4e)
++++ CS Project/src/SocialMedia/ServerAndClient/CentralServer.java	(date 1607203426909)
+@@ -14,7 +14,7 @@
+ 
+ /**
+  * Represents the server
+- *
++ * <p>
+  * Was named "ProfileServer", but I felt that CentralServer is more fitting - Jaden
+  *
+  * @author Jaden Baker
+@@ -23,54 +23,73 @@
+ 
+ public class CentralServer {
+ 
+-    public static ServerObjectStorage serverObjectStorage;
++    public static ServerUserStorage serverUserStorage;
+     public static int numberOfConnections = 0;
+ 
+     public static ArrayList<ServerClientThread> serverClientThreads = new ArrayList<>();
+ 
+-    public static void getUsersFromDatabase(){
++
++
++    public static void getUsersFromDatabase() {
+         File dir = new File("UsernameFiles");
+         File[] directoryListing = dir.listFiles();
+         if (directoryListing != null) {
+             for (File child : directoryListing) {
+-                String name;
+-                String email;
+-                String friendsList;
+-                String website;
+-                String interests;
+-                String aboutMe;
+-                int age;
+-                String password;
+-                BufferedReader reader;
+-                try {
+-                    reader = new BufferedReader(new FileReader(child));
+-                    name = reader.readLine();
+-                    System.out.println("Loaded user: " + name + " from database");
+-                    email = reader.readLine();
+-                    friendsList = reader.readLine();
+-                    website = reader.readLine();
+-                    interests = reader.readLine();
+-                    aboutMe = reader.readLine();
+-                    age = Integer.parseInt(reader.readLine());
+-                    password = reader.readLine();
+-                    serverObjectStorage.users.add(new Profile(name, email, website, new ArrayList<>(Arrays.asList(interests.split(", "))), aboutMe, age, child.getName().strip().substring(0,child.getName().indexOf('.')), password));
+-                    reader.close();
+-                } catch (IOException e) {
+-                    e.printStackTrace();
++                try {
++                    String name;
++                    String email;
++                    String friendsList;
++                    String website;
++                    String interests;
++                    String aboutMe;
++                    int age;
++                    String password;
++                    BufferedReader reader;
++                    try {
++                        reader = new BufferedReader(new FileReader(child));
++                        name = reader.readLine();
++                        System.out.println("Loaded user: " + name + " from database");
++                        email = reader.readLine();
++                        friendsList = reader.readLine();
++                        website = reader.readLine();
++                        interests = reader.readLine();
++                        aboutMe = reader.readLine();
++                        age = Integer.parseInt(reader.readLine());
++                        password = reader.readLine();
++                        serverUserStorage.users.add(new Profile(name,
++                                age,
++                                email,
++                                website,
++                                new ArrayList<>(Arrays.asList(interests
++                                        .substring(1, interests.length() - 1)
++                                        .split(", "))),
++                                new FriendsList(),
++                                aboutMe,
++                                child.getName().strip().substring(0, child.getName().indexOf('.')),
++                                password));
++                        reader.close();
++                    } catch (IOException e) {
++                        e.printStackTrace();
++                    }
++                } catch (NumberFormatException exception) {
++                    System.out.println("File must be broken, skipping user: " + child.getName());
+                 }
+             }
+         }
+     }
+ 
+     public static void main(String[] args) {
+-        serverObjectStorage = new ServerObjectStorage();
++        serverUserStorage = new ServerUserStorage();
+         getUsersFromDatabase();
+         Socket socket;
+         ServerSocket serverSocket = null;
+         System.out.println(SettingsAndConstants.WELCOME_MESSAGE_SERVER);
+         System.out.println("Server is online and looking for clients");
+-        Runtime.getRuntime().addShutdownHook(new Thread(() ->
+-                System.out.println("Server shutting down..."), "Shutdown-thread"));
++        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
++            System.out.println("Server shutting down...");
++            serverUserStorage.saveUsersToDatabase();
++        }, "Shutdown-thread"));
++
+ 
+         try {
+             serverSocket = new ServerSocket(SettingsAndConstants.SERVER_PORT);
+@@ -90,13 +109,13 @@
+                 System.out.println("Number of connections: " + numberOfConnections);
+                 System.out.println("----------------------------------------");
+                 Profile newProfile = new Profile("Test User", String.valueOf(socket.getPort()), 18, "test@domain.com", "test");
+-                ServerClientThread serverClientThread = new ServerClientThread(socket, serverObjectStorage, newProfile);
++                ServerClientThread serverClientThread = new ServerClientThread(socket, serverUserStorage, newProfile);
+                 serverClientThreads.add(serverClientThread);
+-                serverObjectStorage.users.add(newProfile);
++                serverUserStorage.users.add(newProfile);
+                 serverClientThread.start();
+ 
+-                for(ServerClientThread s : serverClientThreads){
+-                    s.serverObjectStorage = serverObjectStorage;
++                for (ServerClientThread s : serverClientThreads) {
++                    s.serverUserStorage = serverUserStorage;
+                 }
+             } catch (Exception e) {
+                 e.printStackTrace();
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/inspectionProfiles/Project_Default.xml	(date 1607201295005)
++++ .idea/inspectionProfiles/Project_Default.xml	(date 1607201295005)
+@@ -0,0 +1,36 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="JavaDoc" enabled="true" level="WARNING" enabled_by_default="true">
++      <option name="TOP_LEVEL_CLASS_OPTIONS">
++        <value>
++          <option name="ACCESS_JAVADOC_REQUIRED_FOR" value="none" />
++          <option name="REQUIRED_TAGS" value="" />
++        </value>
++      </option>
++      <option name="INNER_CLASS_OPTIONS">
++        <value>
++          <option name="ACCESS_JAVADOC_REQUIRED_FOR" value="none" />
++          <option name="REQUIRED_TAGS" value="" />
++        </value>
++      </option>
++      <option name="METHOD_OPTIONS">
++        <value>
++          <option name="ACCESS_JAVADOC_REQUIRED_FOR" value="none" />
++          <option name="REQUIRED_TAGS" value="@return@param@throws or @exception" />
++        </value>
++      </option>
++      <option name="FIELD_OPTIONS">
++        <value>
++          <option name="ACCESS_JAVADOC_REQUIRED_FOR" value="none" />
++          <option name="REQUIRED_TAGS" value="" />
++        </value>
++      </option>
++      <option name="IGNORE_DEPRECATED" value="false" />
++      <option name="IGNORE_JAVADOC_PERIOD" value="true" />
++      <option name="IGNORE_DUPLICATED_THROWS" value="false" />
++      <option name="IGNORE_POINT_TO_ITSELF" value="false" />
++      <option name="myAdditionalJavadocTags" value="authors" />
++    </inspection_tool>
++  </profile>
++</component>
+\ No newline at end of file
