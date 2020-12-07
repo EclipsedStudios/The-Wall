@@ -13,7 +13,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.Socket;
@@ -264,12 +263,12 @@ public class Tester {
     @Test
     public void userClientMethods() {
         try {
-            assertEquals(boolean.class, UserClient.class.getMethod("Login", String.class, String.class).getReturnType());
-            assertEquals(true, Modifier.isPublic(UserClient.class.getMethod("Login", String.class, String.class).getModifiers()));
+            assertEquals(boolean.class, UserClient.class.getMethod("login", String.class, String.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(UserClient.class.getMethod("login", String.class, String.class).getModifiers()));
 
-            assertEquals(void.class, UserClient.class.getMethod("CreateAccount", String.class, int.class, String.class, String.class, ArrayList.class, FriendsList.class, String.class, String.class, String.class).getReturnType());
-            assertEquals(true, Modifier.isPublic(UserClient.class.getMethod("CreateAccount", String.class, int.class, String.class, String.class, ArrayList.class, FriendsList.class, String.class, String.class, String.class).getModifiers()));
-            assertEquals(IOException.class, UserClient.class.getMethod("CreateAccount", String.class, int.class, String.class, String.class, ArrayList.class, FriendsList.class, String.class, String.class, String.class).getExceptionTypes()[0]);
+            assertEquals(void.class, UserClient.class.getMethod("createAccount", String.class, int.class, String.class, String.class, ArrayList.class, FriendsList.class, String.class, String.class, String.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(UserClient.class.getMethod("createAccount", String.class, int.class, String.class, String.class, ArrayList.class, FriendsList.class, String.class, String.class, String.class).getModifiers()));
+            assertEquals(IOException.class, UserClient.class.getMethod("createAccount", String.class, int.class, String.class, String.class, ArrayList.class, FriendsList.class, String.class, String.class, String.class).getExceptionTypes()[0]);
 
             assertEquals(Profile.class, UserClient.class.getMethod("getProfileWith", String.class).getReturnType());
             assertEquals(true, Modifier.isPublic(UserClient.class.getMethod("getProfileWith", String.class).getModifiers()));

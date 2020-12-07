@@ -87,7 +87,7 @@ public class ServerClientThread extends Thread {
 
                             profile1.friendsList.incomingFriendRequests.add(profile2);
                             profile2.friendsList.outgoingFriendRequests.add(profile1);
-                            System.out.println(profile1.getUsername() + " has sent " + profile2.getUsername() + " a friend request");
+                            System.out.println(profile1.getUsername() + " has received a friend request from " + profile2.getUsername());
                             serverObjectStorage.saveUsersToDatabase();
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();

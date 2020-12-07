@@ -37,6 +37,10 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
     public static JLabel aboutMeLabel;
     public static JLabel aboutMeText;
 
+    public static Profile getGUIProfile(){
+        return GUIProfile;
+    }
+
     public static void createProfileGUI() {
         JFrame profileGUIFrame = new JFrame();
         JPanel profileGUIPanel = new JPanel();
