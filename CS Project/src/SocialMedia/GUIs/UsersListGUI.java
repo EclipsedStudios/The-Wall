@@ -45,11 +45,6 @@ public class UsersListGUI extends JFrame implements ActionListener {
     /** Initalizes variables for users list gui**/
     public static void createUsersListGUI(){
         // set the profiles list to all the lists
-
-
-
-
-
         List<Profile> allProfiles = UserClient.profilesList;
         List<Profile> profilesToShow = new ArrayList<>();
         // getting rid of the user viewing so they can't view themself

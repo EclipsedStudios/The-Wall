@@ -143,6 +143,22 @@ public class UserClient extends Thread {
         oISUsed = true;
     }
 
+    public void cancelFriendRequest(Profile profile) throws IOException {
+        objectOutputStream.writeUTF("cancel friend");
+        System.out.println("Wrote UTF");
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        objectOutputStream.writeObject(profile);
+        System.out.println("Wrote Profile: ");
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        objectOutputStream.writeObject(UserClient.profile);
+        System.out.println("Wrote Profile: ");
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        oISUsed = true;
+    }
+
     public void acceptFriend(Profile profile) throws IOException {
         objectOutputStream.writeUTF("accept friend");
         System.out.println("Wrote UTF");

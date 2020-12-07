@@ -121,6 +121,31 @@ public class ServerClientThread extends Thread {
                             e.printStackTrace();
                         }
                         break;
+                    case "cancel friend":
+                        System.out.println("User has tried to cancel a friend request");
+                        try {
+                            Profile profile1 = (Profile) objectInputStream.readObject(); //Getting
+                            Profile profile2 = (Profile) objectInputStream.readObject(); //Sending
+                            for (Profile p : serverObjectStorage.users) {
+                                if (profile1.getUsername().equals(p.getUsername())) {
+                                    profile1 = p;
+                                } else if (profile2.getUsername().equals(p.getUsername())) {
+                                    profile2 = p;
+                                }
+                            }
+                            if(profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)){
+                                profile1.friendsList.incomingFriendRequests.remove(profile2);
+                                profile2.friendsList.outgoingFriendRequests.remove(profile1);
+                            } else if(profile2.friendsList.incomingFriendRequests.contains(profile1) && profile1.friendsList.outgoingFriendRequests.contains(profile2)){
+                                profile2.friendsList.incomingFriendRequests.remove(profile1);
+                                profile1.friendsList.outgoingFriendRequests.remove(profile2);
+                            }
+                            System.out.println(profile1.getUsername() + " has cancelled a friend request to " + profile2.getUsername());
+                            serverObjectStorage.saveUsersToDatabase();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                     case "accept friend":
                         System.out.println("User has tried to accept a friend");
                         try {
