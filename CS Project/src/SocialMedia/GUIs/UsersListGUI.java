@@ -47,9 +47,22 @@ public class UsersListGUI extends JFrame implements ActionListener {
     /** Initalizes variables for users list gui**/
     public static void createUsersListGUI(){
         // set the profiles list to all the lists
-        profilesList = UserClient.profilesList;
 
 
+
+
+
+        List<Profile> allProfiles = UserClient.profilesList;
+        List<Profile> profilesToShow = new ArrayList<>();
+        // getting rid of the user viewing so they can't view themself
+        for (Profile p : allProfiles) {
+            if (!p.getUsername().equalsIgnoreCase(UserClient.profile.getUsername())){
+                profilesToShow.add(p);
+            }
+        }
+
+
+        profilesList = profilesToShow;
         Font font = new Font("Cambria", Font.BOLD, 15);
         JFrame usersListFrame = new JFrame();
         JPanel usersListPanel = new JPanel();
