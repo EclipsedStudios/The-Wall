@@ -18,7 +18,7 @@ import java.util.Arrays;
  * so you need to remember your login credentials.
  *
  * @author Paul Gherghetta
- * @version 12/4/2020
+ * @version 12/6/2020
  */
 
 public class UserInput extends JFrame implements ActionListener {
@@ -373,27 +373,33 @@ public class UserInput extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(null,
                                 "You left one or more fields blank! Please fill all text boxes!",
                                 "Social Profile App", JOptionPane.ERROR_MESSAGE);
+                        break;
                     case 2:
                         JOptionPane.showMessageDialog(null, "Passwords " +
                                         "did not match!",
                                 "Social Profile App", JOptionPane.ERROR_MESSAGE);
+                        break;
                     case 3:
                         JOptionPane.showMessageDialog(null, "Make sure that " +
                                         "multiple likes/interests are separated by a comma and space!",
                                 "Social Profile App", JOptionPane.ERROR_MESSAGE);
+                        break;
                     case 4:
                         JOptionPane.showMessageDialog(null, "Email is " +
                                         "invalid!",
                                 "Social Profile App", JOptionPane.ERROR_MESSAGE);
+                        break;
                     case 5:
                         JOptionPane.showMessageDialog(null, "Website is " +
                                         "invalid!",
                                 "Social Profile App", JOptionPane.ERROR_MESSAGE);
+                        break;
                     case 6:
                         JOptionPane.showMessageDialog(null, "Username " +
                                         "already exists! " +
                                         "Please choose a different username.", "Social Profile App",
                                 JOptionPane.ERROR_MESSAGE);
+                        break;
                     default:
                         JOptionPane.showMessageDialog(null,
                                 "Account was successfully created.", "Social Profile App",
