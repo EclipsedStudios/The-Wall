@@ -84,7 +84,11 @@ public class ServerClientThread extends Thread {
                                     profile2 = p;
                                 }
                             }
-
+                            if(profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)){
+                                profile1.friendsList.addFriend(profile2);
+                                profile2.friendsList.addFriend(profile1);
+                                System.out.println(profile1.getUsername() + " has added " + profile2.getUsername() + " as a friend");
+                            }
                             profile1.friendsList.incomingFriendRequests.add(profile2);
                             profile2.friendsList.outgoingFriendRequests.add(profile1);
                             System.out.println(profile1.getUsername() + " has received a friend request from " + profile2.getUsername());
@@ -105,6 +109,7 @@ public class ServerClientThread extends Thread {
                                     profile2 = p;
                                 }
                             }
+                            System.out.println(profile1.friendsList.incomingFriendRequests.size() + " | " + profile2.friendsList.outgoingFriendRequests.size());
                             if(profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)){
                                 profile1.friendsList.addFriend(profile2);
                                 profile2.friendsList.addFriend(profile1);
