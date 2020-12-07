@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand />
-    <select />
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Finished testing for FriendsList class">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Default_Changelist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Default_Changelist.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_2_2020_5_12_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_2_2020_5_12_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_3_2020_2_41_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_3_2020_2_41_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_5_2020_4_28_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_5_2020_4_28_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_6_2020_2_48_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_6_2020_2_48_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_6_2020_8_16_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_6_2020_8_16_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2020_11_01_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2020_11_01_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_20__4_05_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_20__4_05_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_20__4_31_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_20__4_31_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/EditProfileGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/EditProfileGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/SocialMedia/Tester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/SocialMedia/Tester.class" afterDir="false" />
+    <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Added the 3 separate lists">
+      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CS18000/SocialMedia/GUIs/FriendsGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/SocialMedia/GUIs/FriendsGUI.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +89,7 @@
       <recent name="C:\Users\Jaden\IdeaProjects\CS18000\CS Project\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Tester">
+  <component name="RunManager" selected="Application.UserInput (1)">
     <configuration name="CentralServer (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="SocialMedia.ServerAndClient.CentralServer" />
       <module name="CS18000" />
@@ -110,8 +116,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestRunner" />
+      <module name="CS18000" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserClient (1)" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="UserClient" />
+      <module name="CS18000" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserClient" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ServerAndClient.UserClient" />
       <module name="CS18000" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -158,15 +178,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tester (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="SocialMedia.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SocialMedia.Tester" />
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -189,11 +206,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Tester" />
-        <item itemvalue="JUnit.Tester (1)" />
         <item itemvalue="Application.UserInput (1)" />
         <item itemvalue="Application.CentralServer (1)" />
+        <item itemvalue="JUnit.Tester" />
         <item itemvalue="Application.TestRunner (1)" />
+        <item itemvalue="Application.TestRunner" />
       </list>
     </recent_temporary>
   </component>
@@ -255,7 +272,21 @@
       <option name="project" value="LOCAL" />
       <updated>1607288844938</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added the 3 separate lists">
+      <created>1607313736538</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1607313736538</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added the 3 separate lists">
+      <created>1607314180298</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1607314180298</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -294,7 +325,10 @@
     <MESSAGE value="Updated test for class changes." />
     <MESSAGE value="Fixed the server client thread class test cases to use reflection so the method can stay private." />
     <MESSAGE value="Finished testing for FriendsList class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished testing for FriendsList class" />
+    <MESSAGE value="Now server runs off a computer. We can test this later but basically it now runs off my computer. DM me if you need it on, but we will likely test this during the zoom meeting" />
+    <MESSAGE value="Added AddFriend and AcceptFriend" />
+    <MESSAGE value="Added the 3 separate lists" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the 3 separate lists" />
   </component>
   <component name="WindowStateProjectService">
     <state x="743" y="414" width="433" height="218" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1607281566500">
@@ -305,31 +339,43 @@
       <screen x="1920" y="-165" width="2048" height="1120" />
     </state>
     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606092118870" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1607360903181">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="866" height="237" key="GridCell.Tab.0.bottom" timestamp="1607314455616">
+      <screen x="-1920" y="23" width="1920" height="1006" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607360903181" />
+    <state width="1877" height="210" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607309718532" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607301969633" />
+    <state width="866" height="237" key="GridCell.Tab.0.bottom/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607314226838" />
+    <state width="866" height="237" key="GridCell.Tab.0.bottom/0.23.1440.877/-1920.23.1920.1006@-1920.23.1920.1006" timestamp="1607314455616" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1607360903181">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="866" height="237" key="GridCell.Tab.0.center" timestamp="1607314455614">
+      <screen x="-1920" y="23" width="1920" height="1006" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607360903181" />
+    <state width="1877" height="210" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607309718532" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607301969633" />
+    <state width="866" height="237" key="GridCell.Tab.0.center/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607314226837" />
+    <state width="866" height="237" key="GridCell.Tab.0.center/0.23.1440.877/-1920.23.1920.1006@-1920.23.1920.1006" timestamp="1607314455614" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1607360903180">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="866" height="237" key="GridCell.Tab.0.left" timestamp="1607314455612">
+      <screen x="-1920" y="23" width="1920" height="1006" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607360903180" />
+    <state width="1877" height="210" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607309718532" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607301969632" />
+    <state width="866" height="237" key="GridCell.Tab.0.left/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607314226835" />
+    <state width="866" height="237" key="GridCell.Tab.0.left/0.23.1440.877/-1920.23.1920.1006@-1920.23.1920.1006" timestamp="1607314455612" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900195" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1607360903181">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="866" height="237" key="GridCell.Tab.0.right" timestamp="1607314455615">
+      <screen x="-1920" y="23" width="1920" height="1006" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607360903181" />
+    <state width="1877" height="210" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607309718532" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607301969633" />
+    <state width="866" height="237" key="GridCell.Tab.0.right/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607314226837" />
+    <state width="866" height="237" key="GridCell.Tab.0.right/0.23.1440.877/-1920.23.1920.1006@-1920.23.1920.1006" timestamp="1607314455615" />
     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
@@ -353,14 +399,25 @@
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607223487001" />
     <state width="2005" height="375" key="GridCell.Tab.1.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606091199150" />
+    <state x="-1736" y="109" key="MergeDialog" timestamp="1607313817457">
+      <screen x="-1920" y="23" width="1920" height="1057" />
+    </state>
+    <state x="184" y="85" key="MergeDialog/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607309552889" />
+    <state x="-1736" y="109" key="MergeDialog/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607313817457" />
+    <state x="-1314" y="266" key="MultipleFileMergeDialog" timestamp="1607313824115">
+      <screen x="-1920" y="23" width="1920" height="1057" />
+    </state>
+    <state x="-1314" y="266" key="MultipleFileMergeDialog/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607313824115" />
     <state x="440" y="94" key="SettingsEditor" timestamp="1607223756916">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607223756916" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1607288846285">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1368" y="279" key="Vcs.Push.Dialog.v2" timestamp="1607313795045">
+      <screen x="-1920" y="23" width="1920" height="1057" />
     </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607309618039" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607288846285" />
+    <state x="-1368" y="279" key="Vcs.Push.Dialog.v2/0.23.1440.826/-1920.23.1920.1057@-1920.23.1920.1057" timestamp="1607313795045" />
     <state x="2509" y="106" key="Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095578508" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992769069" />
     <state x="2509" y="54" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605993764260" />
@@ -368,17 +425,28 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="664" y="411" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1606934339677" />
-    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607216261770">
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607309469330">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607309469330" />
     <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607216261770" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1607223349423">
+    <state x="2044" y="46" width="1621" height="789" key="dock-window-1" timestamp="1607307895931">
+      <screen x="1920" y="-165" width="2048" height="1112" />
+    </state>
+    <state x="2044" y="46" width="1621" height="789" key="dock-window-1/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607307895931" />
+    <state x="748" y="232" key="git4idea.branch.GitSmartOperationDialog" timestamp="1607309537625">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="748" y="232" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607309537625" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1607306922490">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607306922490" />
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607223349423" />
-    <state x="644" y="226" width="672" height="630" key="search.everywhere.popup" timestamp="1607212939331">
+    <state x="644" y="226" width="672" height="630" key="search.everywhere.popup" timestamp="1607309463454">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="644" y="226" width="672" height="630" key="search.everywhere.popup/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607309463454" />
     <state x="644" y="226" width="672" height="630" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607212939331" />
     <state x="2607" y="78" width="672" height="678" key="search.everywhere.popup/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095324743" />
   </component>

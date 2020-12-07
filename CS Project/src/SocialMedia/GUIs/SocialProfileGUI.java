@@ -28,6 +28,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
     public static JButton usersButton;
     public static JButton editProfileButton;
     public static JButton friendsListButton;
+    public static JButton refreshButton;
     public static JButton logoutButton;
     public static JLabel nameLabel;
     public static JLabel usernameLabel;
@@ -81,6 +82,17 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 profileGUIFrame.setVisible(false);
                 FriendsGUI.createFriendsGUI();
+            }
+        });
+
+        refreshButton = new JButton("Refresh Page");
+        refreshButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    UserInput.userClient.refreshPage();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
         });
 

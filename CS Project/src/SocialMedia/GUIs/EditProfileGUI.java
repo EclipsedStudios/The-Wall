@@ -109,49 +109,10 @@ public class EditProfileGUI extends JFrame implements ActionListener {
                 JFrame setEmailFrame = new JFrame();
                 String newEmail = JOptionPane.showInputDialog(setEmailFrame, "Input new email:");
                 SocialProfileGUI.getGUIProfile().setEmail(newEmail);
-                File f = new File("UsernameFiles/" + SocialProfileGUI.getGUIProfile().getUsername() +
-                        ".txt");
-                FileReader fr = null;
                 try {
-                    fr = new FileReader(f);
-                    BufferedReader bfr = new BufferedReader(fr);
-                    String line = bfr.readLine();
-                    String name = line;
-                    //email
-                    line = bfr.readLine();
-                    String email = line;
-                    //friends
-                    line = bfr.readLine();
-                    String friends = line;
-                    //website
-                    line = bfr.readLine();
-                    String website = line;
-                    //likes/interests
-                    line = bfr.readLine();
-                    String likesInterests = line;
-                    //about me
-                    line = bfr.readLine();
-                    String aboutMe = line;
-                    //age
-                    line = bfr.readLine();
-                    String age = line;
-                    //password
-                    line = bfr.readLine();
-                    String password = line;
-
-                    FileOutputStream fos = new FileOutputStream(f, false);
-                    PrintWriter pw = new PrintWriter(fos);
-                    pw.println(name);
-                    pw.println(newEmail);
-                    pw.println(friends);
-                    pw.println(website);
-                    pw.println(likesInterests);
-                    pw.println(aboutMe);
-                    pw.println(age);
-                    pw.println(password);
-                    pw.close();
-                } catch (IOException io) {
-                    io.printStackTrace();
+                    UserInput.userClient.updateAccount(SocialProfileGUI.getGUIProfile());
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
             }
         });
@@ -163,49 +124,10 @@ public class EditProfileGUI extends JFrame implements ActionListener {
                 JFrame setWebsiteFrame = new JFrame();
                 String newWebsite = JOptionPane.showInputDialog(setWebsiteFrame, "Input new website:");
                 SocialProfileGUI.getGUIProfile().setWebsite(newWebsite);
-                File f = new File("UsernameFiles/" + SocialProfileGUI.getGUIProfile().getUsername() +
-                        ".txt");
-                FileReader fr = null;
                 try {
-                    fr = new FileReader(f);
-                    BufferedReader bfr = new BufferedReader(fr);
-                    String line = bfr.readLine();
-                    String name = line;
-                    //email
-                    line = bfr.readLine();
-                    String email = line;
-                    //friends
-                    line = bfr.readLine();
-                    String friends = line;
-                    //website
-                    line = bfr.readLine();
-                    String website = line;
-                    //likes/interests
-                    line = bfr.readLine();
-                    String likesInterests = line;
-                    //about me
-                    line = bfr.readLine();
-                    String aboutMe = line;
-                    //age
-                    line = bfr.readLine();
-                    String age = line;
-                    //password
-                    line = bfr.readLine();
-                    String password = line;
-
-                    FileOutputStream fos = new FileOutputStream(f, false);
-                    PrintWriter pw = new PrintWriter(fos);
-                    pw.println(name);
-                    pw.println(email);
-                    pw.println(friends);
-                    pw.println(newWebsite);
-                    pw.println(likesInterests);
-                    pw.println(aboutMe);
-                    pw.println(age);
-                    pw.println(password);
-                    pw.close();
-                } catch (IOException io) {
-                    io.printStackTrace();
+                    UserInput.userClient.updateAccount(SocialProfileGUI.getGUIProfile());
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
             }
         });
@@ -244,49 +166,10 @@ public class EditProfileGUI extends JFrame implements ActionListener {
                     SocialProfileGUI.getGUIProfile().setInterests(newLikesInterests);
                     finalStringofLikesInterests = likesInterests;
                 }
-                File f = new File("UsernameFiles/" + SocialProfileGUI.getGUIProfile().getUsername() +
-                        ".txt");
-                FileReader fr = null;
                 try {
-                    fr = new FileReader(f);
-                    BufferedReader bfr = new BufferedReader(fr);
-                    String line = bfr.readLine();
-                    String name = line;
-                    //email
-                    line = bfr.readLine();
-                    String email = line;
-                    //friends
-                    line = bfr.readLine();
-                    String friends = line;
-                    //website
-                    line = bfr.readLine();
-                    String website = line;
-                    //likes/interests
-                    line = bfr.readLine();
-                    String likesAndInterests = line;
-                    //about me
-                    line = bfr.readLine();
-                    String aboutMe = line;
-                    //age
-                    line = bfr.readLine();
-                    String age = line;
-                    //password
-                    line = bfr.readLine();
-                    String password = line;
-
-                    FileOutputStream fos = new FileOutputStream(f, false);
-                    PrintWriter pw = new PrintWriter(fos);
-                    pw.println(name);
-                    pw.println(email);
-                    pw.println(friends);
-                    pw.println(website);
-                    pw.println("[" + finalStringofLikesInterests + "]");
-                    pw.println(aboutMe);
-                    pw.println(age);
-                    pw.println(password);
-                    pw.close();
-                } catch (IOException io) {
-                    io.printStackTrace();
+                    UserInput.userClient.updateAccount(SocialProfileGUI.getGUIProfile());
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
 
             }
@@ -299,49 +182,10 @@ public class EditProfileGUI extends JFrame implements ActionListener {
                 String newAboutMeText = JOptionPane.showInputDialog(setAboutMeFrame, "Input new information " +
                         "about yourself." );
                 SocialProfileGUI.getGUIProfile().setAboutMe(newAboutMeText);
-                File f = new File("UsernameFiles/" + SocialProfileGUI.getGUIProfile().getUsername() +
-                        ".txt");
-                FileReader fr = null;
                 try {
-                    fr = new FileReader(f);
-                    BufferedReader bfr = new BufferedReader(fr);
-                    String line = bfr.readLine();
-                    String name = line;
-                    //email
-                    line = bfr.readLine();
-                    String email = line;
-                    //friends
-                    line = bfr.readLine();
-                    String friends = line;
-                    //website
-                    line = bfr.readLine();
-                    String website = line;
-                    //likes/interests
-                    line = bfr.readLine();
-                    String likesInterests = line;
-                    //about me
-                    line = bfr.readLine();
-                    String aboutMe = line;
-                    //age
-                    line = bfr.readLine();
-                    String age = line;
-                    //password
-                    line = bfr.readLine();
-                    String password = line;
-
-                    FileOutputStream fos = new FileOutputStream(f, false);
-                    PrintWriter pw = new PrintWriter(fos);
-                    pw.println(name);
-                    pw.println(email);
-                    pw.println(friends);
-                    pw.println(website);
-                    pw.println(likesInterests);
-                    pw.println(newAboutMeText);
-                    pw.println(age);
-                    pw.println(password);
-                    pw.close();
-                } catch (IOException io) {
-                    io.printStackTrace();
+                    UserInput.userClient.updateAccount(SocialProfileGUI.getGUIProfile());
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
             }
         });
@@ -360,49 +204,10 @@ public class EditProfileGUI extends JFrame implements ActionListener {
                                 "Social Profile App", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                File f = new File("UsernameFiles/" + SocialProfileGUI.getGUIProfile().getUsername() +
-                        ".txt");
-                FileReader fr = null;
                 try {
-                    fr = new FileReader(f);
-                    BufferedReader bfr = new BufferedReader(fr);
-                    String line = bfr.readLine();
-                    String name = line;
-                    //email
-                    line = bfr.readLine();
-                    String email = line;
-                    //friends
-                    line = bfr.readLine();
-                    String friends = line;
-                    //website
-                    line = bfr.readLine();
-                    String website = line;
-                    //likes/interests
-                    line = bfr.readLine();
-                    String likesInterests = line;
-                    //about me
-                    line = bfr.readLine();
-                    String aboutMe = line;
-                    //age
-                    line = bfr.readLine();
-                    String age = line;
-                    //password
-                    line = bfr.readLine();
-                    String password = line;
-
-                    FileOutputStream fos = new FileOutputStream(f, false);
-                    PrintWriter pw = new PrintWriter(fos);
-                    pw.println(name);
-                    pw.println(email);
-                    pw.println(friends);
-                    pw.println(website);
-                    pw.println(likesInterests);
-                    pw.println(aboutMe);
-                    pw.println(age);
-                    pw.println(newPassword);
-                    pw.close();
-                } catch (IOException io) {
-                    io.printStackTrace();
+                    UserInput.userClient.updateAccount(SocialProfileGUI.getGUIProfile());
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
             }
         });

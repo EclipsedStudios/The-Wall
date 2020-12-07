@@ -51,15 +51,14 @@ public class ServerClientThread extends Thread {
         try {
             System.out.println("Thread started");
             line = objectInputStream.readUTF();
-            System.out.println(line);
+            if(!line.equals("see users"))
+                System.out.println(line);
             while (line.compareToIgnoreCase("quit") != 0) {
                 switch (line) {
                     case "see users":
-                        System.out.println("Received: " + line);
                         objectOutputStream.writeObject(serverObjectStorage.users);
                         objectOutputStream.flush();
                         objectOutputStream.reset();
-                        System.out.println("Should have sent object");
                         break;
                     case "create profile":
                         System.out.println("User has tried to add a user");
@@ -67,6 +66,22 @@ public class ServerClientThread extends Thread {
                             Profile profile = (Profile) objectInputStream.readObject();
                             System.out.println("added " + profile.getName());
                             serverObjectStorage.users.add(profile);
+                            serverObjectStorage.saveUsersToDatabase();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case "update profile":
+                        System.out.println("User has tried to update account");
+                        try {
+                            Profile profile = (Profile) objectInputStream.readObject();
+                            System.out.println("Updated " + profile.getName());
+                            for(Profile p : serverObjectStorage.users){
+                                if(profile.getUsername().equals(p.getUsername())){
+                                    serverObjectStorage.users.remove(p);
+                                    serverObjectStorage.users.add(profile);
+                                }
+                            }
                             serverObjectStorage.saveUsersToDatabase();
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
@@ -127,7 +142,6 @@ public class ServerClientThread extends Thread {
                         }
                         break;
                 }
-                System.out.println(socket.getInetAddress() + ":" + socket.getPort() + " said: " + line);
                 line = objectInputStream.readUTF();
             }
         } catch (IOException e) {
