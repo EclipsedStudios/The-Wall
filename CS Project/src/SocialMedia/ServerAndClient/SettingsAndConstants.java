@@ -1,6 +1,8 @@
 package SocialMedia.ServerAndClient;
 
 import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * Represents certain constant variables to be used anywhere,
@@ -13,6 +15,8 @@ import java.net.Inet4Address;
 public class SettingsAndConstants {
     public static final int SERVER_PORT = 4242;
     public static final String SERVER_HOST = "76.11.165.202";
+    public static final boolean LOCALHOST = false;
+
     public static final String WELCOME_MESSAGE_SERVER = "   _____            _       _   __  __          _ _         _____           _           _   \n" +
             "  / ____|          (_)     | | |  \\/  |        | (_)       |  __ \\         (_)         | |  \n" +
             " | (___   ___   ___ _  __ _| | | \\  / | ___  __| |_  __ _  | |__) | __ ___  _  ___  ___| |_ \n" +

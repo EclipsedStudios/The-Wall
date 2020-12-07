@@ -75,17 +75,11 @@ public class UserClient extends Thread {
             objectOutputStream.reset();
             profilesList = (ArrayList<Profile>) objectInputStream.readObject();
 
-            for (Profile p : profilesList) {
-                System.out.println(p.getUsername());
-                System.out.println(p.getRawPassword());
-            }
-
 
             for (Profile p : profilesList) {
                 if (p.username.equals(username)) {
                     System.out.println(p.getUsername());
                     if (p.rawPassword.equals(rawPassword)) {
-                        System.out.println(p.rawPassword);
                         profile = p;
                         return true;
                     }
