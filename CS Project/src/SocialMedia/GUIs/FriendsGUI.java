@@ -120,7 +120,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         // Accept friend request button
         JButton acceptButton;
         if (incoming.length == 0) {
-            acceptButton = new JButton("You have no friend requests");
+            acceptButton = new JButton("You have no friend requests to accept");
         } else {
             acceptButton = new JButton("Accept " + incoming[0] + "?");
         }
@@ -153,7 +153,8 @@ public class FriendsGUI extends JFrame implements ActionListener {
                     ex.printStackTrace();
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "That person has cancelled their friend request to you!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "That person has cancelled their friend request to you " +
+                        "\n or you have no incoming friend requests!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
             }
 
             friendsFrame.setVisible(false);
@@ -166,7 +167,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         // Accept friend request button
         JButton denyIncomingButton;
         if (incoming.length == 0) {
-            denyIncomingButton = new JButton("You have no friend requests");
+            denyIncomingButton = new JButton("You have no friend requests to deny");
         } else {
             denyIncomingButton = new JButton("Accept " + incoming[0] + "?");
         }
@@ -195,7 +196,8 @@ public class FriendsGUI extends JFrame implements ActionListener {
                     ex.printStackTrace();
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "That person has cancelled their friend request to you!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "That person has cancelled their friend request to you " +
+                        "\n or you have no incoming friend requests!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
             }
 
             friendsFrame.setVisible(false);
@@ -229,7 +231,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         // Deny friend request button
         JButton denyButton;
         if (outgoing.length == 0) {
-            denyButton = new JButton("Cancel 0 friend requests");
+            denyButton = new JButton("You have sent no friend requests");
         } else {
             denyButton = new JButton("Cancel request to " + outgoing[0] + "?");
         }
