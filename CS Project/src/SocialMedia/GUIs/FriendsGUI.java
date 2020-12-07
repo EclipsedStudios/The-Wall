@@ -126,7 +126,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         }
         list2.addListSelectionListener((ListSelectionEvent event) -> {
             if (!event.getValueIsAdjusting()) {
-                acceptButton.setText("Accept " + list.getSelectedValue() + "?");
+                acceptButton.setText("Accept " + list2.getSelectedValue() + "?");
             }
         });
 
@@ -173,7 +173,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         }
         list2.addListSelectionListener((ListSelectionEvent event) -> {
             if (!event.getValueIsAdjusting()) {
-                denyIncomingButton.setText("Deny " + list.getSelectedValue() + "?");
+                denyIncomingButton.setText("Deny " + list2.getSelectedValue() + "?");
             }
         });
 
@@ -247,9 +247,10 @@ public class FriendsGUI extends JFrame implements ActionListener {
         }
         list3.addListSelectionListener((ListSelectionEvent event) -> {
             if (!event.getValueIsAdjusting()) {
-                denyButton.setText("Cancel request to " + list.getSelectedValue() + "?");
+                denyButton.setText("Cancel request to " + list3.getSelectedValue() + "?");
             }
         });
+
 
         denyButton.addActionListener((ActionEvent event) -> {
             String username = denyButton.getText().split(" ")[3].substring(0, denyButton.getText().split(" ")[3].length() - 1);
