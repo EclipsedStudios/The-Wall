@@ -220,12 +220,12 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
                JOptionPane.showMessageDialog(null, "You've already sent a friend request to " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
            } else if (currentUser.getFriendsList().hasIncomingFriendRequest(profile)) {
                // accept the request
-                JOptionPane.showMessageDialog(null, "You're now friends with " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "You're now friends with " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
                 currentUser.getFriendsList().addFriend(profile);
                 profile.getFriendsList().addFriend(currentUser);
             } else {
                // no connection to either
-               JOptionPane.showMessageDialog(null, "Friend request sent to " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
+               JOptionPane.showMessageDialog(null, "Friend request sent to " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
                currentUser.getFriendsList().getOutgoingFriendRequests().add(profile);
                profile.getFriendsList().getIncomingFriendRequests().add(profile);
            }
