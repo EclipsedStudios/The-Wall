@@ -461,7 +461,12 @@ public class UserInput extends JFrame implements ActionListener {
             return 6;
         }
 
-        for(Profile p : UserClient.profilesList){
+        try {
+            userClient.refreshPage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for(Profile p : userClient.profilesList){
             if(p.getUsername().equals(usernameTextField.getText())){
                 return 6;
             }
