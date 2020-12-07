@@ -56,7 +56,7 @@ public class UserClient extends Thread {
         running.set(false);
     }
 
-    public boolean Login(String username, String rawPassword) throws IOException {
+    public boolean login(String username, String rawPassword) throws IOException {
         try {
 
 
@@ -94,7 +94,7 @@ public class UserClient extends Thread {
         return false;
     }
 
-    public void CreateAccount(String name, int age, String email, String website, ArrayList<String> interests,
+    public void createAccount(String name, int age, String email, String website, ArrayList<String> interests,
                               FriendsList friendsList, String aboutMe, String username, String rawPassword) throws IOException {
         objectOutputStream.writeUTF("create profile");
         System.out.println("Wrote UTF");
@@ -108,7 +108,7 @@ public class UserClient extends Thread {
     }
 
 
-    public void AddFriend(Profile profile) throws IOException {
+    public void addFriend(Profile profile) throws IOException {
         objectOutputStream.writeUTF("add friend");
         System.out.println("Wrote UTF");
         objectOutputStream.flush();
@@ -124,7 +124,7 @@ public class UserClient extends Thread {
         oISUsed = true;
     }
 
-    public void AcceptFriend(Profile profile) throws IOException {
+    public void acceptFriend(Profile profile) throws IOException {
         objectOutputStream.writeUTF("accept friend");
         System.out.println("Wrote UTF");
         objectOutputStream.flush();
@@ -138,10 +138,6 @@ public class UserClient extends Thread {
         objectOutputStream.flush();
         objectOutputStream.reset();
         oISUsed = true;
-    }
-
-    public void ChangeMessage(String string){
-        line = string;
     }
 
     public void run() {

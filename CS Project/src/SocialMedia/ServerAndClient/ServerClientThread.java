@@ -25,7 +25,7 @@ public class ServerClientThread extends Thread {
         this.serverObjectStorage = serverObjectStorage;
     }
 
-    private void StopThread() throws IOException {
+    private void stopThread() throws IOException {
         socket.close();
         System.out.println("Socket Closed");
         CentralServer.numberOfConnections--;
@@ -84,9 +84,10 @@ public class ServerClientThread extends Thread {
                                     profile2 = p;
                                 }
                             }
+
                             profile1.friendsList.incomingFriendRequests.add(profile2);
                             profile2.friendsList.outgoingFriendRequests.add(profile1);
-
+                            System.out.println(profile1.getUsername() + " has sent " + profile2.getUsername() + " a friend request");
                             serverObjectStorage.saveUsersToDatabase();
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
@@ -107,6 +108,7 @@ public class ServerClientThread extends Thread {
                             if(profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)){
                                 profile1.friendsList.addFriend(profile2);
                                 profile2.friendsList.addFriend(profile1);
+                                System.out.println(profile1.getUsername() + " has added " + profile2.getUsername() + " as a friend");
                             }
                             serverObjectStorage.saveUsersToDatabase();
                         } catch (ClassNotFoundException e) {
@@ -121,7 +123,7 @@ public class ServerClientThread extends Thread {
             line = this.getName();
             System.out.println("----------------------------------------");
             try {
-                StopThread();
+                stopThread();
             } catch (IOException ioException) {
                 System.out.println("Error with doing the stop thread stuff");
             }
@@ -131,7 +133,7 @@ public class ServerClientThread extends Thread {
             System.out.println("----------------------------------------");
             System.out.println("Client " + line + " Closed");
             try {
-                StopThread();
+                stopThread();
             } catch (IOException ioException) {
                 System.out.println("Error with doing the stop thread stuff");
             }
@@ -149,7 +151,7 @@ public class ServerClientThread extends Thread {
                 }
 
                 if (socket != null) {
-                    StopThread();
+                    stopThread();
                 }
             } catch (IOException ie) {
                 System.out.println("Socket Close Error");
