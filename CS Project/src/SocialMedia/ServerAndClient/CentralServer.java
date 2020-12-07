@@ -14,11 +14,9 @@ import java.util.Arrays;
 
 /**
  * Represents the server
- * <p>
- * Was named "ProfileServer", but I felt that CentralServer is more fitting - Jaden
  *
  * @author Jaden Baker
- * @version 11/21/20
+ * @version 12/7/20
  */
 
 public class CentralServer {

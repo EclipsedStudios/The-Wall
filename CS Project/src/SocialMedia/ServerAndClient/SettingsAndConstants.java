@@ -8,7 +8,7 @@ import java.net.Inet4Address;
  * and can change it in one location
  *
  * @author Jaden Baker
- * @version 11/22/20
+ * @version 12/7/20
  */
 public class SettingsAndConstants {
     public static final int SERVER_PORT = 4242;

@@ -8,7 +8,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
+/**
+ * A class to store the users
+ *
+ * @author Jaden Baker
+ * @version 12/7/20
+ */
 public class ServerObjectStorage {
     public volatile ArrayList<Profile> users = new ArrayList<>();
 

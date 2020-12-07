@@ -9,7 +9,7 @@ import java.net.Socket;
  * Represents a client connected to the server
  *
  * @author Jaden Baker
- * @version 11/22/20
+ * @version 12/7/20
  */
 
 public class ServerClientThread extends Thread {

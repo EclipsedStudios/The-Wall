@@ -14,8 +14,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Represents the user client
  *
- * @author aakash jariwala, jaden baker
- * @version 11/21/20
+ * @author Jaden Baker
+ * @version 12/7/20
  */
 public class UserClient extends Thread {
 
@@ -27,7 +27,6 @@ public class UserClient extends Thread {
     public String line; // Store information coming from server
     public ObjectOutputStream objectOutputStream = null;
     public ObjectInputStream objectInputStream = null;
-    boolean exit = false;
     boolean oISUsed = false;
 
     public UserClient() {
@@ -96,6 +95,11 @@ public class UserClient extends Thread {
 
     public void createAccount(String name, int age, String email, String website, ArrayList<String> interests,
                               FriendsList friendsList, String aboutMe, String username, String rawPassword) throws IOException {
+        if(!socket.isConnected()){
+            socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
+            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+        }
         objectOutputStream.writeUTF("create profile");
         System.out.println("Wrote UTF");
         objectOutputStream.flush();
@@ -108,6 +112,11 @@ public class UserClient extends Thread {
     }
 
     public void updateAccount(Profile profile) throws IOException {
+        if(!socket.isConnected()){
+            socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
+            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+        }
         objectOutputStream.writeUTF("update profile");
         System.out.println("Wrote UTF");
         objectOutputStream.flush();
@@ -120,6 +129,11 @@ public class UserClient extends Thread {
     }
 
     public void refreshPage() throws IOException {
+        if(!socket.isConnected()){
+            socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
+            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+        }
         objectOutputStream.writeUTF("see users");
         System.out.println("Wrote UTF");
         objectOutputStream.flush();
@@ -128,6 +142,11 @@ public class UserClient extends Thread {
     }
 
     public void addFriend(Profile profile) throws IOException {
+        if(!socket.isConnected()){
+            socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
+            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+        }
         objectOutputStream.writeUTF("add friend");
         System.out.println("Wrote UTF");
         objectOutputStream.flush();
@@ -144,6 +163,11 @@ public class UserClient extends Thread {
     }
 
     public void cancelFriendRequest(Profile profile) throws IOException {
+        if(!socket.isConnected()){
+            socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
+            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+        }
         objectOutputStream.writeUTF("cancel friend");
         System.out.println("Wrote UTF");
         objectOutputStream.flush();
@@ -160,6 +184,11 @@ public class UserClient extends Thread {
     }
 
     public void acceptFriend(Profile profile) throws IOException {
+        if(!socket.isConnected()){
+            socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
+            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+        }
         objectOutputStream.writeUTF("accept friend");
         System.out.println("Wrote UTF");
         objectOutputStream.flush();
@@ -176,6 +205,15 @@ public class UserClient extends Thread {
     }
 
     public void run() {
+        if(!socket.isConnected()){
+            try {
+                socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
+                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                objectInputStream = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         running.set(true);
         System.out.println("Client Address: " + address);
         try {
