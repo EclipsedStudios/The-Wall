@@ -52,6 +52,11 @@ public class UserInput extends JFrame implements ActionListener {
         //Loop through
         //Create a file that only has the usernames of people in it
         userClient = new UserClient();
+        try {
+            userClient.refreshPageNoLogin();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         File file = new File("ListOfUsernames.txt");
         File directory = new File("UsernameFiles");
         String[] UsernameFiles = directory.list();
@@ -400,7 +405,7 @@ public class UserInput extends JFrame implements ActionListener {
                                         "Please choose a different username.", "Social Profile App",
                                 JOptionPane.ERROR_MESSAGE);
                         break;
-                    default:
+                    case 0:
                         JOptionPane.showMessageDialog(null,
                                 "Account was successfully created.", "Social Profile App",
                                 JOptionPane.INFORMATION_MESSAGE);
@@ -462,15 +467,11 @@ public class UserInput extends JFrame implements ActionListener {
         }
 
         try {
-            userClient.refreshPage();
+            userClient.refreshPageNoLogin();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for(Profile p : userClient.profilesList){
-            if(p.getUsername().equals(usernameTextField.getText())){
-                return 6;
-            }
-        }
+
 
         //Then, check that likes/interests is separated by ", ".
         if (!likesInterestsTextField.getText().contains(", ")) {
@@ -495,6 +496,13 @@ public class UserInput extends JFrame implements ActionListener {
                     JOptionPane.ERROR_MESSAGE);
         }
         PrintWriter pw = new PrintWriter(fOS);
+
+        for(Profile p : UserClient.profilesList){
+            System.out.println(p.getUsername());
+            if(p.getUsername().equals(usernameTextField.getText())){
+                return 6;
+            }
+        }
 
         try {
             userClient.createAccount(nameTextField.getText(),

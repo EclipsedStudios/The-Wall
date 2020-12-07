@@ -152,14 +152,38 @@ public class UserClient extends Thread {
             objectInputStream = new ObjectInputStream(socket.getInputStream());
         }
         objectOutputStream.writeUTF("see users");
-        System.out.println("Wrote UTF");
         objectOutputStream.flush();
         objectOutputStream.reset();
+        try {
+            profilesList = (ArrayList<Profile>) objectInputStream.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Asked for users, size: " + profilesList.size());
+
         for(Profile p : profilesList){
             if(p.getUsername().equals(profile.getUsername())){
                 profile = p;
             }
         }
+        oISUsed = true;
+    }
+
+    public void refreshPageNoLogin() throws IOException {
+        if(!socket.isConnected()){
+            socket = new Socket(SettingsAndConstants.SERVER_HOST, SettingsAndConstants.SERVER_PORT);
+            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+        }
+        objectOutputStream.writeUTF("see users");
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        try {
+            profilesList = (ArrayList<Profile>) objectInputStream.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Asked for users, size: " + profilesList.size());
         oISUsed = true;
     }
 
@@ -225,7 +249,6 @@ public class UserClient extends Thread {
         objectOutputStream.reset();
         oISUsed = true;
     }
-
     public void run() {
         if(!socket.isConnected()){
             try {

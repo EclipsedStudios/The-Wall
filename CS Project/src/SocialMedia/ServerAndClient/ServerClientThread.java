@@ -13,7 +13,7 @@ import java.net.Socket;
  */
 
 public class ServerClientThread extends Thread {
-    public  String line = null;
+    public String line = null;
     public Socket socket;
     public ObjectOutputStream objectOutputStream = null;
     public ObjectInputStream objectInputStream = null;
@@ -51,7 +51,7 @@ public class ServerClientThread extends Thread {
         try {
             System.out.println("Thread started");
             line = objectInputStream.readUTF();
-            if(!line.equals("see users"))
+            if (!line.equals("see users"))
                 System.out.println(line);
             while (line.compareToIgnoreCase("quit") != 0) {
                 switch (line) {
@@ -61,30 +61,34 @@ public class ServerClientThread extends Thread {
                         objectOutputStream.reset();
                         break;
                     case "create profile":
-                        System.out.println("User has tried to add a user");
-                        try {
-                            Profile profile = (Profile) objectInputStream.readObject();
-                            System.out.println("added " + profile.getName());
-                            serverObjectStorage.users.add(profile);
+                        Profile temp1 = (Profile) objectInputStream.readObject();
+                        boolean foundDuplicate = false;
+                        for (Profile p : serverObjectStorage.users) {
+                            if (p.getUsername().equals(temp1.getUsername())) {
+                                System.out.println("User has failed to add a user");
+                                foundDuplicate = true;
+                            }
+                        }
+                        if(!foundDuplicate) {
+                            serverObjectStorage.users.add(temp1);
                             serverObjectStorage.saveUsersToDatabase();
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
+                            System.out.println("User has tried to add a user");
                         }
                         break;
                     case "delete profile":
                         System.out.println("User has deleted their account");
                         try {
-                            Profile profile = (Profile) objectInputStream.readObject();
-                            System.out.println("remove " + profile.getName());
-                            for(Profile p : serverObjectStorage.users){
-                                if(p.getUsername().equals(profile.getUsername())){
-                                    profile = p;
+                            Profile temp2 = (Profile) objectInputStream.readObject();
+                            System.out.println("remove " + temp2.getName());
+                            for (Profile p : serverObjectStorage.users) {
+                                if (p.getUsername().equals(temp2.getUsername())) {
+                                    temp2 = p;
                                 }
                             }
-                            for(Profile i : profile.getFriendsList().friends){
-                                i.getFriendsList().removeFriend(profile);
+                            for (Profile i : temp2.getFriendsList().friends) {
+                                i.getFriendsList().removeFriend(temp2);
                             }
-                            serverObjectStorage.users.remove(profile);
+                            serverObjectStorage.users.remove(temp2);
                             serverObjectStorage.saveUsersToDatabase();
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
@@ -93,17 +97,17 @@ public class ServerClientThread extends Thread {
                     case "update profile":
                         System.out.println("User has tried to update account");
                         try {
-                            Profile profile = (Profile) objectInputStream.readObject();
+                            Profile temp3 = (Profile) objectInputStream.readObject();
                             Profile toCopyTo = null;
-                            for(Profile p : serverObjectStorage.users){
-                                if(profile.getUsername().equals(p.getUsername())){
+                            for (Profile p : serverObjectStorage.users) {
+                                if (temp3.getUsername().equals(p.getUsername())) {
                                     toCopyTo = p;
                                 }
                             }
-                            System.out.println("Updated " + profile.getName());
-                            if(!(toCopyTo == null)) {
+                            System.out.println("Updated " + temp3.getName());
+                            if (!(toCopyTo == null)) {
                                 serverObjectStorage.users.remove(toCopyTo);
-                                serverObjectStorage.users.add(profile);
+                                serverObjectStorage.users.add(temp3);
                                 serverObjectStorage.saveUsersToDatabase();
                             } else {
                                 System.out.println("Cant update user, name is null");
@@ -124,8 +128,8 @@ public class ServerClientThread extends Thread {
                                     profile2 = p;
                                 }
                             }
-                            if(profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)
-                            || profile2.friendsList.incomingFriendRequests.contains(profile1) && profile1.friendsList.outgoingFriendRequests.contains(profile2)){
+                            if (profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)
+                                    || profile2.friendsList.incomingFriendRequests.contains(profile1) && profile1.friendsList.outgoingFriendRequests.contains(profile2)) {
                                 profile1.friendsList.addFriend(profile2);
                                 profile2.friendsList.addFriend(profile1);
                                 profile1.friendsList.incomingFriendRequests.remove(profile2);
@@ -152,10 +156,10 @@ public class ServerClientThread extends Thread {
                                     profile2 = p;
                                 }
                             }
-                            if(profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)){
+                            if (profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)) {
                                 profile1.friendsList.incomingFriendRequests.remove(profile2);
                                 profile2.friendsList.outgoingFriendRequests.remove(profile1);
-                            } else if(profile2.friendsList.incomingFriendRequests.contains(profile1) && profile1.friendsList.outgoingFriendRequests.contains(profile2)){
+                            } else if (profile2.friendsList.incomingFriendRequests.contains(profile1) && profile1.friendsList.outgoingFriendRequests.contains(profile2)) {
                                 profile2.friendsList.incomingFriendRequests.remove(profile1);
                                 profile1.friendsList.outgoingFriendRequests.remove(profile2);
                             }
@@ -178,8 +182,8 @@ public class ServerClientThread extends Thread {
                                 }
                             }
                             System.out.println(profile1.friendsList.incomingFriendRequests.size() + " | " + profile2.friendsList.outgoingFriendRequests.size());
-                            if(profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)
-                                    || profile2.friendsList.incomingFriendRequests.contains(profile1) && profile1.friendsList.outgoingFriendRequests.contains(profile2)){
+                            if (profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)
+                                    || profile2.friendsList.incomingFriendRequests.contains(profile1) && profile1.friendsList.outgoingFriendRequests.contains(profile2)) {
                                 profile1.friendsList.addFriend(profile2);
                                 profile2.friendsList.addFriend(profile1);
                                 profile1.friendsList.incomingFriendRequests.remove(profile2);
@@ -194,7 +198,7 @@ public class ServerClientThread extends Thread {
                 }
                 line = objectInputStream.readUTF();
             }
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             line = this.getName();
             System.out.println("----------------------------------------");
             try {
