@@ -9,7 +9,7 @@ If you are testing the server, first go to the SettingsAndConstants.java file an
 
 **EditProfileGUI:**
 
-Description:
+Description: 
 
 Testing:
 
@@ -17,7 +17,7 @@ We used JUnit testing to ensure this class, its fields, and its methods exist. W
 
 **FriendsGUI:**
 
-Description:
+Description: FriendsGUI contains the method for displaying the friends menu for a certain user, displaying 3 lists in tandem. The first, showing the user’s current friends, the second showing the user’s incoming friend requests and the last on the far right showing the user’s outgoing friend requests. At the bottom of the menu are 4 buttons, two to accept and deny incoming friend requests and one to cancel an outgoing friend request. Along with a back button for the main page.
 
 Testing:
 
@@ -25,7 +25,7 @@ We used JUnit testing to ensure this class, its fields, and its methods exist. W
 
 **SocialProfileGUI:**
 
-Description:
+Description: Contains the methods for displaying a users main profile window to themselves. It can also display a user’s profile to another different user which is used in conjunction with the UsersListGUI for displaying other users. 
 
 Testing:
 
@@ -33,7 +33,7 @@ We used JUnit testing to ensure this class, its fields, and its methods exist. W
 
 **UsersListGUI:**
 
-Description:
+Description: UsersListGUI is a container for a static method that will display the latest version of the Users List GUI, which is a GUI that contains a list of every user on the right and allows for selection and a button to view the currently selected user, along with a back button.
 
 Testing:
 
@@ -41,7 +41,7 @@ We used JUnit testing to ensure this class, its fields, and its methods exist. W
 
 **CentralServer:**
 
-Description:
+Description: Represents the main server used for all processes and communicates with the ServerClientThread for retrieving data.
 
 Testing:
 
@@ -73,7 +73,7 @@ We used JUnit testing to ensure this class, its fields, and its methods exist. W
 
 **UserClient:**
 
-Description:
+Description: Represents the User connected through the GUIs that communicates with the ServerClientThread and in turn talks to the CentralServer.
 
 Testing:
 
@@ -91,7 +91,7 @@ We also used JUnit testing for each method in this class, assuming proper input,
 
 **Profile:**
 
-Description:
+Description: Represents a Profile in memory, consisting of a username, password, age, website, likes/interests, email, friends list and an about me.
 
 Testing:
 
@@ -117,7 +117,7 @@ Description: This class is used to run the Tester class. If every test passes, t
 
 **UserInput:**
 
-Description:
+Description: Main starting point of the application and contains the main method to run the program.. Creates the first welcome screen and logins users or collects user input to create a new account for them.
 
 Testing:
 
