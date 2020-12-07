@@ -50,12 +50,14 @@ public class FriendsList implements Serializable {
 
     public boolean isFriendsWith(Profile profile) {
         boolean friends = false;
-        for (Profile p :  getFriends()) {
-            if (p.getUsername().equalsIgnoreCase(profile.getUsername())) {
-                friends = true;
+        if (getFriends().size() > 0) {
+            for (Profile p : getFriends()) {
+                if (p.getUsername().equalsIgnoreCase(profile.getUsername())) {
+                    friends = true;
+                }
             }
-        }
 
+        }
         return friends;
     }
 
@@ -66,9 +68,13 @@ public class FriendsList implements Serializable {
      */
     public boolean hasOutgoingFriendRequest(Profile profile) {
         boolean friends = false;
-        for (Profile p :  getOutgoingFriendRequests()) {
-            if (p.getUsername().equalsIgnoreCase(profile.getUsername())) {
-                friends = true;
+        if (profile == null) System.out.println("Given profile is null in outgoing friend req");
+        if (getOutgoingFriendRequests().size() > 0) {
+            for (Profile p : outgoingFriendRequests) {
+                if (p == null) System.out.println("P is null");
+                if (p.getUsername().equalsIgnoreCase(profile.getUsername())) {
+                    friends = true;
+                }
             }
         }
 
@@ -101,9 +107,11 @@ public class FriendsList implements Serializable {
      */
     public boolean hasIncomingFriendRequest(Profile profile) {
         boolean friends = false;
-        for (Profile p :  getIncomingFriendRequests()) {
-            if (p.getUsername().equalsIgnoreCase(profile.getUsername())) {
-                friends = true;
+        if (getIncomingFriendRequests().size() > 0) {
+            for (Profile p : getIncomingFriendRequests()) {
+                if (p.getUsername().equalsIgnoreCase(profile.getUsername())) {
+                    friends = true;
+                }
             }
         }
 
