@@ -25,7 +25,7 @@ public class ServerClientThread extends Thread {
         this.serverObjectStorage = serverObjectStorage;
     }
 
-    private void StopThread() throws IOException {
+    private void stopThread() throws IOException {
         socket.close();
         System.out.println("Socket Closed");
         CentralServer.numberOfConnections--;
@@ -53,22 +53,79 @@ public class ServerClientThread extends Thread {
             line = objectInputStream.readUTF();
             System.out.println(line);
             while (line.compareToIgnoreCase("quit") != 0) {
-                if ("see users".equals(line)) {
-                    System.out.println("Received: " + line);
-                    objectOutputStream.writeObject(serverObjectStorage.users);
-                    objectOutputStream.flush();
-                    objectOutputStream.reset();
-                    System.out.println("Should have sent object");
-                } else if ("create profile".equals(line)) {
-                    System.out.println("User has tried to add a user");
-                    try {
-                        Profile profile = (Profile) objectInputStream.readObject();
-                        System.out.println("added " + profile.getName());
-                        serverObjectStorage.users.add(profile);
-                        serverObjectStorage.saveUsersToDatabase();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
+                switch (line) {
+                    case "see users":
+                        System.out.println("Received: " + line);
+                        objectOutputStream.writeObject(serverObjectStorage.users);
+                        objectOutputStream.flush();
+                        objectOutputStream.reset();
+                        System.out.println("Should have sent object");
+                        break;
+                    case "create profile":
+                        System.out.println("User has tried to add a user");
+                        try {
+                            Profile profile = (Profile) objectInputStream.readObject();
+                            System.out.println("added " + profile.getName());
+                            serverObjectStorage.users.add(profile);
+                            serverObjectStorage.saveUsersToDatabase();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case "add friend":
+                        System.out.println("User has tried to added a friend");
+                        try {
+                            Profile profile1 = (Profile) objectInputStream.readObject(); //Getting
+                            Profile profile2 = (Profile) objectInputStream.readObject(); //Sending
+                            for (Profile p : serverObjectStorage.users) {
+                                if (profile1.getUsername().equals(p.getUsername())) {
+                                    profile1 = p;
+                                } else if (profile2.getUsername().equals(p.getUsername())) {
+                                    profile2 = p;
+                                }
+                            }
+                            if(profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)
+                            || profile2.friendsList.incomingFriendRequests.contains(profile1) && profile1.friendsList.outgoingFriendRequests.contains(profile2)){
+                                profile1.friendsList.addFriend(profile2);
+                                profile2.friendsList.addFriend(profile1);
+                                profile1.friendsList.incomingFriendRequests.remove(profile2);
+                                profile2.friendsList.outgoingFriendRequests.remove(profile1);
+                                System.out.println(profile1.getUsername() + " has added " + profile2.getUsername() + " as a friend");
+                            }
+                            profile1.friendsList.incomingFriendRequests.add(profile2);
+                            profile2.friendsList.outgoingFriendRequests.add(profile1);
+                            System.out.println(profile1.getUsername() + " has received a friend request from " + profile2.getUsername());
+                            serverObjectStorage.saveUsersToDatabase();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case "accept friend":
+                        System.out.println("User has tried to accept a friend");
+                        try {
+                            Profile profile1 = (Profile) objectInputStream.readObject(); //Getting
+                            Profile profile2 = (Profile) objectInputStream.readObject(); //Sending
+                            for (Profile p : serverObjectStorage.users) {
+                                if (profile1.getUsername().equals(p.getUsername())) {
+                                    profile1 = p;
+                                } else if (profile2.getUsername().equals(p.getUsername())) {
+                                    profile2 = p;
+                                }
+                            }
+                            System.out.println(profile1.friendsList.incomingFriendRequests.size() + " | " + profile2.friendsList.outgoingFriendRequests.size());
+                            if(profile1.friendsList.incomingFriendRequests.contains(profile2) && profile2.friendsList.outgoingFriendRequests.contains(profile1)
+                                    || profile2.friendsList.incomingFriendRequests.contains(profile1) && profile1.friendsList.outgoingFriendRequests.contains(profile2)){
+                                profile1.friendsList.addFriend(profile2);
+                                profile2.friendsList.addFriend(profile1);
+                                profile1.friendsList.incomingFriendRequests.remove(profile2);
+                                profile2.friendsList.outgoingFriendRequests.remove(profile1);
+                                System.out.println(profile1.getUsername() + " has added " + profile2.getUsername() + " as a friend");
+                            }
+                            serverObjectStorage.saveUsersToDatabase();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
                 System.out.println(socket.getInetAddress() + ":" + socket.getPort() + " said: " + line);
                 line = objectInputStream.readUTF();
@@ -77,7 +134,7 @@ public class ServerClientThread extends Thread {
             line = this.getName();
             System.out.println("----------------------------------------");
             try {
-                StopThread();
+                stopThread();
             } catch (IOException ioException) {
                 System.out.println("Error with doing the stop thread stuff");
             }
@@ -87,7 +144,7 @@ public class ServerClientThread extends Thread {
             System.out.println("----------------------------------------");
             System.out.println("Client " + line + " Closed");
             try {
-                StopThread();
+                stopThread();
             } catch (IOException ioException) {
                 System.out.println("Error with doing the stop thread stuff");
             }
@@ -105,7 +162,7 @@ public class ServerClientThread extends Thread {
                 }
 
                 if (socket != null) {
-                    StopThread();
+                    stopThread();
                 }
             } catch (IOException ie) {
                 System.out.println("Socket Close Error");

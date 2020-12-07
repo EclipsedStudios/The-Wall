@@ -56,7 +56,7 @@ public class UserClient extends Thread {
         running.set(false);
     }
 
-    public boolean Login(String username, String rawPassword) throws IOException {
+    public boolean login(String username, String rawPassword) throws IOException {
         try {
 
 
@@ -94,7 +94,7 @@ public class UserClient extends Thread {
         return false;
     }
 
-    public void CreateAccount(String name, int age, String email, String website, ArrayList<String> interests,
+    public void createAccount(String name, int age, String email, String website, ArrayList<String> interests,
                               FriendsList friendsList, String aboutMe, String username, String rawPassword) throws IOException {
         objectOutputStream.writeUTF("create profile");
         System.out.println("Wrote UTF");
@@ -107,8 +107,37 @@ public class UserClient extends Thread {
         oISUsed = true;
     }
 
-    public void ChangeMessage(String string){
-        line = string;
+
+    public void addFriend(Profile profile) throws IOException {
+        objectOutputStream.writeUTF("add friend");
+        System.out.println("Wrote UTF");
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        objectOutputStream.writeObject(profile);
+        System.out.println("Wrote Profile: ");
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        objectOutputStream.writeObject(UserClient.profile);
+        System.out.println("Wrote Profile: ");
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        oISUsed = true;
+    }
+
+    public void acceptFriend(Profile profile) throws IOException {
+        objectOutputStream.writeUTF("accept friend");
+        System.out.println("Wrote UTF");
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        objectOutputStream.writeObject(profile);
+        System.out.println("Wrote Profile: ");
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        objectOutputStream.writeObject(UserClient.profile);
+        System.out.println("Wrote Profile: ");
+        objectOutputStream.flush();
+        objectOutputStream.reset();
+        oISUsed = true;
     }
 
     public void run() {
@@ -123,6 +152,11 @@ public class UserClient extends Thread {
             while (line.compareToIgnoreCase("quit") != 0 && running.get()) {
                 if ("see users".equals(line)) {
                     profilesList = (ArrayList<Profile>) objectInputStream.readObject();
+                    for(Profile p : profilesList){
+                        if(p.getUsername().equals(profile.getUsername())){
+                            profile = p;
+                        }
+                    }
                 }
                 objectOutputStream.writeUTF(line);
                 objectOutputStream.flush();

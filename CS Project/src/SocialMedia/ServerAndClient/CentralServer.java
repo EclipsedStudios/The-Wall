@@ -29,7 +29,6 @@ public class CentralServer {
     public static ArrayList<ServerClientThread> serverClientThreads = new ArrayList<>();
 
 
-
     public static void getUsersFromDatabase() {
         File dir = new File("UsernameFiles");
         File[] directoryListing = dir.listFiles();
@@ -38,7 +37,8 @@ public class CentralServer {
                 try {
                     String name;
                     String email;
-                    String friendsList;
+                    FriendsList friendsList;
+                    String friendsListString;
                     String website;
                     String interests;
                     String aboutMe;
@@ -49,7 +49,7 @@ public class CentralServer {
                         reader = new BufferedReader(new FileReader(child));
                         name = reader.readLine();
                         email = reader.readLine();
-                        friendsList = reader.readLine();
+                        friendsListString = reader.readLine();
                         website = reader.readLine();
                         interests = reader.readLine();
                         aboutMe = reader.readLine();
@@ -66,6 +66,52 @@ public class CentralServer {
                                 aboutMe,
                                 child.getName().strip().substring(0, child.getName().indexOf('.')),
                                 password));
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (NumberFormatException exception) {
+                    System.out.println("File must be broken, skipping user: " + child.getName());
+                }
+            }
+        }
+
+        if (directoryListing != null) {
+            for (File child : directoryListing) {
+                try {
+                    FriendsList friendsList;
+                    String friendsListString;
+                    BufferedReader reader;
+                    Profile currentProfile = null;
+                    try {
+                        for(Profile p : serverObjectStorage.users){
+                            if(p.getUsername().equals(child.getName().substring(0,child.getName().indexOf(".")))){
+                                currentProfile = p;
+                            }
+                        }
+                        reader = new BufferedReader(new FileReader(child));
+                        reader.readLine();
+                        reader.readLine();
+                        friendsListString = reader.readLine();
+                        String[] friendsSplitUp = friendsListString.split(", "); // [Frank2, Frank3]
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+                        reader.readLine();
+                        for (String f : friendsSplitUp) {
+                            for(Profile p : serverObjectStorage.users){
+                                if(p.getUsername().equals(f)){
+                                    currentProfile.friendsList.addFriend(p);
+                                    p.friendsList.addFriend(currentProfile);
+                                }
+                            }
+                        }
+                        System.out.println("Added " + currentProfile.getUsername() + "'s friends");
+                        System.out.println("-------");
+                        for(Profile p : currentProfile.friendsList.getFriends()){
+                            System.out.println(p.getUsername());
+                        }
                         reader.close();
                     } catch (IOException e) {
                         e.printStackTrace();

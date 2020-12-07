@@ -181,7 +181,7 @@ public class UserInput extends JFrame implements ActionListener {
         System.out.println("test login pass");
         try {
             System.out.println("Username: " + username.getText() + " Password: " + String.valueOf(password.getPassword()));
-            Boolean loginSuccessful = userClient.Login(username.getText(), String.valueOf(password.getPassword()));
+            Boolean loginSuccessful = userClient.login(username.getText(), String.valueOf(password.getPassword()));
             System.out.println("test login success " + loginSuccessful);
             if (!loginSuccessful) {
                 JOptionPane.showMessageDialog(null, "Password or Username is invalid",
@@ -480,7 +480,7 @@ public class UserInput extends JFrame implements ActionListener {
         PrintWriter pw = new PrintWriter(fOS);
 
         try {
-            userClient.CreateAccount(nameTextField.getText(),
+            userClient.createAccount(nameTextField.getText(),
                     Integer.parseInt(ageTextField.getText()),
                     emailTextField.getText(),
                     websiteTextField.getText(),

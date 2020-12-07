@@ -18,7 +18,7 @@ public class FriendsList implements Serializable {
      * An empty constructor for a friends list.
      */
     public FriendsList() {
-        friends = new ArrayList<Profile>();
+        friends = new ArrayList<>();
         incomingFriendRequests = new ArrayList<>();
         outgoingFriendRequests = new ArrayList<>();
     }
@@ -150,10 +150,13 @@ public class FriendsList implements Serializable {
      * @return A string format of the friends list.
      */
     public String toString() {
-        String formattedList = friends.get(0).getUsername();
-        for (int i = 1; i < friends.size(); i++) {
-            formattedList = formattedList + ", " + friends.get(i).getUsername();
-        }
-        return formattedList;
+        if(friends.size() > 0) {
+            String formattedList = friends.get(0).getUsername();
+            for (int i = 1; i < friends.size(); i++) {
+                formattedList = formattedList + ", " + friends.get(i).getUsername();
+            }
+            return formattedList;
+        } else
+            return "No friends";
     }
 }
