@@ -27,7 +27,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
 
     public static void createFriendsGUI() {
 
-        friendsList = FriendsList.getFriends();
+        friendsList = UserClient.profile.getFriendsList().friends;
 
         Font font = new Font("Cambria", Font.BOLD, 15);
         JFrame friendsFrame = new JFrame("Friends Menu");
@@ -49,7 +49,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         JList<String> list;
         String[] friends = new String[friendsList.size()];
         for (int i = 0; i < friendsList.size(); i++) {
-            friends[counter] = FriendsList.getFriends();
+            friends[counter] = friendsList.get(i).getName();
             counter++;
         }
 

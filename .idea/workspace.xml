@@ -19,17 +19,15 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Finished testing for FriendsList class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/SettingsAndConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/SettingsAndConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/UserClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,6 +177,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tester" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CS18000" />
       <extension name="coverage">
@@ -196,8 +205,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UserInput (1)" />
         <item itemvalue="Application.CentralServer" />
+        <item itemvalue="Application.UserInput (1)" />
         <item itemvalue="Application.UserInput" />
         <item itemvalue="JUnit.Tester" />
         <item itemvalue="Application.TestRunner (1)" />
