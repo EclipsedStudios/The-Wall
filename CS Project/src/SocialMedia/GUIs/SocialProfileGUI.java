@@ -16,7 +16,7 @@ import java.util.List;
  * It displays after the user logs in.
  * This class can only be run from UserInput.java!
  * @author Paul Gherghetta
- * @version 12/4/2020
+ * @version 12/6/2020
  */
 
 public class SocialProfileGUI extends JFrame implements ActionListener {
