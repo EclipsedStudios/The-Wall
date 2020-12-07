@@ -106,9 +106,9 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
                 BoxLayout.PAGE_AXIS));
         profileGUIWestComponentPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         //We need to get the profile created in UserInput here
-        for (int i = 0; i < Profile.getProfilesList().size(); i++) {
-            if (Profile.getProfilesList().get(i).getUsername().equals(UserInput.getUsernameAndPassword()[0])) {
-                GUIProfile = Profile.getProfilesList().get(i);
+        for (int i = 0; i < UserClient.profilesList.size(); i++) {
+            if (UserClient.profilesList.get(i).getUsername().equals(UserInput.getUsernameAndPassword()[0])) {
+                GUIProfile = UserClient.profilesList.get(i);
                 break;
             }
         }
