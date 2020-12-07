@@ -76,7 +76,15 @@ public class ServerClientThread extends Thread {
                         try {
                             Profile profile = (Profile) objectInputStream.readObject();
                             System.out.println("remove " + profile.getName());
-                            serverObjectStorage.users.removeIf(p -> p.getUsername().equals(profile.getUsername()));
+                            for(Profile p : serverObjectStorage.users){
+                                if(p.getUsername().equals(profile.getUsername())){
+                                    profile = p;
+                                }
+                            }
+                            for(Profile i : profile.getFriendsList().friends){
+                                i.getFriendsList().removeFriend(profile);
+                            }
+                            serverObjectStorage.users.remove(profile);
                             serverObjectStorage.saveUsersToDatabase();
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
