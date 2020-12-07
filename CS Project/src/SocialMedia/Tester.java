@@ -4,8 +4,6 @@ import SocialMedia.GUIs.EditProfileGUI;
 import SocialMedia.GUIs.FriendsGUI;
 import SocialMedia.GUIs.SocialProfileGUI;
 import SocialMedia.GUIs.UsersListGUI;
-import SocialMedia.ProfileExceptions.DuplicateUserException;
-import SocialMedia.ProfileExceptions.InvalidPasswordException;
 import SocialMedia.ServerAndClient.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -679,46 +677,6 @@ public class Tester {
         } catch (NoSuchMethodException e) {
             Assert.fail("Missing methods");
         }
-    }
-
-    /**
-     * A method to verify the duplicate user exception class exists.
-     */
-    @Test
-    public void duplicateUserExceptionExists() {
-        try {
-            Class.forName("SocialMedia.ProfileExceptions.DuplicateUserException");
-        } catch (ClassNotFoundException e) {
-            Assert.fail("Need a DuplicateUserException class");
-        }
-    }
-
-    /**
-     * A method to verify the duplicate user exception class extends the right classes.
-     */
-    @Test
-    public void duplicateUserExceptionExtends() {
-        assertEquals(Exception.class, DuplicateUserException.class.getSuperclass());
-    }
-
-    /**
-     * A method to verify the invalid password exception class exists.
-     */
-    @Test
-    public void invalidPasswordExceptionExists() {
-        try {
-            Class.forName("SocialMedia.ProfileExceptions.InvalidPasswordException");
-        } catch (ClassNotFoundException e) {
-            Assert.fail("Need a InvalidPasswordException class");
-        }
-    }
-
-    /**
-     * A method to verify the invalid password exception class extends the right classes.
-     */
-    @Test
-    public void invalidPasswordExceptionExtends() {
-        assertEquals(Exception.class, InvalidPasswordException.class.getSuperclass());
     }
 
     /**
