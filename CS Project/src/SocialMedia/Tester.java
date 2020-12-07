@@ -1,5 +1,6 @@
 package SocialMedia;
 
+import SocialMedia.GUIs.EditProfileGUI;
 import SocialMedia.GUIs.FriendsGUI;
 import SocialMedia.GUIs.SocialProfileGUI;
 import SocialMedia.GUIs.UsersListGUI;
@@ -90,7 +91,7 @@ public class Tester {
             assertEquals(socket, serverClientThread.socket);
             assertEquals(serverObjectStorage, serverClientThread.serverObjectStorage);
 
-            Method stopThreadMethod = ServerClientThread.class.getDeclaredMethod("StopThread", null);
+            Method stopThreadMethod = ServerClientThread.class.getDeclaredMethod("stopThread", null);
             stopThreadMethod.setAccessible(true);
             assertEquals(void.class, stopThreadMethod.getReturnType());
             assertEquals(true, Modifier.isPrivate(stopThreadMethod.getModifiers()));
@@ -699,14 +700,17 @@ public class Tester {
             assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("getUsernameAndPassword").getModifiers()));
             assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("getUsernameAndPassword").getModifiers()));
 
+            assertEquals(String[].class, UserInput.class.getMethod("getUsernameAndPassword").getReturnType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("getUsernameAndPassword").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("getUsernameAndPassword").getModifiers()));
+
             assertEquals(void.class, UserInput.class.getMethod("makeLoginScreenVisible").getReturnType());
             assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("makeLoginScreenVisible").getModifiers()));
             assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("makeLoginScreenVisible").getModifiers()));
 
-            assertEquals(void.class, UserInput.class.getMethod("createUserProfile").getReturnType());
-            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("createUserProfile").getModifiers()));
-            assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("createUserProfile").getModifiers()));
-            assertEquals(IOException.class, UserInput.class.getMethod("createUserProfile").getExceptionTypes()[0]);
+            assertEquals(Profile.class, UserInput.class.getMethod("getUserProfile").getReturnType());
+            assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("getUserProfile").getModifiers()));
+            assertEquals(true, Modifier.isStatic(UserInput.class.getMethod("getUserProfile").getModifiers()));
 
             assertEquals(void.class, UserInput.class.getMethod("actionPerformed", ActionEvent.class).getReturnType());
             assertEquals(true, Modifier.isPublic(UserInput.class.getMethod("actionPerformed", ActionEvent.class).getModifiers()));
@@ -851,9 +855,9 @@ public class Tester {
             assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("usersButton").getModifiers()));
             assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("usersButton").getModifiers()));
 
-            assertEquals(JButton.class, SocialProfileGUI.class.getField("myProfileButton").getType());
-            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("myProfileButton").getModifiers()));
-            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("myProfileButton").getModifiers()));
+            assertEquals(JButton.class, SocialProfileGUI.class.getField("editProfileButton").getType());
+            assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("editProfileButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(SocialProfileGUI.class.getField("editProfileButton").getModifiers()));
 
             assertEquals(JButton.class, SocialProfileGUI.class.getField("friendsListButton").getType());
             assertEquals(true, Modifier.isPublic(SocialProfileGUI.class.getField("friendsListButton").getModifiers()));
@@ -979,6 +983,86 @@ public class Tester {
 
             assertEquals(void.class, UsersListGUI.class.getMethod("actionPerformed", ActionEvent.class).getReturnType());
             assertEquals(true, Modifier.isPublic(UsersListGUI.class.getMethod("actionPerformed", ActionEvent.class).getModifiers()));
+        } catch (NoSuchMethodException e) {
+            Assert.fail("Missing methods");
+        }
+    }
+
+    /**
+     * A method to verify the edit profile GUI class exists.
+     */
+    @Test
+    public void editProfileGUIExists() {
+        try {
+            Class.forName("SocialMedia.GUIs.EditProfileGUI");
+        } catch (ClassNotFoundException e) {
+            Assert.fail("Need a EditProfileGUI class");
+        }
+    }
+
+    /**
+     * A method to verify the edit profile GUI class extends the right classes.
+     */
+    @Test
+    public void editProfileGUIExtends() {
+        assertEquals(JFrame.class, EditProfileGUI.class.getSuperclass());
+        assertEquals(ActionListener.class, EditProfileGUI.class.getInterfaces()[0]);
+    }
+
+    /**
+     * A method to verify the edit profile GUI class has correctly formatted fields.
+     */
+    @Test
+    public void editProfileGUIFields() {
+        try {
+            assertEquals(JLabel.class, EditProfileGUI.class.getField("editProfileInstructions").getType());
+            assertEquals(true, Modifier.isPublic(EditProfileGUI.class.getField("editProfileInstructions").getModifiers()));
+            assertEquals(true, Modifier.isStatic(EditProfileGUI.class.getField("editProfileInstructions").getModifiers()));
+
+            assertEquals(JButton.class, EditProfileGUI.class.getField("nameButton").getType());
+            assertEquals(true, Modifier.isPublic(EditProfileGUI.class.getField("nameButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(EditProfileGUI.class.getField("nameButton").getModifiers()));
+
+            assertEquals(JButton.class, EditProfileGUI.class.getField("emailButton").getType());
+            assertEquals(true, Modifier.isPublic(EditProfileGUI.class.getField("emailButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(EditProfileGUI.class.getField("emailButton").getModifiers()));
+
+            assertEquals(JButton.class, EditProfileGUI.class.getField("websiteButton").getType());
+            assertEquals(true, Modifier.isPublic(EditProfileGUI.class.getField("websiteButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(EditProfileGUI.class.getField("websiteButton").getModifiers()));
+
+            assertEquals(JButton.class, EditProfileGUI.class.getField("likesInterestsButton").getType());
+            assertEquals(true, Modifier.isPublic(EditProfileGUI.class.getField("likesInterestsButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(EditProfileGUI.class.getField("likesInterestsButton").getModifiers()));
+
+            assertEquals(JButton.class, EditProfileGUI.class.getField("passwordButton").getType());
+            assertEquals(true, Modifier.isPublic(EditProfileGUI.class.getField("passwordButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(EditProfileGUI.class.getField("passwordButton").getModifiers()));
+
+            assertEquals(JButton.class, EditProfileGUI.class.getField("aboutMeButton").getType());
+            assertEquals(true, Modifier.isPublic(EditProfileGUI.class.getField("aboutMeButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(EditProfileGUI.class.getField("aboutMeButton").getModifiers()));
+
+            assertEquals(JButton.class, EditProfileGUI.class.getField("doneButton").getType());
+            assertEquals(true, Modifier.isPublic(EditProfileGUI.class.getField("doneButton").getModifiers()));
+            assertEquals(true, Modifier.isStatic(EditProfileGUI.class.getField("doneButton").getModifiers()));
+        } catch (NoSuchFieldException e) {
+            Assert.fail("Missing fields");
+        }
+    }
+
+    /**
+     * A method to verify the edit profile GUI class has correctly formatted methods.
+     */
+    @Test
+    public void editProfileGUIMethods() {
+        try {
+            assertEquals(void.class, EditProfileGUI.class.getMethod("createEditProfileGUI").getReturnType());
+            assertEquals(true, Modifier.isPublic(EditProfileGUI.class.getMethod("createEditProfileGUI").getModifiers()));
+            assertEquals(true, Modifier.isStatic(EditProfileGUI.class.getMethod("createEditProfileGUI").getModifiers()));
+
+            assertEquals(void.class, EditProfileGUI.class.getMethod("actionPerformed", ActionEvent.class).getReturnType());
+            assertEquals(true, Modifier.isPublic(EditProfileGUI.class.getMethod("actionPerformed", ActionEvent.class).getModifiers()));
         } catch (NoSuchMethodException e) {
             Assert.fail("Missing methods");
         }

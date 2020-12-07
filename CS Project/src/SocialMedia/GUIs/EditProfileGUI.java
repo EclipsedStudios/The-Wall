@@ -26,14 +26,14 @@ import java.io.*;
 
 public class EditProfileGUI extends JFrame implements ActionListener {
 
-    private static JLabel editProfileInstructions;
-    private static JButton nameButton;
-    private static JButton emailButton;
-    private static JButton websiteButton;
-    private static JButton likesInterestsButton;
-    private static JButton passwordButton;
-    private static JButton aboutMeButton;
-    private static JButton doneButton;
+    public static JLabel editProfileInstructions;
+    public static JButton nameButton;
+    public static JButton emailButton;
+    public static JButton websiteButton;
+    public static JButton likesInterestsButton;
+    public static JButton passwordButton;
+    public static JButton aboutMeButton;
+    public static JButton doneButton;
 
     public static void createEditProfileGUI() {
         JFrame editProfileFrame = new JFrame();
