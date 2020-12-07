@@ -131,17 +131,31 @@ public class FriendsGUI extends JFrame implements ActionListener {
         });
 
         acceptButton.addActionListener((ActionEvent event) -> {
+            Profile currentUser = UserClient.profile;
+            try {
+                UserInput.userClient.refreshPage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // check if user still has incoming req since may be cancelled
             String username = acceptButton.getText().split(" ")[1].substring(0, acceptButton.getText().split(" ")[1].length() - 1);
             Profile userToAdd = UserClient.getProfileWith(username);
-            UserClient.profile.getFriendsList().addFriend(userToAdd);
-            userToAdd.getFriendsList().addFriend(UserClient.profile);
+            if (currentUser.getFriendsList().hasIncomingFriendRequest(userToAdd)) {
+
+                UserClient.profile.getFriendsList().addFriend(userToAdd);
+                userToAdd.getFriendsList().addFriend(UserClient.profile);
 
 
-            try {
-                UserInput.userClient.acceptFriend(userToAdd);
-            } catch (IOException ex) {
-                ex.printStackTrace();
+                try {
+                    UserInput.userClient.acceptFriend(userToAdd);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "That person has cancelled their friend request to you!", "Social Media Profile App", JOptionPane.ERROR_MESSAGE);
             }
+
             friendsFrame.setVisible(false);
             FriendsGUI.createFriendsGUI();
         });
