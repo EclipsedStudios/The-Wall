@@ -1,38 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
+    <expand />
+    <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Finished testing for FriendsList class">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Default_Changelist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Default_Changelist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_2_2020_5_12_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_2_2020_5_12_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_3_2020_2_41_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_3_2020_2_41_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_5_2020_4_28_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_5_2020_4_28_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_6_2020_2_48_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_6_2020_2_48_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_6_2020_8_16_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_12_6_2020_8_16_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2020_11_01_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2020_11_01_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_20__4_05_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_20__4_05_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_20__4_31_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_20__4_31_PM__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/UserClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ListOfUsernames.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ListOfUsernames.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/SocialMedia/GUIs/FriendsGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/SocialMedia/GUIs/FriendsGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS18000/SocialMedia/GUIs/SocialProfileGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS18000/SocialMedia/GUIs/SocialProfileGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/SocialProfileGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/SocialProfileGUI.java" afterDir="false" />
     </list>
+    <ignored path="C:\Users\maria\Desktop\workspace\CS18000-Project-5\.idea\shelf/" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +32,93 @@
   </component>
   <component name="ExportToHTMLSettings">
     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../CS18000\exportToHTML" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="42" column="51" lean-forward="true" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/FriendsList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+              <folding>
+                <element signature="e#1106#1107#0" expanded="true" />
+                <element signature="e#1136#1137#0" expanded="true" />
+                <element signature="e#3983#3992#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UsernameFiles/59537.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UsernameFiles/52594.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UsernameFiles/52612.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/CentralServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-576">
+              <caret line="41" column="35" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/ServerClientThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="89" column="70" lean-forward="true" selection-start-line="89" selection-start-column="70" selection-end-line="89" selection-end-column="70" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/Profile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/SocialProfileGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="237" column="60" selection-start-line="237" selection-start-column="53" selection-end-line="237" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/UserClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6">
+              <caret line="110" column="16" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,7 +128,18 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>child</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <favorite-branches>
       <branch-storage>
         <map>
@@ -63,15 +153,90 @@
         </map>
       </branch-storage>
     </favorite-branches>
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java" />
+        <option value="$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/SocialProfileGUI.java" />
+      </list>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JupyterTrust" id="fe41e3a6-7fc2-4c5d-ad6a-39fb370f4803" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="260" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
   <component name="ProjectId" id="1kcGV0R7adV96IvCAAmvpvYmlQo" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CS18000-Project-5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CS18000-Project-5" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CS18000-Project-5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CS18000-Project-5" type="462c0819:PsiDirectoryNode" />
+              <item name="CS Project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CS18000-Project-5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CS18000-Project-5" type="462c0819:PsiDirectoryNode" />
+              <item name="CS Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CS18000-Project-5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CS18000-Project-5" type="462c0819:PsiDirectoryNode" />
+              <item name="CS Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="SocialMedia" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CS18000-Project-5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CS18000-Project-5" type="462c0819:PsiDirectoryNode" />
+              <item name="CS Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="SocialMedia" type="462c0819:PsiDirectoryNode" />
+              <item name="GUIs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CS18000-Project-5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CS18000-Project-5" type="462c0819:PsiDirectoryNode" />
+              <item name="CS Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="SocialMedia" type="462c0819:PsiDirectoryNode" />
+              <item name="ProfileExceptions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CS18000-Project-5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CS18000-Project-5" type="462c0819:PsiDirectoryNode" />
+              <item name="CS Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="SocialMedia" type="462c0819:PsiDirectoryNode" />
+              <item name="ServerAndClient" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CS18000-Project-5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CS18000-Project-5" type="462c0819:PsiDirectoryNode" />
+              <item name="UsernameFiles" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -83,6 +248,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1607308717981" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -93,7 +259,19 @@
       <recent name="C:\Users\Jaden\IdeaProjects\CS18000\CS Project\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CentralServer (1)">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.UserInput (1)">
     <configuration name="CentralServer (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="SocialMedia.ServerAndClient.CentralServer" />
       <module name="CS18000" />
@@ -200,14 +378,17 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.UserInput (1)" />
-        <item itemvalue="Application.CentralServer (1)" />
         <item itemvalue="JUnit.Tester" />
+        <item itemvalue="Application.CentralServer (1)" />
         <item itemvalue="Application.TestRunner (1)" />
         <item itemvalue="Application.TestRunner" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="270cdef1-b905-4db1-b60e-578e950f64f0" name="Default Changelist" comment="Added:FriendsList class with add and remove friend methods. Not sure if the format for each friend in the list is what we want but it is easy to change" />
@@ -265,8 +446,47 @@
       <option name="project" value="LOCAL" />
       <updated>1607288844938</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added sys out debug messages">
+      <created>1607305377116</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1607305377117</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" weight="0.32936078" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32936078" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+    </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -274,6 +494,12 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -290,7 +516,20 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Test Branch" />
@@ -304,8 +543,8 @@
     <MESSAGE value="Updated test for class changes." />
     <MESSAGE value="Fixed the server client thread class test cases to use reflection so the method can stay private." />
     <MESSAGE value="Finished testing for FriendsList class" />
-    <MESSAGE value="Now server runs off a computer. We can test this later but basically it now runs off my computer. DM me if you need it on, but we will likely test this during the zoom meeting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now server runs off a computer. We can test this later but basically it now runs off my computer. DM me if you need it on, but we will likely test this during the zoom meeting" />
+    <MESSAGE value="added sys out debug messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="added sys out debug messages" />
   </component>
   <component name="WindowStateProjectService">
     <state x="743" y="414" width="433" height="218" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1607281566500">
@@ -316,34 +555,30 @@
       <screen x="1920" y="-165" width="2048" height="1120" />
     </state>
     <state x="2542" y="-165" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606092118870" />
-    <state width="1877" height="210" key="GridCell.Tab.0.bottom" timestamp="1607307739662">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1607301969633">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="210" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607307739662" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607301969633" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.bottom/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1877" height="210" key="GridCell.Tab.0.center" timestamp="1607307739662">
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1607301969633">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="210" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607307739662" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607301969633" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.center/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900196" />
-    <state width="1877" height="210" key="GridCell.Tab.0.left" timestamp="1607307739662">
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1607301969632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="210" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607307739662" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607301969632" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
     <state width="2005" height="305" key="GridCell.Tab.0.left/1920.-217.2048.1120/0.0.1920.1040@1920.-217.2048.1120" timestamp="1605995900195" />
-    <state width="1877" height="210" key="GridCell.Tab.0.right" timestamp="1607307739662">
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1607301969633">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="210" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607307739662" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607301969633" />
     <state width="2005" height="305" key="GridCell.Tab.0.right/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095551161" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992528474" />
@@ -372,10 +607,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607223756916" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1607307317597">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1607288846285">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607307317597" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607288846285" />
     <state x="2509" y="106" key="Vcs.Push.Dialog.v2/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095578508" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/1920.-217.2048.1120/0.0.1920.1040@0.0.1920.1040" timestamp="1605992769069" />
@@ -388,19 +622,96 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="777" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607216261770" />
-    <state x="2044" y="46" width="1621" height="789" key="dock-window-1" timestamp="1607307895931">
-      <screen x="1920" y="-165" width="2048" height="1112" />
-    </state>
-    <state x="2044" y="46" width="1621" height="789" key="dock-window-1/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607307895931" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1607306922490">
+    <state x="616" y="240" key="run.anything.popup" timestamp="1607223349423">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.-165.2048.1112@0.0.1920.1040" timestamp="1607306922490" />
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607223349423" />
     <state x="644" y="226" width="672" height="630" key="search.everywhere.popup" timestamp="1607212939331">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="644" y="226" width="672" height="630" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607212939331" />
     <state x="2607" y="78" width="672" height="678" key="search.everywhere.popup/1920.-165.2048.1120/0.0.1920.1040@1920.-165.2048.1120" timestamp="1606095324743" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/UsersListGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="113" column="47" selection-start-line="113" selection-start-column="47" selection-end-line="113" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/Tester.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="342" column="43" selection-start-line="342" selection-start-column="43" selection-end-line="342" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UsernameFiles/Frank2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UsernameFiles/59537.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UsernameFiles/52594.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UsernameFiles/52612.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/FriendsList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+          <folding>
+            <element signature="e#1106#1107#0" expanded="true" />
+            <element signature="e#1136#1137#0" expanded="true" />
+            <element signature="e#3983#3992#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/FriendsGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="42" column="51" lean-forward="true" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/CentralServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-576">
+          <caret line="41" column="35" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/ServerClientThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="89" column="70" lean-forward="true" selection-start-line="89" selection-start-column="70" selection-end-line="89" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/ServerAndClient/UserClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6">
+          <caret line="110" column="16" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CS Project/src/SocialMedia/GUIs/SocialProfileGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="237" column="60" selection-start-line="237" selection-start-column="53" selection-end-line="237" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

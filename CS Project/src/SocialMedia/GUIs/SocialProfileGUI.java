@@ -221,6 +221,7 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
         JButton sendFriendRequest = new JButton("Send Friend request");
         sendFriendRequest.addActionListener((ActionEvent event) -> {
            if (currentUser.getFriendsList().isFriendsWith(profile)) {
+
                System.out.println(currentUser.getUsername() + " already friends w/ profile");
                JOptionPane.showMessageDialog(null, "You're already friends with " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
            } else if (currentUser.getFriendsList().hasOutgoingFriendRequest(profile)) {
@@ -233,6 +234,11 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "You're now friends with " + profile.getUsername()+"!", "Social Media Profile App", JOptionPane.INFORMATION_MESSAGE);
                 currentUser.getFriendsList().addFriend(profile);
                 profile.getFriendsList().addFriend(currentUser);
+               try {
+                   UserInput.userClient.AcceptFriend(profile);
+               } catch (IOException ex) {
+                   ex.printStackTrace();
+               }
                System.out.println("current user now friends with profile");
             } else {
                // no connection to either
@@ -240,6 +246,11 @@ public class SocialProfileGUI extends JFrame implements ActionListener {
                currentUser.getFriendsList().getOutgoingFriendRequests().add(profile);
                profile.getFriendsList().getIncomingFriendRequests().add(profile);
                System.out.println("current user now sent friend req to profile");
+               try {
+                   UserInput.userClient.AddFriend(profile);
+               } catch (IOException ex) {
+                   ex.printStackTrace();
+               }
            }
         });
 

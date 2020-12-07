@@ -25,6 +25,14 @@ public class FriendsGUI extends JFrame implements ActionListener {
     public static List<Profile> friendsList;
     public static JLabel titleLabel;
 
+    /**
+     * Friends          Incoming friend req         Outgoing friend req
+     * -friend1         - friend4                   - friend7
+     * -friend2         -friend 5                   -friend 8
+     * -friend3         -friend6                    -friend9
+     *                  [Accept friend]             [Cancel outgoing friend req]
+     */
+
     public static void createFriendsGUI() {
 
         friendsList = UserClient.profile.getFriendsList().getFriends();
