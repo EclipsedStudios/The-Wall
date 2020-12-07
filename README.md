@@ -45,7 +45,7 @@ We used JUnit testing to ensure this class, its fields, and its methods exist. W
 
 **ServerClientThread:**
 
-Description:
+Description: ServerClientThread handles the interactions from the client and server, acting as a middle man to allow many clients to connect to one server.
 
 Testing:
 
@@ -53,7 +53,7 @@ We used JUnit testing to ensure this class, its fields, and its methods exist. W
 
 **ServerObjectStorage:**
 
-Description:
+Description: ServerObjectStorage stores the users on the server and saves the users to file when requested by user or called by server. Also saves on server shutdown
 
 Testing:
 
@@ -61,7 +61,7 @@ We used JUnit testing to ensure this class, its fields, and its methods exist. W
 
 **SettingsAndConstants:**
 
-Description:
+Description: Stores IP, Port, and a welcome message that the CentralServer will use.
 
 Testing:
 
