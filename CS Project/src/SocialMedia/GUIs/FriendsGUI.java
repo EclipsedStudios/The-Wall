@@ -27,7 +27,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
 
     public static void createFriendsGUI() {
 
-        friendsList = UserClient.profile.getFriendsList().friends;
+        friendsList = UserClient.profile.getFriendsList().getFriends();
 
         Font font = new Font("Cambria", Font.BOLD, 15);
         JFrame friendsFrame = new JFrame("Friends Menu");
